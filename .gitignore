@@ -3,6 +3,7 @@
 _build/
 cover_db/
 inc/
+local/
 Build
 !Build/
 Build.bat
