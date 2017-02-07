@@ -18,12 +18,6 @@ on_plugin_import {
     $dsl->set(basic_auth_pass => $ENV{DAXMAILER_BASIC_AUTH_PASS});
 
     my $rootdir = $ENV{HOME};
-#    if ( $config->is_live ) {
-#        $dsl->set( environment => 'production' );
-#    }
-#    elsif ( $config->is_view ) {
-#        $dsl->set( environment => 'staging' );
-#    }
 
     $dsl->set(smtp_host => $ENV{DAXMAILER_SMTP_HOST});
     $dsl->set(smtp_ssl => $ENV{DAXMAILER_SMTP_SSL} // 0);
