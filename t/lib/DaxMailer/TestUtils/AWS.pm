@@ -6,6 +6,8 @@ use warnings;
 
 use JSON::MaybeXS;
 
+my $json = JSON::MaybeXS->new;
+
 sub _packet {
     my $message = $_[0];
     return encode_json(
@@ -19,7 +21,7 @@ sub _packet {
 sub sns_complaint {
     my $email = $_[1];
     die "Need an email address parameter" unless $email;
-    my $message = encode_json(
+    my $message = $json->encode(
         {
             notificationType => 'Complaint',
             complaint => {
@@ -37,7 +39,7 @@ sub sns_complaint {
 sub sns_permanent_bounce {
     my $email = $_[1];
     die "Need an email address parameter" unless $email;
-    my $message = encode_json(
+    my $message = $json->encode(
         {
             notificationType => 'Bounce',
             bounce => {
@@ -56,7 +58,7 @@ sub sns_permanent_bounce {
 sub sns_transient_bounce {
     my $email = $_[1];
     die "Need an email address parameter" unless $email;
-    my $message = encode_json(
+    my $message = $json->encode(
         {
             notificationType => 'Bounce',
             bounce => {
