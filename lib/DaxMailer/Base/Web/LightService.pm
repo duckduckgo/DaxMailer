@@ -28,7 +28,7 @@ use Dancer2::Plugin::DaxMailer::Bailout;
         ) {
             $_->import::into($caller);
         }
-        Dancer2::Plugin::DaxMailer::Config->import::into( $caller, 'nosession' );
+        Dancer2::Plugin::DaxMailer::Config->import::into( $caller );
         for (
           qw/
             DaxMailer::Base::Web::Light

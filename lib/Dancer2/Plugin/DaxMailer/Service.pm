@@ -2,7 +2,6 @@ package Dancer2::Plugin::DaxMailer::Service;
 
 # ABSTRACT: Set default configuration and behaviour for JSON services.
 
-use Dancer2;
 use Dancer2::Plugin;
 
 on_plugin_import {

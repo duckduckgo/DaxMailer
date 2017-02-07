@@ -2,7 +2,6 @@ package Dancer2::Plugin::DaxMailer::Config;
 
 # ABSTRACT: Set common configuration options
 
-use Dancer2;
 use Dancer2::Plugin;
 use DaxMailer::Util::TemplateHelpers;
 
