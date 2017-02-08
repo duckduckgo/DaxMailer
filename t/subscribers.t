@@ -72,6 +72,18 @@ test_psgi $app => sub {
         ), "Adding subscriber : $email" );
     }
 
+    for my $email (qw/
+        test7@duckduckgo.com
+        test8@duckduckgo.com
+        test9@duckduckgo.com
+        lateverify@duckduckgo.com
+    / ) {
+        ok( $cb->(
+            POST '/s/a',
+            [ email => $email, campaign => 'b', flow => 'flow1' ]
+        ), "Adding subscriber : $email" );
+    }
+
     my $invalid = rset('Subscriber')->find( {
         email_address => 'notanemailaddress',
         campaign => 'a'
@@ -79,14 +91,17 @@ test_psgi $app => sub {
     is( $invalid, undef, 'Invalid address not inserted via POST' );
 
     my $transport = DaxMailer::Script::SubscriberMailer->new->verify;
-    is( $transport->delivery_count, 6, 'Correct number of verification emails sent' );
+    is( $transport->delivery_count, 10, 'Correct number of verification emails sent' );
 
     $transport = DaxMailer::Script::SubscriberMailer->new->verify;
     is( $transport->delivery_count, 0, 'No verification emails re-sent' );
 
+    _verify($cb, 'test8@duckduckgo.com', 'b');
+    _verify($cb, 'test9@duckduckgo.com', 'b');
+
     set_absolute_time('2016-10-20T12:00:00Z');
     $transport = DaxMailer::Script::SubscriberMailer->new->execute;
-    is( $transport->delivery_count, 6, '6 received emails' );
+    is( $transport->delivery_count, 8, '8 received emails' );
 
     $transport = DaxMailer::Script::SubscriberMailer->new->execute;
     is( $transport->delivery_count, 0, 'Emails not re-sent' );
@@ -96,10 +111,18 @@ test_psgi $app => sub {
     is( $transport->delivery_count, 0, '0 received emails - non scheduled' );
 
     _unsubscribe($cb, 'test2@duckduckgo.com', 'a');
+    _verify($cb, 'lateverify@duckduckgo.com', 'b');
 
     set_absolute_time('2016-10-22T12:00:00Z');
     $transport = DaxMailer::Script::SubscriberMailer->new->execute;
-    is( $transport->delivery_count, 5, '5 received emails - one unsubscribed' );
+    is( $transport->delivery_count, 7, '7 received emails - one unsubscribed' );
+
+    $transport = DaxMailer::Script::SubscriberMailer->new->execute;
+    is( $transport->delivery_count, 0, 'Emails not re-sent' );
+
+    set_absolute_time('2016-10-23T12:00:00Z');
+    $transport = DaxMailer::Script::SubscriberMailer->new->execute;
+    is( $transport->delivery_count, 1, '1 received email - late verify, rescheduled' );
 
     $transport = DaxMailer::Script::SubscriberMailer->new->execute;
     is( $transport->delivery_count, 0, 'Emails not re-sent' );
