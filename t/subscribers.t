@@ -15,11 +15,11 @@ use Test::MockTime qw/:all/;
 use t::lib::DaxMailer::TestUtils;
 use DaxMailer::Web::App::Subscriber;
 use DaxMailer::Base::Web::Light;
-use DaxMailer::Util::Script::SubscriberMailer;
+use DaxMailer::Script::SubscriberMailer;
 use URI;
 
 t::lib::DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
-my $m = DaxMailer::Util::Script::SubscriberMailer->new;
+my $m = DaxMailer::Script::SubscriberMailer->new;
 
 my $app = builder {
     mount '/s' => DaxMailer::Web::App::Subscriber->to_app;
@@ -52,10 +52,10 @@ test_psgi $app => sub {
     } );
     is( $invalid, undef, 'Invalid address not inserted via POST' );
 
-    my $transport = DaxMailer::Util::Script::SubscriberMailer->new->verify;
+    my $transport = DaxMailer::Script::SubscriberMailer->new->verify;
     is( $transport->delivery_count, 6, 'Correct number of verification emails sent' );
 
-    $transport = DaxMailer::Util::Script::SubscriberMailer->new->verify;
+    $transport = DaxMailer::Script::SubscriberMailer->new->verify;
     is( $transport->delivery_count, 0, 'No verification emails re-sent' );
 
     my $unsubscribe = sub {
@@ -85,23 +85,23 @@ test_psgi $app => sub {
     };
 
     set_absolute_time('2016-10-20T12:00:00Z');
-    $transport = DaxMailer::Util::Script::SubscriberMailer->new->execute;
+    $transport = DaxMailer::Script::SubscriberMailer->new->execute;
     is( $transport->delivery_count, 6, '6 received emails' );
 
-    $transport = DaxMailer::Util::Script::SubscriberMailer->new->execute;
+    $transport = DaxMailer::Script::SubscriberMailer->new->execute;
     is( $transport->delivery_count, 0, 'Emails not re-sent' );
 
     set_absolute_time('2016-10-21T12:00:00Z');
-    $transport = DaxMailer::Util::Script::SubscriberMailer->new->execute;
+    $transport = DaxMailer::Script::SubscriberMailer->new->execute;
     is( $transport->delivery_count, 0, '0 received emails - non scheduled' );
 
     $unsubscribe->('test2@duckduckgo.com');
 
     set_absolute_time('2016-10-22T12:00:00Z');
-    $transport = DaxMailer::Util::Script::SubscriberMailer->new->execute;
+    $transport = DaxMailer::Script::SubscriberMailer->new->execute;
     is( $transport->delivery_count, 5, '5 received emails - one unsubscribed' );
 
-    $transport = DaxMailer::Util::Script::SubscriberMailer->new->execute;
+    $transport = DaxMailer::Script::SubscriberMailer->new->execute;
     is( $transport->delivery_count, 0, 'Emails not re-sent' );
 };
 

@@ -1,12 +1,12 @@
 use strict;
 use warnings;
-package DaxMailer::Util::Script::SubscriberMailer;
+package DaxMailer::Script::SubscriberMailer;
 
 use DateTime;
 use Moo;
 
-with 'DaxMailer::Util::Script::Base::Service';
-with 'DaxMailer::Util::Script::Base::ServiceEmail';
+with 'DaxMailer::Base::Script::Service';
+with 'DaxMailer::Base::Script::ServiceEmail';
 
 has campaigns => ( is => 'lazy' );
 sub _build_campaigns {

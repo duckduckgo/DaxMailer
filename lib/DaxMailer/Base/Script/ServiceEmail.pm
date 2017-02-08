@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-package DaxMailer::Util::Script::Base::ServiceEmail;
+package DaxMailer::Base::Script::ServiceEmail;
 
 # ABSTRACT: Common elements of service architecture based email script modules
 

@@ -4,11 +4,11 @@ package DaxMailer::Web::App::Subscriber;
 
 use DaxMailer::Base::Web::Light;
 use Dancer2::Plugin::Auth::HTTP::Basic::DWIW;
-use DaxMailer::Util::Script::SubscriberMailer;
+use DaxMailer::Script::SubscriberMailer;
 use Email::Valid;
-use DaxMailer::Util::Script::SubscriberMailer;
+use DaxMailer::Script::SubscriberMailer;
 
-my $subscriber = DaxMailer::Util::Script::SubscriberMailer->new;
+my $subscriber = DaxMailer::Script::SubscriberMailer->new;
 
 http_basic_auth_set_check_handler sub {
     my ( $user, $pass ) = @_;
@@ -74,7 +74,7 @@ post '/testrun/:campaign' => sub {
     my $email = Email::Valid->address($bodyparams->{email});
     return unless $email;
     return unless $email =~ /\@duckduckgo\.com$/;
-    DaxMailer::Util::Script::SubscriberMailer->new->testrun(
+    DaxMailer::Script::SubscriberMailer->new->testrun(
         $routeparams->{campaign},
         $bodyparams->{email},
     );
