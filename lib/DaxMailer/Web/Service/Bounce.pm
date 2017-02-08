@@ -2,13 +2,10 @@ package DaxMailer::Web::Service::Bounce;
 
 # ABSTRACT: Bounce management
 
-use JSON::MaybeXS;
 use HTTP::Tiny;
 use Try::Tiny;
 use AWS::SNS::Verify;
 use DaxMailer::Base::Web::LightService;
-
-my $json = JSON::MaybeXS->new;
 
 sub verify_subscription {
     my $ok = 1;
@@ -43,7 +40,7 @@ post '/handler' => sub {
     if ( $packet->{Type} eq 'SubscriptionConfirmation' ) {
         return verify_subscription( $packet );
     }
-    my $message = $json->decode( $packet->{Message} );
+    my $message = decode_json( $packet->{Message} );
     return rset('Subscriber')->handle_bounces( $message );
 };
 
