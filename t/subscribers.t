@@ -25,6 +25,32 @@ my $app = builder {
     mount '/s' => DaxMailer::Web::App::Subscriber->to_app;
 };
 
+sub _verify {
+    my ( $cb, $email, $campaign ) = @_;
+    my $subscriber = rset('Subscriber')->find( {
+        email_address => $email,
+        campaign => $campaign,
+    } );
+    my $url = URI->new( $subscriber->verify_url );
+    ok(
+        $cb->( GET $url->path ),
+        "Verifying " . $subscriber->email_address
+    );
+}
+
+sub _unsubscribe {
+    my ( $cb, $email, $campaign ) = @_;
+    my $subscriber = rset('Subscriber')->find( {
+        email_address => $email,
+        campaign => 'a',
+    } );
+    my $url = URI->new( $subscriber->unsubscribe_url );
+    ok(
+        $cb->( GET $url->path ),
+        "Verifying " . $subscriber->email_address
+    );
+}
+
 test_psgi $app => sub {
     my ( $cb ) = @_;
 
@@ -58,32 +84,6 @@ test_psgi $app => sub {
     $transport = DaxMailer::Script::SubscriberMailer->new->verify;
     is( $transport->delivery_count, 0, 'No verification emails re-sent' );
 
-    my $unsubscribe = sub {
-        my ( $email ) = @_;
-        my $subscriber = rset('Subscriber')->find( {
-            email_address => $email,
-            campaign => 'a',
-        } );
-        my $url = URI->new( $subscriber->unsubscribe_url );
-        ok(
-            $cb->( GET $url->path ),
-            "Verifying " . $subscriber->email_address
-        );
-    };
-
-    my $verify = sub {
-        my ( $email ) = @_;
-        my $subscriber = rset('Subscriber')->find( {
-            email_address => $email,
-            campaign => 'a',
-        } );
-        my $url = URI->new( $subscriber->verify_url );
-        ok(
-            $cb->( GET $url->path ),
-            "Verifying " . $subscriber->email_address
-        );
-    };
-
     set_absolute_time('2016-10-20T12:00:00Z');
     $transport = DaxMailer::Script::SubscriberMailer->new->execute;
     is( $transport->delivery_count, 6, '6 received emails' );
@@ -95,7 +95,7 @@ test_psgi $app => sub {
     $transport = DaxMailer::Script::SubscriberMailer->new->execute;
     is( $transport->delivery_count, 0, '0 received emails - non scheduled' );
 
-    $unsubscribe->('test2@duckduckgo.com');
+    _unsubscribe($cb, 'test2@duckduckgo.com', 'a');
 
     set_absolute_time('2016-10-22T12:00:00Z');
     $transport = DaxMailer::Script::SubscriberMailer->new->execute;
