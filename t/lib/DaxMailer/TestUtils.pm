@@ -10,8 +10,8 @@ sub deploy {
     my ( $opts, $schema ) = @_;
     my $success = 1;
     try {
-        if ($ENV{DaxMailer_DB_DSN} =~ /^dbi:SQLite/) {
-            my $fn = $ENV{DaxMailer_DB_DSN} =~ s/.*dbname=(.*)/$1/r;
+        if ($ENV{DAXMAILER_DB_DSN} =~ /^dbi:SQLite/) {
+            my $fn = $ENV{DAXMAILER_DB_DSN} =~ s/.*dbname=(.*)/$1/r;
             unlink $fn if $fn;
             if ( $schema ) {
                 $schema->deploy({
@@ -19,7 +19,7 @@ sub deploy {
                 });
             }
             else {
-                DaxMailer::Schema->connect($ENV{DaxMailer_DB_DSN})->deploy({
+                DaxMailer::Schema->connect($ENV{DAXMAILER_DB_DSN})->deploy({
                     add_drop_table => $opts->{drop} || 0
                 });
             }

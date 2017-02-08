@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 BEGIN {
-    $ENV{DaxMailer_SNS_VERIFY_TEST} = 0;
+    $ENV{DAXMAILER_SNS_VERIFY_TEST} = 0;
 }
 
 use Plack::Test;

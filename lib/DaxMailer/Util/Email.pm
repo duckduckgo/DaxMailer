@@ -47,7 +47,7 @@ has transport => (
 );
 sub _build_transport {
     my ( $self ) = @_;
-    return Email::Sender::Transport::Test->new if $ENV{DaxMailer_MAIL_TEST};
+    return Email::Sender::Transport::Test->new if $ENV{DAXMAILER_MAIL_TEST};
     Email::Sender::Transport::SMTP::Persistent->new(
         $self->smtp_config,
     );

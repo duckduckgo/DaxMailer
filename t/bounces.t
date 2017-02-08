@@ -2,9 +2,9 @@ use strict;
 use warnings;
 
 BEGIN {
-    $ENV{DaxMailer_DB_DSN} = 'dbi:SQLite:dbname=daxmailer_test.db';
-    $ENV{DaxMailer_SNS_VERIFY_TEST} = 1;
-    $ENV{DaxMailer_MAIL_TEST} = 1;
+    $ENV{DAXMAILER_DB_DSN} = 'dbi:SQLite:dbname=daxmailer_test.db';
+    $ENV{DAXMAILER_SNS_VERIFY_TEST} = 1;
+    $ENV{DAXMAILER_MAIL_TEST} = 1;
 }
 
 use Plack::Test;

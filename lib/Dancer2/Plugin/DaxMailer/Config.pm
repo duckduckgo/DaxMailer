@@ -9,7 +9,7 @@ on_plugin_import {
     my ( $dsl ) = @_;
     my $settings = plugin_setting();
 
-    $dsl->set(verify_sns => !$ENV{DaxMailer_SNS_VERIFY_TEST});
+    $dsl->set(verify_sns => !$ENV{DAXMAILER_SNS_VERIFY_TEST});
     $dsl->set(charset => 'UTF-8');
 
     $dsl->set(base_url => 'https://mailer.duckduckgo.com/');
