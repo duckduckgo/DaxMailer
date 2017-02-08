@@ -10,7 +10,7 @@ my $json = JSON::MaybeXS->new;
 
 sub _packet {
     my $message = $_[0];
-    return encode_json(
+    return $json->encode(
         {
             Type => 'Notification',
             Message => $message,
