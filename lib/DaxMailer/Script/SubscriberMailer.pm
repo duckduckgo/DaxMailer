@@ -64,7 +64,7 @@ sub _build_campaigns {
     };
 
     for my $campaign ( keys %{ $campaigns } ) {
-        if ( my $base = delete $campaigns->{ $campaign }->{base} ) {
+        if ( my $base = $campaigns->{ $campaign }->{base} ) {
             if ( $campaigns->{ $base } ) {
                 $campaigns->{ $campaign } = merge( $campaigns->{ $campaign }, $campaigns->{ $base } );
             }
@@ -157,6 +157,13 @@ sub add {
     my ( $self, $params ) = @_;
     my $email = Email::Valid->address($params->{email});
     return unless $email;
+
+    my $campaigns = [ $params->{campaign} ];
+    push @{ $campaigns }, $self->campaigns->{ $params->{campaign} }->{base}
+        if $self->campaigns->{ $params->{campaign} }->{base};
+    my $exists = rset('Subscriber')->exists( $email, $campaigns );
+    return $exists if $exists;
+
     return rset('Subscriber')->create( {
         email_address => $email,
         campaign      => $params->{campaign},
