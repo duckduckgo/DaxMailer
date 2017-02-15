@@ -30,6 +30,7 @@ requires 'Import::Into';
 requires 'JSON::MaybeXS';
 requires 'Moo';
 requires 'Moo::Role';
+requires 'Starman';
 requires 'Text::Xslate';
 requires 'Try::Tiny';
 requires 'URI';
