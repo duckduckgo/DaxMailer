@@ -5,8 +5,8 @@ package DaxMailer::Script::SubscriberMailer;
 use DateTime;
 use Moo;
 
-with 'DaxMailer::Base::Script::Service';
-with 'DaxMailer::Base::Script::ServiceEmail';
+with 'DaxMailer::Base::Script::Service',
+     'DaxMailer::Base::Script::ServiceEmail';
 
 has campaigns => ( is => 'lazy' );
 sub _build_campaigns {
