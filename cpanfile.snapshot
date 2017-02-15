@@ -973,6 +973,14 @@ DISTRIBUTIONS
       Data::Page 2
       ExtUtils::MakeMaker 0
       Test::More 0.1
+  Data-Record-0.02
+    pathname: O/OV/OVID/Data-Record-0.02.tar.gz
+    provides:
+      Data::Record 0.02
+    requirements:
+      Sub::Uplevel 0.09
+      Test::Exception 0.21
+      Test::More 0.6
   DateTime-1.42
     pathname: D/DR/DROLSKY/DateTime-1.42.tar.gz
     provides:
@@ -1514,6 +1522,13 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       Sub::Exporter::Progressive 0.001011
       perl 5.006
+  Devel-Hide-0.0009
+    pathname: F/FE/FERREIRA/Devel-Hide-0.0009.tar.gz
+    provides:
+      Devel::Hide 0.0009
+    requirements:
+      ExtUtils::MakeMaker 0
+      Test::More 0
   Devel-StackTrace-2.02
     pathname: D/DR/DROLSKY/Devel-StackTrace-2.02.tar.gz
     provides:
@@ -1867,6 +1882,18 @@ DISTRIBUTIONS
       File::Spec 0.8
       Pod::Man 0
       perl 5.006
+  File-ConfigDir-0.017
+    pathname: R/RE/REHSACK/File-ConfigDir-0.017.tar.gz
+    provides:
+      File::ConfigDir 0.017
+    requirements:
+      Carp 0
+      ExtUtils::MakeMaker 0
+      File::Basename 0
+      File::Path 2.00
+      File::Spec 0
+      FindBin 0
+      perl 5.008001
   File-Copy-Recursive-0.38
     pathname: D/DM/DMUEY/File-Copy-Recursive-0.38.tar.gz
     provides:
@@ -1875,6 +1902,18 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       File::Copy 0
       File::Spec 0
+  File-Find-Rule-0.34
+    pathname: R/RC/RCLAMP/File-Find-Rule-0.34.tar.gz
+    provides:
+      File::Find::Rule 0.34
+      File::Find::Rule::Test::ATeam undef
+    requirements:
+      ExtUtils::MakeMaker 0
+      File::Find 0
+      File::Spec 0
+      Number::Compare 0
+      Test::More 0
+      Text::Glob 0.07
   File-ShareDir-1.102
     pathname: R/RE/REHSACK/File-ShareDir-1.102.tar.gz
     provides:
@@ -2262,6 +2301,16 @@ DISTRIBUTIONS
       IPC::Cmd 0
       XSLoader 0.22
       base 0
+  MIME-Charset-1.012
+    pathname: N/NE/NEZUMI/MIME-Charset-1.012.tar.gz
+    provides:
+      MIME::Charset 1.012
+    requirements:
+      CPAN 0
+      Encode 1.98
+      ExtUtils::MakeMaker 6.42
+      Test::More 0
+      perl 5.005
   MIME-Types-2.13
     pathname: M/MA/MARKOV/MIME-Types-2.13.tar.gz
     provides:
@@ -2485,6 +2534,60 @@ DISTRIBUTIONS
       Sub::Defer 2.003001
       Sub::Quote 2.003001
       perl 5.006
+  MooX-ConfigFromFile-0.007
+    pathname: R/RE/REHSACK/MooX-ConfigFromFile-0.007.tar.gz
+    provides:
+      MooX::ConfigFromFile 0.007
+      MooX::ConfigFromFile::Role 0.007
+      MooX::ConfigFromFile::Role::HashMergeLoaded 0.007
+    requirements:
+      Config::Any 0
+      ExtUtils::MakeMaker 0
+      File::Find::Rule 0.30
+      FindBin 0
+      Moo 1.003
+      MooX::File::ConfigDir 0.002
+      perl 5.008001
+  MooX-File-ConfigDir-0.005
+    pathname: R/RE/REHSACK/MooX-File-ConfigDir-0.005.tar.gz
+    provides:
+      MooX::File::ConfigDir 0.005
+    requirements:
+      ExtUtils::MakeMaker 0
+      File::ConfigDir 0.011
+      Moo::Role 1.003000
+      namespace::clean 0
+      perl 5.008001
+  MooX-Options-4.023
+    pathname: C/CE/CELOGEEK/MooX-Options-4.023.tar.gz
+    provides:
+      MooX::Options 4.023
+      MooX::Options::Descriptive 4.023
+      MooX::Options::Descriptive::Usage 4.023
+      MooX::Options::Role 4.023
+    requirements:
+      Carp 0
+      Data::Record 0
+      File::ShareDir 1.00
+      Getopt::Long 2.43
+      Getopt::Long::Descriptive 0.099
+      JSON::MaybeXS 0
+      Locale::TextDomain 0
+      Module::Build 0.4211
+      Module::Metadata 1.000019
+      Moo 1.003001
+      MooX::ConfigFromFile 0
+      Path::Class 0.32
+      Pod::Usage 0
+      Regexp::Common 0
+      Scalar::Util 0
+      Term::Size::Any 0
+      Text::LineFold 0
+      overload 0
+      parent 0
+      perl 5.006
+      strict 0
+      warnings 0
   MooX-Types-MooseLike-0.29
     pathname: M/MA/MATEU/MooX-Types-MooseLike-0.29.tar.gz
     provides:
@@ -2564,6 +2667,13 @@ DISTRIBUTIONS
       POSIX 0
       Socket 0
       Time::HiRes 0
+  Number-Compare-0.03
+    pathname: R/RC/RCLAMP/Number-Compare-0.03.tar.gz
+    provides:
+      Number::Compare 0.03
+    requirements:
+      ExtUtils::MakeMaker 0
+      Test::More 0
   Ouch-0.0410
     pathname: R/RI/RIZEN/Ouch-0.0410.tar.gz
     provides:
@@ -2859,6 +2969,50 @@ DISTRIBUTIONS
       Plack::Util 0
       parent 0
       strict 0
+      warnings 0
+  Regexp-Common-2016060801
+    pathname: A/AB/ABIGAIL/Regexp-Common-2016060801.tar.gz
+    provides:
+      Regexp::Common 2016060801
+      Regexp::Common::CC 2016060801
+      Regexp::Common::Entry 2016060801
+      Regexp::Common::SEN 2016060801
+      Regexp::Common::URI 2016060801
+      Regexp::Common::URI::RFC1035 2016060801
+      Regexp::Common::URI::RFC1738 2016060801
+      Regexp::Common::URI::RFC1808 2016060801
+      Regexp::Common::URI::RFC2384 2016060801
+      Regexp::Common::URI::RFC2396 2016060801
+      Regexp::Common::URI::RFC2806 2016060801
+      Regexp::Common::URI::fax 2016060801
+      Regexp::Common::URI::file 2016060801
+      Regexp::Common::URI::ftp 2016060801
+      Regexp::Common::URI::gopher 2016060801
+      Regexp::Common::URI::http 2016060801
+      Regexp::Common::URI::news 2016060801
+      Regexp::Common::URI::pop 2016060801
+      Regexp::Common::URI::prospero 2016060801
+      Regexp::Common::URI::tel 2016060801
+      Regexp::Common::URI::telnet 2016060801
+      Regexp::Common::URI::tv 2016060801
+      Regexp::Common::URI::wais 2016060801
+      Regexp::Common::_support 2016060801
+      Regexp::Common::balanced 2016060801
+      Regexp::Common::comment 2016060801
+      Regexp::Common::delimited 2016060801
+      Regexp::Common::lingua 2016060801
+      Regexp::Common::list 2016060801
+      Regexp::Common::net 2016060801
+      Regexp::Common::number 2016060801
+      Regexp::Common::profanity 2016060801
+      Regexp::Common::whitespace 2016060801
+      Regexp::Common::zip 2016060801
+    requirements:
+      Config 0
+      ExtUtils::MakeMaker 0
+      perl 5.01
+      strict 0
+      vars 0
       warnings 0
   Return-MultiLevel-0.04
     pathname: M/MA/MAUKE/Return-MultiLevel-0.04.tar.gz
@@ -3282,6 +3436,25 @@ DISTRIBUTIONS
       File::Temp 0.12
       Scalar::Util 0
       Test::LeakTrace 0
+  Term-Size-Any-0.002
+    pathname: F/FE/FERREIRA/Term-Size-Any-0.002.tar.gz
+    provides:
+      Term::Size::Any 0.002
+    requirements:
+      Devel::Hide 0
+      ExtUtils::MakeMaker 0
+      Module::Load::Conditional 0
+      Term::Size::Perl 0
+      Test::More 0
+  Term-Size-Perl-0.029
+    pathname: F/FE/FERREIRA/Term-Size-Perl-0.029.tar.gz
+    provides:
+      Term::Size::Perl 0.029
+    requirements:
+      Exporter 0
+      ExtUtils::CBuilder 0
+      ExtUtils::MakeMaker 0
+      Test::More 0
   Test-Deep-1.126
     pathname: R/RJ/RJBS/Test-Deep-1.126.tar.gz
     provides:
@@ -3566,6 +3739,15 @@ DISTRIBUTIONS
       Exporter 0
       ExtUtils::MakeMaker 0
       perl 5.006
+  Text-Glob-0.10
+    pathname: R/RC/RCLAMP/Text-Glob-0.10.tar.gz
+    provides:
+      Text::Glob 0.10
+    requirements:
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      constant 0
+      perl 5.00503
   Text-Xslate-3.4.0
     pathname: S/SY/SYOHEX/Text-Xslate-3.4.0.tar.gz
     provides:
@@ -3747,6 +3929,18 @@ DISTRIBUTIONS
       parent 0
       perl 5.008001
       utf8 0
+  Unicode-LineBreak-2016.003
+    pathname: N/NE/NEZUMI/Unicode-LineBreak-2016.003.tar.gz
+    provides:
+      Text::LineFold 2012.04
+      Unicode::GCString 2013.10
+      Unicode::LineBreak 2016.003
+    requirements:
+      Encode 1.98
+      ExtUtils::MakeMaker 6.26
+      MIME::Charset v1.6.2
+      Test::More 0.45
+      perl 5.008
   Variable-Magic-0.61
     pathname: V/VP/VPIT/Variable-Magic-0.61.tar.gz
     provides:
@@ -3861,6 +4055,164 @@ DISTRIBUTIONS
       XSLoader 0
       lib 0
       perl 5.008001
+  libintl-perl-1.26
+    pathname: G/GU/GUIDO/libintl-perl-1.26.tar.gz
+    provides:
+      Locale::Messages 1.26
+      Locale::Recode undef
+      Locale::Recode::_Aliases undef
+      Locale::Recode::_Conversions undef
+      Locale::RecodeData undef
+      Locale::RecodeData::ASMO_449 undef
+      Locale::RecodeData::ATARI_ST undef
+      Locale::RecodeData::ATARI_ST_EURO undef
+      Locale::RecodeData::CP10007 undef
+      Locale::RecodeData::CP1250 undef
+      Locale::RecodeData::CP1251 undef
+      Locale::RecodeData::CP1252 undef
+      Locale::RecodeData::CP1253 undef
+      Locale::RecodeData::CP1254 undef
+      Locale::RecodeData::CP1256 undef
+      Locale::RecodeData::CP1257 undef
+      Locale::RecodeData::CSN_369103 undef
+      Locale::RecodeData::CWI undef
+      Locale::RecodeData::DEC_MCS undef
+      Locale::RecodeData::EBCDIC_AT_DE undef
+      Locale::RecodeData::EBCDIC_AT_DE_A undef
+      Locale::RecodeData::EBCDIC_CA_FR undef
+      Locale::RecodeData::EBCDIC_DK_NO undef
+      Locale::RecodeData::EBCDIC_DK_NO_A undef
+      Locale::RecodeData::EBCDIC_ES undef
+      Locale::RecodeData::EBCDIC_ES_A undef
+      Locale::RecodeData::EBCDIC_ES_S undef
+      Locale::RecodeData::EBCDIC_FI_SE undef
+      Locale::RecodeData::EBCDIC_FI_SE_A undef
+      Locale::RecodeData::EBCDIC_FR undef
+      Locale::RecodeData::EBCDIC_IS_FRISS undef
+      Locale::RecodeData::EBCDIC_IT undef
+      Locale::RecodeData::EBCDIC_PT undef
+      Locale::RecodeData::EBCDIC_UK undef
+      Locale::RecodeData::EBCDIC_US undef
+      Locale::RecodeData::ECMA_CYRILLIC undef
+      Locale::RecodeData::GEORGIAN_ACADEMY undef
+      Locale::RecodeData::GEORGIAN_PS undef
+      Locale::RecodeData::GOST_19768_74 undef
+      Locale::RecodeData::GREEK7 undef
+      Locale::RecodeData::GREEK7_OLD undef
+      Locale::RecodeData::GREEK_CCITT undef
+      Locale::RecodeData::HP_ROMAN8 undef
+      Locale::RecodeData::IBM037 undef
+      Locale::RecodeData::IBM038 undef
+      Locale::RecodeData::IBM1004 undef
+      Locale::RecodeData::IBM1026 undef
+      Locale::RecodeData::IBM1047 undef
+      Locale::RecodeData::IBM256 undef
+      Locale::RecodeData::IBM273 undef
+      Locale::RecodeData::IBM274 undef
+      Locale::RecodeData::IBM275 undef
+      Locale::RecodeData::IBM277 undef
+      Locale::RecodeData::IBM278 undef
+      Locale::RecodeData::IBM280 undef
+      Locale::RecodeData::IBM281 undef
+      Locale::RecodeData::IBM284 undef
+      Locale::RecodeData::IBM285 undef
+      Locale::RecodeData::IBM290 undef
+      Locale::RecodeData::IBM297 undef
+      Locale::RecodeData::IBM420 undef
+      Locale::RecodeData::IBM423 undef
+      Locale::RecodeData::IBM424 undef
+      Locale::RecodeData::IBM437 undef
+      Locale::RecodeData::IBM500 undef
+      Locale::RecodeData::IBM850 undef
+      Locale::RecodeData::IBM851 undef
+      Locale::RecodeData::IBM852 undef
+      Locale::RecodeData::IBM855 undef
+      Locale::RecodeData::IBM857 undef
+      Locale::RecodeData::IBM860 undef
+      Locale::RecodeData::IBM861 undef
+      Locale::RecodeData::IBM862 undef
+      Locale::RecodeData::IBM863 undef
+      Locale::RecodeData::IBM864 undef
+      Locale::RecodeData::IBM865 undef
+      Locale::RecodeData::IBM866 undef
+      Locale::RecodeData::IBM868 undef
+      Locale::RecodeData::IBM869 undef
+      Locale::RecodeData::IBM870 undef
+      Locale::RecodeData::IBM871 undef
+      Locale::RecodeData::IBM874 undef
+      Locale::RecodeData::IBM875 undef
+      Locale::RecodeData::IBM880 undef
+      Locale::RecodeData::IBM891 undef
+      Locale::RecodeData::IBM903 undef
+      Locale::RecodeData::IBM904 undef
+      Locale::RecodeData::IBM905 undef
+      Locale::RecodeData::IBM918 undef
+      Locale::RecodeData::IEC_P27_1 undef
+      Locale::RecodeData::INIS undef
+      Locale::RecodeData::INIS_8 undef
+      Locale::RecodeData::INIS_CYRILLIC undef
+      Locale::RecodeData::ISO_10367_BOX undef
+      Locale::RecodeData::ISO_2033_1983 undef
+      Locale::RecodeData::ISO_5427 undef
+      Locale::RecodeData::ISO_5427_EXT undef
+      Locale::RecodeData::ISO_5428 undef
+      Locale::RecodeData::ISO_8859_1 undef
+      Locale::RecodeData::ISO_8859_10 undef
+      Locale::RecodeData::ISO_8859_11 undef
+      Locale::RecodeData::ISO_8859_13 undef
+      Locale::RecodeData::ISO_8859_14 undef
+      Locale::RecodeData::ISO_8859_15 undef
+      Locale::RecodeData::ISO_8859_16 undef
+      Locale::RecodeData::ISO_8859_2 undef
+      Locale::RecodeData::ISO_8859_3 undef
+      Locale::RecodeData::ISO_8859_4 undef
+      Locale::RecodeData::ISO_8859_5 undef
+      Locale::RecodeData::ISO_8859_6 undef
+      Locale::RecodeData::ISO_8859_7 undef
+      Locale::RecodeData::ISO_8859_8 undef
+      Locale::RecodeData::ISO_8859_9 undef
+      Locale::RecodeData::KOI8_R undef
+      Locale::RecodeData::KOI8_RU undef
+      Locale::RecodeData::KOI8_T undef
+      Locale::RecodeData::KOI8_U undef
+      Locale::RecodeData::KOI_8 undef
+      Locale::RecodeData::LATIN_GREEK undef
+      Locale::RecodeData::LATIN_GREEK_1 undef
+      Locale::RecodeData::MACARABIC undef
+      Locale::RecodeData::MACCROATIAN undef
+      Locale::RecodeData::MACCYRILLIC undef
+      Locale::RecodeData::MACGREEK undef
+      Locale::RecodeData::MACHEBREW undef
+      Locale::RecodeData::MACICELAND undef
+      Locale::RecodeData::MACINTOSH undef
+      Locale::RecodeData::MACROMANIA undef
+      Locale::RecodeData::MACTHAI undef
+      Locale::RecodeData::MACTURKISH undef
+      Locale::RecodeData::MACUKRAINE undef
+      Locale::RecodeData::MAC_IS undef
+      Locale::RecodeData::MAC_SAMI undef
+      Locale::RecodeData::MAC_UK undef
+      Locale::RecodeData::NATS_DANO undef
+      Locale::RecodeData::NATS_SEFI undef
+      Locale::RecodeData::NEXTSTEP undef
+      Locale::RecodeData::SAMI_WS2 undef
+      Locale::RecodeData::TIS_620 undef
+      Locale::RecodeData::US_ASCII undef
+      Locale::RecodeData::UTF_8 undef
+      Locale::RecodeData::VISCII undef
+      Locale::RecodeData::_Encode undef
+      Locale::TextDomain 1.26
+      Locale::Util undef
+      Locale::gettext_dumb undef
+      Locale::gettext_pp undef
+      Locale::gettext_xs undef
+      MyInstall undef
+      SimpleCal undef
+      libintl::perl undef
+    requirements:
+      ExtUtils::MakeMaker 0
+      File::Spec 0
+      version 0.77
   multidimensional-0.012
     pathname: I/IL/ILMARI/multidimensional-0.012.tar.gz
     provides:
