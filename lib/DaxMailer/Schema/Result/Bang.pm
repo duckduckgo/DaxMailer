@@ -12,13 +12,14 @@ primary_column url     => { data_type => 'text' };
 
 column email_address   => { data_type => 'text', is_nullable => 1 };
 
+
 might_have subscriber => 'DaxMailer::Schema::Result::Subscriber' => sub {
     my ( $self, $foreign ) = @{ $_[0] }{qw/ self_alias foreign_alias /};
     return +{
-      "$self.email_address" => { '!=' => undef },
-      "$foreign.email_address" => "$self.email_address",
-      "$foreign.campaign"      => \'newbang',
-    }
+        "$self.email_address"    => { '!=' => undef },
+        "$foreign.email_address" => "$self.email_address",
+        "$foreign.campaign"      => \'newbang',
+    };
 };
 
 around new => sub {
