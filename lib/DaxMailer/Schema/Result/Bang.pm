@@ -19,8 +19,7 @@ might_have subscriber => 'DaxMailer::Schema::Result::Subscriber' => sub {
       "$foreign.email_address" => "$self.email_address",
       "$foreign.campaign"      => \'newbang',
     }
-  },
-  { on_delete => 'cascade' };
+};
 
 around new => sub {
     my $orig = shift;
