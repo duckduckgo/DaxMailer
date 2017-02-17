@@ -17,4 +17,6 @@ might_have parent_category => 'DaxMailer::Schema::Result::Bang::Category' => {
     'foreign.id' => 'self.id'
 };
 
+belongs_to bang => 'DaxMailer::Schema::Result::Bang' => 'category_id';
+
 1;

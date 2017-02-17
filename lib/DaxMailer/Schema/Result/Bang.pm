@@ -24,6 +24,8 @@ might_have subscriber => 'DaxMailer::Schema::Result::Subscriber' => sub {
     };
 };
 
+has_one category => 'DaxMailer::Schema::Result::Bang::Category' => 'id';
+
 around new => sub {
     my $orig = shift;
     my $self = shift;
