@@ -30,6 +30,7 @@ around new => sub {
     my $orig = shift;
     my $self = shift;
     $_[0]->{email_address} = Email::Valid->address( $_[0]->{email_address} ) // '';
+    $_[0]->{comments} =~ s/\s+/ /g;
     $orig->( $self, @_ );
 };
 
