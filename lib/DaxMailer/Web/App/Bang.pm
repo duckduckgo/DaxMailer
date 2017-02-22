@@ -10,4 +10,10 @@ post '/newbang' => sub {
     return 'Something went wrong';
 }
 
+# TODO: Hide / obfuscate this since it reveals email addresses
+get '/bang.txt' => sub {
+    content_type 'text/plain';
+    rset('Bang')->pending->tsv;
+}
+
 1;

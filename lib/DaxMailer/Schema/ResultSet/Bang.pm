@@ -4,6 +4,14 @@ use Moo;
 extends 'DaxMailer::Schema::ResultSet';
 
 use Try::Tiny;
+use Text::CSV_XS;
+
+has csv => ( is => 'lazy' );
+sub _build_csv {
+    Text::CSV_XS->new ({
+        sep_char => "\t",
+    });
+}
 
 sub create_from_post {
     my ( $self, $body ) = @_;
@@ -34,6 +42,30 @@ sub create_from_post {
     };
 
     return $bang;
+}
+
+sub pending {
+    $_[0]->search({ status => 'p' });
+}
+
+sub tsv {
+    my ( $self ) = @_;
+    join "\n",
+    map {
+        $self->csv->combine(
+            $_->{email_address},
+            $_->{site_name},
+            $_->{command},
+            $_->{url},
+            $_->{category}->{name},
+            $_->{category}->{parent_category}->{name},
+            $_->{comments},
+        );
+        $self->string;
+    } $self
+      ->prefetch({ category => 'parent_category' })
+      ->hri
+      ->all;
 }
 
 1;

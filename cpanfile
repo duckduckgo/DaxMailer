@@ -32,6 +32,7 @@ requires 'Moo';
 requires 'Moo::Role';
 requires 'MooX::Options';
 requires 'Starman';
+requires 'Text::CSV_XS';
 requires 'Text::Xslate';
 requires 'Try::Tiny';
 requires 'URI';
