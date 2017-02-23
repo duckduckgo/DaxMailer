@@ -14,7 +14,7 @@ column name       => { data_type => 'text' };
 column parent     => { data_type => 'int', is_nullable => 1 };
 
 might_have parent_category => 'DaxMailer::Schema::Result::Bang::Category' => {
-    'foreign.id' => 'self.id'
+    'foreign.id' => 'self.parent'
 };
 
 has_many bang => 'DaxMailer::Schema::Result::Bang' => 'category_id';
