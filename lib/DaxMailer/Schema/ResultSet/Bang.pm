@@ -61,7 +61,7 @@ sub tsv {
             $_->{category}->{parent_category}->{name},
             $_->{comments},
         );
-        $self->string;
+        $self->csv->string;
     } $self
       ->prefetch({ category => 'parent_category' })
       ->hri
