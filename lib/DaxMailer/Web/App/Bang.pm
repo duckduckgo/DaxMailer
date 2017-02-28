@@ -10,10 +10,16 @@ post '/newbang' => sub {
     return 'Something went wrong';
 };
 
-# TODO: Hide / obfuscate this since it reveals email addresses
-get '/bang.txt' => sub {
+post '/newbangs.txt' => sub {
     content_type 'text/plain';
-    rset('Bang')->pending->tsv;
+    if ( body_parameters->{secret} ne config->{bang_secret} ) {
+        status 401;
+        return '';
+    }
+    my $pending rset('Bang')->pending;
+    my $tsv = $pending->tsv;
+    $pending->moderate;
+    return $tsv;
 };
 
 1;
