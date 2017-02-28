@@ -45,7 +45,11 @@ sub create_from_post {
 }
 
 sub pending {
-    $_[0]->search({ status => 'p' });
+    $_[0]->search({ moderated => 0 });
+}
+
+sub moderate {
+    $_[0]->update({ moderated => 1 });
 }
 
 sub tsv {
