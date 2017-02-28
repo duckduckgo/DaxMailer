@@ -17,15 +17,6 @@ column category_id     => { data_type => 'integer' };
 
 column moderated       => { data_type => 'integer', default_value => 0 };
 
-might_have subscriber => 'DaxMailer::Schema::Result::Subscriber' => sub {
-    my ( $self, $foreign ) = @{ $_[0] }{qw/ self_alias foreign_alias /};
-    return +{
-        "$self.email_address"    => { '!=' => undef },
-        "$foreign.email_address" => "$self.email_address",
-        "$foreign.campaign"      => \'newbang',
-    };
-};
-
 belongs_to category => 'DaxMailer::Schema::Result::Bang::Category' => 'category_id';
 
 around new => sub {
