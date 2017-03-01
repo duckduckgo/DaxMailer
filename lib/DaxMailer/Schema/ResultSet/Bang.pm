@@ -57,12 +57,12 @@ sub tsv {
     join "\n",
     map {
         $self->csv->combine(
-            $_->{email_address},
-            $_->{site_name},
             $_->{command},
+            $_->{site_name},
             $_->{url},
-            $_->{category}->{name},
+            $_->{email_address},
             $_->{category}->{parent_category}->{name},
+            $_->{category}->{name},
             $_->{comments},
         );
         $self->csv->string;
