@@ -12,7 +12,8 @@ post '/newbang' => sub {
 
 post '/newbangs.txt' => sub {
     content_type 'text/plain';
-    if ( body_parameters->{secret} ne config->{bang_secret} ) {
+    if ( !body_parameters->{secret} ||
+         body_parameters->{secret} ne config->{bang_secret} ) {
         status 401;
         return '';
     }
