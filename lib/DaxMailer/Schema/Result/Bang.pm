@@ -27,9 +27,4 @@ around new => sub {
     $orig->( $self, @_ );
 };
 
-after new => sub {
-    use DDP; p @_;
-    my ( $self ) = @_;
-};
-
 1;
