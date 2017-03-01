@@ -25,6 +25,6 @@ post '/newbangs.txt' => sub {
 
 get '/test' => sub {
     template 'bang/testform', { layout => undef };
-}
+};
 
 1;
