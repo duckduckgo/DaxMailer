@@ -11,10 +11,12 @@ use lib $FindBin::Dir . "/../lib";
 
 use Plack::Builder;
 use DaxMailer::Web::Service::Bounce;
+use DaxMailer::Web::App::Bang;
 use DaxMailer::Web::App::Subscriber;
 
 builder {
     enable 'StackTrace', force => 1;
+    mount '/nb' => DaxMailer::Web::App::Bang->to_app;
     mount '/s' => DaxMailer::Web::App::Subscriber->to_app;
     mount '/bounce' => DaxMailer::Web::Service::Bounce->to_app;
 };

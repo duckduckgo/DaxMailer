@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+  <meta name="generator" content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
+  <meta http-equiv="content-type" content="text/html; charset=us-ascii">
+  <meta name="robots" content="noindex,nofollow">
+
+  <title>Duck Duck Go Feedback</title>
+  <link rel="stylesheet" href="/s640.css" type="text/css">
+  <link title="Duck Duck Go" type="application/opensearchdescription+xml" rel="search" href="/opensearch.xml">
+</head>
+
+<body>
+  <div id="c">
+    <div id="t" style="width: 600px; padding-left:20px; padding-top:15px;">
+      <img id="d" src="/assets/logo_homepage.normal.v107.png" alt="Duck Duck Go" title="Duck Duck Go" style="padding-top:10px;" name="d"><br>
+      <br>
+      <b>Thank you!</b>
+
+      <div style="padding-bottom:20px;padding-top:15px;">
+        <a href="https://duckduckgo.com/newbang?ia=web">Click here</a> to go back.
+      </div>
+    </div>
+  </div>
+</body>
+</html>

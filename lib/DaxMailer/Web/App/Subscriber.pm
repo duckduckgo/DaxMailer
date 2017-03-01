@@ -6,7 +6,6 @@ use DaxMailer::Base::Web::Light;
 use Dancer2::Plugin::Auth::HTTP::Basic::DWIW;
 use DaxMailer::Script::SubscriberMailer;
 use Email::Valid;
-use DaxMailer::Script::SubscriberMailer;
 
 my $subscriber = DaxMailer::Script::SubscriberMailer->new;
 
