@@ -1,0 +1,51 @@
+<form name="y" style="margin-top:20px;border:2px solid #D1D1D1;border-radius:6px;padding:10px;" method="post" action="/nb/newbang">
+
+Email <small>(optional)</small>:
+<br>
+<br><input name="from" size="20" type="text">
+
+<div style="padding-top:20px;"></div>
+Site name, e.g. DuckDuckGo or The New York Times:
+<br>
+<br><input name="bang_site" size="20" type="text">
+
+<div style="padding-top:20px;"></div>
+Bang command, e.g. duckduckgo (usually is domain name, e.g. nytimes):
+<br>
+<br>!&nbsp;<input name="bang_command" size="10" type="text">
+
+<div style="padding-top:20px;"></div>
+Bang url, e.g. http://duckduckgo.com/?q={{{s}}}:
+<br><small>&nbsp; Mark where the search goes with {{{s}}}</small>
+<br><input name="bang_url" size="40" type="text">
+
+<div style="padding-top:20px;"></div>
+Bang category:
+<br>
+<br>
+<select name="bang_cat" onchange="fill_subcat(this.selectedIndex);">
+  <option value="">Choose category</option>
+  <option value="Tech">Tech</option>
+  <option value="Shopping">Shopping</option>
+  <option value="Research">Research</option>
+  <option value="Online Services">Online Services</option>
+  <option value="News">News</option>
+  <option value="Multimedia">Multimedia</option>
+  <option value="Entertainment">Entertainment</option>
+</select>
+<select name="bang_subcat" class="invisible" style="visibility: visible;"><option value="">Choose subcategory</option><option value="Blogs">Blogs</option><option value="Blogs (intl)">Blogs (intl)</option><option value="Chakra">Chakra</option><option value="Companies">Companies</option><option value="Design">Design</option><option value="Domains">Domains</option><option value="Downloads">Downloads</option><option value="Downloads (add-ons)">Downloads (add-ons)</option><option value="Downloads (apps)">Downloads (apps)</option><option value="Downloads (code)">Downloads (code)</option><option value="Downloads (intl)">Downloads (intl)</option><option value="Downloads (software)">Downloads (software)</option><option value="Language (perl)">Language (perl)</option><option value="Languages (.net)">Languages (.net)</option><option value="Languages (ada)">Languages (ada)</option><option value="Languages (adobe)">Languages (adobe)</option><option value="Languages (c++)">Languages (c++)</option><option value="Languages (clojure)">Languages (clojure)</option><option value="Languages (cocoa)">Languages (cocoa)</option><option value="Languages (coldfusion)">Languages (coldfusion)</option><option value="Languages (csharp)">Languages (csharp)</option><option value="Languages (d)">Languages (d)</option><option value="Languages (erlang)">Languages (erlang)</option><option value="Languages (go)">Languages (go)</option><option value="Languages (haskell)">Languages (haskell)</option><option value="Languages (html)">Languages (html)</option><option value="Languages (java)">Languages (java)</option><option value="Languages (javascript)">Languages (javascript)</option><option value="Languages (latex)">Languages (latex)</option><option value="Languages (lisp)">Languages (lisp)</option><option value="Languages (lua)">Languages (lua)</option><option value="Languages (Mathematica)">Languages (Mathematica)</option><option value="Languages (Matlab)">Languages (Matlab)</option><option value="Languages (other)">Languages (other)</option><option value="Languages (perl)">Languages (perl)</option><option value="Languages (php)">Languages (php)</option><option value="Languages (processing)">Languages (processing)</option><option value="Languages (python)">Languages (python)</option><option value="Languages (r)">Languages (r)</option><option value="Languages (racket)">Languages (racket)</option><option value="Languages (ruby)">Languages (ruby)</option><option value="Languages (scala)">Languages (scala)</option><option value="Languages (scheme)">Languages (scheme)</option><option value="Languages (vala)">Languages (vala)</option><option value="Languages (xda)">Languages (xda)</option><option value="Libraries/Frameworks">Libraries/Frameworks</option><option value="Libraries/Frameworks (KDE)">Libraries/Frameworks (KDE)</option><option value="Libraries/Frameworks (wordpress)">Libraries/Frameworks (wordpress)</option><option value="Programming">Programming</option><option value="Startups">Startups</option><option value="Sysadmin">Sysadmin</option><option value="Sysadmin (Arch)">Sysadmin (Arch)</option><option value="Sysadmin (debian)">Sysadmin (debian)</option><option value="Sysadmin (Fedora)">Sysadmin (Fedora)</option><option value="Sysadmin (FreeBSD)">Sysadmin (FreeBSD)</option><option value="Sysadmin (Gentoo)">Sysadmin (Gentoo)</option><option value="Sysadmin (man)">Sysadmin (man)</option><option value="Sysadmin (network)">Sysadmin (network)</option><option value="Sysadmin (packages)">Sysadmin (packages)</option><option value="Sysadmin (RedHat)">Sysadmin (RedHat)</option><option value="Sysadmin (Solaris)">Sysadmin (Solaris)</option><option value="Sysadmin (Ubuntu)">Sysadmin (Ubuntu)</option></select>
+
+<div style="padding-top:20px;"></div>
+Comments <small>(optional)</small>:
+<br>
+<br><textarea name="bang_comments" cols="40" rows="2"></textarea>
+
+<input value="On" name="back" type="hidden">
+
+<div style="padding-top:20px;"></div>
+<input value="Submit" type="submit">
+<input name="go" type="hidden">
+
+<div style="padding-top:40px;"></div>
+
+</form>

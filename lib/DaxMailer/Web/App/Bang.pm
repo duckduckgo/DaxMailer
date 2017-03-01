@@ -23,4 +23,8 @@ post '/newbangs.txt' => sub {
     return $tsv;
 };
 
+get '/test' => sub {
+    template 'bang/testform', { layout => undef };
+}
+
 1;
