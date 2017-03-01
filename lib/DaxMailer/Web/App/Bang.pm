@@ -17,7 +17,7 @@ post '/newbangs.txt' => sub {
         status 401;
         return '';
     }
-    my $pending rset('Bang')->pending;
+    my $pending = rset('Bang')->pending;
     my $tsv = $pending->tsv;
     $pending->moderate;
     return $tsv;
