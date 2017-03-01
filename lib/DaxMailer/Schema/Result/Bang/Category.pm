@@ -13,7 +13,7 @@ column live       => { data_type => 'int', default_value => 1 };
 column name       => { data_type => 'text' };
 column parent     => { data_type => 'int', is_nullable => 1 };
 
-might_have parent_category => 'DaxMailer::Schema::Result::Bang::Category' => {
+belongs_to parent_category => 'DaxMailer::Schema::Result::Bang::Category' => {
     'foreign.id' => 'self.parent'
 };
 
