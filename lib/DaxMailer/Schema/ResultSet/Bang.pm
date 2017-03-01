@@ -10,6 +10,7 @@ has csv => ( is => 'lazy' );
 sub _build_csv {
     Text::CSV_XS->new ({
         sep_char => "\t",
+        quote_char => undef
     });
 }
 
