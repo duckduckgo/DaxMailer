@@ -30,10 +30,12 @@ sub unverified {
 sub unbounced {
     my ( $self ) = @_;
     $self->search_rs({
-        'bounce.bounced' => 0,
-        'bounce.complaint' => 0,
-    }, {
-        prefetch => 'bounce'
+        'me.email_address' => {
+            -not_in => $self->rs('Subscriber::Bounce')
+                            ->bounced
+                            ->get_column('email_address')
+                            ->as_query
+        }
     });
 }
 
