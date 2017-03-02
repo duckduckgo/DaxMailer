@@ -29,4 +29,11 @@ sub bounced {
     $_[0]->search_rs({ -or => [ bounced => 1, complaint => 1 ] });
 }
 
+sub check {
+    my( $self, $email ) = @_;
+    $self->bounced
+         ->search({ email_address => lc($email) })
+         ->one_row;
+}
+
 1;

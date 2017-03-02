@@ -44,4 +44,12 @@ post '/handler' => sub {
     return rset('Subscriber::Bounce')->handle_bounces( $message );
 };
 
+get '/check/:email' => sub {
+    if( rset('Subscriber::Bounce')->check( route_parameters->{email} ) ) {
+        return { ok => 1 };
+    }
+    status 403;
+    return { ok => 0 };
+};
+
 1;
