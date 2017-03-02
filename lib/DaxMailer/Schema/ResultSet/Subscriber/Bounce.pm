@@ -19,10 +19,14 @@ sub handle_bounces {
     return { ok => 1 } if !$update_params || !@emails;
 
     for my $email (@emails) {
-        $self->update_or_create({ email_address => $email, %{ $update_params } });
+        $self->update_or_create({ email_address => lc($email), %{ $update_params } });
     }
 
     return { ok => 1 };
+}
+
+sub bounced {
+    $_[0]->search_rs({ -or => [ bounced => 1, complaint => 1 ] });
 }
 
 1;

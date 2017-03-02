@@ -29,7 +29,12 @@ sub unverified {
 
 sub unbounced {
     my ( $self ) = @_;
-    $self->search_rs( { bounced => 0, complaint => 0 } );
+    $self->search_rs({
+        'bounce.bounced' => 0,
+        'bounce.complaint' => 0,
+    }, {
+        prefetch => 'bounce'
+    });
 }
 
 sub mail_unsent {
