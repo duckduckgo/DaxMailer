@@ -41,7 +41,15 @@ post '/handler' => sub {
         return verify_subscription( $packet );
     }
     my $message = decode_json( $packet->{Message} );
-    return rset('Subscriber')->handle_bounces( $message );
+    return rset('Subscriber::Bounce')->handle_bounces( $message );
+};
+
+get '/check/:email' => sub {
+    return { ok => (
+        rset('Subscriber::Bounce')->check( route_parameters->{email} )
+        ? 0
+        : 1
+    ) };
 };
 
 1;
