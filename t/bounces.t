@@ -62,9 +62,24 @@ test_psgi $app => sub {
             Content => sns->sns_permanent_bounce( 'test3@duckduckgo.com' )
         )->is_success, 'Permanent bounce message about test3@duckduckgo.com' );
 
+    ok( $cb->( POST '/bounce/handler',
+            'Content-Type' => 'application/json',
+            Content => sns->sns_permanent_bounce( 'nonexistentguy@example.com' )
+        )->is_success, 'Permanent bounce message about nonexistentguy@example.com, a non-subscriber' );
+
     is( rset('Subscriber')->unbounced->count, 1,
         'Permanent bounce received - 1 subscriber remains' );
 
+    my $check = $cb->( GET '/bounce/check/nonexistentguy%40example.com' );
+    ok( $check->is_success, 'Retrieved bounce check report for nonexistentguy@example.com' );
+    my $check_result = decode_json( $check->decoded_content );
+    is( $check_result->{ok}, 0, 'Check for nonexistentguy@example.com returns not OK' );
+
+
+    $check = $cb->( GET '/bounce/check/existentguy%40example.com' );
+    ok( $check->is_success, 'Retrieved bounce check report for existentguy@example.com' );
+    $check_result = decode_json( $check->decoded_content );
+    is( $check_result->{ok}, 1, 'Check for existentguy@example.com returns OK' );
 };
 
 done_testing;
