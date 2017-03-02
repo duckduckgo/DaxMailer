@@ -45,11 +45,11 @@ post '/handler' => sub {
 };
 
 get '/check/:email' => sub {
-    if( rset('Subscriber::Bounce')->check( route_parameters->{email} ) ) {
-        return { ok => 1 };
-    }
-    status 403;
-    return { ok => 0 };
+    return { ok => (
+        rset('Subscriber::Bounce')->check( route_parameters->{email} )
+        ? 0
+        : 1
+    ) };
 };
 
 1;
