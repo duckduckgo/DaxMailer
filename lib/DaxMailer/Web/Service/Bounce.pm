@@ -41,7 +41,7 @@ post '/handler' => sub {
         return verify_subscription( $packet );
     }
     my $message = decode_json( $packet->{Message} );
-    return rset('Subscriber')->handle_bounces( $message );
+    return rset('Subscriber::Bounce')->handle_bounces( $message );
 };
 
 1;
