@@ -17,7 +17,7 @@ sub generate_diff {
     my ( $self ) = @_;
 
     $self->create_ddl_dir(
-        undef,
+        [ qw/ PostgreSQL SQLite / ],
         $self->schema_version,
         $sqldir,
         $self->get_db_version
