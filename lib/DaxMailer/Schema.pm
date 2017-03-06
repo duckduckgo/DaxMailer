@@ -14,13 +14,13 @@ has app => (
 );
 
 sub generate_diff {
-    my ( $self ) = @_;
+    my ( $self, $previous_version ) = @_;
 
     $self->create_ddl_dir(
         [ qw/ PostgreSQL SQLite / ],
         $self->schema_version,
         $sqldir,
-        $self->get_db_version
+        $previous_version
     );
 }
 
