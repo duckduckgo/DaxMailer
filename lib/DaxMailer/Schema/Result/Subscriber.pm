@@ -18,7 +18,7 @@ column flow         => { data_type => 'text', is_nullable => 1 };
 column v_key        => { data_type => 'text' };
 column u_key        => { data_type => 'text' };
 column created      => {
-    data_type => 'timestamp with time zone',
+    data_type => 'timestamptz',
     set_on_create => 1,
 };
 
