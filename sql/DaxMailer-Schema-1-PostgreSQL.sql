@@ -54,7 +54,7 @@ CREATE TABLE subscriber (
   flow text,
   v_key text NOT NULL,
   u_key text NOT NULL,
-  created timestamp with time zone NOT NULL,
+  created timestamptz NOT NULL,
   PRIMARY KEY (email_address, campaign)
 );
 CREATE INDEX subscriber_idx_email_address on subscriber (email_address);
@@ -62,12 +62,11 @@ CREATE INDEX subscriber_idx_email_address on subscriber (email_address);
 --
 -- Table: subscriber_maillog
 --
-DROP TABLE subscriber_maillog CASCADE;
 CREATE TABLE subscriber_maillog (
   email_address text NOT NULL,
   campaign text NOT NULL,
   email_id character(1) NOT NULL,
-  sent timestamp with time zone NOT NULL,
+  sent timestamptz NOT NULL,
   PRIMARY KEY (email_address, campaign, email_id)
 );
 CREATE INDEX subscriber_maillog_idx_email_address_campaign on subscriber_maillog (email_address, campaign);

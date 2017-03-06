@@ -62,7 +62,7 @@ CREATE TABLE subscriber (
   flow text NULL,
   v_key text NOT NULL,
   u_key text NOT NULL,
-  created timestamp with time zone NOT NULL,
+  created timestamptz NOT NULL,
   INDEX subscriber_idx_email_address (email_address),
   PRIMARY KEY (email_address, campaign),
   CONSTRAINT subscriber_fk_email_address FOREIGN KEY (email_address) REFERENCES subscriber_bounce (email_address) ON DELETE CASCADE ON UPDATE CASCADE
@@ -77,7 +77,7 @@ CREATE TABLE subscriber_maillog (
   email_address text NOT NULL,
   campaign text NOT NULL,
   email_id char(1) NOT NULL,
-  sent timestamp with time zone NOT NULL,
+  sent timestamptz NOT NULL,
   INDEX subscriber_maillog_idx_email_address_campaign (email_address, campaign),
   PRIMARY KEY (email_address, campaign, email_id),
   CONSTRAINT subscriber_maillog_fk_email_address_campaign FOREIGN KEY (email_address, campaign) REFERENCES subscriber (email_address, campaign) ON DELETE CASCADE ON UPDATE CASCADE
