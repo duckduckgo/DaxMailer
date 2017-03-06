@@ -35,7 +35,7 @@ sub deploy_or_upgrade {
     }
 }
 
-__PACKAGE__->load_components(qw/Schema::Versioned/);
+__PACKAGE__->load_components(qw/ Schema::Versioned Helper::Schema::QuoteNames /);
 __PACKAGE__->upgrade_directory($sqldir);
 __PACKAGE__->load_namespaces();
 
