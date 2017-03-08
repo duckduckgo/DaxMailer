@@ -1,6 +1,14 @@
 # DaxMailer
 Subscriber management and email scheduling
 
+## SYNOPSIS
+
+Runs on perl 5.16+. Install dependencies with [Carton](https://metacpan.org/pod/Carton).
+
+```sh
+make test
+```
+
 ## Schema Changes
 
 When you have changed the DBIC schema, you will need to change the `$VERSION` in `lib/DaxMailer/Schema.pm`.
