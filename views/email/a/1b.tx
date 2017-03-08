@@ -1,10 +1,10 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Are Ads Costing You Money?</title>
-        <style type="text/css">
-
+        <title>Tracking In Incognito?</title>
+         <style type="text/css">
             /*  CLIENT-SPECIFIC STYLES  */
             .ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail to display emails at full width */
             .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;} /* Force Hotmail to display normal line spacing */
@@ -91,6 +91,7 @@
             #templateHeader{
                 background-color:#FFFFFF;
                 border-top:1px solid #FFFFFF;
+                
             }
             /**
             * @section header text
@@ -276,7 +277,7 @@
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateHeader">
                                         <tr>
                                             <td valign="top" class="headerContent">
-                                                <img src="https://duckduckgo.com/assets/email/logo.png" style="max-width:200px; max-height:85px; padding-top: 5px; padding-bottom: 5px; padding-left: 35px;" id="headerImage" alt="DuckDuckGo Logo"/>
+                                                 <img src="https://duckduckgo.com/assets/email/logo.png" style="max-width:200px; max-height:85px; padding-top: 5px; padding-bottom: 5px; padding-left: 35px;" id="headerImage" alt="DuckDuckGo Logo"/>
                                             </td>
                                         </tr>
                                     </table>
@@ -289,28 +290,39 @@
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateBody">
                                         <tr>
                                             <td valign="top" class="bodyContent">
-                                                 
-<p style="margin-bottom: 1em">Last email we discussed the ads that track you across the internet. But, did you know this tracking can actually cost you money?! <img class="emoticon" src="https://duckduckgo.com/assets/email/money3.png?atb=<: $subscriber.flow :>" style="max-width:20px; max-height:20px;" alt="money flying away"></p>
-
-<p style="margin-bottom: 1em">Retailers are increasingly charging “personalized” or “dynamic” prices based on your online footprint. They manipulate prices, trying to charge you the max they think you’re willing to pay. You could be sitting right next to someone, looking at the same online product, and be charged more just because of a website you visited.</p>
-
-<p style="margin-bottom: 1em">You're probably familiar with how common this practice is in the airline industry. That's all thanks to Google's ITA QPX Software; which provides solutions to airlines to price "by market segment, point-of-sale, channel and <a href="https://www.itasoftware.com/solutions/qpx/">even user</a>." </p>
-<p style="margin-bottom: 1em">That profit comes right out of your pocket because they decided you were willing to pay more for your flight based on tracking.</p>
-<p style="margin-bottom: 1em">The worst part is, this sneaky pricing tactic has long been used in other industries! The Wall Street Journal ran a study on the matter as far back as 2012:</p>
-<p style="margin-bottom: 1em"><a href="http://www.wsj.com/articles/SB10001424127887323777204578189391813881534"><img src="https://duckduckgo.com/assets/email/headline.png" style="max-width: 572px;" alt="Wall Street Journal Headline"/></a></p>
-<p style="margin-bottom: 1em">And the dynamic pricing trend only continues to grow more and <a href="https://www.theguardian.com/commentisfree/2016/dec/06/cookie-monsters-why-your-browsing-history-could-mean-rip-off-prices">more aggressive!</a></p>
-<p style="margin-bottom: 1em">If you haven't installed <a href="https://www.eff.org/privacybadger">Privacy Badger</a> yet, then now might be a good time.</p>
+                                                 <p style="margin-bottom: 1em">
+                                                 <i>You, or someone you know, has signed you up for the DuckDuckGo privacy newsletter. If at any point in time you wish to stop receiving these emails, you can opt-out using the link in the footer.</i>
+                                                 </p>
+                                                 <p style="margin-bottom: 1em">
+    It may surprise you that ads can still follow you around in “Incognito” and other “private browsing” modes.</p>
+    <p style="margin-bottom: 1em">That's because Incognito mode <strong>isn't</strong> really private. <img class="emoticon" src="https://duckduckgo.com/assets/email/shocked1.png?atb=<: $subscriber.flow :>" height="20" width="20" alt="shocked face emoji" />
+</p>
 <p style="margin-bottom: 1em">
-Proudly Private,<br /><br />
+    Incognito mode only deletes your <i>local</i> search and browsing history - just the content on your computer. Websites, search engines, internet service
+    providers, and governments can still easily track you across the web.
+</p>
+<p style="margin-bottom: 1em">
+    That's why it's important to use privacy alternatives that don't share your personal information - such as <a href="https://www.duckduckgo.com/">DuckDuckGo</a> for search.
+</p>
+
+<p style="margin-bottom: 1em">
+    Using Incognito mode to keep you private online is kind of like using a bucket to put out a raging fire:<br /><br />
+    <center><img src="https://duckduckgo.com/assets/email/fire.jpg" alt="Picture of man putting out fire with small bucket of water" width="200" height="200" style="padding-bottom:15px;" /></center>
+</p>
+<p style="margin-bottom: 1em">
+   If you didn’t know that private browsing isn’t private — you’re not alone! <a href="https://spreadprivacy.com/private-browsing-9276d6d16ea4">67% of people</a> who use private browsing <u>over-estimate</u> the protection that private browsing modes offer.
+</p>
+<p style="margin-bottom: 1em">
+You can install the <a href="https://duckduckgo.com/#1">DuckDuckGo extension</a> to help you remain private online, so you won't become part of a scary statistic. Welcome to the Duck Side!
+</p>
+<p style="margin-bottom: 1em">
+<br />Proudly Private,<br />
 <img src="https://duckduckgo.com/assets/email/signature.png" alt="Dax's Signature"/></br></br>
 Dax the Duck,<br />
 Mascot - DuckDuckGo</p>
-<p>
-    <a href="https://twitter.com/duckduckgo">Follow Us on Twitter!</a>
-</p>
+
                                             </td>
                                         </tr>
-                                   
                                     <!-- // END BODY -->
                                 </td>
                             </tr>
@@ -321,7 +333,7 @@ Mascot - DuckDuckGo</p>
                      <tr>
                                             <td valign="top" class="footerContent" style="padding-top:0;">
                                                                <p style="margin-bottom: 1em">Duck Duck Go Inc<br /> 20 Paoli Pike,<br /> Paoli, PA
-                                                                   19301, USA</p>
+                                                                   19301, USA<br /></p>
                                             </td>
                                         </tr>
                                         <tr>
