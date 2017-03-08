@@ -20,6 +20,7 @@ sub _build_campaigns {
                 subject => 'Tracking in Incognito?',
                 template => 'email/a/1.tx'
             },
+            layout => 'email/a/layout.tx',
             mails => {
                 2 => {
                     days     => 2,
