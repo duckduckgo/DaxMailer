@@ -55,6 +55,14 @@ sub _build_campaigns {
         },
         'b' => {
             base => 'a',
+            single_opt_in => 1,
+            verify => {
+                subject => 'Tracking in Incognito?',
+                template => 'email/a/1b.tx'
+            }
+        },
+        'c' => {
+            base => 'a',
             single_opt_in => 0,
             verify => {
                 subject => 'Tracking in Incognito?',
