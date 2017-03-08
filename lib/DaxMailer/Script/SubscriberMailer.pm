@@ -86,7 +86,7 @@ sub _build_campaigns {
 }
 
 sub email {
-    my ( $self, $log, $subscriber, $subject, $template, $verified ) = @_;
+    my ( $self, $log, $subscriber, $subject, $template, $layout, $verified ) = @_;
 
     my $status = $self->smtp->send( {
         to       => $subscriber->email_address,
@@ -95,8 +95,10 @@ sub email {
         from     => '"DuckDuckGo Dax" <dax@duckduckgo.com>',
         subject  => $subject,
         template => $template,
+        layout   => $layout,
         content  => {
             subscriber => $subscriber,
+            title => $subject,
         }
     } );
 
@@ -128,6 +130,7 @@ sub execute {
                     $subscriber,
                     $self->campaigns->{ $campaign }->{mails}->{ $mail }->{subject},
                     $self->campaigns->{ $campaign }->{mails}->{ $mail }->{template},
+                    $self->campaigns->{ $campaign }->{layout},
                 );
             }
         }
@@ -153,6 +156,7 @@ sub verify {
                 $subscriber,
                 $self->campaigns->{ $campaign }->{verify}->{subject},
                 $self->campaigns->{ $campaign }->{verify}->{template},
+                $self->campaigns->{ $campaign }->{layout},
                 1
             );
         }
