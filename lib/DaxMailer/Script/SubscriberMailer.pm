@@ -166,6 +166,37 @@ sub verify {
     return $self->smtp->transport;
 }
 
+sub testrun {
+    my ( $self, $campaign, $email ) = @_;
+    my $junk = time;
+
+    my $subscriber = DaxMailer::Schema::Result::Subscriber->new( {
+        email_address => $email,
+        campaign      => $campaign,
+        verified      => 1,
+    } );
+
+    $self->email('v', $subscriber,
+                 $self->campaigns->{ $campaign }->{verify}->{subject},
+                 $self->campaigns->{ $campaign }->{verify}->{template},
+                 1, 1, { getjunk => $junk }
+    );
+
+    my $mails = $self->campaigns->{ $campaign }->{mails};
+    for my $mail ( keys $mails ) {
+        $self->email(
+            $mail,
+            $subscriber,
+            $mails->{ $mail }->{subject},
+            $mails->{ $mail }->{template},
+            1, 1,
+            {
+                getjunk => $junk
+            }
+        );
+    }
+}
+
 sub add {
     my ( $self, $params ) = @_;
     my $email = Email::Valid->address($params->{email});
