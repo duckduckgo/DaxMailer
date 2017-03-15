@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 BEGIN {
-    $ENV{DAXMAILER_DB_DSN} = 'dbi:SQLite:dbname=daxmailer_test.db';
+    $ENV{DAXMAILER_DB_DSN} = 'dbi:SQLite:dbname=:memory:';
     $ENV{DAXMAILER_MAIL_TEST} = 1;
 }
 
