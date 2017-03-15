@@ -77,6 +77,17 @@ sub _build_campaigns {
     return $campaigns;
 }
 
+# Map email selection => filename explicitly
+# We don't want to build paths from user input
+has template_map => ( is => 'lazy' );
+sub _build_template_map {
+    +{
+        1 => 'email/a/v1.tx',
+        2 => 'email/a/v2.tx',
+        3 => 'email/a/v3.tx',
+    }
+}
+
 sub email {
     my ( $self, $log, $subscriber, $subject, $template, $verified ) = @_;
 
@@ -140,11 +151,17 @@ sub verify {
             ->all;
 
         for my $subscriber ( @subscribers ) {
+            my $template =
+              $subscriber->extra->{template} &&
+              $self->template_map->{ $subscriber->extra->{template} }
+                ? $self->template_map->{ $subscriber->extra->{template} }
+                : $self->campaigns->{ $campaign }->{verify}->{template};
+
             $self->email(
                 'v',
                 $subscriber,
                 $self->campaigns->{ $campaign }->{verify}->{subject},
-                $self->campaigns->{ $campaign }->{verify}->{template},
+                $template,
                 1
             );
         }
