@@ -170,7 +170,13 @@ sub testrun {
     my ( $self, $campaign, $email ) = @_;
     my $junk = time;
 
-    my $subscriber = DaxMailer::Schema::Result::Subscriber->new( {
+    # Instantiating an in-memory schema is easier than trying to
+    # create mock objects or deal with existing live data matching
+    # the requested email address.
+    my $schema = DaxMailer::Schema->connect('dbi:SQLite:dbname=:memory:');
+    $schema->deploy;
+
+    my $subscriber = $schema->resultset('Subscriber')->create( {
         email_address => $email,
         campaign      => $campaign,
         verified      => 1,
