@@ -17,10 +17,7 @@ column unsubscribed => { data_type => 'int', default_value => 0 };
 column flow         => { data_type => 'text', is_nullable => 1 };
 column v_key        => { data_type => 'text' };
 column u_key        => { data_type => 'text' };
-column created      => {
-    data_type => 'timestamptz',
-    set_on_create => 1,
-};
+column created      => { data_type => 'timestamptz', set_on_create => 1 };
 
 has_many logs => 'DaxMailer::Schema::Result::Subscriber::MailLog' => {
     'foreign.email_address' => 'self.email_address',
