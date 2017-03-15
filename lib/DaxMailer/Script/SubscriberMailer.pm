@@ -179,6 +179,7 @@ sub testrun {
     $self->email('v', $subscriber,
                  $self->campaigns->{ $campaign }->{verify}->{subject},
                  $self->campaigns->{ $campaign }->{verify}->{template},
+                 $self->campaigns->{ $campaign }->{layout},
                  1, 1, { getjunk => $junk }
     );
 
@@ -189,6 +190,7 @@ sub testrun {
             $subscriber,
             $mails->{ $mail }->{subject},
             $mails->{ $mail }->{template},
+            $self->campaigns->{ $campaign }->{layout},
             1, 1,
             {
                 getjunk => $junk
