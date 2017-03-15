@@ -7,7 +7,7 @@ extends 'DBIx::Class::Schema';
 
 use FindBin;
 my $sqldir = $FindBin::Dir . "/../sql/";
-our $VERSION = 1;
+our $VERSION = 2;
 
 has app => (
     is => 'rw',
