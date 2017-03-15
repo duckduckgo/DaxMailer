@@ -158,6 +158,10 @@ sub add {
     my $email = Email::Valid->address($params->{email});
     return unless $email;
 
+    my $extra = {};
+    $extra->{from} = $params->{from} if $params->{from};
+    $extra->{template} = $params->{template} if $params->{template};
+
     my $campaigns = [ $params->{campaign} ];
     push @{ $campaigns }, $self->campaigns->{ $params->{campaign} }->{base}
         if $self->campaigns->{ $params->{campaign} }->{base};
@@ -168,6 +172,7 @@ sub add {
         email_address => $email,
         campaign      => $params->{campaign},
         flow          => $params->{flow},
+        extra         => $extra,
         verified      => $self->campaigns->{ $params->{campaign} }->{single_opt_in},
     } );
 }
