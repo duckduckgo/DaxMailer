@@ -11,18 +11,13 @@ sub deploy {
     my $success = 1;
     try {
         if ($ENV{DAXMAILER_DB_DSN} =~ /^dbi:SQLite/) {
-            my $fn = $ENV{DAXMAILER_DB_DSN} =~ s/.*dbname=(.*)/$1/r;
-            unlink $fn if $fn;
-            if ( $schema ) {
-                $schema->deploy({
-                    add_drop_table => $opts->{drop} || 0
-                });
-            }
-            else {
-                DaxMailer::Schema->connect($ENV{DAXMAILER_DB_DSN})->deploy({
-                    add_drop_table => $opts->{drop} || 0
-                });
-            }
+            $schema //= DaxMailer::Schema->connect(
+                $ENV{DAXMAILER_DB_DSN}, '', '',
+                { PrintError => 1, RaiseError => 1, AutoCommit => 1 }
+            );
+            $schema->deploy({
+                add_drop_table => $opts->{drop} || 0
+            });
         }
     }
     catch {

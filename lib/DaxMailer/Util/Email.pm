@@ -60,7 +60,7 @@ has validator => (
 );
 sub _build_validator {
     my ( $self ) = @_;
-    my $v = HTTP::Validate->new;
+    my $v = HTTP::Validate->new( allow_unrecognized => 1 );
 
     $v->define_ruleset( 'send_parameters',
         {   mandatory => 'to',
@@ -106,21 +106,34 @@ sub send {
     }
 
     my $body = $self->xslate->render( $params->{template}, $params->{content} );
+    $body = $self->xslate->render(
+        $params->{layout},
+        { content => $body, (
+            $params->{content}
+                ? %{ $params->{content} }
+                : ()
+        ) },
+    ) if $params->{layout};
+
     my $html_part = Email::MIME->create(
         attributes => {
             content_type => 'text/html; charset="UTF-8"',
-            content_transfer_encoding => '8bit',
+            content_transfer_encoding => 'quoted-printable',
+            charset => 'UTF-8',
+            encoding => 'quoted-printable',
         },
-        body => $body,
+        body_str => $body,
     );
 
     my $plaintext_body = $self->plaintext_renderer->parse( $body );
     my $plaintext_part = Email::MIME->create(
         attributes => {
             content_type => 'text/plain; charset="UTF-8"',
-            content_transfer_encoding => '8bit',
+            content_transfer_encoding => 'quoted-printable',
+            charset => 'UTF-8',
+            encoding => 'quoted-printable',
         },
-        body => $plaintext_body,
+        body_str => $plaintext_body,
     );
 
     my $header = [
