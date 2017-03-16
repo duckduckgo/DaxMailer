@@ -1,6 +1,6 @@
 -- 
 -- Created by SQL::Translator::Producer::SQLite
--- Created on Wed Mar 15 12:55:53 2017
+-- Created on Thu Mar 16 13:33:45 2017
 -- 
 
 BEGIN TRANSACTION;
@@ -65,7 +65,7 @@ CREATE TABLE "subscriber" (
   "v_key" text NOT NULL,
   "u_key" text NOT NULL,
   "created" timestamptz NOT NULL,
-  "extra" varchar(128) NOT NULL,
+  "extra" varchar(128) NOT NULL DEFAULT '{}',
   PRIMARY KEY ("email_address", "campaign"),
   FOREIGN KEY ("email_address") REFERENCES "subscriber_bounce"("email_address") ON DELETE CASCADE ON UPDATE CASCADE
 );

@@ -2,7 +2,7 @@
 
 BEGIN;
 
-ALTER TABLE "subscriber" ADD COLUMN "extra" varchar(128) NOT NULL;
+ALTER TABLE "subscriber" ADD COLUMN "extra" varchar(128) NOT NULL DEFAULT '{}';
 
 
 COMMIT;

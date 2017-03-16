@@ -1,6 +1,6 @@
 -- 
 -- Created by SQL::Translator::Producer::PostgreSQL
--- Created on Wed Mar 15 12:55:53 2017
+-- Created on Thu Mar 16 13:33:45 2017
 -- 
 --
 -- Table: bang_category
@@ -55,7 +55,7 @@ CREATE TABLE "subscriber" (
   "v_key" text NOT NULL,
   "u_key" text NOT NULL,
   "created" timestamptz NOT NULL,
-  "extra" character varying(128) NOT NULL,
+  "extra" character varying(128) DEFAULT '{}' NOT NULL,
   PRIMARY KEY ("email_address", "campaign")
 );
 CREATE INDEX "subscriber_idx_email_address" on "subscriber" ("email_address");

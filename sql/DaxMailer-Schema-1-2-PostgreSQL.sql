@@ -2,7 +2,7 @@
 
 BEGIN;
 
-ALTER TABLE subscriber ADD COLUMN extra character varying(128) NOT NULL;
+ALTER TABLE subscriber ADD COLUMN extra character varying(128) DEFAULT '{}' NOT NULL;
 
 
 COMMIT;
