@@ -56,7 +56,7 @@ test_psgi $app => sub {
     ok( $bangs->is_success, 'Retrieved bang content with shared secret' );
     is(
         $bangs->content,
-	'foo	example.com	http://example.com/q={{{s}}}	submitter@example.com	Tech	Example	example.com',
+        'foo	example.com	http://example.com/q={{{s}}}	submitter@example.com	Tech	Example	example.com',
         'TSV line OK'
     );
 };

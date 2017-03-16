@@ -80,7 +80,7 @@ test_psgi $app => sub {
     / ) {
         ok( $cb->(
             POST '/s/a',
-            [ email => $email, campaign => 'b', flow => 'flow1' ]
+            [ email => $email, campaign => 'c', flow => 'flow1' ]
         ), "Adding subscriber : $email" );
     }
 
@@ -96,8 +96,8 @@ test_psgi $app => sub {
     $transport = DaxMailer::Script::SubscriberMailer->new->verify;
     is( $transport->delivery_count, 0, 'No verification emails re-sent' );
 
-    _verify($cb, 'test8@duckduckgo.com', 'b');
-    _verify($cb, 'test9@duckduckgo.com', 'b');
+    _verify($cb, 'test8@duckduckgo.com', 'c');
+    _verify($cb, 'test9@duckduckgo.com', 'c');
 
     set_absolute_time('2016-10-20T12:00:00Z');
     $transport = DaxMailer::Script::SubscriberMailer->new->execute;
@@ -111,7 +111,7 @@ test_psgi $app => sub {
     is( $transport->delivery_count, 0, '0 received emails - non scheduled' );
 
     _unsubscribe($cb, 'test2@duckduckgo.com', 'a');
-    _verify($cb, 'lateverify@duckduckgo.com', 'b');
+    _verify($cb, 'lateverify@duckduckgo.com', 'c');
 
     set_absolute_time('2016-10-22T12:00:00Z');
     $transport = DaxMailer::Script::SubscriberMailer->new->execute;

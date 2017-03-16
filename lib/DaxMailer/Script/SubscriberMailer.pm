@@ -20,6 +20,7 @@ sub _build_campaigns {
                 subject => 'Tracking in Incognito?',
                 template => 'email/a/1.tx'
             },
+            layout => 'email/a/layout.tx',
             mails => {
                 2 => {
                     days     => 2,
@@ -55,6 +56,14 @@ sub _build_campaigns {
         },
         'b' => {
             base => 'a',
+            single_opt_in => 1,
+            verify => {
+                subject => 'Tracking in Incognito?',
+                template => 'email/a/1b.tx'
+            }
+        },
+        'c' => {
+            base => 'a',
             single_opt_in => 0,
             verify => {
                 subject => 'Tracking in Incognito?',
@@ -89,7 +98,7 @@ sub _build_template_map {
 }
 
 sub email {
-    my ( $self, $log, $subscriber, $subject, $template, $verified ) = @_;
+    my ( $self, $log, $subscriber, $subject, $template, $layout, $verified ) = @_;
 
     my $status = $self->smtp->send( {
         to       => $subscriber->email_address,
@@ -98,8 +107,10 @@ sub email {
         from     => '"DuckDuckGo Dax" <dax@duckduckgo.com>',
         subject  => $subject,
         template => $template,
+        layout   => $layout,
         content  => {
             subscriber => $subscriber,
+            title => $subject,
         }
     } );
 
@@ -131,6 +142,7 @@ sub execute {
                     $subscriber,
                     $self->campaigns->{ $campaign }->{mails}->{ $mail }->{subject},
                     $self->campaigns->{ $campaign }->{mails}->{ $mail }->{template},
+                    $self->campaigns->{ $campaign }->{layout},
                 );
             }
         }
@@ -161,13 +173,57 @@ sub verify {
                 'v',
                 $subscriber,
                 $self->campaigns->{ $campaign }->{verify}->{subject},
+<<<<<<< HEAD
                 $template,
+=======
+                $self->campaigns->{ $campaign }->{verify}->{template},
+                $self->campaigns->{ $campaign }->{layout},
+>>>>>>> master
                 1
             );
         }
     }
 
     return $self->smtp->transport;
+}
+
+sub testrun {
+    my ( $self, $campaign, $email ) = @_;
+    my $junk = time;
+
+    # Instantiating an in-memory schema is easier than trying to
+    # create mock objects or deal with existing live data matching
+    # the requested email address.
+    my $schema = DaxMailer::Schema->connect('dbi:SQLite:dbname=:memory:');
+    $schema->deploy;
+
+    my $subscriber = $schema->resultset('Subscriber')->create( {
+        email_address => $email,
+        campaign      => $campaign,
+        verified      => 1,
+    } );
+
+    $self->email('v', $subscriber,
+                 $self->campaigns->{ $campaign }->{verify}->{subject},
+                 $self->campaigns->{ $campaign }->{verify}->{template},
+                 $self->campaigns->{ $campaign }->{layout},
+                 1, 1, { getjunk => $junk }
+    );
+
+    my $mails = $self->campaigns->{ $campaign }->{mails};
+    for my $mail ( keys $mails ) {
+        $self->email(
+            $mail,
+            $subscriber,
+            $mails->{ $mail }->{subject},
+            $mails->{ $mail }->{template},
+            $self->campaigns->{ $campaign }->{layout},
+            1, 1,
+            {
+                getjunk => $junk
+            }
+        );
+    }
 }
 
 sub add {
