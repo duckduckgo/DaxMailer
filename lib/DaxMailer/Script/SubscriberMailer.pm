@@ -65,9 +65,12 @@ sub _build_campaigns {
         'c' => {
             base => 'a',
             single_opt_in => 0,
-            verify => {
-                subject => 'Tracking in Incognito?',
-                template => 'email/a/v.tx'
+            mails => {
+                1 => {
+                    days     => 1,
+                    subject => 'Tracking in Incognito?',
+                    template => 'email/a/1c.tx',
+                },
             }
         }
     };
@@ -173,12 +176,8 @@ sub verify {
                 'v',
                 $subscriber,
                 $self->campaigns->{ $campaign }->{verify}->{subject},
-<<<<<<< HEAD
                 $template,
-=======
-                $self->campaigns->{ $campaign }->{verify}->{template},
                 $self->campaigns->{ $campaign }->{layout},
->>>>>>> master
                 1
             );
         }
