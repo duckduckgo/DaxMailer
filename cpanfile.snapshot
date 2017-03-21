@@ -876,66 +876,66 @@ DISTRIBUTIONS
       DBI 1.628
       ExtUtils::MakeMaker 0
       Moo 1.003001
-  Dancer2-0.204004
-    pathname: X/XS/XSAWYERX/Dancer2-0.204004.tar.gz
+  Dancer2-0.205000
+    pathname: C/CR/CROMEDOME/Dancer2-0.205000.tar.gz
     provides:
-      Dancer2 0.204004
-      Dancer2::CLI 0.204004
-      Dancer2::CLI::Command::gen 0.204004
-      Dancer2::CLI::Command::version 0.204004
-      Dancer2::Core 0.204004
-      Dancer2::Core::App 0.204004
-      Dancer2::Core::Cookie 0.204004
-      Dancer2::Core::DSL 0.204004
-      Dancer2::Core::Dispatcher 0.204004
-      Dancer2::Core::Error 0.204004
-      Dancer2::Core::Factory 0.204004
-      Dancer2::Core::HTTP 0.204004
-      Dancer2::Core::Hook 0.204004
-      Dancer2::Core::MIME 0.204004
-      Dancer2::Core::Request 0.204004
-      Dancer2::Core::Request::Upload 0.204004
-      Dancer2::Core::Response 0.204004
-      Dancer2::Core::Response::Delayed 0.204004
-      Dancer2::Core::Role::ConfigReader 0.204004
-      Dancer2::Core::Role::DSL 0.204004
-      Dancer2::Core::Role::Engine 0.204004
-      Dancer2::Core::Role::Handler 0.204004
-      Dancer2::Core::Role::HasLocation 0.204004
-      Dancer2::Core::Role::Hookable 0.204004
-      Dancer2::Core::Role::Logger 0.204004
-      Dancer2::Core::Role::Serializer 0.204004
-      Dancer2::Core::Role::SessionFactory 0.204004
-      Dancer2::Core::Role::SessionFactory::File 0.204004
-      Dancer2::Core::Role::StandardResponses 0.204004
-      Dancer2::Core::Role::Template 0.204004
-      Dancer2::Core::Route 0.204004
-      Dancer2::Core::Runner 0.204004
-      Dancer2::Core::Session 0.204004
-      Dancer2::Core::Time 0.204004
-      Dancer2::Core::Types 0.204004
-      Dancer2::FileUtils 0.204004
-      Dancer2::Handler::AutoPage 0.204004
-      Dancer2::Handler::File 0.204004
-      Dancer2::Logger::Capture 0.204004
-      Dancer2::Logger::Capture::Trap 0.204004
-      Dancer2::Logger::Console 0.204004
-      Dancer2::Logger::Diag 0.204004
-      Dancer2::Logger::File 0.204004
-      Dancer2::Logger::Note 0.204004
-      Dancer2::Logger::Null 0.204004
-      Dancer2::Plugin 0.204004
-      Dancer2::Serializer::Dumper 0.204004
-      Dancer2::Serializer::JSON 0.204004
-      Dancer2::Serializer::Mutable 0.204004
-      Dancer2::Serializer::YAML 0.204004
-      Dancer2::Session::Simple 0.204004
-      Dancer2::Session::YAML 0.204004
-      Dancer2::Template::Implementation::ForkedTiny 0.204004
-      Dancer2::Template::Simple 0.204004
-      Dancer2::Template::TemplateToolkit 0.204004
-      Dancer2::Template::Tiny 0.204004
-      Dancer2::Test 0.204004
+      Dancer2 0.205000
+      Dancer2::CLI 0.205000
+      Dancer2::CLI::Command::gen 0.205000
+      Dancer2::CLI::Command::version 0.205000
+      Dancer2::Core 0.205000
+      Dancer2::Core::App 0.205000
+      Dancer2::Core::Cookie 0.205000
+      Dancer2::Core::DSL 0.205000
+      Dancer2::Core::Dispatcher 0.205000
+      Dancer2::Core::Error 0.205000
+      Dancer2::Core::Factory 0.205000
+      Dancer2::Core::HTTP 0.205000
+      Dancer2::Core::Hook 0.205000
+      Dancer2::Core::MIME 0.205000
+      Dancer2::Core::Request 0.205000
+      Dancer2::Core::Request::Upload 0.205000
+      Dancer2::Core::Response 0.205000
+      Dancer2::Core::Response::Delayed 0.205000
+      Dancer2::Core::Role::ConfigReader 0.205000
+      Dancer2::Core::Role::DSL 0.205000
+      Dancer2::Core::Role::Engine 0.205000
+      Dancer2::Core::Role::Handler 0.205000
+      Dancer2::Core::Role::HasLocation 0.205000
+      Dancer2::Core::Role::Hookable 0.205000
+      Dancer2::Core::Role::Logger 0.205000
+      Dancer2::Core::Role::Serializer 0.205000
+      Dancer2::Core::Role::SessionFactory 0.205000
+      Dancer2::Core::Role::SessionFactory::File 0.205000
+      Dancer2::Core::Role::StandardResponses 0.205000
+      Dancer2::Core::Role::Template 0.205000
+      Dancer2::Core::Route 0.205000
+      Dancer2::Core::Runner 0.205000
+      Dancer2::Core::Session 0.205000
+      Dancer2::Core::Time 0.205000
+      Dancer2::Core::Types 0.205000
+      Dancer2::FileUtils 0.205000
+      Dancer2::Handler::AutoPage 0.205000
+      Dancer2::Handler::File 0.205000
+      Dancer2::Logger::Capture 0.205000
+      Dancer2::Logger::Capture::Trap 0.205000
+      Dancer2::Logger::Console 0.205000
+      Dancer2::Logger::Diag 0.205000
+      Dancer2::Logger::File 0.205000
+      Dancer2::Logger::Note 0.205000
+      Dancer2::Logger::Null 0.205000
+      Dancer2::Plugin 0.205000
+      Dancer2::Serializer::Dumper 0.205000
+      Dancer2::Serializer::JSON 0.205000
+      Dancer2::Serializer::Mutable 0.205000
+      Dancer2::Serializer::YAML 0.205000
+      Dancer2::Session::Simple 0.205000
+      Dancer2::Session::YAML 0.205000
+      Dancer2::Template::Implementation::ForkedTiny 0.205000
+      Dancer2::Template::Simple 0.205000
+      Dancer2::Template::TemplateToolkit 0.205000
+      Dancer2::Template::Tiny 0.205000
+      Dancer2::Test 0.205000
     requirements:
       App::Cmd::Setup 0
       Attribute::Handlers 0
@@ -967,7 +967,6 @@ DISTRIBUTIONS
       Module::Runtime 0
       Moo 2.000000
       Moo::Role 0
-      MooX::Types::MooseLike 0
       POSIX 0
       Plack 1.0035
       Plack::Middleware::FixMissingBodyInRedirect 0
@@ -980,6 +979,7 @@ DISTRIBUTIONS
       Template::Tiny 0
       Test::Builder 0
       Test::More 0.92
+      Type::Tiny 1.000006
       URI::Escape 0
       YAML 0.86
       parent 0
@@ -4292,6 +4292,47 @@ DISTRIBUTIONS
       perl 5.006
       strict 0
       warnings 0
+  Type-Tiny-1.000006
+    pathname: T/TO/TOBYINK/Type-Tiny-1.000006.tar.gz
+    provides:
+      Devel::TypeTiny::Perl56Compat 1.000006
+      Devel::TypeTiny::Perl58Compat 1.000006
+      Error::TypeTiny 1.000006
+      Error::TypeTiny::Assertion 1.000006
+      Error::TypeTiny::Compilation 1.000006
+      Error::TypeTiny::WrongNumberOfParameters 1.000006
+      Eval::TypeTiny 1.000006
+      Reply::Plugin::TypeTiny 1.000006
+      Test::TypeTiny 1.000006
+      Type::Coercion 1.000006
+      Type::Coercion::FromMoose 1.000006
+      Type::Coercion::Union 1.000006
+      Type::Library 1.000006
+      Type::Params 1.000006
+      Type::Parser 1.000006
+      Type::Registry 1.000006
+      Type::Tiny 1.000006
+      Type::Tiny::Class 1.000006
+      Type::Tiny::Duck 1.000006
+      Type::Tiny::Enum 1.000006
+      Type::Tiny::Intersection 1.000006
+      Type::Tiny::Role 1.000006
+      Type::Tiny::Union 1.000006
+      Type::Utils 1.000006
+      Types::Common::Numeric 1.000006
+      Types::Common::String 1.000006
+      Types::Standard 1.000006
+      Types::Standard::ArrayRef 1.000006
+      Types::Standard::Dict 1.000006
+      Types::Standard::HashRef 1.000006
+      Types::Standard::Map 1.000006
+      Types::Standard::ScalarRef 1.000006
+      Types::Standard::Tuple 1.000006
+      Types::TypeTiny 1.000006
+    requirements:
+      Exporter::Tiny 0.026
+      ExtUtils::MakeMaker 6.17
+      perl 5.006001
   URI-1.71
     pathname: E/ET/ETHER/URI-1.71.tar.gz
     provides:
