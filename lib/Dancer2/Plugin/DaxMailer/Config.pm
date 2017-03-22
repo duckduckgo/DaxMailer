@@ -47,7 +47,6 @@ on_plugin_import {
     my $db_password = $ENV{DAXMAILER_DB_PASSWORD};
     my $rdbms = $db_dsn =~ s/dbi:([a-zA-Z]+):.*/$1/r;
 
-
     $dsl->set(
         plugins => {
             %{ $dsl->config->{plugins} },
@@ -62,6 +61,10 @@ on_plugin_import {
             },
         },
     );
+
+    $dsl->set(legacy_db_dsn => $ENV{LEGACY_DB_DSN});
+    $dsl->set(legacy_db_user => $ENV{LEGACY_DB_USER});
+    $dsl->set(legacy_db_password => $ENV{LEGACY_DB_PASSWORD});
 
     $dsl->set(layout => 'main');
     $dsl->set(views => './');
