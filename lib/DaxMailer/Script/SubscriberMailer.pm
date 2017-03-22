@@ -65,6 +65,7 @@ sub _build_campaigns {
         'c' => {
             base => 'a',
             single_opt_in => 0,
+            multi_subscriber => 1,
             mails => {
                 1 => {
                     days     => 1,
@@ -227,8 +228,15 @@ sub testrun {
 
 sub add {
     my ( $self, $params ) = @_;
-    my $email = Email::Valid->address($params->{email});
-    return unless $email;
+    my @emails;
+    @emails =
+        grep { $_ }
+        map  { my $v = Email::Valid->address( $_ ) ; $v }
+        split ',', $params->{to}
+        if $params->{to};
+    push @emails, ( grep { $_ } Email::Valid->address($params->{email}) )[0];
+
+    return if scalar @emails < 1;
 
     my $extra = {};
     $extra->{from} = $params->{from} if $params->{from};
@@ -237,16 +245,19 @@ sub add {
     my $campaigns = [ $params->{campaign} ];
     push @{ $campaigns }, $self->campaigns->{ $params->{campaign} }->{base}
         if $self->campaigns->{ $params->{campaign} }->{base};
-    my $exists = rset('Subscriber')->exists( $email, $campaigns );
-    return $exists if $exists;
 
-    return rset('Subscriber')->create( {
-        email_address => $email,
-        campaign      => $params->{campaign},
-        flow          => $params->{flow},
-        extra         => $extra,
-        verified      => $self->campaigns->{ $params->{campaign} }->{single_opt_in},
-    } );
+    for my $email ( @emails ) {
+        my $exists = rset('Subscriber')->exists( $email, $campaigns );
+        next if $exists;
+
+        rset('Subscriber')->create( {
+            email_address => $email,
+            campaign      => $params->{campaign},
+            flow          => $params->{flow},
+            extra         => $extra,
+            verified      => $self->campaigns->{ $params->{campaign} }->{single_opt_in},
+        } );
+    }
 }
 
 1;
