@@ -337,6 +337,17 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 6.36
       perl 5.005
+  DBD-Pg-3.5.3
+    pathname: T/TU/TURNSTEP/DBD-Pg-3.5.3.tar.gz
+    provides:
+      Bundle::DBD::Pg v3.5.3
+      DBD::Pg v3.5.3
+    requirements:
+      DBI 1.614
+      ExtUtils::MakeMaker 6.11
+      Test::More 0.88
+      Time::HiRes 0
+      version 0
   DBD-SQLite-1.54
     pathname: I/IS/ISHIGAKI/DBD-SQLite-1.54.tar.gz
     provides:
@@ -1052,6 +1063,17 @@ DISTRIBUTIONS
       DateTime 0
       DateTime::Format::Builder 0.6
       Module::Build 0
+  DateTime-Format-Pg-0.16012
+    pathname: D/DM/DMAKI/DateTime-Format-Pg-0.16012.tar.gz
+    provides:
+      DateTime::Format::Pg 0.16012
+    requirements:
+      DateTime 0.10
+      DateTime::Format::Builder 0.72
+      DateTime::TimeZone 0.05
+      ExtUtils::MakeMaker 6.36
+      Module::Build::Tiny 0.035
+      Test::More 0
   DateTime-Format-SQLite-0.11
     pathname: C/CF/CFAERBER/DateTime-Format-SQLite-0.11.tar.gz
     provides:
@@ -2215,6 +2237,23 @@ DISTRIBUTIONS
       Encode 2.10
       Exporter 5.57
       ExtUtils::MakeMaker 6.30
+  IO-Socket-SSL-2.047
+    pathname: S/SU/SULLR/IO-Socket-SSL-2.047.tar.gz
+    provides:
+      IO::Socket::SSL 2.047
+      IO::Socket::SSL::Intercept 2.014
+      IO::Socket::SSL::OCSP_Cache 2.047
+      IO::Socket::SSL::OCSP_Resolver 2.047
+      IO::Socket::SSL::PublicSuffix undef
+      IO::Socket::SSL::SSL_Context 2.047
+      IO::Socket::SSL::SSL_HANDLE 2.047
+      IO::Socket::SSL::Session_Cache 2.047
+      IO::Socket::SSL::Utils 2.014
+    requirements:
+      ExtUtils::MakeMaker 0
+      Mozilla::CA 0
+      Net::SSLeay 1.46
+      Scalar::Util 0
   IO-TieCombine-1.005
     pathname: R/RJ/RJBS/IO-TieCombine-1.005.tar.gz
     provides:
@@ -2634,6 +2673,24 @@ DISTRIBUTIONS
       Scalar::Util 1.14
       XSLoader 0.02
       perl 5.008005
+  Mozilla-CA-20160104
+    pathname: A/AB/ABH/Mozilla-CA-20160104.tar.gz
+    provides:
+      Mozilla::CA 20160104
+    requirements:
+      ExtUtils::MakeMaker 0
+      Test 0
+      perl 5.006
+  Net-SSLeay-1.80
+    pathname: M/MI/MIKEM/Net-SSLeay-1.80.tar.gz
+    provides:
+      Net::SSLeay 1.80
+      Net::SSLeay::Handle 0.61
+    requirements:
+      ExtUtils::MakeMaker 6.36
+      MIME::Base64 0
+      Test::More 0.60_01
+      perl 5.005
   Net-Server-2.008
     pathname: R/RH/RHANDOM/Net-Server-2.008.tar.gz
     provides:
@@ -2970,6 +3027,18 @@ DISTRIBUTIONS
       parent 0
       strict 0
       warnings 0
+  Plack-Middleware-ReverseProxy-0.15
+    pathname: M/MI/MIYAGAWA/Plack-Middleware-ReverseProxy-0.15.tar.gz
+    provides:
+      Plack::Middleware::ReverseProxy 0.15
+    requirements:
+      ExtUtils::MakeMaker 6.59
+      Plack 0.9988
+      Plack::Middleware 0
+      Plack::Request 0
+      Test::More 0
+      parent 0
+      perl 5.008001
   Regexp-Common-2016060801
     pathname: A/AB/ABIGAIL/Regexp-Common-2016060801.tar.gz
     provides:
