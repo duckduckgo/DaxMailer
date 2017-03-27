@@ -190,7 +190,7 @@ sub testrun {
     );
 
     my $mails = $self->campaigns->{ $campaign }->{mails};
-    for my $mail ( keys $mails ) {
+    for my $mail ( keys %{ $mails } ) {
         $self->email(
             $mail,
             $subscriber,
