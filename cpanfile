@@ -9,7 +9,6 @@ requires 'DBIx::Class::ResultSet';
 requires 'DBIx::Class::Schema';
 requires 'DBIx::Class::TimeStamp';
 requires 'Dancer2', '0.205000';
-requires 'Dancer2';
 requires 'Dancer2::Plugin';
 requires 'Dancer2::Plugin::Auth::HTTP::Basic::DWIW';
 requires 'Dancer2::Plugin::DBIC';
