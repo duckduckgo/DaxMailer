@@ -2,7 +2,9 @@ use strict;
 use warnings;
 
 BEGIN {
+    use File::Temp qw/ tempfile /;
     $ENV{DAXMAILER_DB_DSN} = 'dbi:SQLite:dbname=:memory:';
+    $ENV{LEGACY_DB_DSN} = sprintf 'dbi:SQLite:dbname=%s', (tempfile)[1];
     $ENV{DAXMAILER_SNS_VERIFY_TEST} = 1;
     $ENV{DAXMAILER_MAIL_TEST} = 1;
 }
@@ -18,6 +20,7 @@ use DaxMailer::Web::Service::Bounce;
 use DaxMailer::Base::Web::Service;
 
 t::lib::DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
+my $TEST_LEGACY = t::lib::DaxMailer::TestUtils::deploy_legacy;
 
 my $app = builder {
     mount '/s' => DaxMailer::Web::App::Subscriber->to_app;
@@ -80,6 +83,25 @@ test_psgi $app => sub {
     ok( $check->is_success, 'Retrieved bounce check report for existentguy@example.com' );
     $check_result = decode_json( $check->decoded_content );
     is( $check_result->{ok}, 1, 'Check for existentguy@example.com returns OK' );
+
+    subtest 'legacy bounces' => sub {
+        plan skip_all => 'No legacy db configured'
+            unless $TEST_LEGACY;
+
+        ok t::lib::DaxMailer::TestUtils::add_legacy_subscriber( 'test99@duckduckgo.com', 'a' );
+        is( t::lib::DaxMailer::TestUtils::subscriber_bounced( 'test99@duckduckgo.com', 'a' ), 0,
+            'Legacy subscriber test99@duckduckgo.com has bounce flag unset'
+        );
+        ok( $cb->( POST '/bounce/handler',
+            'Content-Type' => 'application/json',
+            Content => sns->sns_permanent_bounce( 'test99@duckduckgo.com' )
+        )->is_success, 'test99@duckduckgo.com' );
+        is( t::lib::DaxMailer::TestUtils::subscriber_bounced( 'test99@duckduckgo.com', 'a' ), 1,
+            'Legacy subscriber test99@duckduckgo.com has bounce flag set'
+        );
+
+        done_testing;
+    }
 };
 
 done_testing;
