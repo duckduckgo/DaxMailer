@@ -115,7 +115,7 @@ test_psgi $app => sub {
 
     set_absolute_time('2016-10-22T12:00:00Z');
     $transport = DaxMailer::Script::SubscriberMailer->new->execute;
-    is( $transport->delivery_count, 6, '6 received emails - one unsubscribed' );
+    is( $transport->delivery_count, 7, '7 received emails - one unsubscribed, one verified' );
 
     $transport = DaxMailer::Script::SubscriberMailer->new->execute;
     is( $transport->delivery_count, 0, 'Emails not re-sent' );
