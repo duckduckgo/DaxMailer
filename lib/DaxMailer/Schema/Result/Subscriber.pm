@@ -30,10 +30,6 @@ has_many logs => 'DaxMailer::Schema::Result::Subscriber::MailLog' => {
     'foreign.campaign'      => 'self.campaign',
 };
 
-belongs_to bounce => 'DaxMailer::Schema::Result::Subscriber::Bounce' => {
-    'foreign.email_address' => 'self.email_address',
-};
-
 around new => sub {
     my $orig = shift;
     my $self = shift;
