@@ -25,9 +25,9 @@ sub _legacy_bounce {
 
     $self->legacy_dbh->do(
        "UPDATE subscriber
-        SET    ( $column = 1 )
+        SET    $column = 1
         WHERE  email_address IN ( $binds )",
-        undef, \@emails
+        undef, @emails
     );
 };
 
