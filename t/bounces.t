@@ -100,6 +100,18 @@ test_psgi $app => sub {
             'Legacy subscriber test99@duckduckgo.com has bounce flag set'
         );
 
+        ok t::lib::DaxMailer::TestUtils::add_legacy_subscriber( 'test99@duckduckgo.com', 'a' );
+        is( t::lib::DaxMailer::TestUtils::subscriber_complaint( 'test99@duckduckgo.com', 'a' ), 0,
+            'Legacy subscriber test99@duckduckgo.com has complaint flag unset'
+        );
+        ok( $cb->( POST '/bounce/handler',
+            'Content-Type' => 'application/json',
+            Content => sns->sns_complaint( 'test99@duckduckgo.com' )
+        )->is_success, 'test99@duckduckgo.com' );
+        is( t::lib::DaxMailer::TestUtils::subscriber_complaint( 'test99@duckduckgo.com', 'a' ), 1,
+            'Legacy subscriber test99@duckduckgo.com has complaint flag set'
+        );
+
         done_testing;
     }
 };

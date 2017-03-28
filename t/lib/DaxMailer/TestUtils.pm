@@ -66,6 +66,16 @@ sub subscriber_bounced {
     }, undef, ( $email_address, $campaign ) );
 }
 
+sub subscriber_complaint {
+    my ( $email_address, $campaign ) = @_;
+    return $legacy_dbh->selectrow_array( q{
+        SELECT complaint
+        FROM   subscriber
+        WHERE  email_address = ?
+          AND  campaign = ?
+    }, undef, ( $email_address, $campaign ) );
+}
+
 sub ok {
     +{
         ok => 1,
