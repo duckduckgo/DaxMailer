@@ -14,8 +14,8 @@ use HTTP::Request::Common;
 use Test::More;
 use DaxMailer::Web::App::Bang;
 use t::lib::DaxMailer::TestUtils;
+use DaxMailer::Base::Web::Common;
 
-use DaxMailer::Base::Web::Light;
 t::lib::DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
 
 my $app = builder {

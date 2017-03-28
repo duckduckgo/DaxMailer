@@ -2,7 +2,7 @@ package DaxMailer::Web::App::Subscriber;
 
 # ABSTRACT: Subscriber management
 
-use DaxMailer::Base::Web::Light;
+use DaxMailer::Base::Web::Common;
 use Dancer2::Plugin::Auth::HTTP::Basic::DWIW;
 use DaxMailer::Script::SubscriberMailer;
 use Email::Valid;

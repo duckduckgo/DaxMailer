@@ -2,7 +2,7 @@
 
 use FindBin;
 use lib $FindBin::Dir . "/../lib";
-use DaxMailer::Base::Web::Light;
+use DaxMailer::Base::Web::Common;
 use Moo;
 use MooX::Options;
 

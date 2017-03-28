@@ -14,7 +14,7 @@ use Test::More;
 use Test::MockTime qw/:all/;
 use t::lib::DaxMailer::TestUtils;
 use DaxMailer::Web::App::Subscriber;
-use DaxMailer::Base::Web::Light;
+use DaxMailer::Base::Web::Common;
 use DaxMailer::Script::SubscriberMailer;
 use URI;
 

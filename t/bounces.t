@@ -15,7 +15,7 @@ use t::lib::DaxMailer::TestUtils;
 use aliased 't::lib::DaxMailer::TestUtils::AWS' => 'sns';
 use DaxMailer::Web::App::Subscriber;
 use DaxMailer::Web::Service::Bounce;
-use DaxMailer::Base::Web::LightService;
+use DaxMailer::Base::Web::Service;
 
 t::lib::DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
 

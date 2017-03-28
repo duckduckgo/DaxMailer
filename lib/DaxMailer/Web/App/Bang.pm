@@ -1,6 +1,6 @@
 package DaxMailer::Web::App::Bang;
 
-use DaxMailer::Base::Web::Light;
+use DaxMailer::Base::Web::Common;
 use Try::Tiny;
 
 post '/newbang' => sub {
