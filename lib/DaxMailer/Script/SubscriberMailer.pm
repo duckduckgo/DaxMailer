@@ -95,9 +95,18 @@ sub _build_campaigns {
 has template_map => ( is => 'lazy' );
 sub _build_template_map {
     +{
-        1 => 'email/a/v1.tx',
-        2 => 'email/a/v2.tx',
-        3 => 'email/a/v3.tx',
+        1 => {
+            subject => '',
+            template => 'email/a/v1.tx',
+        },
+        2 => {
+            subject => '',
+            template => 'email/a/v2.tx',
+        },
+        3 => {
+            subject => '',
+            template => 'email/a/v3.tx',
+        },
     }
 }
 
