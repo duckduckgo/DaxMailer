@@ -6,7 +6,7 @@ extends 'DaxMailer::Schema::ResultSet';
 use DBI;
 
 has legacy_dbh => ( is => 'lazy' );
-sub _build_legacy_db {
+sub _build_legacy_dbh {
     my ( $self ) = @_;
     DBI->connect( @{ $self->app->config }{qw/
         legacy_db_dsn
