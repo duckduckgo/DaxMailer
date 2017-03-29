@@ -215,7 +215,6 @@ sub verify {
 
 sub testrun {
     my ( $self, $campaign, $email ) = @_;
-    my $junk = time;
 
     # Instantiating an in-memory schema is easier than trying to
     # create mock objects or deal with existing live data matching
@@ -247,10 +246,7 @@ sub testrun {
             $mails->{ $mail }->{subject},
             $mails->{ $mail }->{template},
             $self->campaigns->{ $campaign }->{layout},
-            1, 1,
-            {
-                getjunk => $junk
-            }
+            1, 1
         );
     }
 }
