@@ -65,6 +65,7 @@ sub _build_campaigns {
         'c' => {
             base => 'a',
             single_opt_in => 0,
+            verify_layout => 'email/a/verify_layout.tx',
             verify_template_choice => 1,
             mails => {
                 1 => {
@@ -172,12 +173,15 @@ sub _send_verify_email {
         ? $self->template_map->{ $subscriber->extra->{template} }
         : $self->campaigns->{ $campaign }->{verify}->{template};
 
+    my $layout = $self->campaigns->{ $campaign }->{verify_layout}
+        || $self->campaigns->{ $campaign }->{layout};
+
     $self->email(
         'v',
         $subscriber,
         $self->campaigns->{ $campaign }->{verify}->{subject},
         $template,
-        $self->campaigns->{ $campaign }->{layout},
+        $layout,
         1
     );
 }
