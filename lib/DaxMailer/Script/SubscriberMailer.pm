@@ -65,7 +65,6 @@ sub _build_campaigns {
         'c' => {
             base => 'a',
             single_opt_in => 0,
-            multi_subscriber => 1,
             mails => {
                 1 => {
                     days     => 1,
