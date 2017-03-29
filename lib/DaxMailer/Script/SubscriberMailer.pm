@@ -229,12 +229,15 @@ sub testrun {
         verified      => 1,
     } );
 
-    $self->email('v', $subscriber,
-                 $self->campaigns->{ $campaign }->{verify}->{subject},
-                 $self->campaigns->{ $campaign }->{verify}->{template},
-                 $self->campaigns->{ $campaign }->{layout},
-                 1, 1, { getjunk => $junk }
-    );
+    if ( $self->campaigns->{ $campaign }->{verify_template_choice} ) {
+        for my $template ( keys $self->template_map ) {
+            $subscriber->extra({ from => 'Your pal!', template => $template });
+            $self->_send_verify_email( $subscriber, $campaign );
+        }
+    }
+    else {
+        $self->_send_verify_email( $subscriber, $campaign );
+    }
 
     my $mails = $self->campaigns->{ $campaign }->{mails};
     for my $mail ( keys %{ $mails } ) {
