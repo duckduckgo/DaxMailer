@@ -76,6 +76,16 @@ sub subscriber_complaint {
     }, undef, ( $email_address, $campaign ) );
 }
 
+sub subscriber_unsubscribed {
+    my ( $email_address, $campaign ) = @_;
+    return $legacy_dbh->selectrow_array( q{
+        SELECT unsubscribed
+        FROM   subscriber
+        WHERE  email_address = ?
+          AND  campaign = ?
+    }, undef, ( $email_address, $campaign ) );
+}
+
 sub ok {
     +{
         ok => 1,

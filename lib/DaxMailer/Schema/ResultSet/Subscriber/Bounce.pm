@@ -31,6 +31,18 @@ sub _legacy_bounce {
     );
 };
 
+sub legacy_unsub {
+    my ( $self, $email ) = @_;
+    return unless $self->legacy_dbh;
+
+    $self->legacy_dbh->do(
+       "UPDATE subscriber
+        SET    unsubscribed = 1
+        WHERE  email_address = ?",
+        undef, ( $email )
+    );
+}
+
 sub handle_bounces {
     my ( $self, $message ) = @_;
     my $update_params;

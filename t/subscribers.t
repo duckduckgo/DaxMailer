@@ -2,8 +2,10 @@ use strict;
 use warnings;
 
 BEGIN {
+    use File::Temp qw/ tempfile /;
     $ENV{DAXMAILER_DB_DSN} = 'dbi:SQLite:dbname=:memory:';
     $ENV{DAXMAILER_MAIL_TEST} = 1;
+    $ENV{LEGACY_DB_DSN} = sprintf 'dbi:SQLite:dbname=%s', (tempfile)[1];
 }
 
 
@@ -19,6 +21,7 @@ use DaxMailer::Script::SubscriberMailer;
 use URI;
 
 t::lib::DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
+my $TEST_LEGACY = t::lib::DaxMailer::TestUtils::deploy_legacy;
 my $m = DaxMailer::Script::SubscriberMailer->new;
 
 my $app = builder {
@@ -126,6 +129,25 @@ test_psgi $app => sub {
 
     $transport = DaxMailer::Script::SubscriberMailer->new->execute;
     is( $transport->delivery_count, 0, 'Emails not re-sent' );
+
+    subtest 'legacy unsubs' => sub {
+        plan skip_all => 'No legacy db configured'
+            unless $TEST_LEGACY;
+
+        ok t::lib::DaxMailer::TestUtils::add_legacy_subscriber( 'test99@duckduckgo.com', 'a' );
+        is( t::lib::DaxMailer::TestUtils::subscriber_unsubscribed( 'test99@duckduckgo.com', 'a' ), 0,
+            'Legacy subscriber test99@duckduckgo.com has unsub flag unset'
+        );
+        ok(
+            $cb->( GET '/s/u/a/test99%40duckduckgo.com/asdf' )->is_success,
+            'Legacy unsub GET'
+        );
+        is( t::lib::DaxMailer::TestUtils::subscriber_unsubscribed( 'test99@duckduckgo.com', 'a' ), 1,
+            'Legacy subscriber test99@duckduckgo.com has unsub flag set'
+        );
+
+        done_testing;
+    }
 };
 
 done_testing;

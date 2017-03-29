@@ -20,10 +20,11 @@ get '/u/:campaign/:email/:key' => sub {
         email_address => $params->{email},
         campaign      => $params->{campaign},
     } );
+    my $legacy_unsub = rset('Subscriber::Bounce')->legacy_unsub( $params->{email} );
     template 'email/a/unsub.tx',
-             { success => (
-                     $s && $s->unsubscribe( $params->{ key } )
-                 )
+             { success =>
+                 ( ( $s && $s->unsubscribe( $params->{ key } ) ) ||
+                 $legacy_unsub > 0 )
              },
              { layout => undef };
 };
