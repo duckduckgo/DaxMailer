@@ -97,15 +97,15 @@ has template_map => ( is => 'lazy' );
 sub _build_template_map {
     +{
         1 => {
-            subject => '',
+            subject => sub { sprintf "Private Browsing Myths from %s", $_[0]->extra->{from} },
             template => 'email/a/v1.tx',
         },
         2 => {
-            subject => '',
+            subject => 'Ads Cost You Money?',
             template => 'email/a/v2.tx',
         },
         3 => {
-            subject => '',
+            subject => sub { sprintf "Privacy Tip from %s", $_[0]->extra->{from} },
             template => 'email/a/v3.tx',
         },
     }
@@ -167,11 +167,19 @@ sub execute {
 
 sub _send_verify_email {
     my ( $self, $subscriber, $campaign ) = @_;
-    my $template =
-      $subscriber->extra->{template} &&
-      $self->template_map->{ $subscriber->extra->{template} }
-        ? $self->template_map->{ $subscriber->extra->{template} }
-        : $self->campaigns->{ $campaign }->{verify}->{template};
+    my ( $template, $subject );
+    if ( my $st = $subscriber->extra->{template} ) {
+        if ( my $t = $self->template_map->{ $st } ) {
+            $template = $t->{template};
+
+            $subject = ref $t->{subject} eq 'CODE'
+                ? $t->{subject}->( $subscriber )
+                : $t->{subject}
+
+        }
+    }
+    $subject ||= $self->campaigns->{ $campaign }->{verify}->{subject};
+    $template ||= $self->campaigns->{ $campaign }->{verify}->{template};
 
     my $layout = $self->campaigns->{ $campaign }->{verify_layout}
         || $self->campaigns->{ $campaign }->{layout};
@@ -179,7 +187,7 @@ sub _send_verify_email {
     $self->email(
         'v',
         $subscriber,
-        $self->campaigns->{ $campaign }->{verify}->{subject},
+        $subject,
         $template,
         $layout,
         1
