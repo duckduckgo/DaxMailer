@@ -164,6 +164,24 @@ sub execute {
     return $self->smtp->transport;
 }
 
+sub _send_verify_email {
+    my ( $self, $subscriber, $campaign ) = @_;
+    my $template =
+      $subscriber->extra->{template} &&
+      $self->template_map->{ $subscriber->extra->{template} }
+        ? $self->template_map->{ $subscriber->extra->{template} }
+        : $self->campaigns->{ $campaign }->{verify}->{template};
+
+    $self->email(
+        'v',
+        $subscriber,
+        $self->campaigns->{ $campaign }->{verify}->{subject},
+        $template,
+        $self->campaigns->{ $campaign }->{layout},
+        1
+    );
+}
+
 sub verify {
     my ( $self ) = @_;
 
@@ -176,20 +194,7 @@ sub verify {
             ->all;
 
         for my $subscriber ( @subscribers ) {
-            my $template =
-              $subscriber->extra->{template} &&
-              $self->template_map->{ $subscriber->extra->{template} }
-                ? $self->template_map->{ $subscriber->extra->{template} }
-                : $self->campaigns->{ $campaign }->{verify}->{template};
-
-            $self->email(
-                'v',
-                $subscriber,
-                $self->campaigns->{ $campaign }->{verify}->{subject},
-                $template,
-                $self->campaigns->{ $campaign }->{layout},
-                1
-            );
+            $self->_send_verify_email( $subscriber, $campaign );
         }
     }
 
