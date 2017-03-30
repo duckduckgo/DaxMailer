@@ -1,9 +1,8 @@
-                                                 <p style="margin-bottom: 1em">
-                                                 <i><span STYLE="font-size: small; color: #A9A9A9"><b><: $subscriber.extra.from :></b> sent you this privacy tip from DuckDuckGo, the search engine that doesn't track you. You won't receive any more tips from unless you opt-in below!</span></i></br></br>
+                                    When using Google services, they track everything about you that they can: your searches, the videos you watch on YouTube, the sites you visit in Chrome, even the locations you visit in the physical world via Android. You can see what they have on you here:</br></br>
 
+                        <p style="margin-bottom: 1em"><a href="https://myactivity.google.com/myactivity">https://myactivity.google.com/myactivity</a></br></br>
+        <p style="margin-bottom: 1em">It's just plain creepy, and in 2012, Google made a change to their privacy policy that enabled them to combine all this data together into one master profile on you, just to better target ads at you across the web.</br></br>
 
-
-
-
-<a href="<: $subscriber.verify_url :>" style="background-color:#efefef;border:1px solid #ccc;border-radius:4px;color:#000;display:inline-block;font-family:sans-serif;font-size:16px;font-weight:bold;text-align:center;text-decoration:none;-webkit-text-size-adjust:none;mso-hide:all; padding:10px 20px; margin:15px 0">Get More Privacy Tips by Email!</a>
-: include 'email/a/signature.tx'
+Privacy Tip - Delete your Google activity on the "My Activity" page:</br><ul>
+<p style="margin-bottom: 1em"><img src="https://cdn-images-1.medium.com/max/800/1*9dCoCfPAMsgGclhWL9xBIA.png?atb=<: $subscriber.flow :>" style="max-width:572px; padding-left: 5px; padding-bottom: 10px;" alt="Guide on deleting Google History"/></p>
+</ul>
