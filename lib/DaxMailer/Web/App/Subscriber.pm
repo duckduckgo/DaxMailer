@@ -63,7 +63,7 @@ get '/testrun/:campaign' => sub {
     <form method="POST">
         <h3>Send a test run of all mails</h3>
         email: <input type="text" name="email"><br />
-        from: <input type="text" name="from"><br />
+        from: <textarea name="from"></textarea><br />
         <input type="submit" name="submit">
     </form>
 TESTRUN
