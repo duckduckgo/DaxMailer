@@ -64,6 +64,10 @@ get '/testrun/:campaign' => sub {
         <h3>Send a test run of all mails</h3>
         email: <input type="text" name="email"><br />
         from: <textarea name="from"></textarea><br />
+        <input type="checkbox" name="verify_only" id="verify_only">
+        <label for="verify_only">
+            Only send verify stage emails
+        </label><br />
         <input type="submit" name="submit">
     </form>
 TESTRUN
@@ -77,6 +81,7 @@ post '/testrun/:campaign' => sub {
     return unless $email =~ /\@duckduckgo\.com$/;
     my $extra = {};
     $extra->{from} = $bodyparams->{from} if $bodyparams->{from};
+    $extra->{verify_only} = $bodyparams->{verify_only};
     DaxMailer::Script::SubscriberMailer->new->testrun(
         $routeparams->{campaign},
         $bodyparams->{email},

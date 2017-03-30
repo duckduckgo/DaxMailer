@@ -251,6 +251,8 @@ sub testrun {
         $self->_send_verify_email( $subscriber, $campaign );
     }
 
+    goto VERIFYONLY if $extra->{verify_only};
+
     my $mails = $self->campaigns->{ $campaign }->{mails};
     for my $mail ( sort keys %{ $mails } ) {
         $self->email(
@@ -263,6 +265,7 @@ sub testrun {
         );
     }
 
+VERIFYONLY:
     return ( $self->smtp->transport, $subscriber );
 }
 
