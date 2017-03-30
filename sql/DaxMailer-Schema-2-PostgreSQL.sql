@@ -1,6 +1,6 @@
 -- 
 -- Created by SQL::Translator::Producer::PostgreSQL
--- Created on Thu Mar 30 07:49:45 2017
+-- Created on Thu Mar 30 12:14:43 2017
 -- 
 --
 -- Table: bang_category
@@ -28,7 +28,7 @@ CREATE TABLE "subscriber" (
   "v_key" text NOT NULL,
   "u_key" text NOT NULL,
   "created" timestamptz NOT NULL,
-  "extra" character varying(128) DEFAULT '{}' NOT NULL,
+  "extra" text DEFAULT '{}' NOT NULL,
   PRIMARY KEY ("email_address", "campaign")
 );
 

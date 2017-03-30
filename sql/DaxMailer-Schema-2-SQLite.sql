@@ -1,6 +1,6 @@
 -- 
 -- Created by SQL::Translator::Producer::SQLite
--- Created on Thu Mar 30 07:49:45 2017
+-- Created on Thu Mar 30 12:14:43 2017
 -- 
 
 BEGIN TRANSACTION;
@@ -34,7 +34,7 @@ CREATE TABLE "subscriber" (
   "v_key" text NOT NULL,
   "u_key" text NOT NULL,
   "created" timestamptz NOT NULL,
-  "extra" varchar(128) NOT NULL DEFAULT '{}',
+  "extra" text NOT NULL DEFAULT '{}',
   PRIMARY KEY ("email_address", "campaign")
 );
 

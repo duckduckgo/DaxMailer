@@ -19,8 +19,7 @@ column v_key        => { data_type => 'text' };
 column u_key        => { data_type => 'text' };
 column created      => { data_type => 'timestamptz', set_on_create => 1 };
 column extra        => {
-    data_type => 'varchar',
-    size => 128,
+    data_type => 'text',
     serializer_class => 'JSON',
     default_value => '{}',
 };
