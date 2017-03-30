@@ -1,6 +1,6 @@
 -- 
 -- Created by SQL::Translator::Producer::SQLite
--- Created on Thu Mar 16 13:33:45 2017
+-- Created on Thu Mar 30 07:49:45 2017
 -- 
 
 BEGIN TRANSACTION;
@@ -19,6 +19,24 @@ CREATE TABLE "bang_category" (
 );
 
 CREATE INDEX "bang_category_idx_parent" ON "bang_category" ("parent");
+
+--
+-- Table: "subscriber"
+--
+DROP TABLE "subscriber";
+
+CREATE TABLE "subscriber" (
+  "email_address" text NOT NULL,
+  "campaign" text NOT NULL,
+  "verified" int NOT NULL DEFAULT 0,
+  "unsubscribed" int NOT NULL DEFAULT 0,
+  "flow" text,
+  "v_key" text NOT NULL,
+  "u_key" text NOT NULL,
+  "created" timestamptz NOT NULL,
+  "extra" varchar(128) NOT NULL DEFAULT '{}',
+  PRIMARY KEY ("email_address", "campaign")
+);
 
 --
 -- Table: "subscriber_bounce"
@@ -50,27 +68,6 @@ CREATE TABLE "bang" (
 );
 
 CREATE INDEX "bang_idx_category_id" ON "bang" ("category_id");
-
---
--- Table: "subscriber"
---
-DROP TABLE "subscriber";
-
-CREATE TABLE "subscriber" (
-  "email_address" text NOT NULL,
-  "campaign" text NOT NULL,
-  "verified" int NOT NULL DEFAULT 0,
-  "unsubscribed" int NOT NULL DEFAULT 0,
-  "flow" text,
-  "v_key" text NOT NULL,
-  "u_key" text NOT NULL,
-  "created" timestamptz NOT NULL,
-  "extra" varchar(128) NOT NULL DEFAULT '{}',
-  PRIMARY KEY ("email_address", "campaign"),
-  FOREIGN KEY ("email_address") REFERENCES "subscriber_bounce"("email_address") ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-CREATE INDEX "subscriber_idx_email_address" ON "subscriber" ("email_address");
 
 --
 -- Table: "subscriber_maillog"

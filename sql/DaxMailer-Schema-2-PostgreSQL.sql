@@ -1,6 +1,6 @@
 -- 
 -- Created by SQL::Translator::Producer::PostgreSQL
--- Created on Thu Mar 16 13:33:45 2017
+-- Created on Thu Mar 30 07:49:45 2017
 -- 
 --
 -- Table: bang_category
@@ -14,6 +14,23 @@ CREATE TABLE "bang_category" (
   PRIMARY KEY ("id")
 );
 CREATE INDEX "bang_category_idx_parent" on "bang_category" ("parent");
+
+--
+-- Table: subscriber
+--
+DROP TABLE "subscriber" CASCADE;
+CREATE TABLE "subscriber" (
+  "email_address" text NOT NULL,
+  "campaign" text NOT NULL,
+  "verified" integer DEFAULT 0 NOT NULL,
+  "unsubscribed" integer DEFAULT 0 NOT NULL,
+  "flow" text,
+  "v_key" text NOT NULL,
+  "u_key" text NOT NULL,
+  "created" timestamptz NOT NULL,
+  "extra" character varying(128) DEFAULT '{}' NOT NULL,
+  PRIMARY KEY ("email_address", "campaign")
+);
 
 --
 -- Table: subscriber_bounce
@@ -43,24 +60,6 @@ CREATE TABLE "bang" (
 CREATE INDEX "bang_idx_category_id" on "bang" ("category_id");
 
 --
--- Table: subscriber
---
-DROP TABLE "subscriber" CASCADE;
-CREATE TABLE "subscriber" (
-  "email_address" text NOT NULL,
-  "campaign" text NOT NULL,
-  "verified" integer DEFAULT 0 NOT NULL,
-  "unsubscribed" integer DEFAULT 0 NOT NULL,
-  "flow" text,
-  "v_key" text NOT NULL,
-  "u_key" text NOT NULL,
-  "created" timestamptz NOT NULL,
-  "extra" character varying(128) DEFAULT '{}' NOT NULL,
-  PRIMARY KEY ("email_address", "campaign")
-);
-CREATE INDEX "subscriber_idx_email_address" on "subscriber" ("email_address");
-
---
 -- Table: subscriber_maillog
 --
 DROP TABLE "subscriber_maillog" CASCADE;
@@ -82,9 +81,6 @@ ALTER TABLE "bang_category" ADD CONSTRAINT "bang_category_fk_parent" FOREIGN KEY
 
 ALTER TABLE "bang" ADD CONSTRAINT "bang_fk_category_id" FOREIGN KEY ("category_id")
   REFERENCES "bang_category" ("id") ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE;
-
-ALTER TABLE "subscriber" ADD CONSTRAINT "subscriber_fk_email_address" FOREIGN KEY ("email_address")
-  REFERENCES "subscriber_bounce" ("email_address") ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE;
 
 ALTER TABLE "subscriber_maillog" ADD CONSTRAINT "subscriber_maillog_fk_email_address_campaign" FOREIGN KEY ("email_address", "campaign")
   REFERENCES "subscriber" ("email_address", "campaign") ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE;
