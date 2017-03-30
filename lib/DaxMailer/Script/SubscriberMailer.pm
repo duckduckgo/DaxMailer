@@ -66,7 +66,7 @@ sub _build_campaigns {
             base => 'a',
             single_opt_in => 0,
             verify_layout => 'email/a/verify_layout.tx',
-            verify_template_choice => 1,
+            template_map => 'c',
             mails => {
                 1 => {
                     days     => 1,
@@ -96,18 +96,26 @@ sub _build_campaigns {
 has template_map => ( is => 'lazy' );
 sub _build_template_map {
     +{
-        1 => {
-            subject => sub { sprintf "Private Browsing Myths from %s", $_[0]->extra->{from} },
-            template => 'email/a/v1.tx',
-        },
-        2 => {
-            subject => 'Ads Cost You Money?',
-            template => 'email/a/v2.tx',
-        },
-        3 => {
-            subject => sub { sprintf "Privacy Tip from %s", $_[0]->extra->{from} },
-            template => 'email/a/v3.tx',
-        },
+        'c' => {
+            1 => {
+                subject => sub {
+                    sprintf "Private Browsing Myths from %s",
+                    $_[0]->extra->{from}
+                },
+                template => 'email/a/v1.tx',
+            },
+            2 => {
+                subject => 'Ads Cost You Money?',
+                template => 'email/a/v2.tx',
+            },
+            3 => {
+                subject => sub {
+                    sprintf "Privacy Tip from %s",
+                    $_[0]->extra->{from}
+                },
+                template => 'email/a/v3.tx',
+            },
+        }
     }
 }
 
@@ -168,8 +176,9 @@ sub execute {
 sub _send_verify_email {
     my ( $self, $subscriber, $campaign ) = @_;
     my ( $template, $subject );
-    if ( my $st = $subscriber->extra->{template} ) {
-        if ( my $t = $self->template_map->{ $st } ) {
+    if ( $subscriber->extra && ( my $st = $subscriber->extra->{template} ) ) {
+        my $tm = $self->campaigns->{ $campaign }->{template_map};
+        if ( my $t = $self->template_map->{ $tm }->{ $st } ) {
             $template = $t->{template};
 
             $subject = ref $t->{subject} eq 'CODE'
@@ -228,8 +237,8 @@ sub testrun {
         verified      => 1,
     } );
 
-    if ( $self->campaigns->{ $campaign }->{verify_template_choice} ) {
-        for my $template ( keys $self->template_map ) {
+    if ( my $tm = $self->campaigns->{ $campaign }->{template_map} ) {
+        for my $template ( keys $self->template_map->{ $tm } ) {
             $subscriber->extra({ from => 'Your pal!', template => $template });
             $self->_send_verify_email( $subscriber, $campaign );
         }
