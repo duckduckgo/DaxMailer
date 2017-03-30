@@ -46,8 +46,7 @@ get '/v/:campaign/:email/:key' => sub {
 get '/form' => sub {
     return <<'FORM'
     <form method="POST" action="/s/a">
-        email: <input type="text" name="email"><br />
-        from: <input type="text" name="from">
+        email: <input type="text" name="email">
         <input type="submit" name="submit">
         <input type="hidden" name="campaign" value="a">
         <input type="hidden" name="flow" value="form">
