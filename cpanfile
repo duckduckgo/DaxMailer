@@ -26,6 +26,7 @@ requires 'Email::Sender::Transport::Test';
 requires 'Email::Simple';
 requires 'Email::Valid';
 requires 'HTML::FormatText::WithLinks';
+requires 'HTML::TreeBuilder::XPath';
 requires 'HTTP::Tiny';
 requires 'HTTP::Validate';
 requires 'IO::Socket::SSL';
