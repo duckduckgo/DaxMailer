@@ -293,7 +293,7 @@
         <center><div>
 <!--[if mso]>
     <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="<: $subscriber.verify_url :>" style="v-text-anchor:middle;" arcsize="10%" strokecolor="#ccc" fillcolor="#efefef"><w:anchorlock/>
-<center style="color:#000;font-family:sans-serif;font-size:16px;font-weight:bold; padding:5px 10px; margin:20px 0">Button text here</center>
+<center style="color:#000;font-family:sans-serif;font-size:16px;font-weight:bold; padding:5px 10px; margin:20px 0">Get More Privacy Tips by Email!</center>
 </v:roundrect>
 <![endif]-->
 
