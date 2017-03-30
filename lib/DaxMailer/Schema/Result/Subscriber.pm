@@ -44,7 +44,10 @@ sub _key {
 
 sub _url {
     my ( $self, $type ) = @_;
-    my $u = URI->new( $self->app->config->{base_url} );
+    my $u = URI->new( $self->app
+        ? $self->app->config->{base_url}
+        : 'http://localhost'
+    );
     $u->path(
         sprintf "/s/%s/%s/%s/%s",
         ( $type eq 'u' ? 'u' : 'v' ),
