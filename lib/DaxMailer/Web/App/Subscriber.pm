@@ -46,7 +46,8 @@ get '/v/:campaign/:email/:key' => sub {
 get '/form' => sub {
     return <<'FORM'
     <form method="POST" action="/s/a">
-        email: <input type="text" name="email">
+        email: <input type="text" name="email"><br />
+        from: <input type="text" name="from">
         <input type="submit" name="submit">
         <input type="hidden" name="campaign" value="a">
         <input type="hidden" name="flow" value="form">
@@ -74,9 +75,12 @@ post '/testrun/:campaign' => sub {
     my $email = Email::Valid->address($bodyparams->{email});
     return unless $email;
     return unless $email =~ /\@duckduckgo\.com$/;
+    my $extra = {};
+    $extra->{from} = $bodyparams->{from} if $bodyparams->{from};
     DaxMailer::Script::SubscriberMailer->new->testrun(
         $routeparams->{campaign},
         $bodyparams->{email},
+        $extra
     );
     return 'OK';
 };

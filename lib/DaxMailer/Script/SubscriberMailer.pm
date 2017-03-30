@@ -223,7 +223,8 @@ sub verify {
 }
 
 sub testrun {
-    my ( $self, $campaign, $email ) = @_;
+    my ( $self, $campaign, $email, $extra ) = @_;
+    $extra //= {};
 
     # Instantiating an in-memory schema is easier than trying to
     # create mock objects or deal with existing live data matching
@@ -239,7 +240,10 @@ sub testrun {
 
     if ( my $tm = $self->campaigns->{ $campaign }->{template_map} ) {
         for my $template ( sort keys $self->template_map->{ $tm } ) {
-            $subscriber->extra({ from => 'Your pal!', template => $template });
+            $subscriber->extra({
+                    from => $extra->{from} || 'Your pal!',
+                    template => $template
+                });
             $self->_send_verify_email( $subscriber, $campaign );
         }
     }
