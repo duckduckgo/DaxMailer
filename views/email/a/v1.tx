@@ -18,8 +18,4 @@ Use services that don't track you like <a href="https://www.duckduckgo.com">Duck
 
 <a href="<: $subscriber.verify_url :>" style="background-color:#efefef;border:1px solid #ccc;border-radius:4px;color:#000;display:inline-block;font-family:sans-serif;font-size:16px;font-weight:bold;text-align:center;text-decoration:none;-webkit-text-size-adjust:none;mso-hide:all; padding:10px 20px; margin:15px 0">Get More Privacy Tips by Email!</a>
             </div>   </center> 
-<p style="margin-bottom: 1em">
-Proudly Private,<br /><br />
-<img src="https://duckduckgo.com/assets/email/signature.png" alt="Dax's Signature"/></br></br>
-Dax the Duck,<br />
-Mascot - DuckDuckGo</p>
+: include 'email/a/signature.tx'
