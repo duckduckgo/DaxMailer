@@ -238,7 +238,7 @@ sub testrun {
     } );
 
     if ( my $tm = $self->campaigns->{ $campaign }->{template_map} ) {
-        for my $template ( keys $self->template_map->{ $tm } ) {
+        for my $template ( sort keys $self->template_map->{ $tm } ) {
             $subscriber->extra({ from => 'Your pal!', template => $template });
             $self->_send_verify_email( $subscriber, $campaign );
         }
@@ -248,7 +248,7 @@ sub testrun {
     }
 
     my $mails = $self->campaigns->{ $campaign }->{mails};
-    for my $mail ( keys %{ $mails } ) {
+    for my $mail ( sort keys %{ $mails } ) {
         $self->email(
             $mail,
             $subscriber,
