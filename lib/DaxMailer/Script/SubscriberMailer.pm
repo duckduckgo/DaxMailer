@@ -258,6 +258,8 @@ sub testrun {
             1, 1
         );
     }
+
+    return ( $self->smtp->transport, $subscriber );
 }
 
 sub add {
