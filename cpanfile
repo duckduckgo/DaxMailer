@@ -38,6 +38,7 @@ requires 'Moo::Role';
 requires 'MooX::Options';
 requires 'Plack::Middleware::ReverseProxy';
 requires 'Starman';
+requires 'String::Truncate';
 requires 'Text::CSV_XS';
 requires 'Text::Xslate';
 requires 'Try::Tiny';

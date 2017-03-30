@@ -3738,6 +3738,18 @@ DISTRIBUTIONS
       Sub::Exporter 0.972
       strict 0
       warnings 0
+  String-Truncate-1.100602
+    pathname: R/RJ/RJBS/String-Truncate-1.100602.tar.gz
+    provides:
+      String::Truncate 1.100602
+    requirements:
+      Carp 0
+      ExtUtils::MakeMaker 6.30
+      Sub::Exporter 0.953
+      Sub::Exporter::Util 0
+      Sub::Install 0.03
+      strict 0
+      warnings 0
   Sub-Exporter-0.987
     pathname: R/RJ/RJBS/Sub-Exporter-0.987.tar.gz
     provides:

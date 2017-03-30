@@ -5,6 +5,7 @@ package DaxMailer::Script::SubscriberMailer;
 use DateTime;
 use Moo;
 use Hash::Merge qw/ merge /;
+use String::Truncate qw/ trunc /;
 
 with 'DaxMailer::Base::Script::Service',
      'DaxMailer::Base::Script::ServiceEmail';
@@ -241,7 +242,9 @@ sub testrun {
     if ( my $tm = $self->campaigns->{ $campaign }->{template_map} ) {
         for my $template ( sort keys $self->template_map->{ $tm } ) {
             $subscriber->extra({
-                    from => $extra->{from} || 'Your pal!',
+                    from =>
+                        trunc( $extra->{from}, 512, { at_space => 1 } )
+                        || 'Your pal!',
                     template => $template
                 });
             $self->_send_verify_email( $subscriber, $campaign );
@@ -282,7 +285,9 @@ sub add {
     return if scalar @emails < 1;
 
     my $extra = {};
-    $extra->{from} = $params->{from} if $params->{from};
+    $extra->{from} =
+        trunc( $params->{from}, 512, { at_space => 1 } )
+        if $params->{from};
     $extra->{template} = $params->{template} if $params->{template};
 
     my $campaigns = [ $params->{campaign} ];
