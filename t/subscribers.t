@@ -36,7 +36,7 @@ sub _verify {
     } );
     my $url = URI->new( $subscriber->verify_url );
     ok(
-        $cb->( GET $url->path ),
+        $cb->( GET $url->path )->is_success,
         "Verifying " . $subscriber->email_address
     );
 }
@@ -49,7 +49,7 @@ sub _unsubscribe {
     } );
     my $url = URI->new( $subscriber->unsubscribe_url );
     ok(
-        $cb->( GET $url->path ),
+        $cb->( GET $url->path )->is_success,
         "Verifying " . $subscriber->email_address
     );
 }
