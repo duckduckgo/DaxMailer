@@ -50,7 +50,7 @@ sub _unsubscribe {
     my $url = URI->new( $subscriber->unsubscribe_url );
     ok(
         $cb->( GET $url->path )->is_success,
-        "Verifying " . $subscriber->email_address
+        "Unsubscribing " . $subscriber->email_address
     );
 }
 
