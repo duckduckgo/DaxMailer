@@ -130,6 +130,54 @@ test_psgi $app => sub {
     $transport = DaxMailer::Script::SubscriberMailer->new->execute;
     is( $transport->delivery_count, 0, 'Emails not re-sent' );
 
+    set_absolute_time('2017-03-31T12:00:00Z');
+
+    ok( $cb->(
+        POST '/s/a',
+        [   from => 'Your good pal',
+            campaign => 'c',
+            flow => 'flow1',
+            to => join ',', (
+                qw{
+                    test6@duckduckgo.com
+                    test100@duckduckgo.com
+                    test101@duckduckgo.com
+                    test102@duckduckgo.com
+                    test103@duckduckgo.com
+                    test104@duckduckgo.com
+                    test105@duckduckgo.com
+                    notanemailagain
+                }
+            )
+        ]
+    ), "POSTing multiple subscribers" );
+
+    $transport = DaxMailer::Script::SubscriberMailer->new->verify;
+    is( $transport->delivery_count, 6, 'Correct number of verification emails sent from spread form' );
+
+    _verify($cb, 'test100@duckduckgo.com', 'c');
+    _verify($cb, 'test101@duckduckgo.com', 'c');
+
+    set_absolute_time('2017-04-01T12:00:00Z');
+    _verify($cb, 'test102@duckduckgo.com', 'c');
+
+    set_absolute_time('2017-04-02T12:00:00Z');
+    $transport = DaxMailer::Script::SubscriberMailer->new->execute;
+    is( $transport->delivery_count, 3, '3 received emails' );
+
+    my @emails = $transport->deliveries;
+    is( $emails[0]->{email}->get_header("Subject"),
+        'Tracking in Incognito?',
+        'Testing first spread email to test102' );
+
+    is( $emails[1]->{email}->get_header("Subject"),
+        'Are Ads Following You?',
+        'Testing second spread email to test100' );
+
+    is( $emails[2]->{email}->get_header("Subject"),
+        'Are Ads Following You?',
+        'Testing second spread email to test101' );
+
     subtest 'legacy unsubs' => sub {
         plan skip_all => 'No legacy db configured'
             unless $TEST_LEGACY;
