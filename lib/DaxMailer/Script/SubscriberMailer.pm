@@ -5,6 +5,7 @@ package DaxMailer::Script::SubscriberMailer;
 use DateTime;
 use Moo;
 use Hash::Merge qw/ merge /;
+use String::Truncate qw/ trunc /;
 
 with 'DaxMailer::Base::Script::Service',
      'DaxMailer::Base::Script::ServiceEmail';
@@ -65,9 +66,14 @@ sub _build_campaigns {
         'c' => {
             base => 'a',
             single_opt_in => 0,
-            verify => {
-                subject => 'Tracking in Incognito?',
-                template => 'email/a/v.tx'
+            verify_layout => 'email/a/verify_layout.tx',
+            template_map => 'c',
+            mails => {
+                1 => {
+                    days     => 1,
+                    subject => 'Tracking in Incognito?',
+                    template => 'email/a/1c.tx',
+                },
             }
         }
     };
@@ -84,6 +90,34 @@ sub _build_campaigns {
     };
 
     return $campaigns;
+}
+
+# Map email selection => filename explicitly
+# We don't want to build paths from user input
+has template_map => ( is => 'lazy' );
+sub _build_template_map {
+    +{
+        'c' => {
+            1 => {
+                subject => sub {
+                    sprintf "Private Browsing Myths from %s",
+                    $_[0]->extra->{from}
+                },
+                template => 'email/a/v1.tx',
+            },
+            2 => {
+                subject => 'Ads Cost You Money?',
+                template => 'email/a/v2.tx',
+            },
+            3 => {
+                subject => sub {
+                    sprintf "Privacy Tip from %s",
+                    $_[0]->extra->{from}
+                },
+                template => 'email/a/v3.tx',
+            },
+        }
+    }
 }
 
 sub email {
@@ -140,6 +174,36 @@ sub execute {
     return $self->smtp->transport;
 }
 
+sub _send_verify_email {
+    my ( $self, $subscriber, $campaign ) = @_;
+    my ( $template, $subject );
+    if ( $subscriber->extra && ( my $st = $subscriber->extra->{template} ) ) {
+        my $tm = $self->campaigns->{ $campaign }->{template_map};
+        if ( my $t = $self->template_map->{ $tm }->{ $st } ) {
+            $template = $t->{template};
+
+            $subject = ref $t->{subject} eq 'CODE'
+                ? $t->{subject}->( $subscriber )
+                : $t->{subject}
+
+        }
+    }
+    $subject ||= $self->campaigns->{ $campaign }->{verify}->{subject};
+    $template ||= $self->campaigns->{ $campaign }->{verify}->{template};
+
+    my $layout = $self->campaigns->{ $campaign }->{verify_layout}
+        || $self->campaigns->{ $campaign }->{layout};
+
+    $self->email(
+        'v',
+        $subscriber,
+        $subject,
+        $template,
+        $layout,
+        1
+    );
+}
+
 sub verify {
     my ( $self ) = @_;
 
@@ -152,14 +216,7 @@ sub verify {
             ->all;
 
         for my $subscriber ( @subscribers ) {
-            $self->email(
-                'v',
-                $subscriber,
-                $self->campaigns->{ $campaign }->{verify}->{subject},
-                $self->campaigns->{ $campaign }->{verify}->{template},
-                $self->campaigns->{ $campaign }->{layout},
-                1
-            );
+            $self->_send_verify_email( $subscriber, $campaign );
         }
     }
 
@@ -167,8 +224,8 @@ sub verify {
 }
 
 sub testrun {
-    my ( $self, $campaign, $email ) = @_;
-    my $junk = time;
+    my ( $self, $campaign, $email, $extra ) = @_;
+    $extra //= {};
 
     # Instantiating an in-memory schema is easier than trying to
     # create mock objects or deal with existing live data matching
@@ -182,46 +239,73 @@ sub testrun {
         verified      => 1,
     } );
 
-    $self->email('v', $subscriber,
-                 $self->campaigns->{ $campaign }->{verify}->{subject},
-                 $self->campaigns->{ $campaign }->{verify}->{template},
-                 $self->campaigns->{ $campaign }->{layout},
-                 1, 1, { getjunk => $junk }
-    );
+    if ( my $tm = $self->campaigns->{ $campaign }->{template_map} ) {
+        for my $template ( sort keys $self->template_map->{ $tm } ) {
+            $subscriber->extra({
+                    from =>
+                        trunc( $extra->{from}, 512, { at_space => 1 } )
+                        || 'Your pal!',
+                    template => $template
+                });
+            $self->_send_verify_email( $subscriber, $campaign );
+        }
+    }
+    else {
+        $self->_send_verify_email( $subscriber, $campaign );
+    }
+
+    goto VERIFYONLY if $extra->{verify_only};
 
     my $mails = $self->campaigns->{ $campaign }->{mails};
-    for my $mail ( keys %{ $mails } ) {
+    for my $mail ( sort keys %{ $mails } ) {
         $self->email(
             $mail,
             $subscriber,
             $mails->{ $mail }->{subject},
             $mails->{ $mail }->{template},
             $self->campaigns->{ $campaign }->{layout},
-            1, 1,
-            {
-                getjunk => $junk
-            }
+            1, 1
         );
     }
+
+VERIFYONLY:
+    return ( $self->smtp->transport, $subscriber );
 }
 
 sub add {
     my ( $self, $params ) = @_;
-    my $email = Email::Valid->address($params->{email});
-    return unless $email;
+    my @emails;
+    @emails =
+        grep { $_ }
+        map  { my $v = Email::Valid->address( $_ ) ; $v }
+        split ',', $params->{to}
+        if $params->{to};
+    push @emails, ( grep { $_ } Email::Valid->address($params->{email}) )[0];
+
+    return if scalar @emails < 1;
+
+    my $extra = {};
+    $extra->{from} =
+        trunc( $params->{from}, 512, { at_space => 1 } )
+        if $params->{from};
+    $extra->{template} = $params->{template} if $params->{template};
 
     my $campaigns = [ $params->{campaign} ];
     push @{ $campaigns }, $self->campaigns->{ $params->{campaign} }->{base}
         if $self->campaigns->{ $params->{campaign} }->{base};
-    my $exists = rset('Subscriber')->exists( $email, $campaigns );
-    return $exists if $exists;
 
-    return rset('Subscriber')->create( {
-        email_address => $email,
-        campaign      => $params->{campaign},
-        flow          => $params->{flow},
-        verified      => $self->campaigns->{ $params->{campaign} }->{single_opt_in},
-    } );
+    for my $email ( @emails ) {
+        my $exists = rset('Subscriber')->exists( $email, $campaigns );
+        next if $exists;
+
+        rset('Subscriber')->create( {
+            email_address => $email,
+            campaign      => $params->{campaign},
+            flow          => $params->{flow},
+            extra         => $extra,
+            verified      => $self->campaigns->{ $params->{campaign} }->{single_opt_in},
+        } );
+    }
 }
 
 1;

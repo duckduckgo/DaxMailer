@@ -2,7 +2,7 @@ package DaxMailer::Web::App::Subscriber;
 
 # ABSTRACT: Subscriber management
 
-use DaxMailer::Base::Web::Light;
+use DaxMailer::Base::Web::Common;
 use Dancer2::Plugin::Auth::HTTP::Basic::DWIW;
 use DaxMailer::Script::SubscriberMailer;
 use Email::Valid;
@@ -20,10 +20,11 @@ get '/u/:campaign/:email/:key' => sub {
         email_address => $params->{email},
         campaign      => $params->{campaign},
     } );
+    my $legacy_unsub = rset('Subscriber::Bounce')->legacy_unsub( $params->{email} );
     template 'email/a/unsub.tx',
-             { success => (
-                     $s && $s->unsubscribe( $params->{ key } )
-                 )
+             { success =>
+                 ( ( $s && $s->unsubscribe( $params->{ key } ) ) ||
+                 $legacy_unsub > 0 )
              },
              { layout => undef };
 };
@@ -61,7 +62,12 @@ get '/testrun/:campaign' => sub {
     return <<'TESTRUN'
     <form method="POST">
         <h3>Send a test run of all mails</h3>
-        email: <input type="text" name="email">
+        email: <input type="text" name="email"><br />
+        from: <textarea name="from"></textarea><br />
+        <input type="checkbox" name="verify_only" id="verify_only">
+        <label for="verify_only">
+            Only send verify stage emails
+        </label><br />
         <input type="submit" name="submit">
     </form>
 TESTRUN
@@ -73,9 +79,13 @@ post '/testrun/:campaign' => sub {
     my $email = Email::Valid->address($bodyparams->{email});
     return unless $email;
     return unless $email =~ /\@duckduckgo\.com$/;
+    my $extra = {};
+    $extra->{from} = $bodyparams->{from} if $bodyparams->{from};
+    $extra->{verify_only} = $bodyparams->{verify_only};
     DaxMailer::Script::SubscriberMailer->new->testrun(
         $routeparams->{campaign},
         $bodyparams->{email},
+        $extra
     );
     return 'OK';
 };

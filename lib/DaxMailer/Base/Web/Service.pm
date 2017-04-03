@@ -1,9 +1,6 @@
-package DaxMailer::Base::Web::Light;
+package DaxMailer::Base::Web::Service;
 
-# ABSTRACT: Base module for simple, unintegrated web apps
-
-# Drops: Sessions, user integration
-# Keeps: Database
+# ABSTRACT: Base module for JSON web services
 
 use Import::Into;
 
@@ -11,11 +8,9 @@ use strict;
 use warnings;
 use utf8;
 
-use Dancer2;
-use Dancer2::Plugin::DBIC;
-use Dancer2::Plugin::RootURIFor;
-use Dancer2::Plugin::DaxMailer::Config;
-use Dancer2::Plugin::DaxMailer::SchemaApp;
+use DaxMailer::Base::Web::Common;
+use Dancer2::Plugin::DaxMailer::Service;
+use Dancer2::Plugin::DaxMailer::Bailout;
 
 {   no warnings 'redefine';
     sub import {
@@ -33,9 +28,9 @@ use Dancer2::Plugin::DaxMailer::SchemaApp;
         Dancer2::Plugin::DaxMailer::Config->import::into( $caller );
         for (
           qw/
-            Dancer2::Plugin::DBIC
-            Dancer2::Plugin::RootURIFor
-            Dancer2::Plugin::DaxMailer::SchemaApp
+            DaxMailer::Base::Web::Common
+            Dancer2::Plugin::DaxMailer::Service
+            Dancer2::Plugin::DaxMailer::Bailout
           /
         ) {
             $_->import::into($caller);

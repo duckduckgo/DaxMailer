@@ -23,9 +23,9 @@ use Dancer2::Plugin::DaxMailer::SchemaApp;
             warnings
             utf8
             Dancer2
+            Dancer2::Plugin::DaxMailer::Config
             Dancer2::Plugin::DBIC
             Dancer2::Plugin::RootURIFor
-            Dancer2::Plugin::DaxMailer::Config
             Dancer2::Plugin::DaxMailer::SchemaApp
           /
         ) {
