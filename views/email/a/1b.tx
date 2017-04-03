@@ -1,0 +1,5 @@
+: include 'email/a/1_common.tx'
+<p style="margin-bottom: 1em">
+You can install the <a href="https://duckduckgo.com/#1">DuckDuckGo extension</a> to help you remain private online, so you won't become part of a scary statistic. Welcome to the Duck Side!
+</p>
+: include 'email/a/signature.tx'
