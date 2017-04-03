@@ -65,7 +65,7 @@ test_psgi $app => sub {
         test3@duckduckgo.com
         test4@duckduckgo.com
         test5@duckduckgo.com
-        test6duckduckgo.com
+        test6@duckduckgo.com
         notanemailaddress
     / ) {
         ok( $cb->(
@@ -75,7 +75,7 @@ test_psgi $app => sub {
     }
 
     for my $email (qw/
-        test6duckduckgo.com
+        test6@duckduckgo.com
         test7@duckduckgo.com
         test8@duckduckgo.com
         test9@duckduckgo.com
@@ -94,7 +94,7 @@ test_psgi $app => sub {
     is( $invalid, undef, 'Invalid address not inserted via POST' );
 
     my $transport = DaxMailer::Script::SubscriberMailer->new->verify;
-    is( $transport->delivery_count, 9, 'Correct number of verification emails sent' );
+    is( $transport->delivery_count, 10, 'Correct number of verification emails sent' );
 
     $transport = DaxMailer::Script::SubscriberMailer->new->verify;
     is( $transport->delivery_count, 0, 'No verification emails re-sent' );
@@ -104,7 +104,7 @@ test_psgi $app => sub {
 
     set_absolute_time('2016-10-20T12:00:00Z');
     $transport = DaxMailer::Script::SubscriberMailer->new->execute;
-    is( $transport->delivery_count, 7, '7 received emails' );
+    is( $transport->delivery_count, 8, '8 received emails' );
 
     $transport = DaxMailer::Script::SubscriberMailer->new->execute;
     is( $transport->delivery_count, 0, 'Emails not re-sent' );
@@ -118,7 +118,7 @@ test_psgi $app => sub {
 
     set_absolute_time('2016-10-22T12:00:00Z');
     $transport = DaxMailer::Script::SubscriberMailer->new->execute;
-    is( $transport->delivery_count, 7, '7 received emails - one unsubscribed, one verified' );
+    is( $transport->delivery_count, 8, '8 received emails - one unsubscribed, one verified' );
 
     $transport = DaxMailer::Script::SubscriberMailer->new->execute;
     is( $transport->delivery_count, 0, 'Emails not re-sent' );
