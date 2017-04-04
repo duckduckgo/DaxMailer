@@ -4,7 +4,7 @@ package DaxMailer::Script::SubscriberMailer;
 
 use DateTime;
 use Moo;
-use Hash::Merge qw/ merge /;
+use Hash::Merge::Simple qw/ merge /;
 use String::Truncate qw/ trunc /;
 
 with 'DaxMailer::Base::Script::Service',
@@ -81,7 +81,7 @@ sub _build_campaigns {
     for my $campaign ( keys %{ $campaigns } ) {
         if ( my $base = $campaigns->{ $campaign }->{base} ) {
             if ( $campaigns->{ $base } ) {
-                $campaigns->{ $campaign } = merge( $campaigns->{ $campaign }, $campaigns->{ $base } );
+                $campaigns->{ $campaign } = merge( $campaigns->{ $base }, $campaigns->{ $campaign } );
             }
             else {
                 die "Base $base does not exist - cannot build campaign $campaign"
