@@ -45,6 +45,8 @@ requires 'Text::Xslate';
 requires 'Try::Tiny';
 requires 'URI';
 requires 'XSLoader', '0.24';
+requires 'MIME::Base64';
+requires 'Authen::SASL';
 
 on test => sub {
     requires 'HTTP::Request::Common';
