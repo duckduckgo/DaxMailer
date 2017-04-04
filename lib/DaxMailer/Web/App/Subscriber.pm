@@ -93,7 +93,7 @@ post '/testrun/:campaign' => sub {
 post '/a' => sub {
     my $params = params('body');
     if ( !$subscriber->add( $params ) ) {
-        status 500;
+        status 400;
         return "NOT OK";
     }
     return "OK";
