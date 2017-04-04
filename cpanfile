@@ -44,6 +44,7 @@ requires 'Text::CSV_XS';
 requires 'Text::Xslate';
 requires 'Try::Tiny';
 requires 'URI';
+requires 'XSLoader', '0.24';
 
 on test => sub {
     requires 'HTTP::Request::Common';

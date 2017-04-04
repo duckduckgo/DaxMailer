@@ -4575,13 +4575,6 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       Test::More 0
-  XSLoader-0.24
-    pathname: S/SA/SAPER/XSLoader-0.24.tar.gz
-    provides:
-      XSLoader undef
-    requirements:
-      ExtUtils::MakeMaker 0
-      Test::More 0.47
   YAML-1.23
     pathname: I/IN/INGY/YAML-1.23.tar.gz
     provides:
