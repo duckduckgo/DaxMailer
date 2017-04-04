@@ -309,6 +309,8 @@ sub add {
             verified      => $self->campaigns->{ $params->{campaign} }->{single_opt_in},
         } );
     }
+
+    return 1;
 }
 
 1;
