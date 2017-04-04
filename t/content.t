@@ -19,7 +19,7 @@ sub html_body {
 sub find_verify_link {
     my ( $email ) = @_;
     my $tree = HTML::TreeBuilder::XPath->new_from_content( html_body( $email ) );
-    ( grep { $_->content->[0] eq 'Get More Privacy Tips by Email!' } $tree->findnodes('//a') )[0];
+    ( grep { $_->content->[0] eq 'Get Privacy Tips By Email' } $tree->findnodes('//a') )[0];
 }
 
 sub find_unsub_link {
