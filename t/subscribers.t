@@ -66,13 +66,17 @@ test_psgi $app => sub {
         test4@duckduckgo.com
         test5@duckduckgo.com
         test6@duckduckgo.com
-        notanemailaddress
     / ) {
         ok( $cb->(
             POST '/s/a',
             [ email => $email, campaign => 'a', flow => 'flow1' ]
-        ), "Adding subscriber : $email" );
+        )->is_success, "Adding subscriber : $email" );
     }
+
+    ok( $cb->(
+        POST '/s/a',
+        [ email => 'notanemailaddress', campaign => 'a', flow => 'flow1' ]
+    )->is_error, "Adding subscriber : notanemailaddress - failure" );
 
     for my $email (qw/
         test6@duckduckgo.com
@@ -84,7 +88,7 @@ test_psgi $app => sub {
         ok( $cb->(
             POST '/s/a',
             [ email => $email, campaign => 'c', flow => 'flow1' ]
-        ), "Adding subscriber : $email" );
+        )->is_success, "Adding subscriber : $email" );
     }
 
     my $invalid = rset('Subscriber')->find( {
