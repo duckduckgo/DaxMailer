@@ -100,13 +100,16 @@ sub _build_template_map {
         'c' => {
             1 => {
                 subject => sub {
-                    sprintf "Private Browsing Myths from %s",
+                    sprintf "Privacy Tip from %s",
                     $_[0]->extra->{from}
                 },
                 template => 'email/a/v1.tx',
             },
             2 => {
-                subject => 'Ads Cost You Money?',
+                subject =>  sub {
+                    sprintf "Privacy Tip from %s",
+                    $_[0]->extra->{from}
+                },
                 template => 'email/a/v2.tx',
             },
             3 => {

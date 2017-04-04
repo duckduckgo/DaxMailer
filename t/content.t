@@ -35,8 +35,8 @@ my ( $transport, $subscriber ) = $mailer->testrun(
 );
 my @emails = $transport->deliveries;
 my @subjects = (
-    "Private Browsing Myths from Simon",
-    "Ads Cost You Money?",
+    "Privacy Tip from Simon",
+    "Privacy Tip from Simon",
     "Privacy Tip from Simon",
     "Tracking in Incognito?",
     "Are Ads Following You?",
