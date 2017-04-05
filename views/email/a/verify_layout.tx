@@ -287,7 +287,7 @@
                                         <tr>
                                             <td valign="top" class="bodyContent">
                                                  <p style="margin-bottom: 1em">
-                                                 <i><span STYLE="font-size: small"><b><: $subscriber.extra.from :></b> sent you this privacy tip from DuckDuckGo, the search engine that doesn't track you. You won't receive any more tips from unless you opt-in below!</span></i></br></br>
+                                                 <i><b><: $subscriber.extra.from :></b> sent you this privacy tip from DuckDuckGo, the search engine that doesn't track you. You won't receive any more tips from unless you opt-in below!</i></br></br>
 
                                                 : $content | raw
 <center><div style="margin-top: 25px;">
