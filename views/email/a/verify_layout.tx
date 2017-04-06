@@ -210,6 +210,10 @@
                     font-size:24px !important;
                     line-height:100% !important;
                 }
+                .bodyContent{
+                    font-size:20px !important;
+                    line-height:125% !important;
+                }
                 /* ======== Header Styles ======== */
                 #templatePreheader{display:none !important;} /* Hide the template preheader to save space */
                 /**
