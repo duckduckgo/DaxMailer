@@ -77,6 +77,9 @@ sub _build_campaigns {
                     template => 'email/a/1c.tx',
                 },
             }
+        },
+        'friends' => {
+            single_opt_in => 1,
         }
     };
 
