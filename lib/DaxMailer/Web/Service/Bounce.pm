@@ -5,7 +5,7 @@ package DaxMailer::Web::Service::Bounce;
 use HTTP::Tiny;
 use Try::Tiny;
 use AWS::SNS::Verify;
-use DaxMailer::Base::Web::LightService;
+use DaxMailer::Base::Web::Service;
 
 sub verify_subscription {
     my $ok = 1;

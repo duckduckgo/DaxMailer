@@ -5,6 +5,13 @@ package Dancer2::Plugin::DaxMailer::Config;
 use Dancer2::Plugin;
 use DaxMailer::Util::TemplateHelpers;
 
+sub _get_current_host {
+    return $ENV{DAXMAILER_WEB_BASE} if $ENV{DAXMAILER_WEB_BASE};
+    return ( $ENV{DAXMAILER_XMPP_DOMAIN} eq 'dukgo.com' )
+        ? 'https://duck.co/'
+        : 'https://ddgc-staging.duckduckgo.com/';
+}
+
 on_plugin_import {
     my ( $dsl ) = @_;
     my $settings = plugin_setting();
@@ -12,7 +19,7 @@ on_plugin_import {
     $dsl->set(verify_sns => !$ENV{DAXMAILER_SNS_VERIFY_TEST});
     $dsl->set(charset => 'UTF-8');
 
-    $dsl->set(base_url => 'https://mailer.duckduckgo.com/');
+    $dsl->set(base_url => _get_current_host);
 
     $dsl->set(basic_auth_user => $ENV{DAXMAILER_BASIC_AUTH_USER});
     $dsl->set(basic_auth_pass => $ENV{DAXMAILER_BASIC_AUTH_PASS});
@@ -47,7 +54,6 @@ on_plugin_import {
     my $db_password = $ENV{DAXMAILER_DB_PASSWORD};
     my $rdbms = $db_dsn =~ s/dbi:([a-zA-Z]+):.*/$1/r;
 
-
     $dsl->set(
         plugins => {
             %{ $dsl->config->{plugins} },
@@ -62,6 +68,10 @@ on_plugin_import {
             },
         },
     );
+
+    $dsl->set(legacy_db_dsn => $ENV{LEGACY_DB_DSN});
+    $dsl->set(legacy_db_user => $ENV{LEGACY_DB_USER});
+    $dsl->set(legacy_db_password => $ENV{LEGACY_DB_PASSWORD});
 
     $dsl->set(layout => 'main');
     $dsl->set(views => './');

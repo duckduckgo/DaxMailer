@@ -3,6 +3,7 @@ use warnings;
 
 BEGIN {
     $ENV{DAXMAILER_SNS_VERIFY_TEST} = 0;
+    $ENV{DAXMAILER_DB_DSN} = 'dbi:SQLite:dbname=:memory:';
 }
 
 use Plack::Test;

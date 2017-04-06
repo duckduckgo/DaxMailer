@@ -17,9 +17,11 @@ column unsubscribed => { data_type => 'int', default_value => 0 };
 column flow         => { data_type => 'text', is_nullable => 1 };
 column v_key        => { data_type => 'text' };
 column u_key        => { data_type => 'text' };
-column created      => {
-    data_type => 'timestamptz',
-    set_on_create => 1,
+column created      => { data_type => 'timestamptz', set_on_create => 1 };
+column extra        => {
+    data_type => 'text',
+    serializer_class => 'JSON',
+    default_value => '{}',
 };
 
 has_many logs => 'DaxMailer::Schema::Result::Subscriber::MailLog' => {
@@ -41,7 +43,10 @@ sub _key {
 
 sub _url {
     my ( $self, $type ) = @_;
-    my $u = URI->new( $self->app->config->{base_url} );
+    my $u = URI->new( $self->app
+        ? $self->app->config->{base_url}
+        : 'http://localhost'
+    );
     $u->path(
         sprintf "/s/%s/%s/%s/%s",
         ( $type eq 'u' ? 'u' : 'v' ),

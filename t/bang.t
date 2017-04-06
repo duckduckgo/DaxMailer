@@ -3,7 +3,7 @@ use warnings;
 
 BEGIN {
     $ENV{DAXMAILER_BANG_SECRET} = 'yZVIhAFiKvEeDbeAvCkm3GAK4c1Od71rSu';
-    $ENV{DAXMAILER_DB_DSN} = 'dbi:SQLite:dbname=daxmailer_test.db';
+    $ENV{DAXMAILER_DB_DSN} = 'dbi:SQLite:dbname=:memory:';
     $ENV{DAXMAILER_MAIL_TEST} = 1;
 }
 
@@ -14,8 +14,8 @@ use HTTP::Request::Common;
 use Test::More;
 use DaxMailer::Web::App::Bang;
 use t::lib::DaxMailer::TestUtils;
+use DaxMailer::Base::Web::Common;
 
-use DaxMailer::Base::Web::Light;
 t::lib::DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
 
 my $app = builder {
