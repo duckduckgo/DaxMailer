@@ -21,7 +21,10 @@ get '/u/:campaign/:email/:key' => sub {
         campaign      => $params->{campaign},
     } );
     my $legacy_unsub = rset('Subscriber::Bounce')->legacy_unsub( $params->{email} );
-    template 'email/a/unsub.tx',
+    my $template =
+        $subscriber->campaigns->{ $params->{campaign} }->{unsub_page_template} ||
+        'email/unsub.tx';
+    template $template,
              { success =>
                  ( ( $s && $s->unsubscribe( $params->{ key } ) ) ||
                  $legacy_unsub > 0 )
@@ -35,7 +38,10 @@ get '/v/:campaign/:email/:key' => sub {
         email_address => $params->{email},
         campaign      => $params->{campaign},
     } );
-    template 'email/a/verify.tx',
+    my $template =
+        $subscriber->campaigns->{ $params->{campaign} }->{verify_page_template} ||
+        'email/verify.tx';
+    template $template,
              { success => (
                      $s && $s->verify( $params->{ key } )
                  )

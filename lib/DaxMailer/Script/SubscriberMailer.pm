@@ -21,6 +21,8 @@ sub _build_campaigns {
                 subject => 'Tracking in Incognito?',
                 template => 'email/a/1.tx'
             },
+            verify_page_template => 'email/a/verify.tx',
+            unsub_page_template  => 'email/a/unsub.tx',
             layout => 'email/a/layout.tx',
             mails => {
                 2 => {
