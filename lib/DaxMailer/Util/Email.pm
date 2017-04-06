@@ -14,22 +14,22 @@ use HTTP::Validate qw/ :keywords :validators /;
 
 use Moo;
 
-has plaintext_renderer => (
-    is  => 'ro',
-    lazy => 1,
-    builder => '_build_plaintext_renderer',
-);
+has plaintext_renderer => ( is => 'lazy' );
 sub _build_plaintext_renderer {
     HTML::FormatText::WithLinks->new(
         unique_links => 1,
     );
 }
 
-has xslate => (
-    is => 'ro',
-    lazy => 1,
-    builder => '_build_xslate',
-);
+has xslate_text => ( is => 'lazy' );
+sub _build_xslate_text {
+    Text::Xslate->new(
+        path => 'views',
+        type => 'text',
+    );
+}
+
+has xslate => ( is => 'lazy' );
 sub _build_xslate {
     Text::Xslate->new(
         path => 'views',
@@ -40,11 +40,7 @@ has smtp_config => (
     is => 'ro',
 );
 
-has transport => (
-    is => 'ro',
-    lazy => 1,
-    builder => '_build_transport',
-);
+has transport => ( is => 'lazy' );
 sub _build_transport {
     my ( $self ) = @_;
     return Email::Sender::Transport::Test->new if $ENV{DAXMAILER_MAIL_TEST};
@@ -53,11 +49,7 @@ sub _build_transport {
     );
 }
 
-has validator => (
-    is => 'ro',
-    lazy => 1,
-    builder => '_build_validator',
-);
+has validator => ( is => 'lazy' );
 sub _build_validator {
     my ( $self ) = @_;
     my $v = HTTP::Validate->new( allow_unrecognized => 1 );
