@@ -80,6 +80,8 @@ sub _build_campaigns {
         },
         'friends' => {
             single_opt_in => 1,
+            plain_text => 1,
+            layout => 'email/friends/layout.tx',
         }
     };
 
