@@ -84,6 +84,52 @@ sub _build_validator {
     return $v;
 }
 
+sub send_plaintext {
+    my ( $self, $params ) = @_;
+    my $v = $self->validator->check_params( 'send_parameters', {}, $params );
+
+    if ( scalar $v->errors ) {
+        return +{
+            ok => 0,
+            errors => [
+                $v->errors,
+            ]
+        }
+    }
+
+    my $body = $self->xslate->render(
+        $params->{template},
+        {
+            %{ $params->{content} },
+            text => $params->{text}
+        }
+    );
+    my $header = [
+        map { $_ => $params->{$_} } (qw/ to from subject /),
+    ];
+    my $email = Email::MIME->create(
+        attributes => {
+            content_type => 'text/plain; charset="UTF-8"',
+            content_transfer_encoding => 'quoted-printable',
+            charset => 'UTF-8',
+            encoding => 'quoted-printable',
+        },
+        header_str => $header,
+        body_str => $body,
+    );
+
+    if ( !try_to_sendmail( $email, { transport => $self->transport } ) ) {
+        return {
+            ok => 0,
+            errors => [
+                'sendmail error'
+            ],
+        }
+    }
+
+    return { ok => 1 };
+}
+
 sub send {
     my ( $self, $params ) = @_;
     my $v = $self->validator->check_params( 'send_parameters', {}, $params );
