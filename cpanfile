@@ -25,6 +25,7 @@ requires 'Email::Sender::Transport::SMTP::Persistent';
 requires 'Email::Sender::Transport::Test';
 requires 'Email::Simple';
 requires 'Email::Valid';
+requires 'File::Slurper';
 requires 'Hash::Merge::Simple';
 requires 'HTML::FormatText::WithLinks';
 requires 'HTML::TreeBuilder::XPath';

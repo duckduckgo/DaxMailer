@@ -2180,6 +2180,20 @@ DISTRIBUTIONS
       perl 5.008
       strict 0
       warnings 0
+  File-Slurper-0.009
+    pathname: L/LE/LEONT/File-Slurper-0.009.tar.gz
+    provides:
+      File::Slurper 0.009
+    requirements:
+      Carp 0
+      Encode 0
+      Exporter 5.57
+      ExtUtils::MakeMaker 0
+      PerlIO::encoding 0
+      constant 0
+      perl 5.008
+      strict 0
+      warnings 0
   Filesys-Notify-Simple-0.12
     pathname: M/MI/MIYAGAWA/Filesys-Notify-Simple-0.12.tar.gz
     provides:
