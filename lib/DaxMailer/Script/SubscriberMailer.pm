@@ -6,9 +6,18 @@ use DateTime;
 use Moo;
 use Hash::Merge::Simple qw/ merge /;
 use String::Truncate qw/ trunc /;
+use File::Spec::Functions;
+use Carp;
 
 with 'DaxMailer::Base::Script::Service',
      'DaxMailer::Base::Script::ServiceEmail';
+
+has newsletter_file => ( is => 'lazy' );
+sub _build_newsletter_file {
+    my $file_store = config()->{file_store};
+    croak "No persistent store configured" unless $file_store;
+    catfile( $file_store, 'newsletter.txt' );
+}
 
 has campaigns => ( is => 'lazy' );
 sub _build_campaigns {
@@ -318,6 +327,21 @@ sub add {
     }
 
     return 1;
+}
+
+
+sub queue_newsletter {
+    my ( $self, $params ) = @_;
+    use DDP; p $params;
+    unlink $self->newsletter_file if -f $self->newsletter_file;
+    open my $fh, '>:encoding(UTF-8)', $self->newsletter_file;
+
+    # On the one hand, in-band config and messaging is messy
+    # On the other, it is convenient
+    printf $fh "Subject: %s\n", $params->{email_subject};
+    print $fh $params->{email_body};
+
+    return 'Newsletter queued for delivery. Thank you!';
 }
 
 1;
