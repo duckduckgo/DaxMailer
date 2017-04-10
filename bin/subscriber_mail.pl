@@ -27,6 +27,11 @@ option mock_date => (
     }
 );
 
+has mailer => ( is => lazy );
+sub _build_mailer {
+    DaxMailer::Script::SubscriberMailer->new;
+}
+
 my $self = main->new_with_options;
 
 if ( $self->mock_date ) {
@@ -36,12 +41,12 @@ if ( $self->mock_date ) {
 }
 
 if ( $self->verify ) {
-    DaxMailer::Script::SubscriberMailer->new->verify;
+    $self->mailer->verify;
 }
 elsif ( $self->newsletter ) {
-    DaxMailer::Script::SubscriberMailer->new->send_newsletter;
+    $self->mailer->send_newsletter;
 }
 else {
-    DaxMailer::Script::SubscriberMailer->new->execute;
+    $self->mailer->execute;
 }
 
