@@ -1,0 +1,5 @@
+: $body
+
+
+Unsubscribe:
+<<: $subscriber.unsubscribe_url :>>
