@@ -21,7 +21,7 @@
             /*  TEMPLATE STYLES  */
             /* === Page Styles ==== */
             #bodyCell{padding:0px;}
-            /*#templateContainer{width:600px;}*/
+            #templateContainer{width:600px;}
             /**
             * @section background style
             */
@@ -199,7 +199,7 @@
                 * Make the template fluid for portrait or landscape view adaptability. If a fluid layout doesn't work for you, set the width to 300px instead.
                 */
                 #templateContainer{
-                    /*max-width:1200px !important;*/
+                    max-width:1200px !important;
                     width:100% !important;
                 }
                 /**
