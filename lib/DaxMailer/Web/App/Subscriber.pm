@@ -96,6 +96,34 @@ post '/testrun/:campaign' => sub {
     return 'OK';
 };
 
+any '/friends' => http_basic_auth required => sub {
+    pass;
+};
+
+get '/friends' => sub {
+    my $params = params;
+    template 'email/friends/form.tx', {
+        email_subject => $params->{email_subject} || 'DuckDuckGo Newsletter',
+        email_body    => $params->{email_body},
+        test_address  => $params->{test_address},
+    }
+};
+
+post '/friends' => sub {
+    my $params = params;
+    use DDP; p $params;
+    if( $params->{send_list} ) {
+        var message => $subscriber->queue_newsletter( $params );
+    }
+    elsif ( $params->{send_test} ) {
+        var message => $subscriber->test_newsletter( $params );
+    }
+    else {
+        var message => 'ERROR: Unknown action';
+    }
+    forward '/friends', {}, { method => 'GET' };
+};
+
 post '/a' => sub {
     my $params = params('body');
     if ( !$subscriber->add( $params ) ) {
