@@ -332,7 +332,6 @@ sub add {
 
 sub queue_newsletter {
     my ( $self, $params ) = @_;
-    use DDP; p $params;
     unlink $self->newsletter_file if -f $self->newsletter_file;
     open my $fh, '>:encoding(UTF-8)', $self->newsletter_file;
 
