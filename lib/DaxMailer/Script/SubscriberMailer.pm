@@ -387,4 +387,29 @@ sub queue_newsletter {
     return 'Newsletter queued for delivery. Thank you!';
 }
 
+sub test_newsletter {
+    my ( $self, $params ) = @_;
+    my $email = Email::Valid->address( $params->{test_address} );
+    return "Not a duckduckgo email address"
+        unless $email =~ /\@duckduckgo\.com$/;
+
+    my $schema = DaxMailer::Schema->connect('dbi:SQLite:dbname=:memory:');
+    $schema->deploy;
+
+    my $subscriber = $schema->resultset('Subscriber')->create( {
+        email_address => $email,
+        campaign      => 'friends',
+        verified      => 1,
+    } );
+
+    $self->_mail_newsletter(
+        [ $subscriber ],
+        sprintf "Subject: %s\n%s",
+            $params->{email_subject},
+            $params->{email_body},
+    );
+
+    return 'Test newsletter sent!';
+}
+
 1;
