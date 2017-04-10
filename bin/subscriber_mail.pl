@@ -8,6 +8,11 @@ use FindBin;
 use lib $FindBin::Dir . "/../lib";
 use DaxMailer::Script::SubscriberMailer;
 
+option newsletter => (
+    is => 'ro',
+    doc => 'Send newsletter.txt to subscribers'
+);
+
 option verify => (
     is => 'ro',
     doc => 'Run verify mail shot'
@@ -32,6 +37,9 @@ if ( $self->mock_date ) {
 
 if ( $self->verify ) {
     DaxMailer::Script::SubscriberMailer->new->verify;
+}
+elsif ( $self->newsletter ) {
+    DaxMailer::Script::SubscriberMailer->new->send_newsletter;
 }
 else {
     DaxMailer::Script::SubscriberMailer->new->execute;

@@ -387,6 +387,22 @@ sub queue_newsletter {
     return 'Newsletter queued for delivery. Thank you!';
 }
 
+sub send_newsletter {
+    my ( $self ) = @_;
+    return unless -f $self->newsletter_file;
+
+    $self->_mail_newsletter(
+        rset('Subscriber')
+            ->campaign('friends')
+            ->subscribed
+            ->verified
+            ->unbounced
+            ->all_ref
+    );
+
+    unlink $self->newsletter_file;
+}
+
 sub test_newsletter {
     my ( $self, $params ) = @_;
     my $email = Email::Valid->address( $params->{test_address} );
