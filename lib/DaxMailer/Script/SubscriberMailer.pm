@@ -7,6 +7,7 @@ use Moo;
 use Hash::Merge::Simple qw/ merge /;
 use String::Truncate qw/ trunc /;
 use File::Spec::Functions;
+use File::Slurper qw/ read_text /;
 use Carp;
 
 with 'DaxMailer::Base::Script::Service',
@@ -329,6 +330,26 @@ sub add {
     return 1;
 }
 
+sub _mail_newsletter {
+    my ( $self, $subscribers, $content ) = @_;
+    $content ||= read_text( $self->newsletter_file );
+
+    my ( $subject, $body ) = split "\n", $content, 2;
+    $subject =~ s/^Subject: //;
+    my $layout = $self->campaigns->{friends}->{layout};
+
+    for my $subscriber( @{ $subscribers } ) {
+        $self->email_plaintext(
+            'v',
+            $subscriber,
+            $subject,
+            $body,
+            $layout
+        );
+    }
+
+    return $self->smtp->transport;
+}
 
 sub queue_newsletter {
     my ( $self, $params ) = @_;
