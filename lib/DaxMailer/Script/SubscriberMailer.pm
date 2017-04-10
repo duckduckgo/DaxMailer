@@ -164,6 +164,29 @@ sub email {
     return $status;
 }
 
+sub email_plaintext {
+    my ( $self, $log, $subscriber, $subject, $content, $layout, $verified ) = @_;
+
+    my $status = $self->smtp->send_plaintext( {
+        to       => $subscriber->email_address,
+        verified => $verified
+                    || ( $subscriber->verified && !$subscriber->unsubscribed ),
+        from     => '"DuckDuckGo Dax" <dax@duckduckgo.com>',
+        subject  => $subject,
+        template => $layout,
+        content  => {
+            body => $content,
+            subscriber => $subscriber,
+        }
+    } );
+
+    if ( $status->{ok} ) {
+        $subscriber->update_or_create_related( 'logs', { email_id => $log } );
+    }
+
+    return $status;
+}
+
 sub execute {
     my ( $self ) = @_;
 
