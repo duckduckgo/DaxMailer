@@ -97,6 +97,11 @@ test_psgi $app => sub {
     } );
     is( $invalid, undef, 'Invalid address not inserted via POST' );
 
+    ok( $cb->(
+        POST '/s/a',
+        [ email => 'test10@duckduckgo.com', campaign => 'friends', flow => 'flow1' ]
+    )->is_success, "Adding newsletter subscriber" );
+
     my $transport = DaxMailer::Script::SubscriberMailer->new->verify;
     is( $transport->delivery_count, 10, 'Correct number of verification emails sent' );
 
