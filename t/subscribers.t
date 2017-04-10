@@ -45,7 +45,7 @@ sub _unsubscribe {
     my ( $cb, $email, $campaign ) = @_;
     my $subscriber = rset('Subscriber')->find( {
         email_address => $email,
-        campaign => 'a',
+        campaign => $campaign,
     } );
     my $url = URI->new( $subscriber->unsubscribe_url );
     ok(
