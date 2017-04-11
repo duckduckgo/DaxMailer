@@ -21,7 +21,7 @@
             /*  TEMPLATE STYLES  */
             /* === Page Styles ==== */
             #bodyCell{padding:0px;}
-            #templateContainer{width:600px;}
+            /*#templateContainer{width:600px;}*/
             /**
             * @section background style
             */
@@ -199,7 +199,7 @@
                 * Make the template fluid for portrait or landscape view adaptability. If a fluid layout doesn't work for you, set the width to 300px instead.
                 */
                 #templateContainer{
-                    max-width:1200px !important;
+                    /*max-width:1200px !important;*/
                     width:100% !important;
                 }
                 /**
@@ -246,6 +246,8 @@
                 .footerContent a{display:block !important;} /* Place footer social and utility links on their own lines, for easier access */
             }
         </style>
+        <meta name=”x-apple-disable-message-reformatting”>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
             <table align="left" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
@@ -287,7 +289,7 @@
                                         <tr>
                                             <td valign="top" class="bodyContent">
                                                  <p style="margin-bottom: 1em">
-                                                 <i><b><: $subscriber.extra.from :></b> sent you this privacy tip from DuckDuckGo, the search engine that doesn't track you. You won't receive any more tips from unless you opt-in below!</i></br></br>
+                                                 <i><b><: $subscriber.extra.from :></b> sent you this privacy tip from DuckDuckGo, the search engine that doesn't track you. You won't receive any more tips from us unless you opt-in below!</i></br></br>
 
                                                 : $content | raw
 <center><div style="margin-top: 35px; margin-bottom: 35px;">
