@@ -15,6 +15,7 @@ with 'DaxMailer::Base::Script::Service',
 
 has newsletter_file => ( is => 'lazy' );
 sub _build_newsletter_file {
+    return $ENV{DAXMAILER_NEWSLETTER_FILE} if $ENV{DAXMAILER_NEWSLETTER_FILE};
     my $file_store = config()->{file_store};
     croak "No persistent store configured" unless $file_store;
     catfile( $file_store, 'newsletter.txt' );
