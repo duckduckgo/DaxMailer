@@ -22,7 +22,6 @@ use URI;
 
 t::lib::DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
 my $TEST_LEGACY = t::lib::DaxMailer::TestUtils::deploy_legacy;
-my $m = DaxMailer::Script::SubscriberMailer->new;
 
 my $app = builder {
     mount '/s' => DaxMailer::Web::App::Subscriber->to_app;
