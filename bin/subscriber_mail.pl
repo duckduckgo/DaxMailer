@@ -27,7 +27,7 @@ option mock_date => (
     }
 );
 
-has mailer => ( is => lazy );
+has mailer => ( is => 'lazy' );
 sub _build_mailer {
     DaxMailer::Script::SubscriberMailer->new;
 }
