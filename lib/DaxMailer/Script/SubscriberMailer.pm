@@ -402,6 +402,8 @@ sub send_newsletter {
     );
 
     unlink $self->newsletter_file;
+
+    return $self->smtp->transport;
 }
 
 sub test_newsletter {
