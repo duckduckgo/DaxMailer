@@ -21,7 +21,10 @@ get '/u/:campaign/:email/:key' => sub {
         campaign      => $params->{campaign},
     } );
     my $legacy_unsub = rset('Subscriber::Bounce')->legacy_unsub( $params->{email} );
-    template 'email/a/unsub.tx',
+    my $template =
+        $subscriber->campaigns->{ $params->{campaign} }->{unsub_page_template} ||
+        'email/unsub.tx';
+    template $template,
              { success =>
                  ( ( $s && $s->unsubscribe( $params->{ key } ) ) ||
                  $legacy_unsub > 0 )
@@ -35,7 +38,10 @@ get '/v/:campaign/:email/:key' => sub {
         email_address => $params->{email},
         campaign      => $params->{campaign},
     } );
-    template 'email/a/verify.tx',
+    my $template =
+        $subscriber->campaigns->{ $params->{campaign} }->{verify_page_template} ||
+        'email/verify.tx';
+    template $template,
              { success => (
                      $s && $s->verify( $params->{ key } )
                  )
@@ -44,11 +50,12 @@ get '/v/:campaign/:email/:key' => sub {
 };
 
 get '/form' => sub {
-    return <<'FORM'
+    my $c = param 'c';
+    return <<"FORM"
     <form method="POST" action="/s/a">
         email: <input type="text" name="email">
         <input type="submit" name="submit">
-        <input type="hidden" name="campaign" value="a">
+        <input type="hidden" name="campaign" value="$c">
         <input type="hidden" name="flow" value="form">
     </form>
 FORM
@@ -88,6 +95,33 @@ post '/testrun/:campaign' => sub {
         $extra
     );
     return 'OK';
+};
+
+any '/friends' => http_basic_auth required => sub {
+    pass;
+};
+
+get '/friends' => sub {
+    my $params = params;
+    template 'email/friends/form.tx', {
+        email_subject => $params->{email_subject} || 'DuckDuckGo Newsletter',
+        email_body    => $params->{email_body},
+        test_address  => $params->{test_address},
+    }
+};
+
+post '/friends' => sub {
+    my $params = params;
+    if( $params->{send_list} ) {
+        var message => $subscriber->queue_newsletter( $params );
+    }
+    elsif ( $params->{send_test} ) {
+        var message => $subscriber->test_newsletter( $params );
+    }
+    else {
+        var message => 'ERROR: Unknown action';
+    }
+    forward '/friends', {}, { method => 'GET' };
 };
 
 post '/a' => sub {

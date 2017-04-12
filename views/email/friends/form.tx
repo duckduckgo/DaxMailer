@@ -1,0 +1,10 @@
+: if $vars.message {
+    <h1><: $vars.message :></h1>
+: }
+<form method="POST">
+    Subject: <input type="text" name="email_subject" size="60" value="<: $email_subject :>"><br />
+    <textarea cols="80" rows="50" name="email_body"><: $email_body :></textarea><br />
+    Test address: <input type="text" name="test_address" value="<: $test_address :>">
+    <input type="submit" name="send_test" value="Send test"><br />
+    <input type="submit" name="send_list" value="Send to list">
+</form>

@@ -1,0 +1,4 @@
+: $body
+
+
+P.S. You're getting this email as part of the DuckDuckGo newsletter list, which you had previously signed up for (probably at either https://duckduckgo.com/about/ or https://duckduckgo.com/feedback/ ). If you'd like to unsubscribe, use this link (to unsubscribe from all lists): <: $subscriber.unsubscribe_url :>

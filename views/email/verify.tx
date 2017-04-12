@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Unsubscribed</title>
+        <title>Confirm your subscription</title>
         <style type="text/css">
 
             /*  CLIENT-SPECIFIC STYLES  */
@@ -225,7 +225,7 @@
                     line-height:115% !important;
                 }
                 .footerContent a{display:block !important;} /* Place footer social and utility links on their own lines, for easier access */
-            }
+            }Ô
         </style>
     </head>
     <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
@@ -268,11 +268,11 @@
                                     <tr>
                                         <td valign="top" class="bodyContent">
                                             <h4 style="margin: 0;">
-                                                : if $success {
-                                                    You have been unsubscribed from The DuckDuckGo Privacy Newsletter.
-                                                : } else {
-                                                    There was a problem processing this request! Please contact ddgc@duckduckgo.com
-                                                : }
+                                            : if $success {
+                                                Thank you for confirming your subscription!
+                                            : } else {
+                                                There was a problem processing this request! Please contact ddgc@duckduckgo.com
+                                            : }
                                             </h4>
                                         	<p style="margin-bottom: 1em"><a href="https://twitter.com/duckduckgo">Follow us on Twitter</a> and <a href="https://duckduckgo.com/spread">Spread DuckDuckGo</a></p>
                                         </td>
