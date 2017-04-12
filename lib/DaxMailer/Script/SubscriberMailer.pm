@@ -306,7 +306,7 @@ sub add {
             campaign      => $params->{campaign},
             flow          => $params->{flow},
             extra         => $extra,
-            verified      => $self->campaigns->{ $params->{campaign} }->{single_opt_in},
+            verified      => $self->campaigns->{ $params->{campaign} }->{single_opt_in} // 0,
         } );
     }
 
