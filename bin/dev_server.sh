@@ -4,11 +4,9 @@ SCRIPTDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" 1>/dev/null && pwd )
 ROOTDIR=$SCRIPTDIR/..
 PSGI_SCRIPT=$SCRIPTDIR/dev_server.psgi
 LIBDIR=$ROOTDIR/lib
-DB=$ROOTDIR/daxmailer.sqlite
 PORT=5666
 HOSTNAME=$(hostname)
 
-[ "$DDGC_DB_DSN" == "" ]        && export DAXMAILER_DB_DSN="dbi:SQLite:dbname=$DB"
 [ "$DBIC_TRACE_PROFILE" == "" ] && export DBIC_TRACE_PROFILE=console
 [ "$DBIC_TRACE" == "" ]         && export DBIC_TRACE=1
 [ "$DANCER_ENVIRONMENT" == "" ] && export DANCER_ENVIRONMENT=development

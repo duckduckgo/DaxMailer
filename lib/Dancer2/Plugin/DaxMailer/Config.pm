@@ -68,7 +68,7 @@ on_plugin_import {
        },
     };
 
-    my $db_dsn = $ENV{DAXMAILER_DB_DSN} // "dbi:SQLite:$rootdir/daxmailer.db.sqlite";
+    my $db_dsn = $ENV{DAXMAILER_DB_DSN} // "dbi:SQLite:$rootdir/daxmailer.sqlite";
     my $db_user = $ENV{DAXMAILER_DB_USER};
     my $db_password = $ENV{DAXMAILER_DB_PASSWORD};
     my $rdbms = $db_dsn =~ s/dbi:([a-zA-Z]+):.*/$1/r;
