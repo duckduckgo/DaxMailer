@@ -2,8 +2,10 @@ use strict;
 use warnings;
 package DaxMailer::Script::SubscriberMailer;
 
+use Test::MockTime qw/ set_absolute_time /;
 use DateTime;
 use Moo;
+use MooX::Options;
 use Hash::Merge::Simple qw/ merge /;
 use String::Truncate qw/ trunc /;
 use File::Spec::Functions;
@@ -12,6 +14,29 @@ use Carp;
 
 with 'DaxMailer::Base::Script::Service',
      'DaxMailer::Base::Script::ServiceEmail';
+
+option newsletter => (
+    is => 'ro',
+    doc => 'Send newsletter.txt to subscribers'
+);
+
+option verify => (
+    is => 'ro',
+    doc => 'Run verify mail shot'
+);
+
+option mock_date => (
+    is => 'ro',
+    format => 's',
+    doc => 'Run mail for given day (for testing): YYYY-MM-DD',
+    predicate => 1,
+    coerce => sub {
+        printf "Run with mock date [y/N]? ";
+        chomp ( my $r = <STDIN> );
+        die unless $r =~ /^y/i;
+        set_absolute_time(sprintf '%sT12:00:00Z', $_[0]);
+    }
+);
 
 has newsletter_file => ( is => 'lazy' );
 sub _build_newsletter_file {
@@ -188,7 +213,7 @@ sub email_plaintext {
     return $status;
 }
 
-sub execute {
+sub send_campaign {
     my ( $self ) = @_;
 
     for my $campaign ( keys %{ $self->campaigns } ) {
@@ -248,7 +273,7 @@ sub _send_verify_email {
     );
 }
 
-sub verify {
+sub send_verify {
     my ( $self ) = @_;
 
     for my $campaign ( keys %{ $self->campaigns } ) {
@@ -429,6 +454,23 @@ sub test_newsletter {
     );
 
     return 'Test newsletter sent!';
+}
+
+sub go {
+    my ( $self ) = @_;
+    if ( $self->has_mock_date ) {
+        printf "RUNNING WITH MOCK DATE %s\n", DateTime->now->ymd;
+    }
+
+    if ( $self->verify ) {
+        $self->send_verify;
+    }
+    elsif ( $self->newsletter ) {
+        $self->send_newsletter;
+    }
+    else {
+        $self->send_campaign;
+    }
 }
 
 1;
