@@ -112,7 +112,6 @@ get '/friends' => sub {
 
 post '/friends' => sub {
     my $params = params;
-    use DDP; p $params;
     if( $params->{send_list} ) {
         var message => $subscriber->queue_newsletter( $params );
     }
