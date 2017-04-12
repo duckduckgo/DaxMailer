@@ -10,5 +10,6 @@ primary_column email_address => { data_type => 'text' };
 
 column bounced      => { data_type => 'int', default_value => 0 };
 column complaint    => { data_type => 'int', default_value => 0 };
+column unsubscribed => { data_type => 'int', default_value => 0 };
 
 1;
