@@ -1,0 +1,6 @@
+"><img src=x onerror=prompt(1)>
+test1@duckduckgo.com
+test1@duckduckgo.com
+test1@duckduckgo.com
+test2@duckduckgo.com
+test3@duckduckgo.com
