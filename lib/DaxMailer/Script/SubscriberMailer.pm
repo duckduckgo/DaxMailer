@@ -355,7 +355,7 @@ sub add {
 
     my $extra = {};
     $extra->{from} =
-        trunc( $params->{from}, 512, { at_space => 1 } )
+        trunc( $params->{from}, 50, { at_space => 1 } )
         if $params->{from};
     $extra->{template} = $params->{template} if $params->{template};
 
@@ -372,7 +372,7 @@ sub add {
             campaign      => $params->{campaign},
             flow          => $params->{flow},
             extra         => $extra,
-            verified      => $self->campaigns->{ $params->{campaign} }->{single_opt_in},
+            verified      => $self->campaigns->{ $params->{campaign} }->{single_opt_in} // 0,
         } );
     }
 

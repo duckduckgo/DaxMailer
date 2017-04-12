@@ -69,7 +69,11 @@ sub handle_bounces {
 }
 
 sub bounced {
-    $_[0]->search_rs({ -or => [ bounced => 1, complaint => 1 ] });
+    $_[0]->search_rs({ -or => [
+        bounced      => 1,
+        complaint    => 1,
+        unsubscribed => 1
+    ] });
 }
 
 sub check {

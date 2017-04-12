@@ -1,5 +1,6 @@
 requires 'AWS::SNS::Verify';
 requires 'Cpanel::JSON::XS';
+requires 'Data::Printer';
 requires 'DBD::Pg';
 requires 'DBIx::Class::Candy';
 requires 'DBIx::Class::Core';
@@ -39,6 +40,7 @@ requires 'Moo';
 requires 'Moo::Role';
 requires 'MooX::Options';
 requires 'Plack::Middleware::ReverseProxy';
+requires 'Reply';
 requires 'Starman';
 requires 'String::Truncate';
 requires 'Text::CSV_XS';

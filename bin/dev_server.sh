@@ -4,8 +4,6 @@ SCRIPTDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" 1>/dev/null && pwd )
 ROOTDIR=$SCRIPTDIR/..
 PSGI_SCRIPT=$SCRIPTDIR/dev_server.psgi
 LIBDIR=$ROOTDIR/lib
-CARTONDIR=$ROOTDIR/local/lib/perl5/
-CARTONBINDIR=$ROOTDIR/local/bin/
 DB=$ROOTDIR/daxmailer.sqlite
 PORT=5666
 HOSTNAME=$(hostname)
@@ -54,4 +52,4 @@ fi
 
 export DAXMAILER_WEB_BASE=$( printf 'http://%s:%s' $HOSTNAME $PORT )
 
-perl -I$CARTONDIR $CARTONBINDIR/plackup -R $LIBDIR -p $PORT -s Starman $PSGI_SCRIPT
+carton exec plackup -R $LIBDIR -p $PORT -s Starman $PSGI_SCRIPT

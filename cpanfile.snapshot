@@ -364,6 +364,17 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       Test::More 0
+  Clone-PP-1.07
+    pathname: N/NE/NEILB/Clone-PP-1.07.tar.gz
+    provides:
+      Clone::PP 1.07
+    requirements:
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      perl 5.006
+      strict 0
+      vars 0
+      warnings 0
   Config-Any-0.29
     pathname: H/HA/HAARG/Config-Any-0.29.tar.gz
     provides:
@@ -390,6 +401,28 @@ DISTRIBUTIONS
       File::Spec::Functions 0
       FileHandle 0
       IO::File 0
+  Config-INI-0.025
+    pathname: R/RJ/RJBS/Config-INI-0.025.tar.gz
+    provides:
+      Config::INI 0.025
+      Config::INI::Reader 0.025
+      Config::INI::Writer 0.025
+    requirements:
+      Carp 0
+      ExtUtils::MakeMaker 0
+      Mixin::Linewise::Readers 0.105
+      Mixin::Linewise::Writers 0
+      strict 0
+      warnings 0
+  Config-INI-Reader-Ordered-0.020
+    pathname: R/RJ/RJBS/Config-INI-Reader-Ordered-0.020.tar.gz
+    provides:
+      Config::INI::Reader::Ordered 0.020
+    requirements:
+      Config::INI::Reader 0
+      ExtUtils::MakeMaker 0
+      strict 0
+      vars 0
   Context-Preserve-0.01
     pathname: J/JR/JROCKWAY/Context-Preserve-0.01.tar.gz
     provides:
@@ -1144,6 +1177,29 @@ DISTRIBUTIONS
       Data::Page 2
       ExtUtils::MakeMaker 0
       Test::More 0.1
+  Data-Printer-0.38
+    pathname: G/GA/GARU/Data-Printer-0.38.tar.gz
+    provides:
+      DDP undef
+      Data::Printer 0.38
+      Data::Printer::Filter undef
+      Data::Printer::Filter::DB undef
+      Data::Printer::Filter::DateTime undef
+      Data::Printer::Filter::Digest undef
+    requirements:
+      Carp 0
+      Clone::PP 0
+      ExtUtils::MakeMaker 0
+      Fcntl 0
+      File::HomeDir 0.91
+      File::Spec 0
+      File::Temp 0
+      Package::Stash 0.3
+      Scalar::Util 0
+      Sort::Naturally 0
+      Term::ANSIColor 3
+      Test::More 0.88
+      version 0.77
   Data-Record-0.02
     pathname: O/OV/OVID/Data-Record-0.02.tar.gz
     provides:
@@ -1684,6 +1740,14 @@ DISTRIBUTIONS
       perl 5.008004
       strict 0
       warnings 0
+  Devel-Caller-2.06
+    pathname: R/RC/RCLAMP/Devel-Caller-2.06.tar.gz
+    provides:
+      Devel::Caller 2.06
+    requirements:
+      ExtUtils::MakeMaker 0
+      PadWalker 0.08
+      Test::More 0
   Devel-CheckCompiler-0.07
     pathname: S/SY/SYOHEX/Devel-CheckCompiler-0.07.tar.gz
     provides:
@@ -1711,6 +1775,14 @@ DISTRIBUTIONS
     provides:
       Devel::Hide 0.0009
     requirements:
+      ExtUtils::MakeMaker 0
+      Test::More 0
+  Devel-LexAlias-0.05
+    pathname: R/RC/RCLAMP/Devel-LexAlias-0.05.tar.gz
+    provides:
+      Devel::LexAlias 0.05
+    requirements:
+      Devel::Caller 0.03
       ExtUtils::MakeMaker 0
       Test::More 0
   Devel-PPPort-3.35
@@ -2155,6 +2227,31 @@ DISTRIBUTIONS
       Number::Compare 0
       Test::More 0
       Text::Glob 0.07
+  File-HomeDir-1.002
+    pathname: R/RE/REHSACK/File-HomeDir-1.002.tar.gz
+    provides:
+      File::HomeDir 1.002
+      File::HomeDir::Darwin 1.002
+      File::HomeDir::Darwin::Carbon 1.002
+      File::HomeDir::Darwin::Cocoa 1.002
+      File::HomeDir::Driver 1.002
+      File::HomeDir::FreeDesktop 1.002
+      File::HomeDir::MacOS9 1.002
+      File::HomeDir::TIE 1.002
+      File::HomeDir::Test 1.002
+      File::HomeDir::Unix 1.002
+      File::HomeDir::Windows 1.002
+    requirements:
+      Carp 0
+      Cwd 3.12
+      ExtUtils::MakeMaker 0
+      File::Basename 0
+      File::Path 2.01
+      File::Spec 3.12
+      File::Temp 0.19
+      File::Which 0.05
+      POSIX 0
+      perl 5.005003
   File-ShareDir-1.102
     pathname: R/RE/REHSACK/File-ShareDir-1.102.tar.gz
     provides:
@@ -2194,6 +2291,13 @@ DISTRIBUTIONS
       perl 5.008
       strict 0
       warnings 0
+  File-Which-1.21
+    pathname: P/PL/PLICEASE/File-Which-1.21.tar.gz
+    provides:
+      File::Which 1.21
+    requirements:
+      ExtUtils::MakeMaker 0
+      perl 5.006
   Filesys-Notify-Simple-0.12
     pathname: M/MI/MIYAGAWA/Filesys-Notify-Simple-0.12.tar.gz
     provides:
@@ -2692,6 +2796,22 @@ DISTRIBUTIONS
       Net::Domain 1.05
       Net::SMTP 1.03
       Test::More 0
+  Mixin-Linewise-0.108
+    pathname: R/RJ/RJBS/Mixin-Linewise-0.108.tar.gz
+    provides:
+      MLTests undef
+      Mixin::Linewise 0.108
+      Mixin::Linewise::Readers 0.108
+      Mixin::Linewise::Writers 0.108
+    requirements:
+      Carp 0
+      ExtUtils::MakeMaker 0
+      IO::File 0
+      PerlIO::utf8_strict 0
+      Sub::Exporter 0
+      perl 5.008001
+      strict 0
+      warnings 0
   Module-Build-0.4220
     pathname: L/LE/LEONT/Module-Build-0.4220.tar.gz
     provides:
@@ -3204,6 +3324,13 @@ DISTRIBUTIONS
       Module::Runtime 0.013
       perl 5.006
       strictures 2.000000
+  PadWalker-2.2
+    pathname: R/RO/ROBIN/PadWalker-2.2.tar.gz
+    provides:
+      PadWalker 2.2
+    requirements:
+      ExtUtils::MakeMaker 0
+      perl 5.008001
   Params-Util-1.07
     pathname: A/AD/ADAMK/Params-Util-1.07.tar.gz
     provides:
@@ -3284,6 +3411,16 @@ DISTRIBUTIONS
       overload 0
       parent 0
       strict 0
+  PerlIO-utf8_strict-0.007
+    pathname: L/LE/LEONT/PerlIO-utf8_strict-0.007.tar.gz
+    provides:
+      PerlIO::utf8_strict 0.007
+    requirements:
+      ExtUtils::MakeMaker 0
+      XSLoader 0
+      perl 5.008
+      strict 0
+      warnings 0
   Plack-1.0043
     pathname: M/MI/MIYAGAWA/Plack-1.0043.tar.gz
     provides:
@@ -3475,6 +3612,63 @@ DISTRIBUTIONS
       strict 0
       vars 0
       warnings 0
+  Reply-0.42
+    pathname: D/DO/DOY/Reply-0.42.tar.gz
+    provides:
+      Reply 0.42
+      Reply::App 0.42
+      Reply::Config 0.42
+      Reply::Plugin 0.42
+      Reply::Plugin::AutoRefresh 0.42
+      Reply::Plugin::Autocomplete::Commands 0.42
+      Reply::Plugin::Autocomplete::Functions 0.42
+      Reply::Plugin::Autocomplete::Globals 0.42
+      Reply::Plugin::Autocomplete::Keywords 0.42
+      Reply::Plugin::Autocomplete::Lexicals 0.42
+      Reply::Plugin::Autocomplete::Methods 0.42
+      Reply::Plugin::Autocomplete::Packages 0.42
+      Reply::Plugin::CollapseStack 0.42
+      Reply::Plugin::Colors 0.42
+      Reply::Plugin::DataDump 0.42
+      Reply::Plugin::DataDumper 0.42
+      Reply::Plugin::DataPrinter 0.42
+      Reply::Plugin::Defaults undef
+      Reply::Plugin::Editor 0.42
+      Reply::Plugin::FancyPrompt 0.42
+      Reply::Plugin::Hints 0.42
+      Reply::Plugin::Interrupt 0.42
+      Reply::Plugin::LexicalPersistence 0.42
+      Reply::Plugin::LoadClass 0.42
+      Reply::Plugin::Nopaste 0.42
+      Reply::Plugin::Packages 0.42
+      Reply::Plugin::Pager 0.42
+      Reply::Plugin::ReadLine 0.42
+      Reply::Plugin::ResultCache 0.42
+      Reply::Plugin::Timer 0.42
+      Reply::Util undef
+    requirements:
+      Config::INI::Reader::Ordered 0
+      Data::Dumper 0
+      Devel::LexAlias 0
+      Eval::Closure 0.11
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      File::HomeDir 0
+      File::Spec 0
+      Getopt::Long 2.36
+      Module::Runtime 0
+      Package::Stash 0
+      PadWalker 0
+      Scalar::Util 0
+      Term::ANSIColor 0
+      Term::ReadLine 0
+      Time::HiRes 0
+      Try::Tiny 0
+      base 0
+      overload 0
+      perl 5.006
+      strict 0
+      warnings 0
   Return-MultiLevel-0.04
     pathname: M/MA/MAUKE/Return-MultiLevel-0.04.tar.gz
     provides:
@@ -3661,6 +3855,13 @@ DISTRIBUTIONS
       ExtUtils::Constant 0.23
       ExtUtils::MakeMaker 0
       perl 5.006001
+  Sort-Naturally-1.03
+    pathname: B/BI/BINGOS/Sort-Naturally-1.03.tar.gz
+    provides:
+      Sort::Naturally 1.03
+    requirements:
+      ExtUtils::MakeMaker 0
+      perl 5
   Specio-0.36
     pathname: D/DR/DROLSKY/Specio-0.36.tar.gz
     provides:
