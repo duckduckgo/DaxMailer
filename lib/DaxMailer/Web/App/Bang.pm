@@ -6,7 +6,7 @@ use Try::Tiny;
 post '/newbang' => sub {
     rset('Bang')->create_from_post( body_parameters )
         && return template 'bang/thanks', { layout => undef };
-    status 500;
+    status 400;
     return 'Something went wrong';
 };
 
