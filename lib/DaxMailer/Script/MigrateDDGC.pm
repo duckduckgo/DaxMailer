@@ -28,7 +28,7 @@ sub go {
     while ( my $row = $sth->fetchrow_hashref ) {
         my $email = Email::Valid->address($row->{email_address});
         next unless $email;
-        rset('Subscriber')->update_or_create({
+        my $subscriber = rset('Subscriber')->update_or_create({
             email_address => $email,
             unsubscribed  => $row->{unsubscribed},
             verified      => $row->{verified},
@@ -38,6 +38,7 @@ sub go {
             flow          => $row->{flow},
             extra         => {},
         });
+        $subscriber && $subscriber->update_or_create_related( 'logs', { email_id => 'v' } );
         if ( $row->{bounced} || $row->{complaint} ) {
             rset('Subscriber::Bounce')->update_or_create({
                 email_address => $email,
