@@ -5,6 +5,7 @@ package DaxMailer::Script::MigrateDDGC;
 use Moo;
 use DBI;
 use Carp;
+use Try::Tiny;
 
 with 'DaxMailer::Base::Script::Service';
 
@@ -44,6 +45,22 @@ sub go {
                 complaint     => $row->{complaint},
             });
         }
+    }
+
+    $sth = $self->ddgc_dbh->prepare('SELECT * FROM subscriber_maillog');
+    $sth->execute;
+    while ( my $row = $sth->fetchrow_hashref ) {
+        try {
+            rset('Subscriber::MailLog')->update_or_create({
+                email_address => $row->{email_address},
+                campaign      => $row->{campaign},
+                email_id      => $row->{email_id},
+                sent          => $row->{sent},
+            });
+        } catch {
+            warn sprintf "Unable to insert log entry %s : %s",
+                $row->{email_address}, $row->{email_id};
+        };
     }
 }
 
