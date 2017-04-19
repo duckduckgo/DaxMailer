@@ -23,6 +23,10 @@ sub _build_ddgc_dbh {
 
 sub go {
     my ( $self ) = @_;
+
+    my $schema = schema('default');
+    my $guard = $schema->txn_scope_guard;
+
     my $sth = $self->ddgc_dbh->prepare('SELECT * FROM subscriber');
     $sth->execute;
     while ( my $row = $sth->fetchrow_hashref ) {
@@ -63,6 +67,8 @@ sub go {
                 $row->{email_address}, $row->{email_id};
         };
     }
+
+    $guard->commit;
 }
 
 1;
