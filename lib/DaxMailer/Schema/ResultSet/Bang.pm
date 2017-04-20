@@ -19,6 +19,15 @@ sub create_from_post {
     my ( $category, $subcategory );
     my $bang;
 
+    return unless (
+        $body->{bang_site} &&
+        $body->{bang_command} &&
+        $body->{bang_url} &&
+        $body->{bang_cat} &&
+        $body->{bang_subcat} &&
+        index( $body->{bang_url}, '{{{s}}}' ) >= 0
+    );
+
     try {
         $category = $self->rs('Bang::Category')->find_or_create({
             name   => $body->{bang_cat},

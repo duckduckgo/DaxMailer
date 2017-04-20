@@ -32,8 +32,8 @@ has_many logs => 'DaxMailer::Schema::Result::Subscriber::MailLog' => {
 around new => sub {
     my $orig = shift;
     my $self = shift;
-    $_[0]->{v_key} = _key();
-    $_[0]->{u_key} = _key();
+    $_[0]->{v_key} ||= _key();
+    $_[0]->{u_key} ||= _key();
     $orig->( $self, @_ );
 };
 
