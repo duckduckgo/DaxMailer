@@ -140,4 +140,16 @@ post '/a' => sub {
         { layout => 'mail' };
 };
 
+get '/add/:email' => sub {
+    my $email = route_parameters->get('email');
+    $subscriber->add({
+        email => $email,
+        campaign => 'b',
+        flow => 'get',
+    });
+    return template 'email/message',
+        { title => 'Thank you!', message => 'Thank you!' },
+        { layout => 'mail' };
+};
+
 1;
