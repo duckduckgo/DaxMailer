@@ -8,6 +8,7 @@ use DBI;
 has legacy_dbh => ( is => 'lazy' );
 sub _build_legacy_dbh {
     my ( $self ) = @_;
+    return unless $self->app->config->{ legacy_db_dsn };
     DBI->connect( @{ $self->app->config }{qw/
         legacy_db_dsn
         legacy_db_user
@@ -68,7 +69,11 @@ sub handle_bounces {
 }
 
 sub bounced {
-    $_[0]->search_rs({ -or => [ bounced => 1, complaint => 1 ] });
+    $_[0]->search_rs({ -or => [
+        bounced      => 1,
+        complaint    => 1,
+        unsubscribed => 1
+    ] });
 }
 
 sub check {

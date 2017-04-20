@@ -4,6 +4,23 @@ package Dancer2::Plugin::DaxMailer::Config;
 
 use Dancer2::Plugin;
 use DaxMailer::Util::TemplateHelpers;
+use File::Spec::Functions;
+use File::Path qw/ make_path /;
+use Carp;
+
+has home_directory => ( is => 'lazy' );
+sub _build_home_directory {
+    croak "Cannot retrieve home directory" unless $ENV{HOME};
+    return $ENV{HOME};
+}
+
+has persistent_store => ( is => 'lazy' );
+sub _build_persistent_store {
+    my $dir = $ENV{DAXMAILER_PERSISTENT_STORE}
+      || catdir( $_[0]->home_directory, 'ddgc' );
+    make_path $dir unless -d $dir;
+    return $dir;
+}
 
 sub _get_current_host {
     return $ENV{DAXMAILER_WEB_BASE} if $ENV{DAXMAILER_WEB_BASE};
@@ -15,6 +32,8 @@ sub _get_current_host {
 on_plugin_import {
     my ( $dsl ) = @_;
     my $settings = plugin_setting();
+
+    $dsl->set(file_store => $dsl->persistent_store );
 
     $dsl->set(verify_sns => !$ENV{DAXMAILER_SNS_VERIFY_TEST});
     $dsl->set(charset => 'UTF-8');
@@ -49,7 +68,7 @@ on_plugin_import {
        },
     };
 
-    my $db_dsn = $ENV{DAXMAILER_DB_DSN} // "dbi:SQLite:$rootdir/daxmailer.db.sqlite";
+    my $db_dsn = $ENV{DAXMAILER_DB_DSN} // "dbi:SQLite:$rootdir/daxmailer.sqlite";
     my $db_user = $ENV{DAXMAILER_DB_USER};
     my $db_password = $ENV{DAXMAILER_DB_PASSWORD};
     my $rdbms = $db_dsn =~ s/dbi:([a-zA-Z]+):.*/$1/r;

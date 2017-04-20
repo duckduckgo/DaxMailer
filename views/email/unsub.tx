@@ -269,7 +269,7 @@
                                         <td valign="top" class="bodyContent">
                                             <h4 style="margin: 0;">
                                                 : if $success {
-                                                    You have been unsubscribed from The DuckDuckGo Privacy Newsletter.
+                                                    You have been unsubscribed.
                                                 : } else {
                                                     There was a problem processing this request! Please contact ddgc@duckduckgo.com
                                                 : }

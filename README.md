@@ -15,13 +15,13 @@ When you have changed the DBIC schema, you will need to change the `$VERSION` in
 Then you can generate SQL diffs with the script:
 
 ```bash
-perl -Ilib -Ilocal/lib/perl5/ bin/schema_generate.pl
+carton exec bin/schema_generate.pl
 ```
 
 Then you will need to deploy them like so:
 
 ```bash
-perl -Ilib -Ilocal/lib/perl5/ bin/db_migrate.pl
+carton exec bin/db_migrate.pl
 ```
 
 New files in sql/ should be commited to git. You may make changes to these files after they are generated,

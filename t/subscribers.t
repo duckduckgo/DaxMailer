@@ -22,7 +22,6 @@ use URI;
 
 t::lib::DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
 my $TEST_LEGACY = t::lib::DaxMailer::TestUtils::deploy_legacy;
-my $m = DaxMailer::Script::SubscriberMailer->new;
 
 my $app = builder {
     mount '/s' => DaxMailer::Web::App::Subscriber->to_app;
@@ -45,7 +44,7 @@ sub _unsubscribe {
     my ( $cb, $email, $campaign ) = @_;
     my $subscriber = rset('Subscriber')->find( {
         email_address => $email,
-        campaign => 'a',
+        campaign => $campaign,
     } );
     my $url = URI->new( $subscriber->unsubscribe_url );
     ok(
@@ -97,41 +96,46 @@ test_psgi $app => sub {
     } );
     is( $invalid, undef, 'Invalid address not inserted via POST' );
 
-    my $transport = DaxMailer::Script::SubscriberMailer->new->verify;
+    ok( $cb->(
+        POST '/s/a',
+        [ email => 'test10@duckduckgo.com', campaign => 'friends', flow => 'flow1' ]
+    )->is_success, "Adding newsletter subscriber" );
+
+    my $transport = DaxMailer::Script::SubscriberMailer->new->send_verify;
     is( $transport->delivery_count, 10, 'Correct number of verification emails sent' );
 
-    $transport = DaxMailer::Script::SubscriberMailer->new->verify;
+    $transport = DaxMailer::Script::SubscriberMailer->new->send_verify;
     is( $transport->delivery_count, 0, 'No verification emails re-sent' );
 
     _verify($cb, 'test8@duckduckgo.com', 'c');
     _verify($cb, 'test9@duckduckgo.com', 'c');
 
     set_absolute_time('2016-10-20T12:00:00Z');
-    $transport = DaxMailer::Script::SubscriberMailer->new->execute;
+    $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
     is( $transport->delivery_count, 8, '8 received emails' );
 
-    $transport = DaxMailer::Script::SubscriberMailer->new->execute;
+    $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
     is( $transport->delivery_count, 0, 'Emails not re-sent' );
 
     set_absolute_time('2016-10-21T12:00:00Z');
-    $transport = DaxMailer::Script::SubscriberMailer->new->execute;
+    $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
     is( $transport->delivery_count, 0, '0 received emails - non scheduled' );
 
     _unsubscribe($cb, 'test2@duckduckgo.com', 'a');
     _verify($cb, 'lateverify@duckduckgo.com', 'c');
 
     set_absolute_time('2016-10-22T12:00:00Z');
-    $transport = DaxMailer::Script::SubscriberMailer->new->execute;
+    $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
     is( $transport->delivery_count, 8, '8 received emails - one unsubscribed, one verified' );
 
-    $transport = DaxMailer::Script::SubscriberMailer->new->execute;
+    $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
     is( $transport->delivery_count, 0, 'Emails not re-sent' );
 
     set_absolute_time('2016-10-23T12:00:00Z');
-    $transport = DaxMailer::Script::SubscriberMailer->new->execute;
+    $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
     is( $transport->delivery_count, 1, '1 received email - late verify, rescheduled' );
 
-    $transport = DaxMailer::Script::SubscriberMailer->new->execute;
+    $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
     is( $transport->delivery_count, 0, 'Emails not re-sent' );
 
     set_absolute_time('2017-03-31T12:00:00Z');
@@ -156,7 +160,7 @@ test_psgi $app => sub {
         ]
     ), "POSTing multiple subscribers" );
 
-    $transport = DaxMailer::Script::SubscriberMailer->new->verify;
+    $transport = DaxMailer::Script::SubscriberMailer->new->send_verify;
     is( $transport->delivery_count, 6, 'Correct number of verification emails sent from spread form' );
 
     _verify($cb, 'test100@duckduckgo.com', 'c');
@@ -166,7 +170,7 @@ test_psgi $app => sub {
     _verify($cb, 'test102@duckduckgo.com', 'c');
 
     set_absolute_time('2017-04-02T12:00:00Z');
-    $transport = DaxMailer::Script::SubscriberMailer->new->execute;
+    $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
     is( $transport->delivery_count, 3, '3 received emails' );
 
     my @emails = $transport->deliveries;

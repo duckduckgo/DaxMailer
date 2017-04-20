@@ -2,13 +2,49 @@ use strict;
 use warnings;
 package DaxMailer::Script::SubscriberMailer;
 
+use Test::MockTime qw/ set_absolute_time /;
 use DateTime;
 use Moo;
+use MooX::Options;
 use Hash::Merge::Simple qw/ merge /;
 use String::Truncate qw/ trunc /;
+use File::Spec::Functions;
+use File::Slurper qw/ read_text /;
+use Carp;
 
 with 'DaxMailer::Base::Script::Service',
      'DaxMailer::Base::Script::ServiceEmail';
+
+option newsletter => (
+    is => 'ro',
+    doc => 'Send newsletter.txt to subscribers'
+);
+
+option verify => (
+    is => 'ro',
+    doc => 'Run verify mail shot'
+);
+
+option mock_date => (
+    is => 'ro',
+    format => 's',
+    doc => 'Run mail for given day (for testing): YYYY-MM-DD',
+    predicate => 1,
+    coerce => sub {
+        printf "Run with mock date [y/N]? ";
+        chomp ( my $r = <STDIN> );
+        die unless $r =~ /^y/i;
+        set_absolute_time(sprintf '%sT12:00:00Z', $_[0]);
+    }
+);
+
+has newsletter_file => ( is => 'lazy' );
+sub _build_newsletter_file {
+    return $ENV{DAXMAILER_NEWSLETTER_FILE} if $ENV{DAXMAILER_NEWSLETTER_FILE};
+    my $file_store = config()->{file_store};
+    croak "No persistent store configured" unless $file_store;
+    catfile( $file_store, 'newsletter.txt' );
+}
 
 has campaigns => ( is => 'lazy' );
 sub _build_campaigns {
@@ -21,6 +57,8 @@ sub _build_campaigns {
                 subject => 'Tracking in Incognito?',
                 template => 'email/a/1.tx'
             },
+            verify_page_template => 'email/a/verify.tx',
+            unsub_page_template  => 'email/a/unsub.tx',
             layout => 'email/a/layout.tx',
             mails => {
                 2 => {
@@ -75,6 +113,11 @@ sub _build_campaigns {
                     template => 'email/a/1c.tx',
                 },
             }
+        },
+        'friends' => {
+            single_opt_in => 1,
+            plain_text => 1,
+            layout => 'email/friends/layout.tx',
         }
     };
 
@@ -147,7 +190,30 @@ sub email {
     return $status;
 }
 
-sub execute {
+sub email_plaintext {
+    my ( $self, $log, $subscriber, $subject, $content, $layout, $verified ) = @_;
+
+    my $status = $self->smtp->send_plaintext( {
+        to       => $subscriber->email_address,
+        verified => $verified
+                    || ( $subscriber->verified && !$subscriber->unsubscribed ),
+        from     => '"DuckDuckGo Dax" <dax@duckduckgo.com>',
+        subject  => $subject,
+        template => $layout,
+        content  => {
+            body => $content,
+            subscriber => $subscriber,
+        }
+    } );
+
+    if ( $status->{ok} ) {
+        $subscriber->update_or_create_related( 'logs', { email_id => $log } );
+    }
+
+    return $status;
+}
+
+sub send_campaign {
     my ( $self ) = @_;
 
     for my $campaign ( keys %{ $self->campaigns } ) {
@@ -207,7 +273,7 @@ sub _send_verify_email {
     );
 }
 
-sub verify {
+sub send_verify {
     my ( $self ) = @_;
 
     for my $campaign ( keys %{ $self->campaigns } ) {
@@ -306,11 +372,105 @@ sub add {
             campaign      => $params->{campaign},
             flow          => $params->{flow},
             extra         => $extra,
-            verified      => $self->campaigns->{ $params->{campaign} }->{single_opt_in},
+            verified      => $self->campaigns->{ $params->{campaign} }->{single_opt_in} // 0,
         } );
     }
 
     return 1;
+}
+
+sub _mail_newsletter {
+    my ( $self, $subscribers, $content ) = @_;
+    $content ||= read_text( $self->newsletter_file );
+
+    my ( $subject, $body ) = split "\n", $content, 2;
+    $subject =~ s/^Subject: //;
+    my $layout = $self->campaigns->{friends}->{layout};
+
+    for my $subscriber( @{ $subscribers } ) {
+        $self->email_plaintext(
+            'v',
+            $subscriber,
+            $subject,
+            $body,
+            $layout
+        );
+    }
+
+    return $self->smtp->transport;
+}
+
+sub queue_newsletter {
+    my ( $self, $params ) = @_;
+    unlink $self->newsletter_file if -f $self->newsletter_file;
+    open my $fh, '>:encoding(UTF-8)', $self->newsletter_file;
+
+    # On the one hand, in-band config and messaging is messy
+    # On the other, it is convenient
+    printf $fh "Subject: %s\n", $params->{email_subject};
+    print $fh $params->{email_body};
+
+    return 'Newsletter queued for delivery. Thank you!';
+}
+
+sub send_newsletter {
+    my ( $self ) = @_;
+    return unless -f $self->newsletter_file;
+
+    $self->_mail_newsletter(
+        rset('Subscriber')
+            ->campaign('friends')
+            ->subscribed
+            ->verified
+            ->unbounced
+            ->all_ref
+    );
+
+    unlink $self->newsletter_file;
+
+    return $self->smtp->transport;
+}
+
+sub test_newsletter {
+    my ( $self, $params ) = @_;
+    my $email = Email::Valid->address( $params->{test_address} );
+    return "Not a duckduckgo email address"
+        unless $email =~ /\@duckduckgo\.com$/;
+
+    my $schema = DaxMailer::Schema->connect('dbi:SQLite:dbname=:memory:');
+    $schema->deploy;
+
+    my $subscriber = $schema->resultset('Subscriber')->create( {
+        email_address => $email,
+        campaign      => 'friends',
+        verified      => 1,
+    } );
+
+    $self->_mail_newsletter(
+        [ $subscriber ],
+        sprintf "Subject: %s\n%s",
+            $params->{email_subject},
+            $params->{email_body},
+    );
+
+    return 'Test newsletter sent!';
+}
+
+sub go {
+    my ( $self ) = @_;
+    if ( $self->has_mock_date ) {
+        printf "RUNNING WITH MOCK DATE %s\n", DateTime->now->ymd;
+    }
+
+    if ( $self->verify ) {
+        $self->send_verify;
+    }
+    elsif ( $self->newsletter ) {
+        $self->send_newsletter;
+    }
+    else {
+        $self->send_campaign;
+    }
 }
 
 1;
