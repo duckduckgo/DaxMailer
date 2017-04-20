@@ -4,13 +4,9 @@ use DaxMailer::Base::Web::Common;
 use Try::Tiny;
 
 post '/newbang' => sub {
-    rset('Bang')->create_from_post( body_parameters )
-        && return template 'bang/message',
-            { title => 'Thank you!', message => 'Thank you!' },
-            { layout => 'mail' };
-    status 400;
-    return return template 'bang/message',
-        { title => 'Error', message => 'Sorry, something went wrong' },
+    rset('Bang')->create_from_post( body_parameters );
+    return template 'bang/message',
+        { title => 'Thank you!', message => 'Thank you!' },
         { layout => 'mail' };
 };
 
