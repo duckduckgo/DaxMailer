@@ -50,7 +50,7 @@ get '/v/:campaign/:email/:key' => sub {
 };
 
 get '/form' => sub {
-    my $c = param 'c';
+    my $c = param('c') || 'a';
     return <<"FORM"
     <form method="POST" action="/s/a">
         email: <input type="text" name="email">
