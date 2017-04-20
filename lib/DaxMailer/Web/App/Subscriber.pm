@@ -53,7 +53,11 @@ get '/form' => sub {
     my $c = param('c') || 'a';
     return <<"FORM"
     <form method="POST" action="/s/a">
-        email: <input type="text" name="email">
+        email: <input type="text" name="email"><br />
+        <input type="checkbox" name="page" id="page">
+        <label for="page">
+            Page
+        </label><br />
         <input type="submit" name="submit">
         <input type="hidden" name="campaign" value="$c">
         <input type="hidden" name="flow" value="form">
