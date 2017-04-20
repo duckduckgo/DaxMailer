@@ -128,9 +128,12 @@ post '/a' => sub {
     my $params = params('body');
     if ( !$subscriber->add( $params ) ) {
         status 400;
-        return "NOT OK";
+        return "NOT OK" unless $params->{page};
     }
-    return "OK";
+    return "OK" unless $params->{page};
+    return template 'email/message',
+        { title => 'Thank you!', message => 'Thank you!' },
+        { layout => 'mail' };
 };
 
 1;
