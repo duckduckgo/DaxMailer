@@ -89,7 +89,6 @@ post '/testrun/:campaign' => sub {
     my $bodyparams = params('body');
     my $email = Email::Valid->address($bodyparams->{email});
     return unless $email;
-    return unless $email =~ /\@duckduckgo\.com$/;
     my $extra = {};
     $extra->{from} = $bodyparams->{from} if $bodyparams->{from};
     $extra->{verify_only} = $bodyparams->{verify_only};
