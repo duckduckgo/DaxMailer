@@ -48,6 +48,14 @@ test_psgi $app => sub {
         example.com example.com Tech Example
     ');
 
+    $newbang->(qw'
+        bar http://example.com/
+        submitter@example.com
+        example.com example.com Tech Example
+    ');
+
+    $newbang->( 'baz', 'http://example.com/q={{{s}}}', undef, undef, 'Hello!', 'Tech', 'Programming' );
+
     is( $cb->( POST '/nb/newbangs.txt' )->code, 401, 'Cannot access newbangs without secret');
 
     my $bangs = $cb->(
