@@ -50,10 +50,14 @@ get '/v/:campaign/:email/:key' => sub {
 };
 
 get '/form' => sub {
-    my $c = param 'c';
+    my $c = param('c') || 'a';
     return <<"FORM"
     <form method="POST" action="/s/a">
-        email: <input type="text" name="email">
+        email: <input type="text" name="email"><br />
+        <input type="checkbox" name="page" id="page">
+        <label for="page">
+            Page
+        </label><br />
         <input type="submit" name="submit">
         <input type="hidden" name="campaign" value="$c">
         <input type="hidden" name="flow" value="form">
@@ -128,9 +132,24 @@ post '/a' => sub {
     my $params = params('body');
     if ( !$subscriber->add( $params ) ) {
         status 400;
-        return "NOT OK";
+        return "NOT OK" unless $params->{page};
     }
-    return "OK";
+    return "OK" unless $params->{page};
+    return template 'email/message',
+        { title => 'Thank you!', message => 'Thank you!' },
+        { layout => 'mail' };
+};
+
+get '/add/:email' => sub {
+    my $email = route_parameters->get('email');
+    $subscriber->add({
+        email => $email,
+        campaign => 'b',
+        flow => 'get',
+    });
+    return template 'email/message',
+        { title => 'Thank you!', message => 'Thank you!' },
+        { layout => 'mail' };
 };
 
 1;
