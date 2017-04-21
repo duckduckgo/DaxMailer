@@ -37,6 +37,7 @@ sub go {
             unsubscribed  => $row->{unsubscribed},
             verified      => $row->{verified},
             campaign      => $row->{campaign},
+            created       => $row->{created},
             v_key         => $row->{v_key},
             u_key         => $row->{u_key},
             flow          => $row->{flow},
