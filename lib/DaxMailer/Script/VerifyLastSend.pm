@@ -22,7 +22,13 @@ sub go {
     my $sent = rset('Subscriber::MailLog')->search({
         sent => { '>=' => $x_hours_ago }
     })->one_row;
-    exit ( $sent ? 0 : 2 );
+    if ( $sent ) {
+        printf "Success\n";
+        exit 0;
+    } else {
+        printf "Failure\n";
+        exit 2;
+    }
 }
 
 1;
