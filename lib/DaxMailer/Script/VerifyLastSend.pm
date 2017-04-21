@@ -10,8 +10,9 @@ use DateTime::Duration;
 
 with 'DaxMailer::Base::Script::Service';
 
-has hours => (
+option hours => (
     is => 'ro',
+    format => 'i',
     default => sub { 2 },
 );
 
