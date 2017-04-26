@@ -64,8 +64,8 @@ sub go {
                 sent          => $row->{sent},
             });
         } catch {
-            warn sprintf "Unable to insert log entry %s : %s",
-                $row->{email_address}, $row->{email_id};
+            warn sprintf "Unable to insert log entry %s, %s : %s",
+                $row->{email_address}, $row->{email_id}, $_;
         };
     }
 
