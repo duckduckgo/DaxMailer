@@ -3196,6 +3196,14 @@ DISTRIBUTIONS
       Test::More 0.52
       Time::Local 1.19
       perl 5.006
+  Net-Graphite-0.17
+    pathname: S/SL/SLANNING/Net-Graphite-0.17.tar.gz
+    provides:
+      Net::Graphite 0.17
+    requirements:
+      ExtUtils::MakeMaker 0
+      IO::Socket::INET 0
+      Scalar::Util 0
   Net-SSLeay-1.81
     pathname: M/MI/MIKEM/Net-SSLeay-1.81.tar.gz
     provides:

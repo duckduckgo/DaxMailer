@@ -39,6 +39,7 @@ requires 'MIME::Base64';
 requires 'Moo';
 requires 'Moo::Role';
 requires 'MooX::Options';
+requires 'Net::Graphite';
 requires 'Plack::Middleware::ReverseProxy';
 requires 'Reply';
 requires 'Starman';
