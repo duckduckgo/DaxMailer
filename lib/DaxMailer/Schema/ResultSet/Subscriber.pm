@@ -32,6 +32,18 @@ sub unverified {
     $self->search_rs( { verified => 0 } );
 }
 
+sub bounced {
+    my ( $self ) = @_;
+    $self->search_rs({
+        'me.email_address' => {
+            -in => $self->rs('Subscriber::Bounce')
+                            ->bounced
+                            ->get_column('email_address')
+                            ->as_query
+        }
+    });
+}
+
 sub unbounced {
     my ( $self ) = @_;
     $self->search_rs({
