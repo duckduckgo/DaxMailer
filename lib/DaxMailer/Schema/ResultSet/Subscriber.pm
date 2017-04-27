@@ -16,6 +16,11 @@ sub subscribed {
     $self->search_rs( { unsubscribed => 0 } );
 }
 
+sub unsubscribed {
+    my ( $self ) = @_;
+    $self->search_rs( { unsubscribed => 1 } );
+}
+
 sub verified {
     my ( $self ) = @_;
     $self->search_rs( { verified => 1 } );
