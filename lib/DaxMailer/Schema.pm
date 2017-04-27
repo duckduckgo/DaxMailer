@@ -13,6 +13,11 @@ has app => (
     is => 'rw',
 );
 
+sub format_datetime {
+    my $self = shift;
+    $self->storage->datetime_parser->format_datetime(@_);
+}
+
 sub generate_diff {
     my ( $self, $previous_version ) = @_;
 
