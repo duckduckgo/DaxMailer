@@ -9,6 +9,10 @@ BEGIN {
     $ENV{DAXMAILER_MAIL_TEST} = 1;
 }
 
+use Encode;
+use charnames ':full';
+use open ':std', ':encoding(UTF-8)';
+
 use Plack::Test;
 use Plack::Builder;
 use HTTP::Request::Common;
@@ -59,6 +63,11 @@ test_psgi $app => sub {
 
     is( rset('Subscriber')->unbounced->count, 2,
         'Transient bounce received - 2 subscribers remain' );
+
+    ok( $cb->( POST '/bounce/handler',
+            'Content-Type' => 'application/json',
+            Content => sns->sns_permanent_bounce( encode( 'UTF-8', "test\N{OHM SIGN}\@duckduckgo.com" ) )
+        )->is_success, "Permanent bounce message about test\N{OHM SIGN}\@duckduckgo.com" );
 
     ok( $cb->( POST '/bounce/handler',
             'Content-Type' => 'application/json',
