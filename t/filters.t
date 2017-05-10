@@ -52,10 +52,15 @@ test_psgi $app => sub {
     is ( rset('Subscriber')->count, 5, "5 subscribers in db" );
     is ( rset('Subscriber')->subscribed->count, 3, "3 non-unsub subscribers in db" );
 
-    $_add_subscriber->( 'Bob', qw/ baz@duckduckgo.com bill@qq.com / );
+    $_add_subscriber->( 'Bob', qw/ baz@duckduckgo.com fake1@qq.com / );
 
     is ( rset('Subscriber')->count, 7, "7 subscribers in db" );
     is ( rset('Subscriber')->subscribed->count, 4, "4 non-unsub subscribers in db" );
+
+    $_add_subscriber->( 'Bob@example.com', qw/ qux@duckduckgo.com fake2@qq.com / );
+
+    is ( rset('Subscriber')->count, 9, "9 subscribers in db" );
+    is ( rset('Subscriber')->subscribed->count, 5, "5 non-unsub subscribers in db" );
 };
 
 done_testing;
