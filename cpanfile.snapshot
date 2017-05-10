@@ -1842,6 +1842,17 @@ DISTRIBUTIONS
       base 0
       strict 0
       warnings 0
+  Domain-PublicSuffix-0.14.1
+    pathname: N/NM/NMELNICK/Domain-PublicSuffix-0.14.1.tar.gz
+    provides:
+      Domain::PublicSuffix 0.14
+      Domain::PublicSuffix::Default 0.14
+    requirements:
+      Class::Accessor::Fast 0
+      ExtUtils::MakeMaker 0
+      File::Spec 0
+      Net::IDN::Encode 2.300
+      Test::More 0.88
   Email-Abstract-3.008
     pathname: R/RJ/RJBS/Email-Abstract-3.008.tar.gz
     provides:
@@ -3204,6 +3215,20 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       IO::Socket::INET 0
       Scalar::Util 0
+  Net-IDN-Encode-2.400
+    pathname: C/CF/CFAERBER/Net-IDN-Encode-2.400.tar.gz
+    provides:
+      Net::IDN::Encode 2.400
+      Net::IDN::Punycode 1.102
+      Net::IDN::Punycode::PP 1.101
+      Net::IDN::UTS46 1.001
+      Net::IDN::UTS46::_Mapping 9
+    requirements:
+      ExtUtils::CBuilder 0
+      Test::More 0
+      Test::NoWarnings 0
+      Unicode::Normalize 0
+      perl 5.008005
   Net-SSLeay-1.81
     pathname: M/MI/MIKEM/Net-SSLeay-1.81.tar.gz
     provides:
@@ -4342,6 +4367,17 @@ DISTRIBUTIONS
       Test::Harness 3.35
       Test::More 1.302047
       Test::Warn 0.30
+  Test-NoWarnings-1.04
+    pathname: A/AD/ADAMK/Test-NoWarnings-1.04.tar.gz
+    provides:
+      Test::NoWarnings 1.04
+      Test::NoWarnings::Warning 1.04
+    requirements:
+      ExtUtils::MakeMaker 0
+      Test::Builder 0.86
+      Test::More 0.47
+      Test::Tester 0.107
+      perl 5.006
   Test-Requires-0.10
     pathname: T/TO/TOKUHIROM/Test-Requires-0.10.tar.gz
     provides:
