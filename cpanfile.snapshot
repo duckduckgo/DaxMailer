@@ -212,6 +212,14 @@ DISTRIBUTIONS
       perl 5.008001
       strict 0
       warnings 0
+  Cache-FastMmap-1.45
+    pathname: R/RO/ROBM/Cache-FastMmap-1.45.tar.gz
+    provides:
+      Cache::FastMmap 1.45
+      Cache::FastMmap::OnLeave 1.45
+    requirements:
+      ExtUtils::MakeMaker 0
+      Storable 0
   Capture-Tiny-0.46
     pathname: D/DA/DAGOLDEN/Capture-Tiny-0.46.tar.gz
     provides:

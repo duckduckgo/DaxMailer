@@ -1,4 +1,5 @@
 requires 'AWS::SNS::Verify';
+requires 'Cache::FastMmap';
 requires 'Cpanel::JSON::XS';
 requires 'Data::Printer';
 requires 'DBD::Pg';
