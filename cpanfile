@@ -41,6 +41,7 @@ requires 'Moo::Role';
 requires 'MooX::Options';
 requires 'Net::Graphite';
 requires 'Plack::Middleware::ReverseProxy';
+requires 'Plack::Middleware::Throttle::Lite';
 requires 'Reply';
 requires 'Starman';
 requires 'String::Truncate';
