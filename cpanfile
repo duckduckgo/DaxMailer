@@ -20,6 +20,7 @@ requires 'DateTime';
 requires 'DateTime::Duration';
 requires 'DateTime::Format::Pg';
 requires 'Digest::SHA1';
+requires 'Domain::PublicSuffix';
 requires 'Email::MIME';
 requires 'Email::Sender::Simple';
 requires 'Email::Sender::Transport::SMTP::Persistent';

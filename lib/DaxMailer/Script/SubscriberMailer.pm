@@ -11,6 +11,7 @@ use String::Truncate qw/ trunc /;
 use File::Spec::Functions;
 use File::Slurper qw/ read_text /;
 use Carp;
+use DaxMailer::Util::Strings;
 
 with 'DaxMailer::Base::Script::Service',
      'DaxMailer::Base::Script::ServiceEmail';
@@ -37,6 +38,11 @@ option mock_date => (
         set_absolute_time(sprintf '%sT12:00:00Z', $_[0]);
     }
 );
+
+has stringutils => ( is => 'lazy' );
+sub _build_stringutils {
+    DaxMailer::Util::Strings->new;
+}
 
 has newsletter_file => ( is => 'lazy' );
 sub _build_newsletter_file {
@@ -343,6 +349,13 @@ VERIFYONLY:
 
 sub add {
     my ( $self, $params ) = @_;
+    my $unsubscribed = 0;
+    $unsubscribed = 1 if (
+        $params->{from} &&
+        $self->stringutils->looks_like_contains_real_domains(
+            $params->{from}
+        )
+    );
     my @emails;
     @emails =
         grep { $_ }
@@ -364,6 +377,11 @@ sub add {
         if $self->campaigns->{ $params->{campaign} }->{base};
 
     for my $email ( @emails ) {
+        my $u = $unsubscribed;
+        $u = 1 if (
+            !$u &&
+            $self->stringutils->recipient_probably_not_interested( $email )
+        );
         my $exists = rset('Subscriber')->exists( $email, $campaigns );
         next if $exists;
 
@@ -372,6 +390,7 @@ sub add {
             campaign      => $params->{campaign},
             flow          => $params->{flow},
             extra         => $extra,
+            unsubscribed  => $u,
             verified      => $self->campaigns->{ $params->{campaign} }->{single_opt_in} // 0,
         } );
     }
