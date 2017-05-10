@@ -23,7 +23,7 @@ t::lib::DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
 my $app = builder {
     mount '/s' => builder {
         enable "Throttle::Lite",
-          limits => '3 req/hour', backend => 'Simple',
+          limits => '3 req/hour', backend => 'FastMmap',
           routes => [ qr{^/a} ];
         DaxMailer::Web::App::Subscriber->to_app;
     };
