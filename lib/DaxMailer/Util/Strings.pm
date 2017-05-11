@@ -4,6 +4,7 @@ package DaxMailer::Util::Strings;
 
 # ABSTRACT: String, url and email address processing utils
 
+use utf8;
 use Domain::PublicSuffix;
 use Email::Address;
 use HTTP::Tiny;
@@ -41,8 +42,14 @@ sub extract_non_email_domain_like_strings {
     ];
 }
 
+sub replace_international_dots {
+    my ( $self, $string ) = @_;
+    $string =~ s/[。点]/./gr;
+}
+
 sub looks_like_contains_real_domains {
     my ( $self, $string ) = @_;
+    $string = $self->replace_international_dots( $string );
     return warn "Skipping domain check!!" if !$self->publicsuffix;
     my $urls = $self->extract_non_email_domain_like_strings( $string );
     return !!grep { $self->publicsuffix->get_root_domain( $_ ) } @{ $urls };
