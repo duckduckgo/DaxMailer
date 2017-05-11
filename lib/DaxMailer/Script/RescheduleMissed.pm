@@ -69,6 +69,8 @@ sub maillog_subquery {
 
 sub go {
     my ( $self ) = @_;
+    my $schema = schema('default');
+    my $guard = $schema->txn_scope_guard;
 
     for my $email ( reverse 2..7 ) {
         $self->subscribers->search({
@@ -89,6 +91,7 @@ sub go {
         email_address => { not_in => $self->maillog_subquery( 'v' ) }
     })->update({ created => $self->format_date( $self->now ) });
 
+    $guard->commit;
 }
 
 1;
