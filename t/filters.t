@@ -62,6 +62,12 @@ test_psgi $app => sub {
     is ( rset('Subscriber')->count, 9, "9 subscribers in db" );
     is ( rset('Subscriber')->subscribed->count, 5, "5 non-unsub subscribers in db" );
 
+    $_add_subscriber->( '有趣的乐趣126。com你好', qw/ test98@duckduckgo.com / );
+    $_add_subscriber->( '有趣的乐趣126点com你好', qw/ test99@duckduckgo.com / );
+
+    is ( rset('Subscriber')->count, 11, "11 subscribers in db" );
+    is ( rset('Subscriber')->subscribed->count, 5, "5 non-unsub subscribers in db" );
+
     my $transport = DaxMailer::Script::SubscriberMailer->new->send_verify;
     is ( $transport->delivery_count, 5, 'Verify not sent to unsubscribed emails' );
 };
