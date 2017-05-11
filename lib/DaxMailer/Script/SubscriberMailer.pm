@@ -288,6 +288,7 @@ sub send_verify {
             ->campaign( $campaign )
             ->unverified( $self->campaigns->{ $campaign }->{single_opt_in} )
             ->verification_mail_unsent_for( $campaign )
+            ->subscribed
             ->all;
 
         for my $subscriber ( @subscribers ) {
