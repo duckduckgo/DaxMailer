@@ -8,7 +8,7 @@ table 'subscriber_maillog';
 
 primary_column email_address => { data_type => 'text' };
 primary_column campaign      => { data_type => 'text' };
-primary_column email_id      => { data_type => 'char', size => 1 };
+primary_column email_id      => { data_type => 'text' };
 
 column sent => {
     data_type => 'timestamptz',
