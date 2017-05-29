@@ -1,0 +1,17 @@
+    <h2><: $vars.message :></h2>
+    <form method="POST">
+        <h3>Send a test run of all mails</h3>
+        email address: <input type="text" name="email" value="<: $params['email'] :>"><br />
+        campaign : <: $params['campaign'] :><select id="campaign">
+            : my $campaigns = { a => 'Extension flow', b => 'Other flow', c => 'Spread page' }
+            : for $campaigns.keys() -> $c {
+                <option value="<: $c :>" <: $c == $params['campaign'] ? 'selected="selected"' : '' :>>
+                    : $campaigns[$c]
+                </option>
+            : }
+        </select><br />
+        from (Spread page): <input type='text' name="from" value="<: $params['from'] :>"><: $params['from'] :></textarea><br />
+        Which email? <input type="text" name="which" value="<: $params['which'] :>"><br />
+        <input type="submit" name="submit">
+    </form>
+

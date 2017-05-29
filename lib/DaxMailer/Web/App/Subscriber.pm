@@ -69,19 +69,12 @@ any '/testrun/**' => http_basic_auth required => sub {
     pass;
 };
 
+get '/testrun' => sub {
+    template 'email/testrun.tx';
+};
+
 get '/testrun/:campaign' => sub {
-    return <<'TESTRUN'
-    <form method="POST">
-        <h3>Send a test run of all mails</h3>
-        email: <input type="text" name="email"><br />
-        from: <textarea name="from"></textarea><br />
-        <input type="checkbox" name="verify_only" id="verify_only">
-        <label for="verify_only">
-            Only send verify stage emails
-        </label><br />
-        <input type="submit" name="submit">
-    </form>
-TESTRUN
+    forward '/testrun';
 };
 
 post '/testrun/:campaign' => sub {
