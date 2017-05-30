@@ -1,0 +1,29 @@
+<p style="margin-bottom: 1em">
+<em>We hope you enjoyed our first series of privacy tips. This email begins our second series about busting privacy myths!</em>
+</p>
+
+<p style="margin-bottom: 1em">
+  When was the last time you spoke with your friends or family about internet privacy? Sadly, for most people the answer is never. In general, people believe that only a small percentage of people care about privacy, and while we know that isn't true, it is something that keeps most people from talking about privacy!
+</p>
+
+<p style="margin-bottom: 1em">
+  In Jan 2017, the <a href="http://www.idc.com/getdoc.jsp?containerId=prUS42253017">IDC found</a> that 84% of consumers expressed concern for their personal information, and 70% reported greater concern than just a few years ago.
+</p>
+
+<p style="margin-bottom: 1em">
+  And it's not all talk. A recent study we conducted showed <a href="https://spreadprivacy.com/privacy-goes-mainstream-93464a352c59">large numbers of people</a> are also taking privacy <em>actions</em> like installing add-ons that block trackers or using DuckDuckGo!
+</p>
+
+<p style="margin-bottom: 1em">
+  So maybe you didn't share DuckDuckGo because you thought no one would care? But, now that you know most people do, it is time to stand up and spread the word.
+</p>
+
+<p style="margin-bottom: 1em">
+  Challenge: <a href="https://duckduckgo.com/spread">Share a privacy tip</a> with 3 friends or family members who you think deserve to be more private online — and no, your cat, "Whiskers J Snuggleworth the 3rd" doesn't count!  [:cat:]
+</p>
+
+<p style="margin-bottom: 1em">
+    <center><img src="https://duckduckgo.com/assets/email/snuggleworth10.jpg?atb=<: $subscriber.flow :>" alt="Picture of a cat named Whiskers J Snuggleworth the 3rd." style="max-width:572px;padding-bottom:15px;" /></center>
+</p>
+
+: include 'email/a/signature.tx'
