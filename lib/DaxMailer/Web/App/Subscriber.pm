@@ -65,39 +65,38 @@ get '/form' => sub {
 FORM
 };
 
-any '/testrun/**' => http_basic_auth required => sub {
+any qr{^/testrun} => http_basic_auth required => sub {
     pass;
 };
 
-get '/testrun/:campaign' => sub {
-    return <<'TESTRUN'
-    <form method="POST">
-        <h3>Send a test run of all mails</h3>
-        email: <input type="text" name="email"><br />
-        from: <textarea name="from"></textarea><br />
-        <input type="checkbox" name="verify_only" id="verify_only">
-        <label for="verify_only">
-            Only send verify stage emails
-        </label><br />
-        <input type="submit" name="submit">
-    </form>
-TESTRUN
+get '/testrun' => sub {
+    template 'email/testrun.tx';
 };
 
-post '/testrun/:campaign' => sub {
+get '/testrun/:campaign' => sub {
+    forward '/testrun';
+};
+
+post '/testrun' => sub {
     my $routeparams = params('route');
     my $bodyparams = params('body');
     my $email = Email::Valid->address($bodyparams->{email});
-    return unless $email;
-    my $extra = {};
-    $extra->{from} = $bodyparams->{from} if $bodyparams->{from};
-    $extra->{verify_only} = $bodyparams->{verify_only};
-    DaxMailer::Script::SubscriberMailer->new->testrun(
-        $routeparams->{campaign},
-        $bodyparams->{email},
-        $extra
-    );
-    return 'OK';
+    if ( !$email ) {
+        var( message => "Error: valid email address required" );
+    }
+    else {
+        my $extra = {};
+        $extra->{from} = $bodyparams->{from} if $bodyparams->{from};
+        $extra->{verify_only} = $bodyparams->{verify_only};
+        $extra->{which} = $bodyparams->{which};
+        DaxMailer::Script::SubscriberMailer->new->testrun(
+            $bodyparams->{campaign},
+            $bodyparams->{email},
+            $extra
+        );
+        var( message => "Email sent to " . $bodyparams->{email} );
+    }
+    forward '/testrun', {}, { method => 'GET' };
 };
 
 any '/friends' => http_basic_auth required => sub {
