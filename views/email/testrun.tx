@@ -1,5 +1,5 @@
     <h2><: $vars.message :></h2>
-    <form method="POST">
+    <form method="POST" action='/s/testrun'>
         <h3>Send a test run of all mails</h3>
         email address: <input type="text" name="email" value="<: $params['email'] :>"><br />
         campaign : <: $params['campaign'] :><select id="campaign">

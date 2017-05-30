@@ -77,7 +77,7 @@ get '/testrun/:campaign' => sub {
     forward '/testrun';
 };
 
-post '/testrun/:campaign' => sub {
+post '/testrun' => sub {
     my $routeparams = params('route');
     my $bodyparams = params('body');
     my $email = Email::Valid->address($bodyparams->{email});
