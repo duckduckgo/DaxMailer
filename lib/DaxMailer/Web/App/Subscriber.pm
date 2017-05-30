@@ -81,16 +81,22 @@ post '/testrun' => sub {
     my $routeparams = params('route');
     my $bodyparams = params('body');
     my $email = Email::Valid->address($bodyparams->{email});
-    return unless $email;
-    my $extra = {};
-    $extra->{from} = $bodyparams->{from} if $bodyparams->{from};
-    $extra->{verify_only} = $bodyparams->{verify_only};
-    DaxMailer::Script::SubscriberMailer->new->testrun(
-        $routeparams->{campaign},
-        $bodyparams->{email},
-        $extra
-    );
-    return 'OK';
+    if ( !$email ) {
+        var( message => "Error: valid email address required" );
+    }
+    else {
+        my $extra = {};
+        $extra->{from} = $bodyparams->{from} if $bodyparams->{from};
+        $extra->{verify_only} = $bodyparams->{verify_only};
+        $extra->{which} = $bodyparams->{which};
+        DaxMailer::Script::SubscriberMailer->new->testrun(
+            $bodyparams->{campaign},
+            $bodyparams->{email},
+            $extra
+        );
+        var( message => "Email sent to " . $bodyparams->{email} );
+    }
+    forward '/testrun', {}, { method => 'GET' };
 };
 
 any '/friends' => http_basic_auth required => sub {
