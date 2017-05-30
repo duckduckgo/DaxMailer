@@ -315,6 +315,8 @@ sub testrun {
         verified      => 1,
     } );
 
+    goto MAILRUNS if $extra->{which} && $extra->{which} ne 'v';
+
     if ( my $tm = $self->campaigns->{ $campaign }->{template_map} ) {
         for my $template ( sort keys $self->template_map->{ $tm } ) {
             $subscriber->extra({
@@ -330,10 +332,13 @@ sub testrun {
         $self->_send_verify_email( $subscriber, $campaign );
     }
 
-    goto VERIFYONLY if $extra->{verify_only};
+    goto VERIFYONLY if $extra->{verify_only} || $extra->{which} eq 'v';
+
+MAILRUNS:
 
     my $mails = $self->campaigns->{ $campaign }->{mails};
     for my $mail ( sort keys %{ $mails } ) {
+        next if ( $extra->{which} && $extra->{which} ne $mail );
         $self->email(
             $mail,
             $subscriber,
