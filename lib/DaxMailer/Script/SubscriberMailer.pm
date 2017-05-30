@@ -97,6 +97,11 @@ sub _build_campaigns {
                     subject  => 'Was This Useful?',
                     template => 'email/a/7.tx',
                 },
+                10 => {
+                    days     => 14,
+                    subject  => 'Nobody Cares About Privacy',
+                    template => 'email/a/10.tx',
+                },
             }
         },
         'b' => {
