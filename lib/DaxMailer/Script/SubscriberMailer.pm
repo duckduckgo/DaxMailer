@@ -357,7 +357,7 @@ sub testrun {
         $self->_send_verify_email( $subscriber, $campaign );
     }
 
-    goto VERIFYONLY if $extra->{verify_only} || $extra->{which} eq 'v';
+    goto VERIFYONLY if $extra->{verify_only} || ( $extra->{which} && $extra->{which} eq 'v' );
 
 MAILRUNS:
 
