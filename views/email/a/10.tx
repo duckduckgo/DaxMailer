@@ -1,9 +1,13 @@
 <p style="margin-bottom: 1em">
-<em>We hope you enjoyed our first series of privacy tips. This email begins our second series about busting privacy myths!</em>
+  <em>We hope you enjoyed our first series of privacy tips to help reduce your online footprint. This email begins our second series about busting privacy myths.</em>
 </p>
 
 <p style="margin-bottom: 1em">
-  When was the last time you spoke with your friends or family about internet privacy? Sadly, for most people the answer is never. In general, people believe that only a small percentage of people care about privacy, and while we know that isn't true, it is something that keeps most people from talking about privacy!
+  <b>Privacy Mythbusters #1:</b> <em>Nobody else cares about privacy!</em>
+</p>
+
+<p style="margin-bottom: 1em">
+  When was the last time you spoke with your friends or family about internet privacy? Sadly, for most people, the answer is <em>never</em>. In general, people believe that only a small percentage of people care about privacy, and while we know that isn't true, it is something that keeps most people from talking about privacy. <img src="https://i.imgur.com/tS6GHzv.png" alt="Monkey covering its mouth" />
 </p>
 
 <p style="margin-bottom: 1em">
@@ -11,7 +15,7 @@
 </p>
 
 <p style="margin-bottom: 1em">
-  And it's not all talk. A recent study we conducted showed <a href="https://spreadprivacy.com/privacy-goes-mainstream-93464a352c59">large numbers of people</a> are also taking privacy <em>actions</em> like installing add-ons that block trackers or using DuckDuckGo!
+  And it's not all talk. A recent study we conducted showed <a href="https://spreadprivacy.com/privacy-goes-mainstream-93464a352c59">large numbers of people</a> are also taking privacy actions like installing add-ons that block trackers or using DuckDuckGo.
 </p>
 
 <p style="margin-bottom: 1em">
@@ -19,11 +23,12 @@
 </p>
 
 <p style="margin-bottom: 1em">
-  Challenge: <a href="https://duckduckgo.com/spread">Share a privacy tip</a> with 3 friends or family members who you think deserve to be more private online — and no, your cat, "Whiskers J Snuggleworth the 3rd" doesn't count!  [:cat:]
+  <strong>Challenge</strong>: <a href="https://www.duckduckgo.com/spread">Share a privacy tip</a> with 3 friends or family members who you think deserve to be more private online — and no, your cat, "<em>Whiskers J. Snuggleworths the 3rd</em>" doesn't count!
 </p>
 
 <p style="margin-bottom: 1em">
-    <center><img src="https://duckduckgo.com/assets/email/snuggleworth10.jpg?atb=<: $subscriber.flow :>" alt="Picture of a cat named Whiskers J Snuggleworth the 3rd." style="max-width:572px;padding-bottom:15px;" /></center>
+  <center><img src="https://duckduckgo.com/assets/email/snuggleworth10.jpg?atb=<: $subscriber.flow :>" height=15% width=20% alt="Picture of a cat named Whiskers J Snuggleworth the third." /><br />
+  <em>Fig 1: Whiskers J. Snuggleworths III.</em></p></center>
 </p>
 
 : include 'email/a/signature.tx'

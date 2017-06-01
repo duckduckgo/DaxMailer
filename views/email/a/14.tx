@@ -1,0 +1,22 @@
+<p style="margin-bottom: 1em">
+  <strong>Privacy Mythbusters #5:</strong> <em>I own my personal information</em>
+</p>
+
+<p style="margin-bottom: 1em">
+  When you sign up for a website, you're often presented with a "Terms of Service" that outlines how your data is collected and used. But, did you know that all that information about you, that you work so hard to protect, is rarely ever your exclusive legal property? <img src="https://i.imgur.com/vJjgOA3.png" width=20px/>
+</p>
+
+<p style="margin-bottom: 1em">
+  Most websites demand a <em>perpetual license</em> to your information, with rights to use it as they see fit. Some websites even grant themselves the right to sell your data individually, or even use your personal photos in an advertisements for their service, all without your permission!
+</p>
+
+
+<p style="margin-bottom: 1em">
+  The site "<a href="https://tosdr.org/#search=duckduckgo">Terms of Service; Didn't Read</a>" helps to summarize and rate terms of services for popular sites. For example, look at DuckDuckGo compared to Google.
+</p>
+
+<p style="margin-bottom: 1em">
+  <center><img src="https://duckduckgo.com/assets/email/tosdr14.jpg?atb=<: $subscriber.flow :>" width=75% alt="Screenshot of the TOSDR rating for Google (C) and DuckDuckGo (A)" /></center>
+</p>
+
+: include 'email/a/signature.tx'

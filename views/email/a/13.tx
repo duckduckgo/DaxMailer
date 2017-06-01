@@ -1,0 +1,26 @@
+<p style="margin-bottom: 1em">
+  <strong>Privacy Mythbusters #4:</strong> <em>I can't be identified just by browsing a website!</em>
+</p>
+
+<p style="margin-bottom: 1em">
+  When we first released <a href="https://spreadprivacy.com/private-browsing-9276d6d16ea4">our study on private browsing modes</a>, a lot of people were shocked to see that websites could <em>still</em> track them even when they blocked cookies and used private browsing (aka "incognito mode").
+</p>
+
+<p style="margin-bottom: 1em">
+  To see for yourself, check out <a href="http://nothingprivate.ml">Nothing Private</a>, an example site that showcases private browsing tracking in the real world. <img src="https://i.imgur.com/nRrtEfW.png"/>
+</p>
+
+<p style="margin-bottom: 1em">
+  The main method used to uniquely identify and track people while using private browsing is called "browser fingerprinting." Just like each person has a unique fingerprint, so does every browser. Websites can look at version numbers of your browser, the plugins it uses, and dozens of other points of browser information to create a unique string, a <em>browser fingerprint</em>, that can then be used to track you.
+</p>
+
+<p style="margin-bottom: 1em">
+  Want to see some of the more interesting things that can be used in browser fingerprinting? Check out the interactive site <a href="https://clickclickclick.click/">ClickClickClick</a> that shows you this information as you interact it in real time, it's spooky!
+</p>
+
+<p style="margin-bottom: 1em">
+  <center><img src="https://duckduckgo.com/assets/email/ghostdog13.jpg?atb=<: $subscriber.flow :>" width=75% alt="A dog dressed up as a ghost." /><br />
+  <em>Fig 1: Spookers - The Spooky Internet Tracking Dog</em></center>
+</p>
+
+: include 'email/a/signature.tx'

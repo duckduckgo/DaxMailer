@@ -99,8 +99,33 @@ sub _build_campaigns {
                 },
                 10 => {
                     days     => 14,
-                    subject  => 'Nobody Cares About Privacy',
+                    subject  => 'Privacy Mythbusters #1: Nobody else cares about privacy!',
                     template => 'email/a/10.tx',
+                },
+                11 => {
+                    days     => 16,
+                    subject  => 'Privacy Mythbusters #2: My password keeps me safe',
+                    template => 'email/a/11.tx',
+                },
+                12 => {
+                    days     => 18,
+                    subject  => 'Privacy Mythbusters #3: Anonymized data is safe, right?',
+                    template => 'email/a/12.tx',
+                },
+                13 => {
+                    days     => 20,
+                    subject  => 'Privacy Mythbusters #4: I can\'t be identified just by browsing a website!',
+                    template => 'email/a/13.tx',
+                },
+                14 => {
+                    days     => 22,
+                    subject  => 'Privacy Mythbusters #5: I own my personal information',
+                    template => 'email/a/14.tx',
+                },
+                15 => {
+                    days     => 24,
+                    subject  => 'Privacy Mythbusters #6: Security equals privacy!',
+                    template => 'email/a/15.tx',
                 },
             }
         },

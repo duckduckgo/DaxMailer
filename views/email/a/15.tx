@@ -1,0 +1,30 @@
+<p style="margin-bottom: 1em">
+  <strong>Privacy Mythbusters #6:</strong> <em>Security equals privacy!</em>
+</p>
+
+<p style="margin-bottom: 1em">
+  When we talk about online privacy, we often hear responses like: "<em>I'm protected by my antvirus software, spam filter, etc.</em>" While security software is important in staying safe online, it is a common misconception that <em>security = privacy</em>. It does not. <img src="https://i.imgur.com/SDrh53w.png" style="width:25px" />
+</p>
+
+<p style="margin-bottom: 1em">
+  A great example is Google's ad network. While connections to it are securely encrypted, Google's trackers <a href="https://spreadprivacy.com/retargeting-3edceae5496">still appear on 75%</a> of the top million websites, tracking you across the web, inundating you with highly targeted ads that follow you everywhere. There is security, but no privacy.
+</p>
+
+<p style="margin-bottom: 1em">
+  Another example is the antivirus company AVG (owned by Avast). In 2015, they updated their privacy policy to be more  "transparent". Wired magazine <a href="https://www.wired.co.uk/article/avg-privacy-policy-browser-search-data">rightfully noted</a> something alarming in their new privacy policy:
+</p>
+
+<p style="margin-bottom: 1em">
+  <center><img src="https://i.imgur.com/0Ec19kd.png" style="border:1px solid #333333;border-radius:8px;" alt="Quote from the Wired article about AVG's privacy policy change." /></center>
+</p>
+
+<p style="margin-bottom: 1em">
+  Security without privacy is like having a house made of bullet-proof glass. Sure, no one is getting inside, but your personal life is still on display.
+</p>
+
+<p style="margin-bottom: 1em">
+  <center><img src="https://duckduckgo.com/assets/email/houseofglass15.jpg?atb=<: $subscriber.flow :>" width=50% alt="A small demonstration house with glass walls." /><br />
+  <em>Fig 1: Stalker-friendly House of Glass</center>
+</p>
+
+: include 'email/a/signature.tx'
