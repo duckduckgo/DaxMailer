@@ -15,7 +15,7 @@
 </p>
 
 <p style="margin-bottom: 1em">
-  <center><img src="https://duckduckgo.com/assets/email/tosdr14.png?atb=<: $subscriber.flow :>" width=75% alt="Screenshot of the TOSDR rating for Google (C) and DuckDuckGo (A)" /></center>
+  <center><img src="https://duckduckgo.com/assets/email/tosdr14.png?atb=<: $subscriber.flow :>" width=100% alt="Screenshot of the TOSDR rating for Google (C) and DuckDuckGo (A)" /></center>
 </p>
 
 : include 'email/a/signature.tx'
