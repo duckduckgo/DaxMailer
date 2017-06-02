@@ -29,7 +29,7 @@
 <p>
 
 <p style="margin-bottom: 1em">
-  <center><img src="https://duckduckgo.com/assets/email/pwned11.jpg?atb=<: $subscriber.flow :>" alt="Car getting pwned by Mother Nature" style="max-width:572px;padding-bottom:15px;" /></center>
+  <center><img src="https://duckduckgo.com/assets/email/pwned11.jpg?atb=<: $subscriber.flow :>" alt="Car getting pwned by Mother Nature" width=75% /></center>
 </p>
 
 <p style="margin-bottom: 1em">
