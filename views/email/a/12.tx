@@ -25,7 +25,7 @@
 </p>
 
 <p style="margin-bottom: 1em">
-  <center><img src="https://duckduckgo.com/assets/email/hiding12.jpg?atb=<: $subscriber.flow :>" width=35% alt="A child trying to hide behind a tree but still visible." /><br />
+  <center><img src="https://duckduckgo.com/assets/email/hiding12.jpg?atb=<: $subscriber.flow :>" width=50% alt="A child trying to hide behind a tree but still visible." /><br />
   <em>Fig 1: Hide and Seek Champion</em></center>
 </p>
 
