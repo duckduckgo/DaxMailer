@@ -92,11 +92,6 @@ sub _build_campaigns {
                     subject  => 'Who Decides What Websites You Visit?',
                     template => 'email/a/6.tx',
                 },
-                7 => {
-                    days     => 12,
-                    subject  => 'Was This Useful?',
-                    template => 'email/a/7.tx',
-                },
                 10 => {
                     days     => 14,
                     subject  => 'Privacy Mythbusters #1: Nobody else cares about privacy!',
