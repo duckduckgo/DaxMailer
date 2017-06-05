@@ -1,9 +1,9 @@
 <p style="margin-bottom: 1em">
-  <strong>Privacy Mythbusters #3:</strong> <em>Anonymized data is safe, right?</em>
+  <strong>Privacy Mythbusters #3:</strong> <em>Anonymized data is safe, right?</em> (Er, think again)
 </p>
 
 <p style="margin-bottom: 1em">
-  Companies often tell you that sharing your data is safe because they "anonymize" it by first removing or obfuscating your personal information. However, this depersonalization leads to only <em>partial anonymity</em>, as companies still usually store and share your data grouped together. This data group can be analyzed, and in many cases, then linked back to you, <em>individually</em>, based on its contents. <img src="https://duckduckgo.com/assets/email/emoji/detective.png?atb=<: $subscriber.flow :>" style="width:20px" alt="Detective emoji" />
+  Companies often tell you that sharing your data is safe because they "anonymize" it by first removing or obfuscating your personal information. However, this depersonalization leads to only <em>partial anonymity</em>, as companies still usually store and share your data grouped together. This data group can be analyzed, and in many cases, then linked back to you, <em>individually</em>, based on its contents. <img src="https://duckduckgo.com/assets/email/emoji/detective.png?atb=<: $subscriber.flow :>" style="height:24px;vertical-align:-7px;" alt="Detective emoji" />
 </p>
 
 <p style="margin-bottom: 1em">
@@ -11,17 +11,16 @@
 </p>
 
 <p style="margin-bottom: 1em">
-  Data deanonymization of this nature has taken place time and time again when companies release so-called anonymized data, even with really good intentions such as for research purposes. For example, even though every effort was taken to anonymize data, people were still deanonymized through:
+  Data deanonymization of this nature has taken place time and time again when companies release so-called "anonymized data", even with really good intentions such as for research purposes. For example, even though every effort was taken to anonymize data, people were still deanonymized through:
 </p>
 
 <ul style="margin-bottom: 1em">
-  <li><a href="http://archive.wired.com/politics/security/commentary/securitymatters/2007/12/securitymatters_1213">Netflix Recommendations</a></li>
+  <li><a href="https://archive.wired.com/politics/security/commentary/securitymatters/2007/12/securitymatters_1213">Netflix Recommendations</a></li>
   <li><a href="https://en.wikipedia.org/wiki/AOL_search_data_leak">AOL Search Histories</a></li>
-  <li><a href="http://www.pcworld.com/article/3022550/analytics/yahoo-has-released-a-ton-of-anonymized-user-data-to-help-machine-learning-scientists.html">Yahoo Site Interactions</a></li>
 </ul>
 
 <p style="margin-bottom: 1em">
-  Now imagine what happens when companies don't even make that effort when sharing your "anonymized data!" It's like trying to win a game of hide-and-seek like this:
+  Now imagine what happens when companies don't even make that effort when sharing your anonymized data! It's like trying to win a game of hide-and-seek like this:
 </p>
 
 <p style="margin-bottom: 1em">

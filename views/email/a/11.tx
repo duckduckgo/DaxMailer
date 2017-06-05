@@ -1,5 +1,5 @@
 <p style="margin-bottom: 1em">
-  <strong>Privacy Mythbusters #2:</strong> <em>My password keeps me safe</em>
+  <strong>Privacy Mythbusters #2:</strong> <em>My password keeps me safe.</em> (Not necessarily!)
 </p>
 
 <p style="margin-bottom: 1em">
@@ -21,7 +21,7 @@
 </ul>
 
 <p style="margin-bottom: 1em">
-  Believe it or not, there have been over <a href="https://haveibeenpwned.com/PwnedWebsites">200 major websites</a> that have had their data leaked recently, enabling your passwords to be used by hackers.
+  Believe it or not, there have been over <a href="https://haveibeenpwned.com/PwnedWebsites">200 major websites</a> that have had their data leaked over the past few years, enabling your passwords to be used by hackers.
 </p>
 
 <p style="margin-bottom: 1em">
@@ -37,9 +37,9 @@
 </p>
 
 <ul style="margin-bottom: 1em">
-  <li>Use different passwords on each website.
-  <li>Use a password manager like <a href="https://www.lastpass.com/">LastPass</a> that generates and securely stores strong passwords.
-  <li>Use two-factor authentication (2FA) wherever possible. You can check major sites at <a href="https://twofactorauth.org/">https://twofactorauth.org/</a>
+  <li>Use a different password on each website.
+  <li>Use a password manager like <a href="https://www.lastpass.com/">LastPass</a> that generates secure passwords and stores them for you safely.
+  <li>Use two-factor authentication (2FA) wherever possible. You can check if major sites have 2FA available at <a href="https://twofactorauth.org/">https://twofactorauth.org/</a>
 </ul>
 
 : include 'email/a/signature.tx'
