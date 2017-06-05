@@ -28,7 +28,7 @@
 
 <p style="margin-bottom: 1em">
   <center><img src="https://duckduckgo.com/assets/email/snuggleworth10.jpg?atb=<: $subscriber.flow :>" width=50% alt="Picture of a cat named Whiskers J Snuggleworths the third." /><br />
-  <em>Fig 1: Whiskers J. Snuggleworths III.</em></p></center>
+  <em>Fig 1: Whiskers J. Snuggleworths III.</em></center>
 </p>
 
 : include 'email/a/signature.tx'
