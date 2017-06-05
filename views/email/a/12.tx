@@ -1,5 +1,5 @@
 <p style="margin-bottom: 1em">
-  <strong>Privacy Mythbusters #3:</strong> <em>Anonymized data is safe, right?</em> (Er, think again)
+  <strong>Privacy Mythbusters #3:</strong> <em>Anonymized data is safe, right?</em> (Er, no.)
 </p>
 
 <p style="margin-bottom: 1em">
@@ -7,20 +7,15 @@
 </p>
 
 <p style="margin-bottom: 1em">
-  Deanonymizing data has been studied for a long time. In 1990, Carnegie Mellon University researcher Latanya Sweeny <a href="https://dataprivacylab.org/projects/identifiability/paper1.pdf">showed that</a> with just a list of gender, date of birth, and five digit zip code, you can uniquely identify, thereby deanonymizing, 87% of Americans.
+  Deanonymizing data has been studied for a long time. In 1990, Carnegie Mellon University researcher Latanya Sweeny <a href="https://dataprivacylab.org/projects/identifiability/paper1.pdf">showed that</a> with just a list of gender, date of birth, and five digit zip code, you can uniquely identify, thereby deanonymizing, 87% of Americans!
 </p>
 
 <p style="margin-bottom: 1em">
-  Data deanonymization of this nature has taken place time and time again when companies release so-called "anonymized data", even with really good intentions such as for research purposes. For example, even though every effort was taken to anonymize data, people were still deanonymized through:
+  Data deanonymization of this nature has taken place time and time again when companies release so-called "anonymized data," even with really good intentions such as for research purposes. For example, even though every effort was taken to anonymize data, people were still deanonymized through <a href="https://archive.wired.com/politics/security/commentary/securitymatters/2007/12/securitymatters_1213">Netflix Recommendations</a> and <a href="https://en.wikipedia.org/wiki/AOL_search_data_leak">AOL Search Histories</a>.
 </p>
 
-<ul style="margin-bottom: 1em">
-  <li><a href="https://archive.wired.com/politics/security/commentary/securitymatters/2007/12/securitymatters_1213">Netflix Recommendations</a></li>
-  <li><a href="https://en.wikipedia.org/wiki/AOL_search_data_leak">AOL Search Histories</a></li>
-</ul>
-
 <p style="margin-bottom: 1em">
-  Now imagine what happens when companies don't even make that effort when sharing your anonymized data! It's like trying to win a game of hide-and-seek like this:
+  Now imagine what happens when companies don't even make that effort when sharing your anonymized data. It's like trying to win a game of hide-and-seek like this:
 </p>
 
 <p style="margin-bottom: 1em">
@@ -29,7 +24,7 @@
 </p>
 
 <p style="margin-bottom: 1em">
-  The only truly anonymized data is no data. That's why at DuckDuckGo we throw out your personal information every time you search, making sure we don't store anything that could be tied together to identify you. We protect your search history from everyone — even us!
+  The only truly anonymized data is <strong>no data</strong>. That's why at DuckDuckGo we throw out your personal information every time you search, making sure we don't store anything that could be tied together to identify you. We protect your search history from everyone — even us!
 </p>
 
 : include 'email/a/signature.tx'

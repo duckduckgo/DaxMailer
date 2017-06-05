@@ -6,7 +6,7 @@
   If you've ever used the same password on more than one website, then your accounts may be compromised due to data leaks. Once a hacker gets your login information from a single site, they can try it on other sites. Many hackers use automated tools to cycle through leaked password lists, trying them on many popular websites.
 </p>
 
-<p style="margin-bottom: 1em">
+<p style="margin-bottom: 0.1em">
   You may have heard of a few of the high profile data leaks in the past few years, such as:
 </p>
 
@@ -32,7 +32,7 @@
   <center><img src="https://duckduckgo.com/assets/email/pwned11.jpg?atb=<: $subscriber.flow :>" alt="Car getting pwned by Mother Nature" width=75% /></center>
 </p>
 
-<p style="margin-bottom: 1em">
+<p style="margin-bottom: 0.1em">
   How can you stay safe in a world of data leaks?
 </p>
 
