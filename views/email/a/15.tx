@@ -24,7 +24,7 @@
 
 <p style="margin-bottom: 1em">
   <center><img src="https://duckduckgo.com/assets/email/houseofglass15.jpg?atb=<: $subscriber.flow :>" width=100% alt="A small demonstration house with glass walls." /><br />
-  <em>Fig 1: Stalker-friendly House of Glass</center>
+  <em>Fig 1: Stalker-friendly House of Glass</em></center>
 </p>
 
 : include 'email/a/signature.tx'
