@@ -73,7 +73,6 @@ sub verify {
     return unless ( $key eq $self->v_key );
     $self->update({
         verified => 1,
-        created  => $self->now,
     });
 }
 

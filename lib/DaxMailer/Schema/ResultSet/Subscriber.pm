@@ -70,6 +70,22 @@ sub mail_unsent {
     } );
 }
 
+sub mail_sent_days_ago {
+    my ( $self, $campaign, $email, $days ) = @_;
+    my $sent= $self->format_datetime( DateTime->now->subtract( days => ( $days - 1 ) )->truncate( to => 'day' ) );
+    $self->search_rs( {
+        'me.email_address' => { -in => \[
+                'SELECT email_address
+                 FROM subscriber_maillog
+                 WHERE campaign = ?
+                 AND email_id = ?
+                 AND sent < ?',
+                ( $campaign, $email, $sent )
+            ],
+        }
+    } );
+}
+
 sub verification_mail_unsent_for {
     my ( $self, $campaign ) = @_;
     $self->search_rs( {
