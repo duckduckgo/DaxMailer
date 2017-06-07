@@ -251,7 +251,9 @@ sub send_campaign {
         next if !$self->campaigns->{ $campaign }->{live};
         my @mail_map = (
             'v',
-            sort { $a <=> $b } keys %{ $self->campaigns->{ $campaign }->{mails} }
+            sort { $a <=> $b }
+            grep { /^[0-9]+$/ }
+            keys %{ $self->campaigns->{ $campaign }->{mails} }
         );
         for my $i ( 1..$#mail_map ) {
             my $mail = $mail_map[ $i ];
