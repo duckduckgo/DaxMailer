@@ -62,6 +62,14 @@ test_psgi $app => sub {
         test1@duckduckgo.com
         test2@duckduckgo.com
         test3@duckduckgo.com
+    / ) {
+        ok( $cb->(
+            POST '/s/a',
+            [ email => $email, campaign => 'b', flow => 'flow1' ]
+        )->is_success, "Adding subscriber : $email" );
+    }
+
+    for my $email (qw/
         test4@duckduckgo.com
         test5@duckduckgo.com
         test6@duckduckgo.com
