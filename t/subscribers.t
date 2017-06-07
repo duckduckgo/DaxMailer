@@ -18,7 +18,6 @@ use t::lib::DaxMailer::TestUtils;
 use DaxMailer::Web::App::Subscriber;
 use DaxMailer::Base::Web::Common;
 use DaxMailer::Script::SubscriberMailer;
-use DaxMailer::Script::RescheduleMissed;
 use URI;
 
 t::lib::DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
@@ -206,71 +205,6 @@ test_psgi $app => sub {
         done_testing;
     };
 
-    subtest 'reschedule missed' => sub {
-        my $add = sub {
-            my ( $e, $c ) = @_;
-            $c ||= 'a';
-            ok( $cb->(
-                POST '/s/a',
-                [ email => $e, campaign => $c, flow => 'flow1' ]
-            )->is_success, "Adding subscriber : $e" );
-        };
-
-        set_absolute_time('2017-09-01T12:00:00Z');
-        $add->( 'test1000@duckduckgo.com' );
-        DaxMailer::Script::SubscriberMailer->new->send_verify;
-        $add->( 'test1001@duckduckgo.com', 'c' );
-
-        set_absolute_time('2017-09-05T12:00:00Z');
-        DaxMailer::Script::RescheduleMissed->new->go;
-        $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
-        is( $transport->delivery_count, 1, 'Rescheduled mail sent' );
-        my $email = ( $transport->deliveries )[0];
-        is( $email->{email}->get_header('Subject'), 'Are Ads Following You?',
-            'Correct rescheduled mail sent');
-
-        $transport = DaxMailer::Script::SubscriberMailer->new->send_verify;
-        is( $transport->delivery_count, 1, 'Rescheduled verify mail sent' );
-        $email = ( $transport->deliveries )[0];
-        is( $email->{email}->get_header('Subject'), 'Tracking in Incognito?',
-            'Correct rescheduled verify mail sent');
-        _verify($cb, 'test1001@duckduckgo.com', 'c');
-        _unsubscribe($cb, 'test1000@duckduckgo.com', 'a');
-
-        set_absolute_time('2017-09-06T12:00:00Z');
-        $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
-        $email = ( $transport->deliveries )[0];
-        is( $email->{email}->get_header('Subject'), 'Tracking in Incognito?',
-            'Correct mail sent');
-
-        set_absolute_time('2017-09-07T12:00:00Z');
-        $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
-        $email = ( $transport->deliveries )[0];
-        is( $email->{email}->get_header('Subject'), 'Are Ads Following You?',
-            'Correct mail sent');
-
-        set_absolute_time('2017-09-09T12:00:00Z');
-        $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
-        $email = ( $transport->deliveries )[0];
-        is( $email->{email}->get_header('Subject'), 'Are Ads Costing You Money?',
-            'Correct mail sent');
-
-        set_absolute_time('2017-09-11T12:00:00Z');
-        $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
-        $email = ( $transport->deliveries )[0];
-        is( $email->{email}->get_header('Subject'), 'Have You Deleted Your Google Search History Yet?',
-            'Correct mail sent');
-
-        set_absolute_time('2017-09-17T12:00:00Z');
-        DaxMailer::Script::RescheduleMissed->new->go;
-        $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
-        $email = ( $transport->deliveries )[0];
-        is( $email->{email}->get_header('Subject'), 'Is Your Data Being Sold?',
-            'Correct rescheduled mail sent');
-
-        done_testing;
-
-    }
 };
 
 done_testing;

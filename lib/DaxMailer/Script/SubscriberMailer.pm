@@ -247,9 +247,9 @@ sub email_plaintext {
 sub send_campaign {
     my ( $self ) = @_;
 
-    for my $campaign ( keys %{ $self->campaigns } ) {
+    for my $campaign ( sort keys %{ $self->campaigns } ) {
         next if !$self->campaigns->{ $campaign }->{live};
-        for my $mail ( keys %{ $self->campaigns->{ $campaign }->{mails} } ) {
+        for my $mail ( sort { $a <=> $b } keys %{ $self->campaigns->{ $campaign }->{mails} } ) {
             my @subscribers = rset('Subscriber')
                 ->campaign( $campaign )
                 ->subscribed
@@ -362,7 +362,7 @@ sub testrun {
 MAILRUNS:
 
     my $mails = $self->campaigns->{ $campaign }->{mails};
-    for my $mail ( sort keys %{ $mails } ) {
+    for my $mail ( sort { $a <=> $b } keys %{ $mails } ) {
         next if ( $extra->{which} && $extra->{which} ne $mail );
         $self->email(
             $mail,
