@@ -127,21 +127,21 @@ test_psgi $app => sub {
 
     set_absolute_time('2016-10-21T12:00:00Z');
     $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
-    is( $transport->delivery_count, 0, '0 received emails - non scheduled' );
+    is( $transport->delivery_count, 2, '2 received - campaign c mail 2' );
 
-    _unsubscribe($cb, 'test2@duckduckgo.com', 'a');
+    _unsubscribe($cb, 'test2@duckduckgo.com', 'b');
     _verify($cb, 'lateverify@duckduckgo.com', 'c');
 
     set_absolute_time('2016-10-22T12:00:00Z');
     $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
-    is( $transport->delivery_count, 8, '8 received emails - one unsubscribed, one verified' );
+    is( $transport->delivery_count, 6, '6 received emails - one unsubscribed, one verified' );
 
     $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
     is( $transport->delivery_count, 0, 'Emails not re-sent' );
 
     set_absolute_time('2016-10-23T12:00:00Z');
     $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
-    is( $transport->delivery_count, 1, '1 received email - late verify, rescheduled' );
+    is( $transport->delivery_count, 3, '3 received emails - late verify, rescheduled' );
 
     $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
     is( $transport->delivery_count, 0, 'Emails not re-sent' );
