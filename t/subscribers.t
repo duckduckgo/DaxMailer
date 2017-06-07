@@ -157,7 +157,6 @@ test_psgi $app => sub {
             flow => 'flow1',
             to => join ',', (
                 qw{
-                    test6@duckduckgo.com
                     test100@duckduckgo.com
                     test101@duckduckgo.com
                     test102@duckduckgo.com
@@ -177,6 +176,7 @@ test_psgi $app => sub {
     _verify($cb, 'test101@duckduckgo.com', 'c');
 
     set_absolute_time('2017-04-01T12:00:00Z');
+    DaxMailer::Script::SubscriberMailer->new->send_campaign;
     _verify($cb, 'test102@duckduckgo.com', 'c');
 
     set_absolute_time('2017-04-02T12:00:00Z');
