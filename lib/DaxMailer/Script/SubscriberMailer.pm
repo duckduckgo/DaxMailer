@@ -259,6 +259,8 @@ sub send_campaign {
             my $mail = $mail_map[ $i ];
             my $prev_mail = $mail_map[ $i -1 ];
             my $days = $self->campaigns->{ $campaign }->{mails}->{ $mail }->{days};
+            $days -= $self->campaigns->{ $campaign }->{mails}->{ $prev_mail }->{days}
+                if $self->campaigns->{ $campaign }->{mails}->{ $prev_mail }->{days};
             my @subscribers = rset('Subscriber')
                 ->campaign( $campaign )
                 ->subscribed
