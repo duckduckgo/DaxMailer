@@ -249,14 +249,21 @@ sub send_campaign {
 
     for my $campaign ( sort keys %{ $self->campaigns } ) {
         next if !$self->campaigns->{ $campaign }->{live};
-        for my $mail ( sort { $a <=> $b } keys %{ $self->campaigns->{ $campaign }->{mails} } ) {
+        my @mail_map = (
+            'v',
+            sort { $a <=> $b } keys %{ $self->campaigns->{ $campaign }->{mails} }
+        );
+        for my $i ( 1..$#mail_map ) {
+            my $mail = $mail_map[ $i ];
+            my $prev_mail = $mail_map[ $i -1 ];
+            my $days = $self->campaigns->{ $campaign }->{mails}->{ $mail }->{days};
             my @subscribers = rset('Subscriber')
                 ->campaign( $campaign )
                 ->subscribed
                 ->verified
                 ->unbounced
                 ->mail_unsent( $campaign, $mail )
-                ->by_days_ago( $self->campaigns->{ $campaign }->{mails}->{ $mail }->{days} )
+                ->mail_sent_days_ago( $campaign, $prev_mail, $days )
                 ->all;
 
             for my $subscriber ( @subscribers ) {
