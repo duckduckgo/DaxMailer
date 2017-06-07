@@ -148,6 +148,8 @@ test_psgi $app => sub {
 
     set_absolute_time('2017-03-31T12:00:00Z');
 
+    rset('Subscriber')->delete;
+
     ok( $cb->(
         POST '/s/a',
         [   from => 'Your good pal',
