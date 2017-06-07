@@ -362,7 +362,7 @@ sub testrun {
 MAILRUNS:
 
     my $mails = $self->campaigns->{ $campaign }->{mails};
-    for my $mail ( sort keys %{ $mails } ) {
+    for my $mail ( sort { $a <=> $b } keys %{ $mails } ) {
         next if ( $extra->{which} && $extra->{which} ne $mail );
         $self->email(
             $mail,
