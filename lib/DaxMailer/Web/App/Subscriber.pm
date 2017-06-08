@@ -50,17 +50,26 @@ get '/v/:campaign/:email/:key' => sub {
 };
 
 get '/form' => sub {
-    my $c = param('c') || 'a';
     return <<"FORM"
     <form method="POST" action="/s/a">
         email: <input type="text" name="email"><br />
+        campaign: <select name="campaign">
+            <option value='a'>Extension</option>
+            <option value='b'>Non-extension</option>
+            <option value='c'>Spread</option>
+        </select></br>
+        from (Spread): <input type="text" name="from"><br />
+        template (Spread): <select name="template">
+            <option value='1'>Private browsing myths</option>
+            <option value='2'>Ads Cost You Money</option>
+            <option value='3'>Delete Your Google History</option>
+        </select><br />
+        <input type="hidden" name="flow" value="form">
         <input type="checkbox" name="page" id="page">
         <label for="page">
-            Page
+            Return Page
         </label><br />
         <input type="submit" name="submit">
-        <input type="hidden" name="campaign" value="$c">
-        <input type="hidden" name="flow" value="form">
     </form>
 FORM
 };
