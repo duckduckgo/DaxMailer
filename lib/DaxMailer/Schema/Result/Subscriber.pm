@@ -29,6 +29,12 @@ has_many logs => 'DaxMailer::Schema::Result::Subscriber::MailLog' => {
     'foreign.campaign'      => 'self.campaign',
 };
 
+has_many bounce => 'DaxMailer::Schema::Result::Subscriber::Bounce' => {
+    'foreign.email_address' => 'self.email_address',
+} => {
+    join_type     => "LEFT",
+};
+
 around new => sub {
     my $orig = shift;
     my $self = shift;
