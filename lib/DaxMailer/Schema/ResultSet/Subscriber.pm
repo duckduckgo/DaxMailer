@@ -8,28 +8,28 @@ use DateTime::Duration;
 
 sub campaign {
     my ( $self, $c ) = @_;
-    $self->search_rs( { campaign => $c } );
+    $self->search_rs( { $self->me('campaign') => $c } );
 }
 
 sub subscribed {
     my ( $self ) = @_;
-    $self->search_rs( { unsubscribed => 0 } );
+    $self->search_rs( { $self->me('unsubscribed') => 0 } );
 }
 
 sub unsubscribed {
     my ( $self ) = @_;
-    $self->search_rs( { unsubscribed => 1 } );
+    $self->search_rs( { $self->me('unsubscribed') => 1 } );
 }
 
 sub verified {
     my ( $self ) = @_;
-    $self->search_rs( { verified => 1 } );
+    $self->search_rs( { $self->me('verified') => 1 } );
 }
 
 sub unverified {
     my ( $self, $single_opt_in ) = @_;
     return $self->verified if $single_opt_in;
-    $self->search_rs( { verified => 0 } );
+    $self->search_rs( { $self->me('verified') => 0 } );
 }
 
 sub bounced {
