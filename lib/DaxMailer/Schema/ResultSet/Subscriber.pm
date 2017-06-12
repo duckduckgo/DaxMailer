@@ -36,7 +36,7 @@ sub bounced {
     my ( $self ) = @_;
     $self->search_rs({
         'me.email_address' => {
-            -in => $self->rs('Subscriber::Bounce')
+            -in => $self->search_related_rs('bounce')
                             ->bounced
                             ->get_column('email_address')
                             ->as_query
@@ -48,7 +48,7 @@ sub unbounced {
     my ( $self ) = @_;
     $self->search_rs({
         'me.email_address' => {
-            -not_in => $self->rs('Subscriber::Bounce')
+            -not_in => $self->search_related_rs('bounce')
                             ->bounced
                             ->get_column('email_address')
                             ->as_query
@@ -63,6 +63,7 @@ sub mail_unsent {
                 'SELECT email_address
                  FROM subscriber_maillog
                  WHERE campaign = ?
+                 AND email_address = me.email_address
                  AND email_id = ?',
                 ( $campaign, $email )
             ],
@@ -78,6 +79,7 @@ sub mail_sent_days_ago {
                 'SELECT email_address
                  FROM subscriber_maillog
                  WHERE campaign = ?
+                 AND email_address = me.email_address
                  AND email_id = ?
                  AND sent < ?',
                 ( $campaign, $email, $sent )
@@ -93,6 +95,7 @@ sub verification_mail_unsent_for {
                 'SELECT email_address
                  FROM subscriber_maillog
                  WHERE campaign = ?
+                 AND email_address = me.email_address
                  AND email_id = \'v\'',
                 $campaign
             ],
