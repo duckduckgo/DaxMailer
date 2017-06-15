@@ -32,3 +32,7 @@
 </p>
 
 : include 'email/a/signature.tx'
+
+<p>
+  <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
+</p>

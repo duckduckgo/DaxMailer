@@ -3,4 +3,9 @@
 <p style="margin-bottom: 1em">
 Now you don't have to be part of that statistic - welcome to the Duck Side!
 </p>
+
 : include 'email/a/signature.tx'
+
+<p>
+  <a href="https://spreadprivacy.com/incognito-28f10bb88554">View this on our blog</a> | <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
+</p>
