@@ -188,6 +188,9 @@
                 font-weight:normal;
                 text-decoration:underline;
             }
+            .footerContent.unsubscribe {
+                font-size:14px;
+            }
             /*  MOBILE STYLES  */
             @media only screen and (max-width: 480px){
                 /*  CLIENT-SPECIFIC MOBILE STYLES */
@@ -309,8 +312,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td valign="top" class="footerContent" style="padding-top:0; padding-bottom:5px;">
-                                                <a href="<: $subscriber.unsubscribe_url :>">unsubscribe</a>
+                                            <td valign="top" class="footerContent unsubscribe" style="padding-top:0; padding-bottom:5px;">
+                                                <a href="<: $subscriber.unsubscribe_url :>">Unsubscribe</a>
                                             </td>
                                         </tr>
                                     </table>
