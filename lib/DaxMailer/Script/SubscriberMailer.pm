@@ -391,6 +391,10 @@ VERIFYONLY:
 
 sub add {
     my ( $self, $params ) = @_;
+
+    # Silently reject friends signups
+    return 1 if ( lc($params->{campaign}) eq 'c' && !$ENV{DAXMAILER_MAIL_TEST} );
+
     my $unsubscribed = 0;
     $unsubscribed = 1 if (
         $params->{from} &&
