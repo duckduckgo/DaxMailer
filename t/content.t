@@ -25,7 +25,7 @@ sub find_verify_link {
 sub find_unsub_link {
     my ( $email ) = @_;
     my $tree = HTML::TreeBuilder::XPath->new_from_content( html_body( $email ) );
-    ( grep { $_->content->[0] eq 'unsubscribe' } $tree->findnodes('//a') )[0];
+    ( grep { lc($_->content->[0]) eq 'unsubscribe' } $tree->findnodes('//a') )[0];
 }
 
 my $mailer = DaxMailer::Script::SubscriberMailer->new;
