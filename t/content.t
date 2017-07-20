@@ -44,10 +44,9 @@ my @subjects = (
     "Have You Deleted Your Google Search History Yet?",
     "Is Your Data Being Sold?",
     "Who Decides What Websites You Visit?",
-    "Was This Useful?",
 );
 
-for my $email (0..9) {
+for my $email (0..8) {
     is( $emails[$email]->{email}->get_header("Subject"),
         $subjects[$email],
         sprintf( "Subject %d", $email + 1 )

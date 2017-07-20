@@ -1,0 +1,30 @@
+<p style="margin-bottom: 1em">
+  <strong>Privacy Mythbusting #4:</strong> <em>I can't be identified just by browsing a website.</em> (If only!)
+</p>
+
+<p style="margin-bottom: 1em">
+  When we first released <a href="https://spreadprivacy.com/private-browsing-9276d6d16ea4">our study on private browsing modes</a>, a lot of people were shocked to see that websites could <em>still track them</em> even when they blocked cookies and used private browsing (aka "incognito mode").
+</p>
+
+<p style="margin-bottom: 1em">
+  To see for yourself, check out <a href="http://nothingprivate.ml">Nothing Private</a>, an example site that showcases private browsing tracking in the real world. <img src="https://duckduckgo.com/assets/email/emoji/eye.png?atb=<: $subscriber.flow :>" style="height:14px;vertical-align:-2px;" alt="Emoji of an eye" />
+</p>
+
+<p style="margin-bottom: 1em">
+  The main method used to uniquely identify and track people while using private browsing is called "browser fingerprinting." Just as each person has a unique fingerprint, so does every browser. Websites can look at version numbers of your browser, the plugins it uses, and dozens of other points of browser information to create a unique ID, a <em>browser fingerprint</em>, that can then be used to track you.
+</p>
+
+<p style="margin-bottom: 1em">
+  Want to see some of the more interesting things that can be used in browser fingerprinting? Check out the interactive site <a href="https://clickclickclick.click/">ClickClickClick</a> that shows you this information as you interact with it in real time. It's spooky!
+</p>
+
+<p style="margin-bottom: 1em">
+  <center><img src="https://duckduckgo.com/assets/email/ghostdog13.jpg?atb=<: $subscriber.flow :>" width=75% alt="A dog dressed up as a ghost." /><br />
+  <em>Fig 1: Spookers - The Spooky Internet Tracking Dog</em></center>
+</p>
+
+: include 'email/a/signature.tx'
+
+<p>
+  <a href="https://spreadprivacy.com/browser-identification-45b71307f658">View this on our blog</a> | <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
+</p>

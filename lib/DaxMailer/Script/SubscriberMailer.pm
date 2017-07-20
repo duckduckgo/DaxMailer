@@ -11,6 +11,7 @@ use String::Truncate qw/ trunc /;
 use File::Spec::Functions;
 use File::Slurper qw/ read_text /;
 use Carp;
+use DaxMailer::Util::Strings;
 
 with 'DaxMailer::Base::Script::Service',
      'DaxMailer::Base::Script::ServiceEmail';
@@ -37,6 +38,11 @@ option mock_date => (
         set_absolute_time(sprintf '%sT12:00:00Z', $_[0]);
     }
 );
+
+has stringutils => ( is => 'lazy' );
+sub _build_stringutils {
+    DaxMailer::Util::Strings->new;
+}
 
 has newsletter_file => ( is => 'lazy' );
 sub _build_newsletter_file {
@@ -86,10 +92,35 @@ sub _build_campaigns {
                     subject  => 'Who Decides What Websites You Visit?',
                     template => 'email/a/6.tx',
                 },
-                7 => {
-                    days     => 12,
-                    subject  => 'Was This Useful?',
-                    template => 'email/a/7.tx',
+                10 => {
+                    days     => 18,
+                    subject  => 'Privacy Mythbusting #1: Nobody else cares about privacy!',
+                    template => 'email/a/10.tx',
+                },
+                11 => {
+                    days     => 25,
+                    subject  => 'Privacy Mythbusting #2: My password keeps me safe',
+                    template => 'email/a/11.tx',
+                },
+                12 => {
+                    days     => 31,
+                    subject  => 'Privacy Mythbusting #3: Anonymized data is safe, right?',
+                    template => 'email/a/12.tx',
+                },
+                13 => {
+                    days     => 38,
+                    subject  => 'Privacy Mythbusting #4: I can\'t be identified just by browsing a website!',
+                    template => 'email/a/13.tx',
+                },
+                14 => {
+                    days     => 45,
+                    subject  => 'Privacy Mythbusting #5: I own my personal information',
+                    template => 'email/a/14.tx',
+                },
+                15 => {
+                    days     => 53,
+                    subject  => 'Privacy Mythbusting #6: Security equals privacy!',
+                    template => 'email/a/15.tx',
                 },
             }
         },
@@ -216,16 +247,27 @@ sub email_plaintext {
 sub send_campaign {
     my ( $self ) = @_;
 
-    for my $campaign ( keys %{ $self->campaigns } ) {
+    for my $campaign ( sort keys %{ $self->campaigns } ) {
         next if !$self->campaigns->{ $campaign }->{live};
-        for my $mail ( keys %{ $self->campaigns->{ $campaign }->{mails} } ) {
+        my @mail_map = (
+            'v',
+            sort { $a <=> $b }
+            grep { /^[0-9]+$/ }
+            keys %{ $self->campaigns->{ $campaign }->{mails} }
+        );
+        for my $i ( 1..$#mail_map ) {
+            my $mail = $mail_map[ $i ];
+            my $prev_mail = $mail_map[ $i -1 ];
+            my $days = $self->campaigns->{ $campaign }->{mails}->{ $mail }->{days};
+            $days -= $self->campaigns->{ $campaign }->{mails}->{ $prev_mail }->{days}
+                if $self->campaigns->{ $campaign }->{mails}->{ $prev_mail }->{days};
             my @subscribers = rset('Subscriber')
                 ->campaign( $campaign )
                 ->subscribed
                 ->verified
                 ->unbounced
                 ->mail_unsent( $campaign, $mail )
-                ->by_days_ago( $self->campaigns->{ $campaign }->{mails}->{ $mail }->{days} )
+                ->mail_sent_days_ago( $campaign, $prev_mail, $days )
                 ->all;
 
             for my $subscriber ( @subscribers ) {
@@ -282,6 +324,7 @@ sub send_verify {
             ->campaign( $campaign )
             ->unverified( $self->campaigns->{ $campaign }->{single_opt_in} )
             ->verification_mail_unsent_for( $campaign )
+            ->subscribed
             ->all;
 
         for my $subscriber ( @subscribers ) {
@@ -308,6 +351,8 @@ sub testrun {
         verified      => 1,
     } );
 
+    goto MAILRUNS if $extra->{which} && $extra->{which} ne 'v';
+
     if ( my $tm = $self->campaigns->{ $campaign }->{template_map} ) {
         for my $template ( sort keys $self->template_map->{ $tm } ) {
             $subscriber->extra({
@@ -323,10 +368,13 @@ sub testrun {
         $self->_send_verify_email( $subscriber, $campaign );
     }
 
-    goto VERIFYONLY if $extra->{verify_only};
+    goto VERIFYONLY if $extra->{verify_only} || ( $extra->{which} && $extra->{which} eq 'v' );
+
+MAILRUNS:
 
     my $mails = $self->campaigns->{ $campaign }->{mails};
-    for my $mail ( sort keys %{ $mails } ) {
+    for my $mail ( sort { $a <=> $b } keys %{ $mails } ) {
+        next if ( $extra->{which} && $extra->{which} ne $mail );
         $self->email(
             $mail,
             $subscriber,
@@ -343,6 +391,13 @@ VERIFYONLY:
 
 sub add {
     my ( $self, $params ) = @_;
+    my $unsubscribed = 0;
+    $unsubscribed = 1 if (
+        $params->{from} &&
+        $self->stringutils->looks_like_contains_real_domains(
+            $params->{from}
+        )
+    );
     my @emails;
     @emails =
         grep { $_ }
@@ -364,6 +419,11 @@ sub add {
         if $self->campaigns->{ $params->{campaign} }->{base};
 
     for my $email ( @emails ) {
+        my $u = $unsubscribed;
+        $u = 1 if (
+            !$u &&
+            $self->stringutils->recipient_probably_not_interested( $email )
+        );
         my $exists = rset('Subscriber')->exists( $email, $campaigns );
         next if $exists;
 
@@ -372,6 +432,7 @@ sub add {
             campaign      => $params->{campaign},
             flow          => $params->{flow},
             extra         => $extra,
+            unsubscribed  => $u,
             verified      => $self->campaigns->{ $params->{campaign} }->{single_opt_in} // 0,
         } );
     }

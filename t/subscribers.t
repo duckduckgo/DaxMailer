@@ -62,6 +62,14 @@ test_psgi $app => sub {
         test1@duckduckgo.com
         test2@duckduckgo.com
         test3@duckduckgo.com
+    / ) {
+        ok( $cb->(
+            POST '/s/a',
+            [ email => $email, campaign => 'b', flow => 'flow1' ]
+        )->is_success, "Adding subscriber : $email" );
+    }
+
+    for my $email (qw/
         test4@duckduckgo.com
         test5@duckduckgo.com
         test6@duckduckgo.com
@@ -119,26 +127,28 @@ test_psgi $app => sub {
 
     set_absolute_time('2016-10-21T12:00:00Z');
     $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
-    is( $transport->delivery_count, 0, '0 received emails - non scheduled' );
+    is( $transport->delivery_count, 2, '2 received - campaign c mail 2' );
 
-    _unsubscribe($cb, 'test2@duckduckgo.com', 'a');
+    _unsubscribe($cb, 'test2@duckduckgo.com', 'b');
     _verify($cb, 'lateverify@duckduckgo.com', 'c');
 
     set_absolute_time('2016-10-22T12:00:00Z');
     $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
-    is( $transport->delivery_count, 8, '8 received emails - one unsubscribed, one verified' );
+    is( $transport->delivery_count, 6, '6 received emails - one unsubscribed, one verified' );
 
     $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
     is( $transport->delivery_count, 0, 'Emails not re-sent' );
 
     set_absolute_time('2016-10-23T12:00:00Z');
     $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
-    is( $transport->delivery_count, 1, '1 received email - late verify, rescheduled' );
+    is( $transport->delivery_count, 3, '3 received emails - late verify, rescheduled' );
 
     $transport = DaxMailer::Script::SubscriberMailer->new->send_campaign;
     is( $transport->delivery_count, 0, 'Emails not re-sent' );
 
     set_absolute_time('2017-03-31T12:00:00Z');
+
+    rset('Subscriber')->delete;
 
     ok( $cb->(
         POST '/s/a',
@@ -147,7 +157,6 @@ test_psgi $app => sub {
             flow => 'flow1',
             to => join ',', (
                 qw{
-                    test6@duckduckgo.com
                     test100@duckduckgo.com
                     test101@duckduckgo.com
                     test102@duckduckgo.com
@@ -167,6 +176,7 @@ test_psgi $app => sub {
     _verify($cb, 'test101@duckduckgo.com', 'c');
 
     set_absolute_time('2017-04-01T12:00:00Z');
+    DaxMailer::Script::SubscriberMailer->new->send_campaign;
     _verify($cb, 'test102@duckduckgo.com', 'c');
 
     set_absolute_time('2017-04-02T12:00:00Z');
@@ -203,7 +213,8 @@ test_psgi $app => sub {
         );
 
         done_testing;
-    }
+    };
+
 };
 
 done_testing;

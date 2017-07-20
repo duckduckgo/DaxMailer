@@ -91,7 +91,7 @@
             #templateHeader{
                 background-color:#FFFFFF;
                 border-top:1px solid #FFFFFF;
-                
+
             }
             /**
             * @section header text
@@ -156,6 +156,9 @@
                 height:auto;
                 max-width:560px;
             }
+            .bodyContent ul, .bodyContent ol{
+                margin-top:0;
+            }
             /* ========== Footer Styles ========== */
             /**
             * @section footer style
@@ -184,6 +187,9 @@
                 color:#0645AD;
                 font-weight:normal;
                 text-decoration:underline;
+            }
+            .footerContent.unsubscribe {
+                font-size:14px;
             }
             /*  MOBILE STYLES  */
             @media only screen and (max-width: 480px){
@@ -306,8 +312,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td valign="top" class="footerContent" style="padding-top:0; padding-bottom:5px;">
-                                                <a href="<: $subscriber.unsubscribe_url :>">unsubscribe</a>
+                                            <td valign="top" class="footerContent unsubscribe" style="padding-top:0; padding-bottom:5px;">
+                                                <a href="<: $subscriber.unsubscribe_url :>">Unsubscribe</a>
                                             </td>
                                         </tr>
                                     </table>

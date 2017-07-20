@@ -1,0 +1,38 @@
+<p style="margin-bottom: 1em">
+  <em>We hope you enjoyed our first series of privacy tips to help reduce your online footprint. This email begins our second series about busting privacy myths.</em>
+</p>
+
+<p style="margin-bottom: 1em">
+  <b>Privacy Mythbusting #1:</b> <em>Nobody else cares about privacy!</em> (Umm, yes they do.)
+</p>
+
+<p style="margin-bottom: 1em">
+  When was the last time you spoke with your friends or family about internet privacy? Sadly, for most people, the answer is <em>never</em>. In general, people believe that only a small percentage of people care about privacy, and while we know that isn't true, it is something that keeps most people from talking about privacy. <img src="https://duckduckgo.com/assets/email/emoji/dontspeak.png?atb=<: $subscriber.flow :>" style="height:24px;vertical-align:-7px;" alt="Monkey covering its mouth" />
+</p>
+
+<p style="margin-bottom: 1em">
+  In Jan 2017, the <a href="http://www.idc.com/getdoc.jsp?containerId=prUS42253017">IDC found</a> that 84% of consumers expressed concern for their personal information, and 70% reported greater concern than just a few years ago.
+</p>
+
+<p style="margin-bottom: 1em">
+  And it’s not all talk. <a href="https://spreadprivacy.com/privacy-goes-mainstream-93464a352c59">Over 20% of people</a> are using tracker blocking software, and many are taking other measures as well such as using DuckDuckGo. People are taking <em>action</em>.
+</p>
+
+<p style="margin-bottom: 1em">
+  So maybe you didn't share DuckDuckGo because you thought no one would care? But, now that you know most people do, it is time to stand up and spread the word.
+</p>
+
+<p style="margin-bottom: 1em">
+  <strong>Challenge</strong>: <a href="https://www.duckduckgo.com/spread">Share DuckDuckGo</a> with 3 friends or family members who you think deserve to be more private online. And no, your cat, "<em>Whiskers J. Snuggleworths the 3rd</em>" doesn't count!
+</p>
+
+<p style="margin-bottom: 1em">
+  <center><img src="https://duckduckgo.com/assets/email/snuggleworth10.jpg?atb=<: $subscriber.flow :>" width=50% alt="Picture of a cat named Whiskers J Snuggleworths the third." /><br />
+  <em>Fig 1: Whiskers J. Snuggleworths III.</em></center>
+</p>
+
+: include 'email/a/signature.tx'
+
+<p>
+  <a href="https://spreadprivacy.com/who-cares-about-privacy-1606f4068a98">View this on our blog</a> | <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
+</p>

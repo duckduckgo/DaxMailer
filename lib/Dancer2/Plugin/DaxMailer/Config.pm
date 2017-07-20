@@ -45,6 +45,12 @@ on_plugin_import {
 
     my $rootdir = $ENV{HOME};
 
+    $dsl->set(effective_tld_names_url => $ENV{DAXMAILER_TLD_URL} ||
+        'https://publicsuffix.org/list/effective_tld_names.dat' );
+    $dsl->set(effective_tld_names => $ENV{DAXMAILER_TLD_FILE} ||
+        catfile( $dsl->persistent_store, 'effective_tld_names.dat' ) );
+    $dsl->set(probably_uninterested => [qw/ qq.com 126.com 163.com 139.com /]);
+
     $dsl->set(smtp_host => $ENV{DAXMAILER_SMTP_HOST});
     $dsl->set(smtp_ssl => $ENV{DAXMAILER_SMTP_SSL} // 0);
     $dsl->set(smtp_sasl_username => $ENV{DAXMAILER_SMTP_SASL_USERNAME});

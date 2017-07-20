@@ -37,6 +37,7 @@ sub go {
             unsubscribed  => $row->{unsubscribed},
             verified      => $row->{verified},
             campaign      => $row->{campaign},
+            created       => $row->{created},
             v_key         => $row->{v_key},
             u_key         => $row->{u_key},
             flow          => $row->{flow},
@@ -50,23 +51,23 @@ sub go {
                 complaint     => $row->{complaint},
             });
         }
+        my $sth2 = $self->ddgc_dbh->prepare('SELECT * FROM subscriber_maillog where email_address = ?');
+        $sth2->execute( $email );
+        while ( my $row2 = $sth2->fetchrow_hashref ) {
+            try {
+                rset('Subscriber::MailLog')->update_or_create({
+                    email_address => $row2->{email_address},
+                    campaign      => $row2->{campaign},
+                    email_id      => $row2->{email_id},
+                    sent          => $row2->{sent},
+                });
+            } catch {
+                die sprintf "Unable to insert log entry %s, %s : %s",
+                    $row->{email_address}, $row->{email_id}, $_;
+            };
+        }
     }
 
-    $sth = $self->ddgc_dbh->prepare('SELECT * FROM subscriber_maillog');
-    $sth->execute;
-    while ( my $row = $sth->fetchrow_hashref ) {
-        try {
-            rset('Subscriber::MailLog')->update_or_create({
-                email_address => $row->{email_address},
-                campaign      => $row->{campaign},
-                email_id      => $row->{email_id},
-                sent          => $row->{sent},
-            });
-        } catch {
-            warn sprintf "Unable to insert log entry %s : %s",
-                $row->{email_address}, $row->{email_id};
-        };
-    }
 
     $guard->commit;
 }

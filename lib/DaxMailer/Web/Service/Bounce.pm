@@ -6,6 +6,9 @@ use HTTP::Tiny;
 use Try::Tiny;
 use AWS::SNS::Verify;
 use DaxMailer::Base::Web::Service;
+use JSON::MaybeXS 'JSON';
+
+my $j = JSON::MaybeXS->new(utf8 => 0);
 
 sub verify_subscription {
     my $ok = 1;
@@ -40,7 +43,7 @@ post '/handler' => sub {
     if ( $packet->{Type} eq 'SubscriptionConfirmation' ) {
         return verify_subscription( $packet );
     }
-    my $message = decode_json( $packet->{Message} );
+    my $message = $j->decode( $packet->{Message} );
     return rset('Subscriber::Bounce')->handle_bounces( $message );
 };
 

@@ -7,11 +7,16 @@ extends 'DBIx::Class::Schema';
 
 use FindBin;
 my $sqldir = $FindBin::Dir . "/../sql/";
-our $VERSION = 3;
+our $VERSION = 4;
 
 has app => (
     is => 'rw',
 );
+
+sub format_datetime {
+    my $self = shift;
+    $self->storage->datetime_parser->format_datetime(@_);
+}
 
 sub generate_diff {
     my ( $self, $previous_version ) = @_;

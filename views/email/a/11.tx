@@ -1,0 +1,49 @@
+<p style="margin-bottom: 1em">
+  <strong>Privacy Mythbusting #2:</strong> <em>My password keeps me safe.</em> (Not necessarily!)
+</p>
+
+<p style="margin-bottom: 1em">
+  If you've ever used the same password on more than one website, then your accounts may be compromised due to data leaks. Once a hacker gets your login information from a single site, they can try it on other sites. Many hackers use automated tools to cycle through leaked password lists, trying them on many popular websites.
+</p>
+
+<p style="margin-bottom: 0">
+  You may have heard of a few of the high profile data leaks in the past few years, such as:
+</p>
+
+<ul style="margin-bottom: 1em">
+  <li>LinkedIn</li>
+  <li>Adobe</li>
+  <li>Dropbox</li>
+  <li>Tumblr</li>
+  <li>SnapChat</li>
+  <li>Neopets</li>
+  <li>Minecraft</li>
+</ul>
+
+<p style="margin-bottom: 1em">
+  Believe it or not, there have been over <a href="https://haveibeenpwned.com/PwnedWebsites">200 major websites</a> that have had their data leaked over the past few years, enabling your passwords to be used by hackers. <img src="https://duckduckgo.com/assets/email/emoji/shocked.png?atb=<: $subscriber.flow :>" style="height:24px;vertical-align:-7px;" alt="Detective emoji" />
+</p>
+
+<p style="margin-bottom: 1em">
+  In 2013, Microsoft security research Troy Hunt built the site <a href="https://haveibeenpwned.com/">Have I Been Pwned?</a> that allows you to check if your password has ever been leaked. (<em>Fun fact: "Pwned," derived from owned, is video game slang for when someone is utterly defeated!</em>)
+<p>
+
+<p style="margin-bottom: 1em">
+  <center><img src="https://duckduckgo.com/assets/email/pwned11.jpg?atb=<: $subscriber.flow :>" alt="Car getting pwned by Mother Nature" width=75% /></center>
+</p>
+
+<p style="margin-bottom: 0">
+  How can you stay safe in a world of data leaks?
+</p>
+
+<ul style="margin-bottom: 1em">
+  <li>Use a different password on each website.
+  <li>Use a password manager like <a href="https://www.lastpass.com/">LastPass</a> that generates secure passwords and stores them for you safely.
+  <li>Use two-factor authentication (2FA) wherever possible. You can check if major sites have 2FA available at <a href="https://twofactorauth.org/">https://twofactorauth.org/</a>
+</ul>
+
+: include 'email/a/signature.tx'
+
+<p>
+  <a href="https://spreadprivacy.com/password-safety-4e1551a01b25">View this on our blog</a> | <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
+</p>
