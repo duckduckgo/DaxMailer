@@ -228,7 +228,7 @@ sub email_plaintext {
         to       => $subscriber->email_address,
         verified => $verified
                     || ( $subscriber->verified && !$subscriber->unsubscribed ),
-        from     => '"DuckDuckGo Dax" <dax@duckduckgo.com>',
+        from     => '"DuckDuckGo Dax" <dax@mailer.duckduckgo.com>',
         subject  => $subject,
         template => $layout,
         content  => {
