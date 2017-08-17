@@ -3,7 +3,7 @@
 </p>
 
 <p style="margin-bottom: 1em">
-  When we first released <a href="https://spreadprivacy.com/private-browsing-9276d6d16ea4">our study on private browsing modes</a>, a lot of people were shocked to see that websites could <em>still track them</em> even when they blocked cookies and used private browsing (aka "incognito mode").
+  When we first released <a href="https://spreadprivacy.com/is-private-browsing-really-private/">our study on private browsing modes</a>, a lot of people were shocked to see that websites could <em>still track them</em> even when they blocked cookies and used private browsing (aka "incognito mode").
 </p>
 
 <p style="margin-bottom: 1em">
@@ -26,5 +26,5 @@
 : include 'email/a/signature.tx'
 
 <p>
-  <a href="https://spreadprivacy.com/browser-identification-45b71307f658">View this on our blog</a> | <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
+  <a href="https://spreadprivacy.com/browser-fingerprinting/">View this on our blog</a> | <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
 </p>
