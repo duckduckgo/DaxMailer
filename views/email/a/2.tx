@@ -1,5 +1,5 @@
 <p style="margin-bottom: 1em">
-Last email we talked about how "private browsing" modes aren't really private. They still let websites track you across the net.</br></br>
+Last email we talked about how <a href="https://spreadprivacy.com/is-private-browsing-really-private/">"private browsing" modes aren't really private</a>. They still let websites track you across the net.</br></br>
     But why all this tracking?</br></br>
 Let's take the prime example--Google. If you ask most people what Google's business is they will say "search," but Google actually makes a lot of its money from serving ads on other sites.</br></br>
 Put simply, Google isn’t a search company, they’re an advertising company.</br></br>
@@ -13,5 +13,5 @@ That’s why you may have seen ads tracking you across the net!</br></br>
 : include 'email/a/signature.tx'
 
 <p>
-  <a href="https://spreadprivacy.com/retargeting-3edceae5496">View this on our blog</a> | <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
+  <a href="https://spreadprivacy.com/followed-by-ads/">View this on our blog</a> | <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
 </p>
