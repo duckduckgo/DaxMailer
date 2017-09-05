@@ -22,7 +22,7 @@ For iOS users, Apple gives you an alternative built in via Apple Maps, so no ins
 Another service we use internally, Resilio Sync, provides peer-to-peer file synchronization which can be used for private file storage, backup, and file sharing. This also means your files are never stored on a single server in the cloud! The software is available for a wide variety of platforms and devices, including servers.</p>
 
 <p style="margin-bottom: 1em"><strong>Android -> <a href="https://www.apple.com/ios/">iOS</a> (paid)</strong><br/>
-The most popular alternative to Android is of course iOS which offers easy device encryption and encrypted messaging via iMessage by default. We also have <a href="https://spreadprivacy.com/iphone-privacy-tips/">tips to increase privacy protection on your iPhone or iPad</a>.</p>
+The most popular alternative to Android is of course iOS, which offers easy device encryption and encrypted messaging via iMessage by default. We also have <a href="https://spreadprivacy.com/iphone-privacy-tips/">tips to increase privacy protection on your iPhone or iPad</a>.</p>
 
 <p style="margin-bottom: 1em"><strong>Google Chrome -> <a href="https://www.apple.com/safari/">Safari</a> (free), <a href="https://www.mozilla.org/firefox/">Firefox</a> (free), <a href="https://brave.com/">Brave</a> (free)</strong><br/>
 Safari was the first major browser to include DuckDuckGo as a built-in private search option. A more cross-device compatible browser is Mozilla's Firefox, an open source browser with a built-in tracker blocker in private mode. Brave goes one step further with tracker blocking switched on by default. There are also <a href="https://duck.co/help/desktop/other-browsers">many more browsers</a> that come with DuckDuckGo as a built-in option.</p>
