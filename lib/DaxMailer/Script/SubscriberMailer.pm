@@ -122,6 +122,21 @@ sub _build_campaigns {
                     subject  => 'Privacy Mythbusting #6: Security equals privacy!',
                     template => 'email/a/15.tx',
                 },
+                20 => {
+                    days     => 60,
+                    subject  => 'How to send messages in private',
+                    template => 'email/a/20.tx',
+                },
+                21 => {
+                    days     => 66,
+                    subject  => 'How to live without Google',
+                    template => 'email/a/21.tx',
+                },
+                22 => {
+                    days     => 73,
+                    subject  => 'How to choose a good VPN',
+                    template => 'email/a/22.tx',
+                },
             }
         },
         'b' => {
