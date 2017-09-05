@@ -124,17 +124,17 @@ sub _build_campaigns {
                 },
                 20 => {
                     days     => 60,
-                    subject  => 'How to send messages in private',
+                    subject  => 'How to Send Messages in Private',
                     template => 'email/a/20.tx',
                 },
                 21 => {
                     days     => 66,
-                    subject  => 'How to live without Google',
+                    subject  => 'How to Live Without Google',
                     template => 'email/a/21.tx',
                 },
                 22 => {
                     days     => 73,
-                    subject  => 'How to choose a good VPN',
+                    subject  => 'How to Choose a Good VPN',
                     template => 'email/a/22.tx',
                 },
             }
