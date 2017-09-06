@@ -2016,6 +2016,31 @@ DISTRIBUTIONS
       strict 0
       utf8 0
       warnings 0
+  Email-Sender-Transport-Mailgun-0.01
+    pathname: S/SD/SDT/Email-Sender-Transport-Mailgun-0.01.tar.gz
+    provides:
+      Email::Sender::Transport::Mailgun 0.01
+    requirements:
+      Email::Sender 0
+      HTTP::Tiny 0
+      HTTP::Tiny::Multipart 0
+      IO::Socket::SSL 0
+      JSON::MaybeXS 0
+      Module::Build::Tiny 0.035
+      Moo 0
+      MooX::Types::MooseLike::Base 0
+      perl 5.008001
+  Email-Sender-Transport-SQLite-0.092003
+    pathname: R/RJ/RJBS/Email-Sender-Transport-SQLite-0.092003.tar.gz
+    provides:
+      Email::Sender::Transport::SQLite 0.092003
+    requirements:
+      DBD::SQLite 0
+      DBI 0
+      Email::Sender 0.091660
+      Email::Sender::Transport 0
+      ExtUtils::MakeMaker 0
+      Moo 0
   Email-Simple-2.213
     pathname: R/RJ/RJBS/Email-Simple-2.213.tar.gz
     provides:
@@ -2591,6 +2616,16 @@ DISTRIBUTIONS
       perl 5.006
       strict 0
       warnings 0
+  HTTP-Tiny-Multipart-0.07
+    pathname: R/RE/RENEEB/HTTP-Tiny-Multipart-0.07.tar.gz
+    provides:
+      HTTP::Tiny::Multipart 0.07
+    requirements:
+      Carp 0
+      ExtUtils::MakeMaker 0
+      File::Basename 0
+      HTTP::Tiny 0
+      MIME::Base64 0
   HTTP-Validate-0.981
     pathname: M/MM/MMCCLENN/HTTP-Validate-0.981.tar.gz
     provides:

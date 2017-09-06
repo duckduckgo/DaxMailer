@@ -24,6 +24,7 @@ requires 'Digest::SHA1';
 requires 'Domain::PublicSuffix';
 requires 'Email::MIME';
 requires 'Email::Sender::Simple';
+requires 'Email::Sender::Transport::Mailgun';
 requires 'Email::Sender::Transport::SMTP::Persistent';
 requires 'Email::Sender::Transport::Test';
 requires 'Email::Simple';
