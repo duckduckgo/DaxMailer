@@ -84,6 +84,15 @@ sub _build_validator {
     return $v;
 }
 
+sub _header {
+    my ( $self, $params ) = @_;
+    my $header = [
+        map { $_ => $params->{$_} } (qw/ to from subject /),
+    ];
+    push @{ $header }, %{ $params->{extra_headers} } if $params->{extra_headers};
+    return $header;
+}
+
 sub send_plaintext {
     my ( $self, $params ) = @_;
     my $v = $self->validator->check_params( 'send_parameters', {}, $params );
@@ -104,9 +113,7 @@ sub send_plaintext {
             text => $params->{text}
         }
     );
-    my $header = [
-        map { $_ => $params->{$_} } (qw/ to from subject /),
-    ];
+    my $header = $self->_header( $params );
     my $email = Email::MIME->create(
         attributes => {
             content_type => 'text/plain; charset="UTF-8"',
@@ -174,9 +181,7 @@ sub send {
         body_str => $plaintext_body,
     );
 
-    my $header = [
-        map { $_ => $params->{$_} } (qw/ to from subject /),
-    ];
+    my $header = $self->_header( $params );
 
     my $email = Email::MIME->create(
         attributes => {
