@@ -7,6 +7,7 @@ use Text::Xslate;
 use HTML::FormatText::WithLinks;
 use Email::MIME;
 use Email::Sender::Simple qw/ try_to_sendmail /;
+use Email::Sender::Transport::Mailgun;
 use Email::Sender::Transport::SMTP::Persistent;
 use Email::Sender::Transport::Test;
 use Email::Simple;
@@ -36,7 +37,15 @@ sub _build_xslate {
     );
 }
 
+has use_smtp => (
+    is => 'ro',
+);
+
 has smtp_config => (
+    is => 'ro',
+);
+
+has mailgun_config => (
     is => 'ro',
 );
 
@@ -44,9 +53,9 @@ has transport => ( is => 'lazy' );
 sub _build_transport {
     my ( $self ) = @_;
     return Email::Sender::Transport::Test->new if $ENV{DAXMAILER_MAIL_TEST};
-    Email::Sender::Transport::SMTP::Persistent->new(
-        $self->smtp_config,
-    );
+    return ( $self->use_smtp )
+      ? Email::Sender::Transport::SMTP::Persistent->new( $self->smtp_config )
+      : Email::Sender::Transport::Mailgun->new( $self->mailgun_config );
 }
 
 has validator => ( is => 'lazy' );
