@@ -55,6 +55,9 @@ on_plugin_import {
     $dsl->set(smtp_ssl => $ENV{DAXMAILER_SMTP_SSL} // 0);
     $dsl->set(smtp_sasl_username => $ENV{DAXMAILER_SMTP_SASL_USERNAME});
     $dsl->set(smtp_sasl_password => $ENV{DAXMAILER_SMTP_SASL_PASSWORD});
+    $dsl->set(mailgun_api_domain => $ENV{DAXMAILER_MAILGUN_API_DOMAIN});
+    $dsl->set(mailgun_api_key => $ENV{DAXMAILER_MAILGUN_API_KEY});
+    $dsl->set(use_smtp => $ENV{DAXMAILER_USE_SMTP});
     $dsl->set(bang_secret => $ENV{DAXMAILER_BANG_SECRET});
 
     my $dsn_cfgs = {
