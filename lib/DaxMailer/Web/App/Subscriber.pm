@@ -14,7 +14,7 @@ http_basic_auth_set_check_handler sub {
     return $user eq config->{basic_auth_user} && $pass eq config->{basic_auth_pass};
 };
 
-get '/u/:campaign/:email/:key' => sub {
+any [qw/ get post /] => '/u/:campaign/:email/:key' => sub {
     my $params = params('route');
     my $s = rset('Subscriber')->find( {
         email_address => $params->{email},
