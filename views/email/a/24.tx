@@ -22,7 +22,7 @@
 <p style="margin-bottom: 1em">Note: BitLocker may not be available in all versions of Windows.</p>
 
 <ol>
-    <li>Go to <em>Control Panel</em> > <em>BitLocker Drive Encryption</em></li>
+    <li>Go to <em>Control Panel</em> > <em>BitLocker Drive Encryption</em>.</li>
     <li>Click “Turn on BitLocker” next to the drive you want to encrypt.</li>
     <li>Enter a long and varied alphanumeric password or passphrase.</li>
     <li>IMPORTANT: Make a backup of the recovery key using one of the displayed methods.</li>
@@ -36,10 +36,10 @@
 <p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/device-encryption-iphone24.png?atb=<: $subscriber.flow :>" style="max-width:572px; width:80%;" alt="Screenshot of the lock screen process on iPhone." /></p>
 
 <ol>
-    <li>Go to <em>Settings</em> > <em>Touch ID &amp; Passcode</em></li>
+    <li>Go to <em>Settings</em> > <em>Touch ID &amp; Passcode</em>.</li>
     <li>Press “Turn Passcode On” if not enabled already.</li>
     <li>Press “Passcode options” to choose a custom numeric or alphanumeric code (recommended).</li>
-    <li>Confirm your device is encrypted but scrolling to the bottom of the <em>Settings</em> > <em>Touch ID &amp; Passcode</em> screen. You should see the “Data protection is enabled” message.</li>
+    <li>Confirm your device is encrypted by scrolling to the bottom of the <em>Settings</em> > <em>Touch ID &amp; Passcode</em> screen. You should see the “Data protection is enabled” message.</li>
 </ol>
 
 <p style="margin-bottom: 1em">See more <a href="https://spreadprivacy.com/iphone-privacy-tips/">tips to protect your privacy on iPhone</a>.</p>
@@ -50,9 +50,9 @@
 
 <ol>
     <li>Plug in the device to charge the battery (required).</li>
-    <li>Make sure a password or PIN is set in <em>Security</em> > <em>Screen lock</em></li>
-    <li>Go to <em>Settings</em> > <em>Security</em></li>
-    <li>Press on “Encrypt phone”</li>
+    <li>Make sure a password or PIN is set in <em>Security</em> > <em>Screen lock</em>.</li>
+    <li>Go to <em>Settings</em> > <em>Security</em>.</li>
+    <li>Press the “Encrypt phone” option.</li>
     <li>Read the notice and press “Encrypt phone” to start the encryption process.</li>
     <li>Remember to keep the phone plugged in until complete.</li>
 </ol>
