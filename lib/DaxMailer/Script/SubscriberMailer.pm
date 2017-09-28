@@ -137,6 +137,16 @@ sub _build_campaigns {
                     subject  => 'How to Choose a Good VPN',
                     template => 'email/a/22.tx',
                 },
+                23 => {
+                    days     => 80,
+                    subject  => 'How to Set Up Your Devices for Privacy Protection',
+                    template => 'email/a/23.tx',
+                },
+                24 => {
+                    days     => 86,
+                    subject  => 'How to Encrypt Your Devices',
+                    template => 'email/a/24.tx',
+                },
             }
         },
         'b' => {
