@@ -147,6 +147,11 @@ sub _build_campaigns {
                     subject  => 'How to Encrypt Your Devices',
                     template => 'email/a/24.tx',
                 },
+                25 => {
+                    days     => 93,
+                    subject  => 'How to Be Even More Anonymous Online',
+                    template => 'email/a/25.tx',
+                },
             }
         },
         'b' => {

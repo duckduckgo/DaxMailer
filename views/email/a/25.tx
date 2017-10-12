@@ -1,0 +1,21 @@
+<p style="margin-bottom: 1em">Recently, we explained <a href="https://spreadprivacy.com/how-to-choose-a-vpn/">how to choose a good VPN</a> (Virtual Private Network), noting that a VPN's privacy policy should be a major factor in your choice. That's because a VPN is run by a single organization that could potentially monitor or log your traffic. If you want to try to protect your internet activity from everyone, you need to send your traffic through layers of different entities, so no one can see what you're doing, not even a VPN provider. Thankfully there's technology that does just that, and it's called <a href="https://torproject.org">Tor</a>, formerly The Onion Router. Layers. Onion. Get it? <img src="https://duckduckgo.com/assets/email/emoji/smiley.png" style="height:24px;vertical-align:middle;" alt="" /></p>
+
+<p style="margin-bottom: 1em">Here's how it works differently than a VPN. Imagine you want to send a letter anonymously. You could use a trusted courier to deliver it directly without others knowing or revealing your identity. That's roughly how a VPN works. Alternatively, you could use the regular postal service, dropping the letter in a mailbox from which it gets routed through various post offices until it reaches its destination. That's roughly how Tor works.</p>
+
+<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/postdog25.jpg?atb=<: $subscriber.flow :>" style="max-width:572px; width:50%;" alt="Dog holding a package for posting." /></p>
+
+<p style="margin-bottom: 1em">So what's the catch? Why isn't everyone using Tor? Well, like the letter analogy above, your data is taking the scenic route to get to its destination, not the fast, direct route. This longer route makes surfing the internet slower. You also need to connect to the Tor network before you start browsing, similar to connecting to a VPN, although Tor software makes this easy with options for desktop and mobile:</p>
+
+<ul>
+    <li><strong><a href="https://www.torproject.org/projects/torbrowser.html">Tor Browser</a>:</strong> A complete anonymizing browser for Windows, Mac and Linux.</li>
+    <li><strong><a href="https://guardianproject.info/apps/orbot/">Orbot</a></strong>: Tor connection for Android, to use with your existing browser.</li>
+    <li><strong><a href="https://mike.tig.as/onionbrowser/">Onion Browser</a></strong>: A Tor browser for iOS.</li>
+</ul>
+
+<p style="margin-bottom: 1em">While Tor can't guarantee anonymity, it's the best choice for protecting your identity online.</p>
+
+: include 'email/a/signature.tx'
+
+<p>
+  <a href="https://spreadprivacy.com/how-to-be-anonymous-online/">View this on our blog</a> | <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
+</p>
