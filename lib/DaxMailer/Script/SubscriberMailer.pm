@@ -152,6 +152,11 @@ sub _build_campaigns {
                     subject  => 'How to Be Even More Anonymous Online',
                     template => 'email/a/25.tx',
                 },
+                26 => {
+                    days     => 100,
+                    subject  => 'How to Check Whether Your Web Connection\'s Secure',
+                    template => 'email/a/26.tx',
+                },
             }
         },
         'b' => {
