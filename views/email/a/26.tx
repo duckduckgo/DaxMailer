@@ -2,11 +2,11 @@
 
 <p style="margin-bottom: 1em">Such eavesdropping is prevented by visiting a website over a secure connection. When you do so, <strong>only the website's domain name is visible to others</strong> (e.g. the "duckduckgo.com" part), and <em>not</em> the page content itself, or any other data such as search terms you might send with it or type into the page after it loads. As long as your connection is encrypted, everything after the domain name cannot be seen by any servers in between you and the website.</p>
 
-<p style="margin: 2em 0;text-align: center"><img src="https://imgur.com/lZ7sf88.png" style="max-width:572px; width:80%;" alt="Screenshot showing how HTTPS is indicated in a browser address bar." /></p>
+<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/https-in-address-bar26.png?atb=<: $subscriber.flow :>" style="max-width:572px; width:80%;" alt="Screenshot showing how HTTPS is indicated in a browser address bar." /></p>
 
 <p style="margin-bottom: 1em">An apt metaphor is checking your locked luggage at an airport. Anyone can read the tag on your suitcase to see where it's heading, but the contents are locked away and can't be seen by other travelers or airport staff. On the other hand, data sent over an unsecure connection would be like a transparent suitcase with everything on show — even those embarrassing but oh-so-comfy pyjamas!</p>
 
-<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/pyjamas26.jpg" style="max-width:572px; width:80%;" alt="A row of crazy patterned pyjamas." /></p>
+<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/pyjamas26.jpg?atb=<: $subscriber.flow :>" style="max-width:572px; width:80%;" alt="A row of crazy patterned pyjamas." /></p>
 
 <p style="margin-bottom: 1em">So, how can you make sure you're using a secure connection? Unfortunately this relies on websites supporting the ability to do so, though fortunately it's easy to check! In your web browser (the software you use to see websites), just look for a padlock or the text "https" (and not just "http") in the address bar at the top of the browser.</p>
 
