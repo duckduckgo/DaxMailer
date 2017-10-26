@@ -157,6 +157,11 @@ sub _build_campaigns {
                     subject  => 'How to Check Whether Your Web Connection\'s Secure',
                     template => 'email/a/26.tx',
                 },
+                27 => {
+                    days     => 107,
+                    subject  => 'DuckDuckGo Privacy Newsletter: 100-Day Follow-Up',
+                    template => 'email/a/27.tx',
+                },
             }
         },
         'b' => {
