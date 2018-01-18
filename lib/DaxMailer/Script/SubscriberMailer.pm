@@ -26,6 +26,12 @@ option verify => (
     doc => 'Run verify mail shot'
 );
 
+option oneoff => (
+    is => 'ro',
+    format => 's',
+    doc => 'Run one-off mail shot'
+);
+
 option mock_date => (
     is => 'ro',
     format => 's',
@@ -581,6 +587,9 @@ sub go {
     }
     elsif ( $self->newsletter ) {
         $self->send_newsletter;
+    }
+    elsif ( $self->oneoff ) {
+        $self->send_oneoff( $self->oneoff );
     }
     else {
         $self->send_campaign;
