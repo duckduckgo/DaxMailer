@@ -162,6 +162,12 @@ sub _build_campaigns {
                     subject  => 'DuckDuckGo Privacy Newsletter: 100-Day Follow-Up',
                     template => 'email/a/27.tx',
                 },
+                extension => {
+                    oneoff   => 1,
+                    subject  => 'Subject goes here!',
+                    template => 'email/oneoff/extension.tx',
+                    expires  => '2018-01-25',
+                },
             }
         },
         'b' => {
