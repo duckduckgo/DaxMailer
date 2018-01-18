@@ -293,6 +293,7 @@ sub send_campaign {
             'v',
             sort { $a <=> $b }
             grep { /^[0-9]+$/ }
+            grep { !$self->campaigns->{ $campaign }->{mails}->{ $_ }->{oneoff} }
             keys %{ $self->campaigns->{ $campaign }->{mails} }
         );
         for my $i ( 1..$#mail_map ) {
@@ -413,7 +414,9 @@ sub testrun {
 MAILRUNS:
 
     my $mails = $self->campaigns->{ $campaign }->{mails};
-    for my $mail ( sort { $a <=> $b } keys %{ $mails } ) {
+    for my $mail ( sort { $a <=> $b }
+                   grep { /^[0-9]+$/ }
+                   keys %{ $mails } ) {
         next if ( $extra->{which} && $extra->{which} ne $mail );
         $self->email(
             $mail,
