@@ -251,6 +251,10 @@ sub email {
         content  => {
             subscriber => $subscriber,
             title => $subject,
+        },
+        extra_headers => {
+            'List-Unsubscribe' => sprintf('<%s>', $subscriber->unsubscribe_url),
+            'List-Unsubscribe-Post' => 'List-Unsubscribe=One-Click',
         }
     } );
 
