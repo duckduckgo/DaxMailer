@@ -576,6 +576,39 @@ sub test_newsletter {
     return 'Test newsletter sent!';
 }
 
+sub send_oneoff {
+    my ( $self, $email ) = @_;
+
+    my @campaigns = grep {
+        $self->campaigns->{ $_ }->{mails}->{ $email } &&
+        $self->campaigns->{ $_ }->{mails}->{ $email }->{oneoff} &&
+        $self->campaigns->{ $_ }->{live} &&
+        ( !$self->campaigns->{ $_ }->{mails}->{ $email }->{expires} ||
+          DateTime->now->ymd lt $self->campaigns->{ $_ }->{mails}->{ $email }->{expires} )
+    } keys %{ $self->campaigns };
+
+    my @subscribers = map {
+        rset('Subscriber')
+            ->campaign( $_ )
+            ->subscribed
+            ->verified
+            ->unbounced
+            ->mail_unsent( $_, $email )
+            ->join_latest_email
+            ->all
+    } @campaigns;
+
+    for my $subscriber ( @subscribers ) {
+        $self->email(
+            $email,
+            $subscriber,
+            $self->campaigns->{ $subscriber->campaign }->{mails}->{ $email }->{subject},
+            $self->campaigns->{ $subscriber->campaign }->{mails}->{ $email }->{template},
+            $self->campaigns->{ $subscriber->campaign }->{layout},
+        );
+    }
+}
+
 sub go {
     my ( $self ) = @_;
     if ( $self->has_mock_date ) {
