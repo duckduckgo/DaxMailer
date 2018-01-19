@@ -1,4 +1,4 @@
-package t::lib::DaxMailer::TestUtils;
+package DaxMailer::TestUtils;
 use strict;
 use warnings;
 

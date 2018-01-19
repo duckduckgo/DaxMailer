@@ -26,6 +26,12 @@ option verify => (
     doc => 'Run verify mail shot'
 );
 
+option oneoff => (
+    is => 'ro',
+    format => 's',
+    doc => 'Run one-off mail shot'
+);
+
 option mock_date => (
     is => 'ro',
     format => 's',
@@ -162,6 +168,12 @@ sub _build_campaigns {
                     subject  => 'DuckDuckGo Privacy Newsletter: 100-Day Follow-Up',
                     template => 'email/a/27.tx',
                 },
+                extension => {
+                    oneoff   => 1,
+                    subject  => 'Subject goes here!',
+                    template => 'email/oneoff/extension.tx',
+                    expires  => '2018-01-25',
+                },
             }
         },
         'b' => {
@@ -293,6 +305,7 @@ sub send_campaign {
             'v',
             sort { $a <=> $b }
             grep { /^[0-9]+$/ }
+            grep { !$self->campaigns->{ $campaign }->{mails}->{ $_ }->{oneoff} }
             keys %{ $self->campaigns->{ $campaign }->{mails} }
         );
         for my $i ( 1..$#mail_map ) {
@@ -394,7 +407,7 @@ sub testrun {
     goto MAILRUNS if $extra->{which} && $extra->{which} ne 'v';
 
     if ( my $tm = $self->campaigns->{ $campaign }->{template_map} ) {
-        for my $template ( sort keys $self->template_map->{ $tm } ) {
+        for my $template ( sort keys %{ $self->template_map->{ $tm } } ) {
             $subscriber->extra({
                     from =>
                         trunc( $extra->{from}, 512, { at_space => 1 } )
@@ -413,7 +426,9 @@ sub testrun {
 MAILRUNS:
 
     my $mails = $self->campaigns->{ $campaign }->{mails};
-    for my $mail ( sort { $a <=> $b } keys %{ $mails } ) {
+    for my $mail ( ( sort { $a <=> $b }
+                     grep { /^[0-9]+$/ }
+                     keys %{ $mails } ), 'extension' ) {
         next if ( $extra->{which} && $extra->{which} ne $mail );
         $self->email(
             $mail,
@@ -561,6 +576,39 @@ sub test_newsletter {
     return 'Test newsletter sent!';
 }
 
+sub send_oneoff {
+    my ( $self, $email ) = @_;
+
+    my @campaigns = grep {
+        $self->campaigns->{ $_ }->{mails}->{ $email } &&
+        $self->campaigns->{ $_ }->{mails}->{ $email }->{oneoff} &&
+        $self->campaigns->{ $_ }->{live} &&
+        ( !$self->campaigns->{ $_ }->{mails}->{ $email }->{expires} ||
+          DateTime->now->ymd lt $self->campaigns->{ $_ }->{mails}->{ $email }->{expires} )
+    } keys %{ $self->campaigns };
+
+    my @subscribers = map {
+        rset('Subscriber')
+            ->campaign( $_ )
+            ->subscribed
+            ->verified
+            ->unbounced
+            ->mail_unsent( $_, $email )
+            ->join_latest_email
+            ->all
+    } @campaigns;
+
+    for my $subscriber ( @subscribers ) {
+        $self->email(
+            $email,
+            $subscriber,
+            $self->campaigns->{ $subscriber->campaign }->{mails}->{ $email }->{subject},
+            $self->campaigns->{ $subscriber->campaign }->{mails}->{ $email }->{template},
+            $self->campaigns->{ $subscriber->campaign }->{layout},
+        );
+    }
+}
+
 sub go {
     my ( $self ) = @_;
     if ( $self->has_mock_date ) {
@@ -572,6 +620,9 @@ sub go {
     }
     elsif ( $self->newsletter ) {
         $self->send_newsletter;
+    }
+    elsif ( $self->oneoff ) {
+        $self->send_oneoff( $self->oneoff );
     }
     else {
         $self->send_campaign;

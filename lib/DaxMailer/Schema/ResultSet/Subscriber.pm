@@ -103,6 +103,15 @@ sub verification_mail_unsent_for {
     } );
 }
 
+sub join_latest_email {
+    my ( $self ) = @_;
+    $self->search_rs( undef, {
+        join => [ 'logs' ],
+        '+select' => [ { max => 'logs.sent' }, 'logs.email_id' ],
+        '+as' => [ qw/ most_recent email_id / ],
+        group_by => [ 'me.email_address' ] } );
+}
+
 sub by_days_ago {
     my ( $self, $days ) = @_;
     my $today = DateTime->now->truncate( to => 'day' );

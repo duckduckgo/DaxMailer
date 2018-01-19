@@ -6,11 +6,12 @@ BEGIN {
     $ENV{DAXMAILER_DB_DSN} = 'dbi:SQLite:dbname=:memory:';
 }
 
+use lib 't/lib';
 use Plack::Test;
 use Plack::Builder;
 use HTTP::Request::Common;
 use Test::More;
-use aliased 't::lib::DaxMailer::TestUtils::AWS' => 'sns';
+use aliased 'DaxMailer::TestUtils::AWS' => 'sns';
 use DaxMailer::Web::Service::Bounce;
 
 my $app = builder {
