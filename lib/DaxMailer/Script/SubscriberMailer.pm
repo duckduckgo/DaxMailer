@@ -407,7 +407,7 @@ sub testrun {
     goto MAILRUNS if $extra->{which} && $extra->{which} ne 'v';
 
     if ( my $tm = $self->campaigns->{ $campaign }->{template_map} ) {
-        for my $template ( sort keys $self->template_map->{ $tm } ) {
+        for my $template ( sort keys %{ $self->template_map->{ $tm } } ) {
             $subscriber->extra({
                     from =>
                         trunc( $extra->{from}, 512, { at_space => 1 } )
