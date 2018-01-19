@@ -1,4 +1,4 @@
-package t::lib::DaxMailer::TestUtils::AWS;
+package DaxMailer::TestUtils::AWS;
 use strict;
 use warnings;
 

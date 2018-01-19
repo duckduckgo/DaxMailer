@@ -5,15 +5,16 @@ BEGIN {
     $ENV{DAXMAILER_DB_DSN} = 'dbi:SQLite:dbname=:memory:';
 }
 
+use lib 't/lib';
 use Plack::Test;
 use Plack::Builder;
 use HTTP::Request::Common;
 use Test::More;
-use t::lib::DaxMailer::TestUtils;
+use DaxMailer::TestUtils;
 use DaxMailer::Web::App::Subscriber;
 use DaxMailer::Base::Web::Common;
 
-t::lib::DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
+DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
 
 my $app = builder {
     mount '/s' => DaxMailer::Web::App::Subscriber->to_app;

@@ -9,12 +9,13 @@ BEGIN {
 }
 
 
+use lib 't/lib';
 use Plack::Test;
 use Plack::Builder;
 use HTTP::Request::Common;
 use Test::More;
 use Test::MockTime qw/:all/;
-use t::lib::DaxMailer::TestUtils;
+use DaxMailer::TestUtils;
 use DaxMailer::Web::App::Subscriber;
 use DaxMailer::Base::Web::Common;
 use DaxMailer::Script::SubscriberMailer;
@@ -22,7 +23,7 @@ use HTML::TreeBuilder::XPath;
 use DateTime;
 use URI;
 
-t::lib::DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
+DaxMailer::TestUtils::deploy( { drop => 2 }, schema );
 
 my $app = builder {
     mount '/s' => DaxMailer::Web::App::Subscriber->to_app;

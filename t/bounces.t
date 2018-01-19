@@ -13,18 +13,19 @@ use Encode;
 use charnames ':full';
 use open ':std', ':encoding(UTF-8)';
 
+use lib 't/lib';
 use Plack::Test;
 use Plack::Builder;
 use HTTP::Request::Common;
 use Test::More;
-use t::lib::DaxMailer::TestUtils;
-use aliased 't::lib::DaxMailer::TestUtils::AWS' => 'sns';
+use DaxMailer::TestUtils;
+use aliased 'DaxMailer::TestUtils::AWS' => 'sns';
 use DaxMailer::Web::App::Subscriber;
 use DaxMailer::Web::Service::Bounce;
 use DaxMailer::Base::Web::Service;
 
-t::lib::DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
-my $TEST_LEGACY = t::lib::DaxMailer::TestUtils::deploy_legacy;
+DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
+my $TEST_LEGACY = DaxMailer::TestUtils::deploy_legacy;
 
 my $app = builder {
     mount '/s' => DaxMailer::Web::App::Subscriber->to_app;
@@ -97,27 +98,27 @@ test_psgi $app => sub {
         plan skip_all => 'No legacy db configured'
             unless $TEST_LEGACY;
 
-        ok t::lib::DaxMailer::TestUtils::add_legacy_subscriber( 'test99@duckduckgo.com', 'a' );
-        is( t::lib::DaxMailer::TestUtils::subscriber_bounced( 'test99@duckduckgo.com', 'a' ), 0,
+        ok DaxMailer::TestUtils::add_legacy_subscriber( 'test99@duckduckgo.com', 'a' );
+        is( DaxMailer::TestUtils::subscriber_bounced( 'test99@duckduckgo.com', 'a' ), 0,
             'Legacy subscriber test99@duckduckgo.com has bounce flag unset'
         );
         ok( $cb->( POST '/bounce/handler',
             'Content-Type' => 'application/json',
             Content => sns->sns_permanent_bounce( 'test99@duckduckgo.com' )
         )->is_success, 'test99@duckduckgo.com' );
-        is( t::lib::DaxMailer::TestUtils::subscriber_bounced( 'test99@duckduckgo.com', 'a' ), 1,
+        is( DaxMailer::TestUtils::subscriber_bounced( 'test99@duckduckgo.com', 'a' ), 1,
             'Legacy subscriber test99@duckduckgo.com has bounce flag set'
         );
 
-        ok t::lib::DaxMailer::TestUtils::add_legacy_subscriber( 'test99@duckduckgo.com', 'a' );
-        is( t::lib::DaxMailer::TestUtils::subscriber_complaint( 'test99@duckduckgo.com', 'a' ), 0,
+        ok DaxMailer::TestUtils::add_legacy_subscriber( 'test99@duckduckgo.com', 'a' );
+        is( DaxMailer::TestUtils::subscriber_complaint( 'test99@duckduckgo.com', 'a' ), 0,
             'Legacy subscriber test99@duckduckgo.com has complaint flag unset'
         );
         ok( $cb->( POST '/bounce/handler',
             'Content-Type' => 'application/json',
             Content => sns->sns_complaint( 'test99@duckduckgo.com' )
         )->is_success, 'test99@duckduckgo.com' );
-        is( t::lib::DaxMailer::TestUtils::subscriber_complaint( 'test99@duckduckgo.com', 'a' ), 1,
+        is( DaxMailer::TestUtils::subscriber_complaint( 'test99@duckduckgo.com', 'a' ), 1,
             'Legacy subscriber test99@duckduckgo.com has complaint flag set'
         );
 

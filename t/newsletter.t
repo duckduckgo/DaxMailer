@@ -10,18 +10,19 @@ BEGIN {
 }
 
 
+use lib 't/lib';
 use Plack::Test;
 use Plack::Builder;
 use HTTP::Request::Common;
 use Test::More;
-use t::lib::DaxMailer::TestUtils;
+use DaxMailer::TestUtils;
 use DaxMailer::Web::App::Subscriber;
 use DaxMailer::Base::Web::Common;
 use DaxMailer::Script::SubscriberMailer;
 use URI;
 use File::Temp qw/ tempfile /;
 
-t::lib::DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
+DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
 
 my $app = builder {
     mount '/s' => DaxMailer::Web::App::Subscriber->to_app;
