@@ -1,4 +1,4 @@
-: if $subscriber.get_column('email_id') == 'v' || $subscriber.get_column('email_id') < 27 {
+: if !$subscriber.has_column_loaded('email_id') || $subscriber.get_column('email_id') == 'v' || $subscriber.get_column('email_id') < 27 {
 
     <p>
         Content for subscribers who have not received full run goes here
