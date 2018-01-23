@@ -170,7 +170,7 @@ sub _build_campaigns {
                 },
                 extension => {
                     oneoff   => 1,
-                    subject  => 'Subject goes here!',
+                    subject  => 'DuckDuckGo news: Protecting privacy beyond the search box',
                     template => 'email/oneoff/extension.tx',
                     expires  => '2018-01-25',
                 },
