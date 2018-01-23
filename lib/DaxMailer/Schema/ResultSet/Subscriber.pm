@@ -105,11 +105,21 @@ sub verification_mail_unsent_for {
 
 sub join_latest_email {
     my ( $self ) = @_;
-    $self->search_rs( undef, {
-        join => [ 'logs' ],
-        '+select' => [ { max => 'logs.sent' }, 'logs.email_id' ],
-        '+as' => [ qw/ most_recent email_id / ],
-        group_by => [ 'me.email_address' ] } );
+    $self->search_rs( {
+        'logs.email_id' => { -in => \[
+            'SELECT email_id
+             FROM   subscriber_maillog
+             WHERE  campaign = me.campaign
+             AND    email_address = me.email_address
+             ORDER BY sent DESC
+             LIMIT 1'
+        ], }
+    },
+    {
+        '+select' => 'logs.email_id',
+        '+as'     => 'email_id',
+        join => [ 'logs' ]
+    } );
 }
 
 sub by_days_ago {
