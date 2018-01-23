@@ -12,6 +12,7 @@ use File::Spec::Functions;
 use File::Slurper qw/ read_text /;
 use Carp;
 use DaxMailer::Util::Strings;
+use Try::Tiny;
 
 with 'DaxMailer::Base::Script::Service',
      'DaxMailer::Base::Script::ServiceEmail';
@@ -252,25 +253,32 @@ sub _build_template_map {
 sub email {
     my ( $self, $log, $subscriber, $subject, $template, $layout, $verified ) = @_;
 
-    my $status = $self->smtp->send( {
-        to       => $subscriber->email_address,
-        verified => $verified
-                    || ( $subscriber->verified && !$subscriber->unsubscribed ),
-        from     => '"DuckDuckGo Dax" <dax@mailer.duckduckgo.com>',
-        subject  => $subject,
-        template => $template,
-        layout   => $layout,
-        content  => {
-            subscriber => $subscriber,
-            title => $subject,
-        }
-    } );
+    my $status;
 
-    if ( $status->{ok} ) {
-        $subscriber->update_or_create_related( 'logs', { email_id => $log } );
-    }
+    try {
+        $status = $self->smtp->send( {
+            to       => $subscriber->email_address,
+            verified => $verified
+                        || ( $subscriber->verified && !$subscriber->unsubscribed ),
+            from     => '"DuckDuckGo Dax" <dax@mailer.duckduckgo.com>',
+            subject  => $subject,
+            template => $template,
+            layout   => $layout,
+            content  => {
+                subscriber => $subscriber,
+                title => $subject,
+            }
+        } );
+
+        if ( $status->{ok} ) {
+            $subscriber->update_or_create_related( 'logs', { email_id => $log } );
+        }
+    } catch {
+        warn $_;
+    };
 
     return $status;
+
 }
 
 sub email_plaintext {
