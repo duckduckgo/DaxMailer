@@ -10,9 +10,7 @@
 
 <p style="margin-bottom: 1em"><a href="http://www.wsj.com/articles/SB10001424127887323777204578189391813881534"><img src="https://duckduckgo.com/assets/email/headline.png" style="max-width: 572px;" alt="Wall Street Journal Headline"/></a></p>
 
-<p style="margin-bottom: 1em">And the dynamic pricing trend only continues to grow more and <a href="https://www.theguardian.com/commentisfree/2016/dec/06/cookie-monsters-why-your-browsing-history-could-mean-rip-off-prices">more aggressive</a>! If you haven’t installed a browser add-on or use a mobile browser that blocks tracking such as <a href="https://duckduckgo.com/app">our extension and app</a>, then now might be a good time.</p>
-
-<p style="margin-bottom: 1em">If you haven't installed <a href="https://www.eff.org/privacybadger">Privacy Badger</a> yet, then now might be a good time.</p>
+<p style="margin-bottom: 1em">And the dynamic pricing trend only continues to grow more and <a href="https://www.theguardian.com/commentisfree/2016/dec/06/cookie-monsters-why-your-browsing-history-could-mean-rip-off-prices">more aggressive</a>! If you haven’t installed a browser add-on or use a mobile browser that blocks tracking, such as <a href="https://duckduckgo.com/app">our extension and app</a>, then now might be a good time.</p>
 
 : include 'email/a/signature.tx'
 
