@@ -24,7 +24,7 @@
 </p>
 
 <p style="margin-bottom: 1em">
-  The only truly anonymized data is <strong>no data</strong>. That's why at DuckDuckGo we throw out your personal information every time you search, making sure we don't store anything that could be tied together to identify you. We protect your search history from everyone — even us!
+  The only truly anonymized data is <strong>no data</strong>, so when asked to check boxes to share data anonymously — don’t. Oftentimes you can be re-identified. That's why at DuckDuckGo we throw out your personal information every time you search, making sure we don't store anything that could be tied together to identify you. We protect your search history from everyone — even us!
 </p>
 
 : include 'email/a/signature.tx'
