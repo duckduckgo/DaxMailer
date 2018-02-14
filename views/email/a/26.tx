@@ -10,7 +10,7 @@
 
 <p style="margin-bottom: 1em">So, how can you make sure you're using a secure connection? Unfortunately this relies on websites supporting the ability to do so, though fortunately it's easy to check! In your web browser (the software you use to see websites), just look for a padlock or the text "https" (and not just "http") in the address bar at the top of the browser.</p>
 
-<p style="margin-bottom: 1em">The good news is that now <a href="https://letsencrypt.org/stats/">more than 60% of web traffic</a> is securable. In other words, most web browsing can be done over an encrypted connection. However, not all websites send you to their secure version by default, so we recommend using our <a href="https://duckduckgo.com/app">mobile app and browser extension</a> which, as well as other privacy features, automatically forces a secure connection when there's one available.</p>
+<p style="margin-bottom: 1em">The good news is that now <a href="https://letsencrypt.org/stats/">more than 60% of web traffic</a> is securable. In other words, most web browsing can be done over an encrypted connection. However, not all websites send you to their secure version by default, so we recommend using our <a href="https://duckduckgo.com/app">mobile app and browser extension</a> which, along with other privacy features, automatically forces a secure connection when there's one available.</p>
 
 : include 'email/a/signature.tx'
 

@@ -10,8 +10,9 @@
 
 <p style="margin-bottom: 1em"><img src="https://duckduckgo.com/assets/email/tracking2.png?atb=<: $subscriber.flow :>" style="max-width:572px; padding-left: 5px; padding-bottom: 10px;" alt="Chart of companies by number of trackers"/></p>
 
-<p style="margin-bottom: 1em">Google sells ads not only on their search engine, but also on over 2.2 million other websites and over 1 million apps. Every time you visit one of these sites or apps, Google is storing that information and using it to target ads at you.</br></br>
-That’s why you may have seen ads tracking you across the net!</br></br>
+<p style="margin-bottom: 1em">Google sells ads not only on their search engine, but also on over 2.2 million other websites and over 1 million apps. Every time you visit one of these sites or apps, Google is storing that information and using it to target ads at you.</p>
+
+<p style="margin-bottom: 1em">That’s why you may have seen ads tracking you across the net!</p>
 
 <p style="margin-bottom: 1em">If you want to stop websites from re-marketing to you, you'll need to install a free tool like our <a href="https://duckduckgo.com/app">browser extension or mobile app</a> which blocks trackers (among other privacy protection features).</p>
 
