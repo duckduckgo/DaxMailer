@@ -442,7 +442,7 @@ MAILRUNS:
     my $mails = $self->campaigns->{ $campaign }->{mails};
     for my $mail ( ( sort { $a <=> $b }
                      grep { /^[0-9]+$/ }
-                     keys %{ $mails } ), 'extension' ) {
+                     keys %{ $mails } ), 'extension', 'crowdfunding' ) {
         next if ( $extra->{which} && $extra->{which} ne $mail );
         $self->email(
             $mail,
