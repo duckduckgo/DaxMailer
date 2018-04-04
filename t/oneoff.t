@@ -86,15 +86,15 @@ test_psgi $app => sub {
 
     is( $transport->delivery_count, 34, 'Finished one run, halfway through another' );
 
-    $s->send_oneoff('crowdfunding');
+    $s->send_oneoff('extension');
 
     is( $transport->delivery_count, 34, 'Not sending expired oneoff' );
 
 
     set_absolute_time('2018-01-23T12:00:00Z');
 
-    $s->send_oneoff('crowdfunding');
-    $s->send_oneoff('crowdfunding');
+    $s->send_oneoff('extension');
+    $s->send_oneoff('extension');
 
     is( $transport->delivery_count, 36, 'Sent oneoff only once' );
 
