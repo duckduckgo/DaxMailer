@@ -175,6 +175,12 @@ sub _build_campaigns {
                     template => 'email/oneoff/extension.tx',
                     expires  => '2018-01-25',
                 },
+                crowdfunding => {
+                    oneoff   => 1,
+                    subject  => 'Join the $500,000 DuckDuckGo Privacy Challenge Crowdfunding Campaign',
+                    template => 'email/oneoff/crowdfunding.tx',
+                    expires  => '2018-04-10',
+                },
             }
         },
         'b' => {
