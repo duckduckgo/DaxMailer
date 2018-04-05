@@ -16,7 +16,7 @@
 	<li><a href="https://duckduckgo.com/donations">DuckDuckGo Past Donations</a></li>
 </ul>
 
-<p style="margin: 2em 0;text-align: center"><a href="https://www.crowdrise.com/duckduckgoprivacychallenge"><img src="https://spreadprivacy.com/content/images/2018/03/support-duckduckgo-privacy-challenge.png" style="max-width:375px;" alt="Banner promoting the DuckDuckGo 2018 privacy donation campaign." /></a></p>
+<p style="margin: 2em 0;text-align: center"><a href="https://www.crowdrise.com/duckduckgoprivacychallenge"><img src="https://duckduckgo.com/assets/email/privacy-challenge29.png" style="max-width:375px;" alt="Banner promoting the DuckDuckGo 2018 privacy donation campaign." /></a></p>
 
 : include 'email/a/signature.tx'
 
