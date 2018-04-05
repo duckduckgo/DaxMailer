@@ -16,6 +16,8 @@
 	<li><a href="https://duckduckgo.com/donations">DuckDuckGo Past Donations</a></li>
 </ul>
 
+<p style="margin-bottom: 1em">By the way, the last day to participate is Tuesday April 10, 2018 (2pm ET), so please check it out soon!</p>
+
 <p style="margin: 2em 0;text-align: center"><a href="https://www.crowdrise.com/duckduckgoprivacychallenge"><img src="https://duckduckgo.com/assets/email/privacy-challenge29.png" style="max-width:375px;" alt="Banner promoting the DuckDuckGo 2018 privacy donation campaign." /></a></p>
 
 : include 'email/a/signature.tx'
