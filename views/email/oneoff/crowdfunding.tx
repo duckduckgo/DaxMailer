@@ -1,4 +1,4 @@
-: if !$subscriber.has_column_loaded('email_id') || $subscriber.get_column('email_id') == 'v' || $subscriber.get_column('email_id') < 27 {
+: if !$subscriber.has_column_loaded('email_id') || $subscriber.get_column('email_id') != 'extension' && ( $subscriber.get_column('email_id') == 'v' || $subscriber.get_column('email_id') < 27 ) {
 
     <p style="margin-bottom: 1em"><em>Note for mid-series subscribers: We interrupt our normally scheduled programming to tell you about our privacy crowdfunding challenge...</em></p>
 
