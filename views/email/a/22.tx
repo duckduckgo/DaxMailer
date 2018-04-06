@@ -20,9 +20,7 @@
 <li style="margin-bottom: 1em"><strong>Location.</strong> You may prefer VPNs hosted in certain countries for accessing location-specific content, so check their website to see where their servers are. In many cases you'll be able to choose which country server to connect to.</li>
 </ul>
 
-<p style="margin-bottom: 1em">There are 100s of VPN providers to choose from, so check your favorite review sites for further guidance, such as this <a href="https://www.pcmag.com/article2/0,2817,2403388,00.asp">VPN comparison chart from PCMag</a>. If you'd prefer an easy choice, <a href="https://www.tunnelbear.com/b/privacy-partners/">TunnelBear</a> is used by several of us at DuckDuckGo. As that page says: "Recommended by a duck, protected by a bear!"</p>
-
-<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/tunnelbear-duckduckgo22.png?atb=<: $subscriber.flow :>" style="max-width:572px; width:80%;" alt="A duck and a bear being friends." /></p>
+<p style="margin-bottom: 1em">There are 100s of VPN providers to choose from, so check your favorite review sites for further guidance, such as this <a href="https://www.pcmag.com/article2/0,2817,2403388,00.asp">VPN comparison chart from PCMag</a>. If you'd prefer an easy choice, <a href="https://www.privateinternetaccess.com">Private Internet Access</a> is what we use internally at DuckDuckGo.</p>
 
 : include 'email/a/signature.tx'
 
