@@ -159,4 +159,30 @@ get '/add/:email' => sub {
         { layout => 'mail' };
 };
 
+any qr{^/bulk} => http_basic_auth required => sub {
+    pass;
+};
+
+get '/bulk' => sub {
+    return <<"BULKFORM"
+    <form method="POST" action="/s/bulk">
+        <h3>email addresses:</h3>
+        <textarea name="to" rows=40 cols=50></textarea><br/>
+        <input type="hidden" name="flow" value="bulk">
+        <input type="hidden" name="campaign" value="b">
+        <input type="submit" name="submit">
+    </form>
+BULKFORM
+};
+
+post '/bulk' => sub {
+    my $params = params('body');
+    $subscriber->add({
+        to => join( ',', split( /[\s,\n]+/, $params->{to} ) ),
+        campaign => $params->{campaign},
+        flow => $params->{flow},
+    });
+    return "Thanks!";
+};
+
 1;
