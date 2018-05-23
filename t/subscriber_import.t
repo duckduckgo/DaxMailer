@@ -5,14 +5,15 @@ BEGIN {
     $ENV{DAXMAILER_DB_DSN} = 'dbi:SQLite:dbname=:memory:';
 }
 
+use lib 't/lib';
 use Test::More;
-use t::lib::DaxMailer::TestUtils;
+use DaxMailer::TestUtils;
 use DaxMailer::Base::Web::Common;
 use DaxMailer::Script::ImportSubscribers;
 use FindBin;
 use File::Spec::Functions;
 
-t::lib::DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
+DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
 
 my $bounce_file = catfile( $FindBin::Bin, qw/ var bounce.txt / );
 my $emails_file = catfile( $FindBin::Bin, qw/ var emails.txt / );

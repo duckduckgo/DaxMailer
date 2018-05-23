@@ -1,0 +1,68 @@
+<p style="margin-bottom: 1em">When data is encrypted, it turns into a seemingly random collection of characters, unless of course you have the decryption key! This is commonly used in messaging apps (<a href="https://spreadprivacy.com/how-to-send-private-messages/">read here for how</a>), but it's also easy to encrypt all the data on a device, thanks to this usually being built-in to its operating system. So now there's no excuse not to protect your privacy in this manner!</p>
+
+<p style="margin-bottom: 1em">Follow the steps below for encrypting the devices relevant for you. Once complete, you will only need to enter a password when turning on or waking up your device to automatically decrypt your data.</p>
+
+<h3>How to encrypt your Mac</h3>
+
+<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/device-encryption-mac24.png?atb=<: $subscriber.flow :>" style="max-width:572px; width:80%;" alt="Screenshot of the FileVault setting on macOS." /></p>
+
+<ol>
+    <li>Go to <em>System Preferences</em> > <em>Security &amp; Privacy</em> > <em>FileVault</em></li>
+    <li>Click “Turn On FileVault…”</li>
+    <li>IMPORTANT: Make a note of the recovery key that is displayed and store it away from your Mac.</li>
+    <li>Wait for encryption to complete, but it’s OK to continue using the computer.</li>
+</ol>
+
+<p style="margin-bottom: 1em">See more <a href="https://spreadprivacy.com/mac-privacy-tips/">tips to protect your privacy on Mac</a>.</p>
+
+<h3>How to encrypt your Windows device</h3>
+
+<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/device-encryption-win724.png?atb=<: $subscriber.flow :>" style="max-width:572px; width:80%;" alt="Screenshot of the BitLocker setting on Windows 7." /></p>
+
+<p style="margin-bottom: 1em">Note: BitLocker may not be available in all versions of Windows.</p>
+
+<ol>
+    <li>Go to <em>Control Panel</em> > <em>BitLocker Drive Encryption</em>.</li>
+    <li>Click “Turn on BitLocker” next to the drive you want to encrypt.</li>
+    <li>Enter a long and varied alphanumeric password or passphrase.</li>
+    <li>IMPORTANT: Make a backup of the recovery key using one of the displayed methods.</li>
+    <li>Choose whether to encrypt used disk space only (faster) and start the encryption process.</li>
+</ol>
+
+<p style="margin-bottom: 1em">See more <a href="https://spreadprivacy.com/windows-7-privacy-tips/">tips to protect your privacy on Windows 7</a> and <a href="https://spreadprivacy.com/windows-10-privacy-tips/">Windows 10</a>.</p>
+
+<h3>How to encrypt your iPhone</h3>
+
+<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/device-encryption-iphone24.png?atb=<: $subscriber.flow :>" style="max-width:572px; width:80%;" alt="Screenshot of the lock screen process on iPhone." /></p>
+
+<ol>
+    <li>Go to <em>Settings</em> > <em>Touch ID &amp; Passcode</em>.</li>
+    <li>Press “Turn Passcode On” if not enabled already.</li>
+    <li>Press “Passcode options” to choose a custom numeric or alphanumeric code (recommended).</li>
+    <li>Confirm your device is encrypted by scrolling to the bottom of the <em>Settings</em> > <em>Touch ID &amp; Passcode</em> screen. You should see the “Data protection is enabled” message.</li>
+</ol>
+
+<p style="margin-bottom: 1em">See more <a href="https://spreadprivacy.com/iphone-privacy-tips/">tips to protect your privacy on iPhone</a>.</p>
+
+<h3>How to encrypt your Android device</h3>
+
+<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/device-encryption-android24.png?atb=<: $subscriber.flow :>" style="max-width:572px; width:80%;" alt="Screenshot of the encryption process on Android." /></p>
+
+<ol>
+    <li>Plug in the device to charge the battery (required).</li>
+    <li>Make sure a password or PIN is set in <em>Security</em> > <em>Screen lock</em>.</li>
+    <li>Go to <em>Settings</em> > <em>Security</em>.</li>
+    <li>Press the “Encrypt phone” option.</li>
+    <li>Read the notice and press “Encrypt phone” to start the encryption process.</li>
+    <li>Remember to keep the phone plugged in until complete.</li>
+</ol>
+
+<p style="margin-bottom: 1em">See more <a href="https://spreadprivacy.com/android-privacy-tips/">tips to protect your privacy on Android</a>.</p>
+
+<p style="margin-bottom: 1em">And for further information, this <a href="https://ssd.eff.org/en/module/what-encryption">guide to encryption</a> is recommended.</p>
+
+: include 'email/a/signature.tx'
+
+<p>
+  <a href="https://spreadprivacy.com/how-to-encrypt-devices/">View this on our blog</a> | <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
+</p>

@@ -8,15 +8,16 @@ BEGIN {
 }
 
 
+use lib 't/lib';
 use Plack::Test;
 use Plack::Builder;
 use HTTP::Request::Common;
 use Test::More;
 use DaxMailer::Web::App::Bang;
-use t::lib::DaxMailer::TestUtils;
+use DaxMailer::TestUtils;
 use DaxMailer::Base::Web::Common;
 
-t::lib::DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
+DaxMailer::TestUtils::deploy( { drop => 1 }, schema );
 
 my $app = builder {
     mount '/nb' => DaxMailer::Web::App::Bang->to_app;

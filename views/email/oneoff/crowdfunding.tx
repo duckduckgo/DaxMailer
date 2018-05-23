@@ -1,0 +1,28 @@
+: if !$subscriber.has_column_loaded('email_id') || $subscriber.get_column('email_id') != 'extension' && ( $subscriber.get_column('email_id') == 'v' || $subscriber.get_column('email_id') < 27 ) {
+
+    <p style="margin-bottom: 1em"><em>Note for mid-series subscribers: We interrupt our normally scheduled programming to tell you about our privacy crowdfunding challenge...</em></p>
+
+: }
+
+<p style="margin-bottom: 1em">Through this newsletter we hope that you’ve learned a lot about online privacy and some of the organizations that support it. Now more than ever, we need these organizations to help protect our privacy online, from tools for people to take action themselves, to defending our rights at a corporate and legislative level.</p>
+
+<p style="margin-bottom: 1em">Since 2011, <a href="https://duckduckgo.com/donations">we've donated $800,000</a> to such organizations, and this year we're taking it up a notch with the <a href="https://www.crowdrise.com/duckduckgoprivacychallenge">DuckDuckGo Privacy Challenge crowdfunding campaign</a>. We've pledged $500,000 dollars ourselves, and with your participation, we could increase the amount of money that's donated to these amazing organizations.</p>
+
+<p style="margin-bottom: 1em">Please consider donating. Here are the details:</p>
+
+<ul>
+	<li><a href="https://www.crowdrise.com/duckduckgoprivacychallenge">Crowdfunding Page</a></li>
+	<li><a href="https://spreadprivacy.com/duckduckgo-privacy-challenge-2018/">Announcement Post</a></li>
+	<li><a href="https://duckduckgo.com/donations">DuckDuckGo Past Donations</a></li>
+</ul>
+
+<p style="margin-bottom: 1em">By the way, the last day to participate is Tuesday April 10, 2018 (2pm ET), so please check it out soon!</p>
+
+<p style="margin: 2em 0;text-align: center"><a href="https://www.crowdrise.com/duckduckgoprivacychallenge"><img src="https://duckduckgo.com/assets/email/privacy-challenge29.png" style="max-width:375px;" alt="Banner promoting the DuckDuckGo 2018 privacy donation campaign." /></a></p>
+
+: include 'email/a/signature.tx'
+
+<p>
+  <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
+</p>
+

@@ -1,0 +1,16 @@
+<p style="margin-bottom: 1em">Over the past 100 days or so, we've been on a whirlwind tour of privacy together. <img src="https://duckduckgo.com/assets/email/emoji/duck.png" alt="" style="max-height:20px;vertical-align:top;" /> <img src="https://duckduckgo.com/assets/email/emoji/happy-face.png" alt="" style="max-height:20px;vertical-align:top;" /></p>
+
+<p style="margin-bottom: 1em">We've looked at industry practices, common misconceptions, and how to protect yourself online, so you're now well equipped to improve privacy, not just for yourself, but your friends and family too!</p>
+
+<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/high-five27.jpg?atb=<: $subscriber.flow :>" style="max-width:572px; width:80%;" alt="Group of friends giving a high five." /></p>
+
+<p style="margin-bottom: 1em">Even though this is the last email for now, we don't want our privacy journey together to be over. We'd love to hear suggestions for other topics, and based on your responses, we'll produce more, similarly useful privacy content. If you’d like to help, please fill out the brief anonymous survey below:<br/>
+<a href="https://www.surveymonkey.com/r/5RFHXRW">www.surveymonkey.com/r/5RFHXRW</a></p>
+
+<p style="margin-bottom: 1em">In the mean time, <a href="https://spreadprivacy.com">check out our blog</a> for all the emails we've sent, plus other privacy-related content.</p>
+
+: include 'email/a/signature.tx'
+
+<p>
+  <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
+</p>

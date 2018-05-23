@@ -12,6 +12,7 @@ use File::Spec::Functions;
 use File::Slurper qw/ read_text /;
 use Carp;
 use DaxMailer::Util::Strings;
+use Try::Tiny;
 
 with 'DaxMailer::Base::Script::Service',
      'DaxMailer::Base::Script::ServiceEmail';
@@ -24,6 +25,12 @@ option newsletter => (
 option verify => (
     is => 'ro',
     doc => 'Run verify mail shot'
+);
+
+option oneoff => (
+    is => 'ro',
+    format => 's',
+    doc => 'Run one-off mail shot'
 );
 
 option mock_date => (
@@ -122,6 +129,58 @@ sub _build_campaigns {
                     subject  => 'Privacy Mythbusting #6: Security equals privacy!',
                     template => 'email/a/15.tx',
                 },
+                20 => {
+                    days     => 60,
+                    subject  => 'How to Send Messages in Private',
+                    template => 'email/a/20.tx',
+                },
+                21 => {
+                    days     => 66,
+                    subject  => 'How to Live Without Google',
+                    template => 'email/a/21.tx',
+                },
+                22 => {
+                    days     => 73,
+                    subject  => 'How to Choose a Good VPN',
+                    template => 'email/a/22.tx',
+                },
+                23 => {
+                    days     => 80,
+                    subject  => 'How to Set Up Your Devices for Privacy Protection',
+                    template => 'email/a/23.tx',
+                },
+                24 => {
+                    days     => 86,
+                    subject  => 'How to Encrypt Your Devices',
+                    template => 'email/a/24.tx',
+                },
+                25 => {
+                    days     => 93,
+                    subject  => 'How to Be Even More Anonymous Online',
+                    template => 'email/a/25.tx',
+                },
+                26 => {
+                    days     => 100,
+                    subject  => 'How to Check Whether Your Web Connection\'s Secure',
+                    template => 'email/a/26.tx',
+                },
+                27 => {
+                    days     => 107,
+                    subject  => 'DuckDuckGo Privacy Newsletter: 100-Day Follow-Up',
+                    template => 'email/a/27.tx',
+                },
+                extension => {
+                    oneoff   => 1,
+                    subject  => 'DuckDuckGo news: Protecting privacy beyond the search box',
+                    template => 'email/oneoff/extension.tx',
+                    expires  => '2018-01-25',
+                },
+                crowdfunding => {
+                    oneoff   => 1,
+                    subject  => 'Join the $500,000 DuckDuckGo Privacy Challenge Crowdfunding Campaign',
+                    template => 'email/oneoff/crowdfunding.tx',
+                    expires  => '2018-04-10',
+                },
             }
         },
         'b' => {
@@ -200,25 +259,32 @@ sub _build_template_map {
 sub email {
     my ( $self, $log, $subscriber, $subject, $template, $layout, $verified ) = @_;
 
-    my $status = $self->smtp->send( {
-        to       => $subscriber->email_address,
-        verified => $verified
-                    || ( $subscriber->verified && !$subscriber->unsubscribed ),
-        from     => '"DuckDuckGo Dax" <dax@duckduckgo.com>',
-        subject  => $subject,
-        template => $template,
-        layout   => $layout,
-        content  => {
-            subscriber => $subscriber,
-            title => $subject,
-        }
-    } );
+    my $status;
 
-    if ( $status->{ok} ) {
-        $subscriber->update_or_create_related( 'logs', { email_id => $log } );
-    }
+    try {
+        $status = $self->smtp->send( {
+            to       => $subscriber->email_address,
+            verified => $verified
+                        || ( $subscriber->verified && !$subscriber->unsubscribed ),
+            from     => '"DuckDuckGo Dax" <dax@mailer.duckduckgo.com>',
+            subject  => $subject,
+            template => $template,
+            layout   => $layout,
+            content  => {
+                subscriber => $subscriber,
+                title => $subject,
+            }
+        } );
+
+        if ( $status->{ok} ) {
+            $subscriber->update_or_create_related( 'logs', { email_id => $log } );
+        }
+    } catch {
+        warn $_;
+    };
 
     return $status;
+
 }
 
 sub email_plaintext {
@@ -228,7 +294,7 @@ sub email_plaintext {
         to       => $subscriber->email_address,
         verified => $verified
                     || ( $subscriber->verified && !$subscriber->unsubscribed ),
-        from     => '"DuckDuckGo Dax" <dax@duckduckgo.com>',
+        from     => '"DuckDuckGo Dax" <dax@mailer.duckduckgo.com>',
         subject  => $subject,
         template => $layout,
         content  => {
@@ -253,6 +319,7 @@ sub send_campaign {
             'v',
             sort { $a <=> $b }
             grep { /^[0-9]+$/ }
+            grep { !$self->campaigns->{ $campaign }->{mails}->{ $_ }->{oneoff} }
             keys %{ $self->campaigns->{ $campaign }->{mails} }
         );
         for my $i ( 1..$#mail_map ) {
@@ -354,7 +421,7 @@ sub testrun {
     goto MAILRUNS if $extra->{which} && $extra->{which} ne 'v';
 
     if ( my $tm = $self->campaigns->{ $campaign }->{template_map} ) {
-        for my $template ( sort keys $self->template_map->{ $tm } ) {
+        for my $template ( sort keys %{ $self->template_map->{ $tm } } ) {
             $subscriber->extra({
                     from =>
                         trunc( $extra->{from}, 512, { at_space => 1 } )
@@ -373,7 +440,9 @@ sub testrun {
 MAILRUNS:
 
     my $mails = $self->campaigns->{ $campaign }->{mails};
-    for my $mail ( sort { $a <=> $b } keys %{ $mails } ) {
+    for my $mail ( ( sort { $a <=> $b }
+                     grep { /^[0-9]+$/ }
+                     keys %{ $mails } ), 'extension', 'crowdfunding' ) {
         next if ( $extra->{which} && $extra->{which} ne $mail );
         $self->email(
             $mail,
@@ -391,6 +460,10 @@ VERIFYONLY:
 
 sub add {
     my ( $self, $params ) = @_;
+
+    # Silently reject friends signups
+    return 1 if ( lc($params->{campaign}) eq 'c' && !$ENV{DAXMAILER_MAIL_TEST} );
+
     my $unsubscribed = 0;
     $unsubscribed = 1 if (
         $params->{from} &&
@@ -517,6 +590,39 @@ sub test_newsletter {
     return 'Test newsletter sent!';
 }
 
+sub send_oneoff {
+    my ( $self, $email ) = @_;
+
+    my @campaigns = grep {
+        $self->campaigns->{ $_ }->{mails}->{ $email } &&
+        $self->campaigns->{ $_ }->{mails}->{ $email }->{oneoff} &&
+        $self->campaigns->{ $_ }->{live} &&
+        ( !$self->campaigns->{ $_ }->{mails}->{ $email }->{expires} ||
+          DateTime->now->ymd lt $self->campaigns->{ $_ }->{mails}->{ $email }->{expires} )
+    } keys %{ $self->campaigns };
+
+    my @subscribers = map {
+        rset('Subscriber')
+            ->campaign( $_ )
+            ->subscribed
+            ->verified
+            ->unbounced
+            ->mail_unsent( $_, $email )
+            ->join_latest_email
+            ->all
+    } @campaigns;
+
+    for my $subscriber ( @subscribers ) {
+        $self->email(
+            $email,
+            $subscriber,
+            $self->campaigns->{ $subscriber->campaign }->{mails}->{ $email }->{subject},
+            $self->campaigns->{ $subscriber->campaign }->{mails}->{ $email }->{template},
+            $self->campaigns->{ $subscriber->campaign }->{layout},
+        );
+    }
+}
+
 sub go {
     my ( $self ) = @_;
     if ( $self->has_mock_date ) {
@@ -528,6 +634,9 @@ sub go {
     }
     elsif ( $self->newsletter ) {
         $self->send_newsletter;
+    }
+    elsif ( $self->oneoff ) {
+        $self->send_oneoff( $self->oneoff );
     }
     else {
         $self->send_campaign;

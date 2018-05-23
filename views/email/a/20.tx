@@ -1,0 +1,19 @@
+<p style="margin-bottom: 1em"><em>Now that we've busted major privacy myths in our Privacy Mythbusting series, this email begins our third series, focusing on practical steps you can take to stay private online.</em></p>
+
+<p style="margin-bottom: 1em">There are many times when you want to have a chat in private, such as when you have something confidential to say or you simply don't want the world listening in. Hey, that's what social media's for! <img src="https://duckduckgo.com/assets/email/emoji/shout.png?atb=<: $subscriber.flow :>" style="max-width:24px;vertical-align:top;" alt="" /></p>
+
+<p style="margin-bottom: 1em">Imagine you have a personal butler, eager to run errands on your behalf. You want to send a private message, so you put a hand-written note in an envelope and give it to your butler for delivery, hiding its contents from plain sight. There is a risk, however, that your butler could be bribed, threatened, or just plain nosy, deciding to read your message before delivering it, and perhaps sharing it with others. Not so private after all...</p>
+
+<p style="margin-bottom: 1em">The way people have historically gotten around this problem is sealing the letter in wax, to discourage people from prying.</p>
+
+<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/wax-seal20.jpg?atb=<: $subscriber.flow :>" style="max-width:572px; width:80%;" alt="Unopened wax seal on the back of an envelope." /></p>
+
+<p style="margin-bottom: 1em">Today, online messaging is similar, with messaging apps serving as your butler. Instead of sealing an envelope, though, you can use "encryption" to ensure your message remains private. Encryption is simply a means of converting text into a jumble of letters and numbers that's unreadable to anyone without the key to unlock it. If only you and the receiver have the key, then only the two of you can get access to your private message, and not the messaging service (butler) or anyone else. This is known as "end-to-end encryption." Great news: there's software freely available that can do this for you automatically!</p>
+
+<p style="margin-bottom: 1em">If you'd like an easy way to use secure, end-to-end encrypted messaging, we highly recommend <a href="https://whispersystems.org/blog/signal/">Signal</a>. It's free, open source, and available from the iPhone and Android app stores. Not only that, it also allows you to make secure voice calls. Your butler would approve!</p>
+
+: include 'email/a/signature.tx'
+
+<p>
+  <a href="https://spreadprivacy.com/how-to-send-private-messages/">View this on our blog</a> | <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
+</p>

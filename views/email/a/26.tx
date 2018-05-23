@@ -1,0 +1,19 @@
+<p style="margin-bottom: 1em">It's easy to underestimate how awesome encrypted internet connections are. Sure, they may not sound exciting, but without them, things like our financial details, medical histories, and relationship problems would all be visible to internet providers, or even people on the same network as you. Without secure connections, when you're checking your bank statement in a coffee shop, Secretive Sam in the corner could be checking your bank statement too! <img src="https://duckduckgo.com/assets/email/emoji/suspicious.png" alt="" style="max-height:20px;vertical-align:top;" /></p>
+
+<p style="margin-bottom: 1em">Such eavesdropping is prevented by visiting a website over a secure connection. When you do so, <strong>only the website's domain name is visible to others</strong> (e.g. the "duckduckgo.com" part), and <em>not</em> the page content itself, or any other data such as search terms you might send with it or type into the page after it loads. As long as your connection is encrypted, everything after the domain name cannot be seen by any servers in between you and the website.</p>
+
+<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/https-in-address-bar26.png?atb=<: $subscriber.flow :>" style="max-width:572px; width:80%;" alt="Screenshot showing how HTTPS is indicated in a browser address bar." /></p>
+
+<p style="margin-bottom: 1em">An apt metaphor is checking your locked luggage at an airport. Anyone can read the tag on your suitcase to see where it's heading, but the contents are locked away and can't be seen by other travelers or airport staff. On the other hand, data sent over an unsecure connection would be like a transparent suitcase with everything on show — even those embarrassing but oh-so-comfy pyjamas!</p>
+
+<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/pyjamas26.jpg?atb=<: $subscriber.flow :>" style="max-width:572px; width:80%;" alt="A row of crazy patterned pyjamas." /></p>
+
+<p style="margin-bottom: 1em">So, how can you make sure you're using a secure connection? Unfortunately this relies on websites supporting the ability to do so, though fortunately it's easy to check! In your web browser (the software you use to see websites), just look for a padlock or the text "https" (and not just "http") in the address bar at the top of the browser.</p>
+
+<p style="margin-bottom: 1em">The good news is that now <a href="https://letsencrypt.org/stats/">more than 60% of web traffic</a> is securable. In other words, most web browsing can be done over an encrypted connection. However, not all websites send you to their secure version by default, so we recommend using our <a href="https://duckduckgo.com/app">mobile app and browser extension</a> which, along with other privacy features, automatically forces a secure connection when there's one available.</p>
+
+: include 'email/a/signature.tx'
+
+<p>
+  <a href="https://spreadprivacy.com/secure-web-connection/">View this on our blog</a> | <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
+</p>

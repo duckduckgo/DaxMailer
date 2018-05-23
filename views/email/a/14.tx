@@ -11,7 +11,7 @@
 </p>
 
 <p style="margin-bottom: 1em">
-  The site "<a href="https://tosdr.org/">Terms of Service; Didn't Read</a>" helps to summarize and rate terms of services for popular sites. They also have a <a href="https://tosdr.org/downloads.html">browser add-on</a> so you don't even need to leave websites to check their ratings. As an example, look at DuckDuckGo compared to Google.
+  The site "<a href="https://tosdr.org/">Terms of Service; Didn't Read</a>" (ToS;DR) helps to summarize and rate terms of services for popular sites. We use their ratings as part of the Privacy Grade we show for websites in our <a href="https://duckduckgo.com/app">app and browser extension</a>. As an example of the ToS;DR ratings, look at DuckDuckGo compared to Google.
 </p>
 
 <p style="margin-bottom: 1em">
@@ -21,5 +21,5 @@
 : include 'email/a/signature.tx'
 
 <p>
-  <a href="https://spreadprivacy.com/who-o-96c9f46f1e12">View this on our blog</a> | <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
+  <a href="https://spreadprivacy.com/data-sharing/">View this on our blog</a> | <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
 </p>

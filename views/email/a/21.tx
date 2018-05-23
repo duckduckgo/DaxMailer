@@ -1,0 +1,45 @@
+<p style="margin-bottom: 1em">Remove Google from your life? Yes, it can be done! <img src="https://duckduckgo.com/assets/email/emoji/cheer.png?atb=<: $subscriber.flow :>" style="max-width:26px;vertical-align:middle;" alt="" /></p>
+
+<p style="margin-bottom: 1em">Google trackers have been found on <a href="https://spreadprivacy.com/followed-by-ads/">75% of the top million websites</a>. This means they are not only tracking what you search for, they're also tracking which websites you visit, and using all your data for ads that follow you around the internet. Your personal data can also be subpoenaed by lawyers, including for civil cases like divorce. Google answered <a href="https://www.google.com/transparencyreport/userdatarequests/?metric=users_accounts">over 100,000 such data requests</a> in 2016 alone!</p>
+
+<p style="margin-bottom: 1em">More and more people are also realizing the risk of relying on one company for so many personal services. If you're joining the ranks of people who've decided Google's data collection has become too invasive, here are some suggestions for replacements with minimal switching cost. Most are free, though even those that are paid are worth it — the cost of not switching is a cost to your personal privacy, and the good news is we have a choice!</p>
+
+<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/choices21.jpg?atb=<: $subscriber.flow :>" style="max-width:572px; width:80%;" alt="Boy choosing from a selection of ice cream." /></p>
+
+<p style="margin-bottom: 1em"><strong>Google Search -> <a href="https://duckduckgo.com/">DuckDuckGo</a> (free)</strong><br/>
+Let's start off with the easiest one! Switching to DuckDuckGo not only keeps your searches private but also gives you extra advantages such as our <a href="https://duckduckgo.com/bang">bang shortcuts</a>, handy <a href="https://duck.co/ia">Instant Answers</a>, and knowing you're not trapped in a <a href="https://spreadprivacy.com/filter-bubble/">filter bubble</a>.</p>
+
+<p style="margin-bottom: 1em"><strong>Gmail, Calendar &amp; Contacts -> <a href="https://www.fastmail.com/">FastMail</a> (paid)</strong><br/>
+We host @duckduckgo.com addresses on FastMail, an independent, paid service that also includes calendar and contacts support across all devices. There are also several ways to get encrypted email between trusted parties by <a href="https://blog.fastmail.com/2016/12/23/pgp-tools-with-fastmail/">integrating PGP encryption tools</a>. Even more private email alternatives are <a href="https://protonmail.com/">ProtonMail</a> and <a href="https://tutanota.com/">Tutanota</a>, both of which offer end-to-end encryption by default.</p>
+
+<p style="margin-bottom: 1em"><strong>YouTube -> <a href="https://vimeo.com/">Vimeo</a> (free with paid options)</strong><br/>
+For videos that are only on YouTube (unfortunately, a lot), you can search for and watch them on DuckDuckGo for better privacy protection via YouTube's "youtube-nocookie" domain. If you're creating and hosting video yourself, however, Vimeo is the best-known alternative which focuses on creators.</p>
+
+<p style="margin-bottom: 1em"><strong>Google Maps -> <a href="https://www.apple.com/ios/maps/">Apple Maps</a> (free), <a href="http://www.openstreetmap.org/">OpenStreetMap</a> (free)</strong><br/>
+For iOS users, Apple gives you an alternative built in via Apple Maps, so no installation is necessary. For wider device support, check out OpenStreetMap (OSM) which is more open, though may not have the same ease-of-use or coverage quality as Apple Maps.</p>
+
+<p style="margin-bottom: 1em"><strong>Google Drive -> <a href="https://www.resilio.com/individuals/">Resilio Sync</a> (free with paid options)</strong><br/>
+Another service we use internally, Resilio Sync, provides peer-to-peer file synchronization which can be used for private file storage, backup, and file sharing. This also means your files are never stored on a single server in the cloud! The software is available for a wide variety of platforms and devices, including servers.</p>
+
+<p style="margin-bottom: 1em"><strong>Android -> <a href="https://www.apple.com/ios/">iOS</a> (paid)</strong><br/>
+The most popular alternative to Android is of course iOS, which offers easy device encryption and encrypted messaging via iMessage by default. We also have <a href="https://spreadprivacy.com/iphone-privacy-tips/">tips to increase privacy protection on your iPhone or iPad</a>.</p>
+
+<p style="margin-bottom: 1em"><strong>Google Chrome -> <a href="https://www.apple.com/safari/">Safari</a> (free), <a href="https://www.mozilla.org/firefox/">Firefox</a> (free), <a href="https://brave.com/">Brave</a> (free)</strong><br/>
+Safari was the first major browser to include DuckDuckGo as a built-in private search option. A more cross-device compatible browser is Mozilla's Firefox, an open source browser with a built-in tracker blocker in private mode. Brave goes one step further with tracker blocking switched on by default. There are also <a href="https://duck.co/help/desktop/other-browsers">many more browsers</a> that come with DuckDuckGo as a built-in option.</p>
+
+<p style="margin-bottom: 1em"><strong>Blogger -> <a href="https://ghost.org/">Ghost</a> (paid), <a href="https://wordpress.com/">WordPress</a> (free with paid options)</strong><br/>
+Ghost is both a hosted (paid) and self-installable blogging platform, tracker-free by default and run by a non-profit foundation. We like it so much we use it for <a href="https://spreadprivacy.com">our own blog</a>! A free alternative is WordPress, powering an estimated 25% of the world's websites. It's also available both for self-installation and as a hosted service with no third-party trackers by default. The community is huge with extensive multilingual documentation and many themes to choose from.</p>
+
+<p style="margin-bottom: 1em"><strong>Google Hangouts -> <a href="https://zoom.us/">Zoom</a> (free with paid options), <a href="https://appear.in/">appear.in</a> (free with paid option)</strong><br/>
+Zoom is a robust video chat alternative we use internally that works well even for large numbers of participants, though requires software to be installed. A web-only alternative is appear.in which doesn't require an account — just go to the website to open a chat room and you're ready.</p>
+
+<p style="margin-bottom: 1em"><strong>Google Allo -> <a href="https://whispersystems.org/">Signal</a> (free)</strong><br/>
+There are several services offering private messaging but, as we've mentioned before, Signal gets our recommendation. It offers free, end-to-end encryption for both messages and private calls. It's also recommended by Edward Snowden and renowned security expert Bruce Schneier, among others.</p>
+
+<p style="margin-bottom: 1em">As you can see, moving away from Google needn't be hard. In fact, you might find you prefer the alternatives while also getting better privacy!</p>
+
+: include 'email/a/signature.tx'
+
+<p>
+  <a href="https://spreadprivacy.com/how-to-remove-google/">View this on our blog</a> | <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
+</p>

@@ -7,7 +7,7 @@
 </p>
 
 <p style="margin-bottom: 1em">
-  A great example is Google's ad network. While connections to it are securely encrypted, Google's trackers still appear on <a href="https://spreadprivacy.com/retargeting-3edceae5496">75% of the top million websites</a>, tracking you across the web, inundating you with highly targeted ads that follow you everywhere. There is security, but no privacy.
+  A great example is Google's ad network. While connections to it are securely encrypted, Google's trackers still appear on <a href="https://spreadprivacy.com/followed-by-ads/">75% of the top million websites</a>, tracking you across the web, inundating you with highly targeted ads that follow you everywhere. There is security, but no privacy.
 </p>
 
 <p style="margin-bottom: 1em">
@@ -30,5 +30,5 @@
 : include 'email/a/signature.tx'
 
 <p>
-  <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
+  <a href="https://spreadprivacy.com/security-is-not-privacy/">View this on our blog</a> | <a href="https://twitter.com/duckduckgo">Follow us on Twitter</a>
 </p>
