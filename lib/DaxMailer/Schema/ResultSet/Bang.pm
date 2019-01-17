@@ -18,6 +18,7 @@ sub create_from_post {
     my ( $self, $body ) = @_;
     my ( $category, $subcategory );
     my $bang;
+    my $comment;
 
     return unless (
         $body->{bang_site} &&
@@ -25,8 +26,12 @@ sub create_from_post {
         $body->{bang_url} &&
         $body->{bang_cat} &&
         $body->{bang_subcat} &&
+        $body->{bang_comments} &&
+        $body->{bang_note} &&
         index( $body->{bang_url}, '{{{s}}}' ) >= 0
     );
+
+    $comments = $body->{bang_note} . ' ' . $body->{bang_comments};
 
     try {
         $category = $self->rs('Bang::Category')->find_or_create({
@@ -45,6 +50,7 @@ sub create_from_post {
             email_address   => $body->{from},
             site_name       => $body->{bang_site},
             example_search  => $body->{bang_search},
+            comments        => $comments,
             category_id     => $subcategory->id,
         }) or die "Unable to create bang";
     } catch {
