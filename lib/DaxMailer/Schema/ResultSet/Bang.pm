@@ -40,12 +40,12 @@ sub create_from_post {
         }) or die "Unable to retrieve subcategory";
 
         $bang = $self->create({
-            command       => $body->{bang_command},
-            url           => $body->{bang_url},
-            email_address => $body->{from},
-            site_name     => $body->{bang_site},
-            comments      => $body->{bang_comments},
-            category_id   => $subcategory->id,
+            command         => $body->{bang_command},
+            url             => $body->{bang_url},
+            email_address   => $body->{from},
+            site_name       => $body->{bang_site},
+            example_search  => $body->{bang_search},
+            category_id     => $subcategory->id,
         }) or die "Unable to create bang";
     } catch {
         return 0;

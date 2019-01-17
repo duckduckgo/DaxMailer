@@ -12,6 +12,7 @@ primary_column url     => { data_type => 'text' };
 
 column email_address   => { data_type => 'text', is_nullable => 1 };
 column comments        => { data_type => 'text', is_nullable => 1 };
+column example_search  => { data_type => 'text', is_nullable => 1 };
 column site_name       => { data_type => 'text' };
 column category_id     => { data_type => 'integer' };
 
