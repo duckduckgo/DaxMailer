@@ -28,7 +28,8 @@ test_psgi $app => sub {
 
     my $newbang = sub {
         my ( $command, $url, $email, $site,
-             $comments, $category, $subcategory ) = @_;
+             $comments, $category, $subcategory,
+             $note, $search ) = @_;
         ok( $cb->( POST '/nb/newbang',
                 [   bang_command  => $command,
                     bang_url      => $url,
@@ -37,6 +38,8 @@ test_psgi $app => sub {
                     bang_comments => $comments,
                     bang_cat      => $category,
                     bang_subcat   => $subcategory,
+                    bang_note     => $note,
+                    bang_search   => $search,
                 ]
             )->is_success,
             "POSTing new bang $command"
@@ -46,16 +49,18 @@ test_psgi $app => sub {
     $newbang->(qw'
         foo http://example.com/q={{{s}}}
         submitter@example.com
-        example.com example.com Tech Example
+        example.com example.com Tech Example [NEW]
     ');
 
     $newbang->(qw'
         bar http://example.com/
         submitter@example.com
-        example.com example.com Tech Example
+        example.com example.com Tech Example [NEW]
     ');
 
     $newbang->( 'baz', 'http://example.com/q={{{s}}}', undef, undef, 'Hello!', 'Tech', 'Programming' );
+
+    $newbang->( 'baz', 'http://example.com/q={{{s}}}', undef, undef, 'Hello!', 'Tech', 'Programming', '[NEW]', 'hello' );
 
     is( $cb->( POST '/nb/newbangs.txt' )->code, 401, 'Cannot access newbangs without secret');
 
@@ -65,7 +70,7 @@ test_psgi $app => sub {
     ok( $bangs->is_success, 'Retrieved bang content with shared secret' );
     is(
         $bangs->content,
-        'foo	example.com	http://example.com/q={{{s}}}	submitter@example.com	Tech	Example	example.com',
+        'foo	example.com	http://example.com/q={{{s}}}	submitter@example.com	Tech	Example	[NEW] example.com	hello',
         'TSV line OK'
     );
 };
