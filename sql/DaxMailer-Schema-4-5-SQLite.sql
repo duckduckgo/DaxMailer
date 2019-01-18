@@ -2,7 +2,7 @@
 
 BEGIN;
 
-ALTER TABLE "bang" ADD COLUMN "example_search" text;
+ALTER TABLE "bang" ADD COLUMN "example_search" text DEFAULT 'hello';
 
 
 COMMIT;

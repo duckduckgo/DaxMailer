@@ -1,6 +1,6 @@
 -- 
 -- Created by SQL::Translator::Producer::PostgreSQL
--- Created on Fri Jan 18 06:35:29 2019
+-- Created on Fri Jan 18 11:00:01 2019
 -- 
 --
 -- Table: bang_category
@@ -53,7 +53,7 @@ CREATE TABLE "bang" (
   "url" text NOT NULL,
   "email_address" text,
   "comments" text,
-  "example_search" text,
+  "example_search" text DEFAULT 'hello',
   "site_name" text NOT NULL,
   "category_id" integer NOT NULL,
   "moderated" integer DEFAULT 0 NOT NULL,
