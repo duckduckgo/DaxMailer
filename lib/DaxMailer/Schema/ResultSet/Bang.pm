@@ -80,6 +80,7 @@ sub tsv {
             $_->{category}->{parent_category}->{name},
             $_->{category}->{name},
             $_->{comments},
+            $_->{example_search},
         );
         $self->csv->string;
     } $self
