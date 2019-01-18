@@ -18,7 +18,7 @@ sub create_from_post {
     my ( $self, $body ) = @_;
     my ( $category, $subcategory );
     my $bang;
-    my $comment;
+    my $comments;
 
     return unless (
         $body->{bang_site} &&
