@@ -49,7 +49,7 @@ test_psgi $app => sub {
     $newbang->(qw'
         foo http://example.com/q={{{s}}}
         submitter@example.com
-        example.com example.com Tech Example [NEW]
+        example.com example.com Tech Example [NEW] hello
     ');
 
     $newbang->(qw'
