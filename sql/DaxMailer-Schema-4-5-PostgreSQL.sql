@@ -4,6 +4,8 @@ BEGIN;
 
 ALTER TABLE bang ADD COLUMN example_search text DEFAULT 'hello';
 
+ALTER TABLE bang ADD COLUMN created timestamp DEFAULT '2019-01-01' NOT NULL;
+
 
 COMMIT;
 

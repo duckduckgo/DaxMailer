@@ -1,6 +1,6 @@
 -- 
 -- Created by SQL::Translator::Producer::SQLite
--- Created on Fri Jan 18 11:00:02 2019
+-- Created on Mon Jan 21 13:25:21 2019
 -- 
 
 BEGIN TRANSACTION;
@@ -65,6 +65,7 @@ CREATE TABLE "bang" (
   "site_name" text NOT NULL,
   "category_id" integer NOT NULL,
   "moderated" integer NOT NULL DEFAULT 0,
+  "created" timestamptz NOT NULL DEFAULT '2019-01-01',
   PRIMARY KEY ("command", "url"),
   FOREIGN KEY ("category_id") REFERENCES "bang_category"("id") ON DELETE CASCADE ON UPDATE CASCADE
 );

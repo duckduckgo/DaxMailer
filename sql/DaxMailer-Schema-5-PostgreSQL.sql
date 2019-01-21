@@ -1,6 +1,6 @@
 -- 
 -- Created by SQL::Translator::Producer::PostgreSQL
--- Created on Fri Jan 18 11:00:01 2019
+-- Created on Mon Jan 21 13:25:20 2019
 -- 
 --
 -- Table: bang_category
@@ -57,6 +57,7 @@ CREATE TABLE "bang" (
   "site_name" text NOT NULL,
   "category_id" integer NOT NULL,
   "moderated" integer DEFAULT 0 NOT NULL,
+  "created" timestamptz DEFAULT '2019-01-01' NOT NULL,
   PRIMARY KEY ("command", "url")
 );
 CREATE INDEX "bang_idx_category_id" on "bang" ("category_id");

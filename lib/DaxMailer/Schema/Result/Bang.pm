@@ -17,6 +17,7 @@ column site_name       => { data_type => 'text' };
 column category_id     => { data_type => 'integer' };
 
 column moderated       => { data_type => 'integer', default_value => 0 };
+column created         => { data_type => 'timestamptz', set_on_create => 1, default_value => '2019-01-01' };
 
 belongs_to category => 'DaxMailer::Schema::Result::Bang::Category' => 'category_id';
 
