@@ -1,6 +1,6 @@
 -- 
 -- Created by SQL::Translator::Producer::SQLite
--- Created on Tue Jan 22 07:00:18 2019
+-- Created on Tue Jan 22 09:36:29 2019
 -- 
 
 BEGIN TRANSACTION;
@@ -57,6 +57,7 @@ CREATE TABLE "subscriber_bounce" (
 DROP TABLE "bang";
 
 CREATE TABLE "bang" (
+  "id" INTEGER PRIMARY KEY NOT NULL,
   "command" text NOT NULL,
   "url" text NOT NULL,
   "email_address" text,
@@ -67,7 +68,6 @@ CREATE TABLE "bang" (
   "note" text,
   "moderated" integer NOT NULL DEFAULT 0,
   "created" timestamptz NOT NULL DEFAULT '2019-01-01',
-  PRIMARY KEY ("command", "url"),
   FOREIGN KEY ("category_id") REFERENCES "bang_category"("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 

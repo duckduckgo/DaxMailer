@@ -7,8 +7,10 @@ use Email::Valid;
 
 table 'bang';
 
-primary_column command => { data_type => 'text' };
-primary_column url     => { data_type => 'text' };
+primary_column id => { data_type => 'bigint', is_auto_increment => 1 };
+
+column command => { data_type => 'text' };
+column url     => { data_type => 'text' };
 
 column email_address   => { data_type => 'text', is_nullable => 1 };
 column comments        => { data_type => 'text', is_nullable => 1 };

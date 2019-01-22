@@ -1,6 +1,6 @@
 -- 
 -- Created by SQL::Translator::Producer::PostgreSQL
--- Created on Tue Jan 22 07:00:17 2019
+-- Created on Tue Jan 22 09:36:28 2019
 -- 
 --
 -- Table: bang_category
@@ -49,6 +49,7 @@ CREATE TABLE "subscriber_bounce" (
 --
 DROP TABLE "bang" CASCADE;
 CREATE TABLE "bang" (
+  "id" serial NOT NULL,
   "command" text NOT NULL,
   "url" text NOT NULL,
   "email_address" text,
@@ -59,7 +60,7 @@ CREATE TABLE "bang" (
   "note" text,
   "moderated" integer DEFAULT 0 NOT NULL,
   "created" timestamptz DEFAULT '2019-01-01' NOT NULL,
-  PRIMARY KEY ("command", "url")
+  PRIMARY KEY ("id")
 );
 CREATE INDEX "bang_idx_category_id" on "bang" ("category_id");
 
