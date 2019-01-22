@@ -62,7 +62,7 @@ test_psgi $app => sub {
 
     $newbang->( 'baz', 'http://example.com/q={{{s}}}', undef, undef, 'Hello!', 'Tech', 'Programming', '[NEW]', 'hello' );
 
-    $newbang->( 'qux', 'http://example.com/q={{{s}}}', undef, 'example.com', 'Hello!', 'Tech', 'Blogs', undef, undef );
+    $newbang->( 'qux', 'http://example.com/q={{{s}}}', undef, 'example.com', 'Hello!', 'Tech', 'Blogs', '[REPLACE]', undef );
 
     is( $cb->( POST '/nb/newbangs.txt' )->code, 401, 'Cannot access newbangs without secret');
 
@@ -72,8 +72,8 @@ test_psgi $app => sub {
     ok( $bangs->is_success, 'Retrieved bang content with shared secret' );
     is(
         $bangs->content,
-        "foo	example.com	http://example.com/q={{{s}}}	submitter\@example.com	Tech	Example	[NEW] somecomment	hi\n".
-        "qux	example.com	http://example.com/q={{{s}}}		Tech	Blogs	Hello!	hello",
+        "foo	example.com	http://example.com/q={{{s}}}	submitter\@example.com	Tech	Example	somecomment	[NEW]	hi\n".
+        "qux	example.com	http://example.com/q={{{s}}}		Tech	Blogs	Hello!	[REPLACE]	hello",
         'TSV line OK'
     );
 };

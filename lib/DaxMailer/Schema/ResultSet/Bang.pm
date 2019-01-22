@@ -18,7 +18,6 @@ sub create_from_post {
     my ( $self, $body ) = @_;
     my ( $category, $subcategory );
     my $bang;
-    my $comments;
     my $example_search;
 
     return unless (
@@ -28,14 +27,9 @@ sub create_from_post {
         $body->{bang_cat} &&
         $body->{bang_subcat} &&
         $body->{bang_comments} &&
+        $body->{bang_note} &&
         index( $body->{bang_url}, '{{{s}}}' ) >= 0
     );
-
-    $comments = $body->{bang_comments};
-
-    if ($body->{bang_note}) {
-        $comments = $body->{bang_note} . ' ' . $comments;
-    }
 
     $example_search = $body->{bang_search} || 'hello';
 
@@ -56,7 +50,8 @@ sub create_from_post {
             email_address   => $body->{from},
             site_name       => $body->{bang_site},
             example_search  => $example_search,
-            comments        => $comments,
+            note            => $body->{bang_note},
+            comments        => $body->{bang_comments},
             category_id     => $subcategory->id,
         }) or die "Unable to create bang";
     } catch {
@@ -86,6 +81,7 @@ sub tsv {
             $_->{category}->{parent_category}->{name},
             $_->{category}->{name},
             $_->{comments},
+            $_->{note},
             $_->{example_search},
         );
         $self->csv->string;

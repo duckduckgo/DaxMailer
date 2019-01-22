@@ -15,6 +15,7 @@ column comments        => { data_type => 'text', is_nullable => 1 };
 column example_search  => { data_type => 'text', is_nullable => 1, default_value => 'hello' };
 column site_name       => { data_type => 'text' };
 column category_id     => { data_type => 'integer' };
+column note            => { data_type => 'text', is_nullable => 1 };
 
 column moderated       => { data_type => 'integer', default_value => 0 };
 column created         => { data_type => 'timestamptz', set_on_create => 1, default_value => '2019-01-01' };

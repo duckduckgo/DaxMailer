@@ -1,6 +1,6 @@
 -- 
 -- Created by SQL::Translator::Producer::SQLite
--- Created on Mon Jan 21 13:25:21 2019
+-- Created on Tue Jan 22 07:00:18 2019
 -- 
 
 BEGIN TRANSACTION;
@@ -64,6 +64,7 @@ CREATE TABLE "bang" (
   "example_search" text DEFAULT 'hello',
   "site_name" text NOT NULL,
   "category_id" integer NOT NULL,
+  "note" text,
   "moderated" integer NOT NULL DEFAULT 0,
   "created" timestamptz NOT NULL DEFAULT '2019-01-01',
   PRIMARY KEY ("command", "url"),
