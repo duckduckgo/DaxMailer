@@ -35,7 +35,7 @@ test_psgi $app => sub {
 
     $res = $cb->( GET '/s/a' );
     is( $res->code, 200, 'GET add endpoint' );
-    like( $res->decoded_content, qr{thank\ you}i, 'GET add endpoint' );
+    like( $res->decoded_content, qr{thank\ you}i, 'Landing page content' );
 };
 
 done_testing;
