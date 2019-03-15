@@ -18,8 +18,8 @@ For videos that are only on YouTube (unfortunately, a lot), you can search for a
 <p style="margin-bottom: 1em"><strong>Google Maps -> <a href="https://www.apple.com/ios/maps/">Apple Maps</a> (free), <a href="http://www.openstreetmap.org/">OpenStreetMap</a> (free)</strong><br/>
 For iOS users, Apple gives you an alternative built in via Apple Maps, so no installation is necessary. For wider device support, check out OpenStreetMap (OSM) which is more open, though may not have the same ease-of-use or coverage quality as Apple Maps.</p>
 
-<p style="margin-bottom: 1em"><strong>Google Drive -> <a href="https://www.resilio.com/individuals/">Resilio Sync</a> (free with paid options)</strong><br/>
-Another service we use internally, Resilio Sync, provides peer-to-peer file synchronization which can be used for private file storage, backup, and file sharing. This also means your files are never stored on a single server in the cloud! The software is available for a wide variety of platforms and devices, including servers.</p>
+<p style="margin-bottom: 1em"><strong>Google Drive -> <a href="https://www.resilio.com/individuals/">Resilio Sync</a> (free with paid options), <a href="https://tresorit.com/">Tresorit</a> (paid)</strong><br/>
+Another service we use internally, Resilio Sync, provides peer-to-peer file synchronization which can be used for private file storage, backup, and file sharing. This also means your files are never stored on a single server in the cloud! The software is available for a wide variety of platforms and devices, including servers. An alternative cloud storage and backup service with end-to-end encryption is <a href="https://tresorit.com/">Tresorit</a>.</p>
 
 <p style="margin-bottom: 1em"><strong>Android -> <a href="https://www.apple.com/ios/">iOS</a> (paid)</strong><br/>
 The most popular alternative to Android is of course iOS, which offers easy device encryption and encrypted messaging via iMessage by default. We also have <a href="https://spreadprivacy.com/iphone-privacy-tips/">tips to increase privacy protection on your iPhone or iPad</a>.</p>
@@ -33,8 +33,11 @@ Ghost is both a hosted (paid) and self-installable blogging platform, tracker-fr
 <p style="margin-bottom: 1em"><strong>Google Hangouts -> <a href="https://zoom.us/">Zoom</a> (free with paid options), <a href="https://appear.in/">appear.in</a> (free with paid option)</strong><br/>
 Zoom is a robust video chat alternative we use internally that works well even for large numbers of participants, though requires software to be installed. A web-only alternative is appear.in which doesn't require an account — just go to the website to open a chat room and you're ready.</p>
 
-<p style="margin-bottom: 1em"><strong>Google Allo -> <a href="https://whispersystems.org/">Signal</a> (free)</strong><br/>
+<p style="margin-bottom: 1em"><strong>Google Duo and Android Messages -> <a href="https://signal.org/">Signal</a> (free)</strong><br/>
 There are several services offering private messaging but, as we've mentioned before, Signal gets our recommendation. It offers free, end-to-end encryption for both messages and private calls. It's also recommended by Edward Snowden and renowned security expert Bruce Schneier, among others.</p>
+
+<p style="margin-bottom: 1em"><strong>Google Groups -> <a href="https://www.discourse.org/">Discourse</a> (paid, or free if self-installed)</strong><br/>
+Discourse is an open source discussion platform, offering public and private conversations with a trust system and spam protection. Paid hosting is offered but the software is also freely available for administrators to host on their own servers.</p>
 
 <p style="margin-bottom: 1em">As you can see, moving away from Google needn't be hard. In fact, you might find you prefer the alternatives while also getting better privacy!</p>
 
