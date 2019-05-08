@@ -287,6 +287,12 @@ on_plugin_import {
     };
 
     $dsl->set(campaigns => $campaigns);
+
+    $dsl->set(mailtrain_host => $ENV{MAILTRAIN_HOST});
+    $dsl->set(mailtrain_port => $ENV{MAILTRAIN_PORT});
+    $dsl->set(mailtrain_access_token => $ENV{MAILTRAIN_ACCESS_TOKEN});
+    $dsl->set(mailtrain_list => $ENV{MAILTRAIN_LIST});
+
 };
 
 register_plugin;
