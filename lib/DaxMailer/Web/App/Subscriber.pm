@@ -22,7 +22,7 @@ get '/u/:campaign/:email/:key' => sub {
     } );
     my $legacy_unsub = rset('Subscriber::Bounce')->legacy_unsub( $params->{email} );
     my $template =
-        $subscriber->campaigns->{ $params->{campaign} }->{unsub_page_template} ||
+        config->{campaigns}->{ $params->{campaign} }->{unsub_page_template} ||
         'email/unsub.tx';
     template $template,
              { success =>
@@ -39,7 +39,7 @@ get '/v/:campaign/:email/:key' => sub {
         campaign      => $params->{campaign},
     } );
     my $template =
-        $subscriber->campaigns->{ $params->{campaign} }->{verify_page_template} ||
+        config->{campaigns}->{ $params->{campaign} }->{verify_page_template} ||
         'email/verify.tx';
     template $template,
              { success => (
@@ -142,18 +142,18 @@ get '/a' => sub {
 };
 
 post '/a' => sub {
-    my $params = params('body');
-    if ( !$subscriber->add( $params ) ) {
+    my $render_page = body_parameters->get('page');
+    if ( ! rset('Subscriber')->add_from_post( body_parameters() ) ) {
         status 400;
-        return "NOT OK" unless $params->{page};
+        return "NOT OK" unless $render_page;
     }
-    return "OK" unless $params->{page};
+    return "OK" unless $render_page;
     redirect '/a';
 };
 
 get '/add/:email' => sub {
     my $email = route_parameters->get('email');
-    $subscriber->add({
+    rset('Subscriber')->add_from_post({
         email => $email,
         campaign => 'b',
         flow => 'get',
@@ -180,12 +180,11 @@ BULKFORM
 };
 
 post '/bulk' => sub {
-    my $params = params('body');
-    $subscriber->add({
-        to => join( ',', split( /[\s,\n]+/, $params->{to} ) ),
-        campaign => $params->{campaign},
-        flow => $params->{flow},
-    });
+    my $params = body_parameters();
+    $params->add(
+        to => join( ',', split( /[\s,\n]+/, $params->{to} ) )
+    );
+    rset('Subscriber')->add_from_post( $params );
     return "Thanks!";
 };
 

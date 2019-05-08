@@ -6,7 +6,6 @@ use Test::MockTime qw/ set_absolute_time /;
 use DateTime;
 use Moo;
 use MooX::Options;
-use Hash::Merge::Simple qw/ merge /;
 use String::Truncate qw/ trunc /;
 use File::Spec::Functions;
 use File::Slurper qw/ read_text /;
@@ -295,61 +294,6 @@ MAILRUNS:
 
 VERIFYONLY:
     return ( $self->smtp->transport, $subscriber );
-}
-
-sub add {
-    my ( $self, $params ) = @_;
-
-    # Silently reject friends signups
-    return 1 if ( lc($params->{campaign}) eq 'c' && !$ENV{DAXMAILER_MAIL_TEST} );
-
-    my $unsubscribed = 0;
-    $unsubscribed = 1 if (
-        $params->{from} &&
-        $self->stringutils->looks_like_contains_real_domains(
-            $params->{from}
-        )
-    );
-    my @emails;
-    @emails =
-        grep { $_ }
-        map  { my $v = Email::Valid->address( $_ ) ; $v }
-        split ',', $params->{to}
-        if $params->{to};
-    push @emails, ( grep { $_ } Email::Valid->address($params->{email}) )[0];
-
-    return if scalar @emails < 1;
-
-    my $extra = {};
-    $extra->{from} =
-        trunc( $params->{from}, 50, { at_space => 1 } )
-        if $params->{from};
-    $extra->{template} = $params->{template} if $params->{template};
-
-    my $campaigns = [ $params->{campaign} ];
-    push @{ $campaigns }, $self->campaigns->{ $params->{campaign} }->{base}
-        if $self->campaigns->{ $params->{campaign} }->{base};
-
-    for my $email ( @emails ) {
-        my $u = $unsubscribed;
-        $u = 1 if (
-            !$u &&
-            $self->stringutils->recipient_probably_not_interested( $email )
-        );
-        my $exists = rset('Subscriber')->exists( $email, $campaigns );
-        next if $exists;
-
-        rset('Subscriber')->create( {
-            email_address => $email,
-            campaign      => $params->{campaign},
-            flow          => $params->{flow},
-            extra         => $extra,
-            unsubscribed  => $u,
-            verified      => $self->campaigns->{ $params->{campaign} }->{single_opt_in} // 0,
-        } );
-    }
-
-    return 1;
 }
 
 sub _mail_newsletter {

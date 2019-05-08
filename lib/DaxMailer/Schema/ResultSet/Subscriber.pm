@@ -5,6 +5,13 @@ extends 'DaxMailer::Schema::ResultSet';
 
 use DateTime;
 use DateTime::Duration;
+use String::Truncate qw/ trunc /;
+
+has stringutils => ( is => 'lazy' );
+sub _build_stringutils {
+    require DaxMailer::Util::Strings;
+    DaxMailer::Util::Strings->new;
+}
 
 sub campaign {
     my ( $self, $c ) = @_;
@@ -142,6 +149,61 @@ sub exists {
     $self->search( \[ 'LOWER( email_address ) = ?', lc( $email ) ] )
          ->search( { campaign => $campaigns } )
          ->one_row;
+}
+
+sub add_from_post {
+    my ( $self, $params ) = @_;
+
+    # Silently reject friends signups
+    return 1 if ( lc($params->{campaign}) eq 'c' && !$ENV{DAXMAILER_MAIL_TEST} );
+
+    my $unsubscribed = 0;
+    $unsubscribed = 1 if (
+        $params->{from} &&
+        $self->stringutils->looks_like_contains_real_domains(
+            $params->{from}
+        )
+    );
+    my @emails;
+    @emails =
+        grep { $_ }
+        map  { my $v = Email::Valid->address( $_ ) ; $v }
+        split ',', $params->{to}
+        if $params->{to};
+    push @emails, ( grep { $_ } Email::Valid->address($params->{email}) )[0];
+
+    return if scalar @emails < 1;
+
+    my $extra = {};
+    $extra->{from} =
+        trunc( $params->{from}, 50, { at_space => 1 } )
+        if $params->{from};
+    $extra->{template} = $params->{template} if $params->{template};
+
+    my $campaigns = [ $params->{campaign} ];
+    push @{ $campaigns }, $self->app->config->{campaigns}->{ $params->{campaign} }->{base}
+        if $self->app->config->{campaigns}->{ $params->{campaign} }->{base};
+
+    for my $email ( @emails ) {
+        my $u = $unsubscribed;
+        $u = 1 if (
+            !$u &&
+            $self->stringutils->recipient_probably_not_interested( $email )
+        );
+        my $exists = $self->exists( $email, $campaigns );
+        next if $exists;
+
+        $self->create( {
+            email_address => $email,
+            campaign      => $params->{campaign},
+            flow          => $params->{flow},
+            extra         => $extra,
+            unsubscribed  => $u,
+            verified      => $self->app->config->{campaigns}->{ $params->{campaign} }->{single_opt_in} // 0,
+        } );
+    }
+
+    return 1;
 }
 
 1;
