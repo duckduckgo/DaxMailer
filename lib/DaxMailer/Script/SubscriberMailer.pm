@@ -94,6 +94,12 @@ sub _build_template_map {
     }
 }
 
+has mailtrain => ( is => 'lazy' );
+sub _build_mailtrain {
+    require DaxMailer::Script::Mailtrain;
+    DaxMailer::Script::Mailtrain->new;
+}
+
 sub email {
     my ( $self, $log, $subscriber, $subject, $template, $layout, $verified ) = @_;
 
@@ -414,6 +420,7 @@ sub go {
 
     if ( $self->verify ) {
         $self->send_verify;
+        $self->mailtrain->go;
     }
     elsif ( $self->newsletter ) {
         $self->send_newsletter;
