@@ -16,9 +16,11 @@ http_basic_auth_set_check_handler sub {
 
 get '/unsub/news/:email' => sub {
     my $email = Email::Valid->address( route_parameters->{email} );
+    my $success = rset('Subscriber::Mailtrain')->unsubscribe( $email );
+    status $success ? 200 : 500;
     template
         'email/unsub.tx',
-        { success => rset('Subscriber::Mailtrain')->unsubscribe( $email ) },
+        { success => $success },
         { layout => undef };
 };
 
