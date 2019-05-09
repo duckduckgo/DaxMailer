@@ -1,6 +1,24 @@
 use strict;
 use warnings;
 
+my @subtests = (
+    { email => 'invalidemail', news => 1, fail => 1 },
+    { email => 'test1@ddg.gg', tips => 1, },
+    { email => 'test2@ddg.gg', tips => 1, news => 1 },
+    { email => 'test3@ddg.gg', news => 1, },
+    { email => 'test3@ddg.gg', news => 1, },
+    { email => 'test1@duck.co', news => 1, },
+    { email => 'test1@duckduckgo.com', news => 1, tips => 1 },
+);
+
+my @unsubtests = ( qw/
+    doesnotexist@ddg.gg
+    test3@ddg.gg
+    test1@duckduckgo.com
+    test1@duck.co
+    doesnotexist@duck.co
+/ );
+
 use lib 't/lib';
 use Test::More;
 use File::Temp qw/ tempfile /;
@@ -29,6 +47,7 @@ BEGIN {
 
 use Plack::Test;
 use Plack::Builder;
+use HTTP::Request::Common;
 use DaxMailer::TestUtils;
 use DaxMailer::Base::Web::Service;
 use DaxMailer::Web::App::Subscriber;
@@ -41,6 +60,43 @@ my $app = builder {
 };
 
 test_psgi $app => sub {
+    my ( $cb ) = @_;
+
+    my $subcribe = sub {
+        my ( $params ) = @_;
+        $cb->(
+            POST '/s/a', [ %{ $params }, flow  => 'test' ]
+        )->is_success;
+    };
+
+    my $unsubscribe = sub {
+        my ( $email ) = @_;
+        $cb->( GET "/s/unsub/news/$email" )->is_success;
+    };
+
+    for my $test ( @subtests ) {
+        if ( delete $test->{fail} ) {
+            ok( ! $subcribe->( $test ), 'Failed to subscribe ' . $test->{email} );
+            next;
+        }
+
+        ok( $subcribe->( $test ), 'Subscribed ' . $test->{email} );
+
+        ok(
+            rset('Subscriber')->find( $test->{email}, 'b' ),
+            'Found tips subscriber ' . $test->{email}
+        ) if $test->{tips};
+
+        ok(
+            rset('Subscriber::Mailtrain')->find( $test->{email}, 'subscribe' ),
+            'Found news subscriber ' . $test->{email}
+        ) if $test->{news};
+
+    }
+
+    ok( $unsubscribe->( $_ ), "Unsubscribed $_" )
+        for @unsubtests;
+
 };
 
 DaxMailer::Script::Mailtrain->new->go;
