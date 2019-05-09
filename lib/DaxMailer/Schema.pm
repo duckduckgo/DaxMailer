@@ -40,7 +40,6 @@ sub deploy_or_upgrade {
     }
 }
 
-#die $0;
 __PACKAGE__->load_components(qw/ Helper::Schema::QuoteNames /);
 if ( ! $ENV{DAXMAILER_TEST} ) {
     __PACKAGE__->load_components(qw/ Schema::Versioned /);

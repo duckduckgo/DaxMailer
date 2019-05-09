@@ -3,6 +3,8 @@ package DaxMailer::Schema::ResultSet::Subscriber::Mailtrain;
 use Moo;
 extends 'DaxMailer::Schema::ResultSet';
 
+use Try::Tiny;
+
 has mailtrain => ( is => 'lazy' );
 sub _build_mailtrain {
     my ( $self ) = @_;
@@ -15,7 +17,7 @@ sub _build_mailtrain {
     );
 }
 
-sub subscription {
+sub process_subscription {
     my ( $self, $method ) = @_;
 
     my $result = $self->mailtrain->$method(
@@ -34,8 +36,34 @@ sub subscription {
 
 sub process {
     my ( $self ) = @_;
-    $self->search({ processed => 0, operation => $_ })->subscription( $_ )
+    $self->search({ processed => 0, operation => $_ })->process_subscription( $_ )
         for ( qw/ subscribe unsubscribe / );
+}
+
+sub manage_subscription {
+    my ( $self, $operation, $email ) = @_;
+    return unless $email;
+    try {
+        my $subscriber = $self->find_or_create( {
+            email_address => $email,
+            operation => $operation,
+        } );
+        $subscriber->processed( 0 );
+        $subscriber->update;
+    } catch {
+        warn "sprintf Unable to unsub %s", $email;
+        return 0;
+    };
+}
+
+sub unsubscribe {
+    my ( $self, $email ) = @_;
+    $self->manage_subscription( unsubscribe => $email );
+}
+
+sub subscribe {
+    my ( $self, $email ) = @_;
+    $self->manage_subscription( subscribe => $email );
 }
 
 1;

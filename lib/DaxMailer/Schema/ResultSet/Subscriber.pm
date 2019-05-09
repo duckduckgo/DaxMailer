@@ -211,12 +211,8 @@ sub add_from_post {
             } );
         }
 
-        if ( $params->{news} ) {
-            $self->rs('Subscriber::Mailtrain')->create( {
-                email_address => $email,
-                operations => 'subscribe',
-            } );
-        }
+        $self->rs('Subscriber::Mailtrain')->subscribe( $email )
+            if ( $params->{news} );
     }
 
     return 1;
