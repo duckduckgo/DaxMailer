@@ -5,11 +5,13 @@ use lib 't/lib';
 use Test::More;
 use File::Temp qw/ tempfile /;
 
+my $server;
+
 BEGIN {
     require Plack::Test::Server;
     require DaxMailer::TestUtils::Mocktrain;
 
-    my $server = Plack::Test::Server->new(
+    $server = Plack::Test::Server->new(
         DaxMailer::TestUtils::Mocktrain->app
     );
     if ( !$server ) {
