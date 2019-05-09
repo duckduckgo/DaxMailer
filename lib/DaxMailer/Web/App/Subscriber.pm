@@ -79,6 +79,10 @@ get '/form' => sub {
         <label for="page">
             Return Page
         </label><br />
+        <input type="checkbox" name="news" id="news">
+        <label for="news">
+            Subscriber to newsletter
+        </label><br />
         <input type="submit" name="submit">
     </form>
 FORM
