@@ -185,27 +185,38 @@ sub add_from_post {
         if $params->{from};
     $extra->{template} = $params->{template} if $params->{template};
 
-    my $campaigns = [ $params->{campaign} ];
-    push @{ $campaigns }, $self->app->config->{campaigns}->{ $params->{campaign} }->{base}
-        if $self->app->config->{campaigns}->{ $params->{campaign} }->{base};
-
     for my $email ( @emails ) {
         my $u = $unsubscribed;
         $u = 1 if (
             !$u &&
             $self->stringutils->recipient_probably_not_interested( $email )
         );
-        my $exists = $self->exists( $email, $campaigns );
-        next if $exists;
 
-        $self->create( {
-            email_address => $email,
-            campaign      => $params->{campaign},
-            flow          => $params->{flow},
-            extra         => $extra,
-            unsubscribed  => $u,
-            verified      => $self->app->config->{campaigns}->{ $params->{campaign} }->{single_opt_in} // 0,
-        } );
+        if ( $params->{campaign} ) {
+            my $campaigns = [ $params->{campaign} ];
+            push @{ $campaigns },
+                $self->app->config->{campaigns}->{ $params->{campaign} }->{base}
+                if $self->app->config->{campaigns}->{ $params->{campaign} }->{base};
+
+            my $exists = $self->exists( $email, $campaigns );
+            next if $exists;
+
+            $self->create( {
+                email_address => $email,
+                campaign      => $params->{campaign},
+                flow          => $params->{flow},
+                extra         => $extra,
+                unsubscribed  => $u,
+                verified      => $self->app->config->{campaigns}->{ $params->{campaign} }->{single_opt_in} // 0,
+            } );
+        }
+
+        if ( $params->{news} ) {
+            $self->rs('Subscriber::Mailtrain')->create( {
+                email_address => $email,
+                operations => 'subscribe',
+            } );
+        }
     }
 
     return 1;
