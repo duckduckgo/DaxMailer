@@ -19,6 +19,17 @@ my @unsubtests = ( qw/
     doesnotexist@duck.co
 / );
 
+my @datatests = (
+    [ qw/ test2@ddg.gg subscribe 1 / ],
+    [ qw/ test3@ddg.gg subscribe 1 / ],
+    [ qw/ test1@duck.co subscribe 0 / ],
+    [ qw/ test1@duckduckgo.com subscribe 1 / ],
+    [ qw/ test3@ddg.gg unsubscribe 1 / ],
+    [ qw/ test1@duckduckgo.com unsubscribe 0 / ],
+    [ qw/ test1@duck.co unsubscribe 1 / ],
+    [ qw/ doesnotexist@duck.co unsubscribe 1 / ],
+);
+
 use lib 't/lib';
 use Test::More;
 use File::Temp qw/ tempfile /;
@@ -101,6 +112,12 @@ test_psgi $app => sub {
 
 DaxMailer::Script::Mailtrain->new->go;
 
-ok(1, 'ok');
+for my $test ( @datatests ) {
+    my ( $email, $operation, $processed ) = @{ $test };
+    my $subscriber;
+    ok( $subscriber = rset('Subscriber::Mailtrain')->find( $email, $operation ),
+        "Found mailtrain queue row for $email" );
+    is( $subscriber->processed, 1, "$email processed as expected" );
+}
 
 done_testing;
