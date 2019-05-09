@@ -171,12 +171,10 @@ sub add_from_post {
     my @emails;
     @emails =
         grep { $_ }
-        map  { my $v = Email::Valid->address( $_ ) ; $v }
-        split ',', $params->{to}
-        if $params->{to};
-    push @emails, ( grep { $_ } Email::Valid->address($params->{email}) )[0];
+        map  { scalar Email::Valid->address( $_ ) }
+        ( split( ',', $params->{to} ), $params->{email} );
 
-    return if scalar @emails < 1;
+    return unless @emails;
 
     my $extra = {};
     $extra->{from} =
