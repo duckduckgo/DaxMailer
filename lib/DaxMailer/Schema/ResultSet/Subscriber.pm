@@ -169,10 +169,13 @@ sub add_from_post {
         )
     );
     my @emails;
-    @emails =
+    {
+        no warnings 'uninitialized';
+        @emails =
         grep { $_ }
         map  { scalar Email::Valid->address( $_ ) }
         ( split( ',', $params->{to} ), $params->{email} );
+    }
 
     return unless @emails;
 
