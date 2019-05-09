@@ -155,7 +155,7 @@ sub add_from_post {
     my ( $self, $params ) = @_;
 
     # Silently reject friends signups
-    return 1 if ( lc($params->{campaign}) eq 'c' && !$ENV{DAXMAILER_MAIL_TEST} );
+    return 1 if ( $params->{campaign} && lc($params->{campaign}) eq 'c' && !$ENV{DAXMAILER_MAIL_TEST} );
 
     $params->add(
         campaign => 'b'
