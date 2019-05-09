@@ -198,8 +198,7 @@ sub add_from_post {
                 $self->app->config->{campaigns}->{ $params->{campaign} }->{base}
                 if $self->app->config->{campaigns}->{ $params->{campaign} }->{base};
 
-            my $exists = $self->exists( $email, $campaigns );
-            next if $exists;
+            goto MAILTRAIN if $self->exists( $email, $campaigns );
 
             $self->create( {
                 email_address => $email,
@@ -210,7 +209,7 @@ sub add_from_post {
                 verified      => $self->app->config->{campaigns}->{ $params->{campaign} }->{single_opt_in} // 0,
             } );
         }
-
+MAILTRAIN:
         $self->rs('Subscriber::Mailtrain')->subscribe( $email )
             if ( $params->{news} );
     }
