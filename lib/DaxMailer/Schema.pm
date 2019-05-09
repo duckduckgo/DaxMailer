@@ -40,8 +40,12 @@ sub deploy_or_upgrade {
     }
 }
 
-__PACKAGE__->load_components(qw/ Schema::Versioned Helper::Schema::QuoteNames /);
-__PACKAGE__->upgrade_directory($sqldir);
+#die $0;
+__PACKAGE__->load_components(qw/ Helper::Schema::QuoteNames /);
+if ( ! $ENV{DAXMAILER_TEST} ) {
+    __PACKAGE__->load_components(qw/ Schema::Versioned /);
+    __PACKAGE__->upgrade_directory($sqldir);
+}
 __PACKAGE__->load_namespaces();
 
 1;
