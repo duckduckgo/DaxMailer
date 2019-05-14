@@ -117,7 +117,7 @@ for my $test ( @datatests ) {
     my $subscriber;
     ok( $subscriber = rset('Subscriber::Mailtrain')->find( $email, $operation ),
         "Found mailtrain queue row for $email" );
-    is( $subscriber->processed, 1, "$email processed as expected" );
+    is( $subscriber->processed, $processed, "$email $operation processed as expected" );
 }
 
 done_testing;
