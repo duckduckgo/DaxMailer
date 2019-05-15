@@ -61,7 +61,7 @@ sub manage_subscription {
         $subscriber->processed( 0 );
         $subscriber->update;
     } catch {
-        warn "sprintf Unable to unsub %s", $email;
+        warn sprintf( "Unable to %s %s", $operation, $email );
         return 0;
     };
 }
