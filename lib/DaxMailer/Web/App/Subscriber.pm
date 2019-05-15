@@ -135,6 +135,12 @@ post '/friends' => sub {
     forward '/friends', {}, { method => 'GET' };
 };
 
+get '/a' => sub {
+    template 'email/message',
+        { title => 'Thank you!', message => 'Thank you!' },
+        { layout => 'mail' };
+};
+
 post '/a' => sub {
     my $params = params('body');
     if ( !$subscriber->add( $params ) ) {
@@ -142,9 +148,7 @@ post '/a' => sub {
         return "NOT OK" unless $params->{page};
     }
     return "OK" unless $params->{page};
-    return template 'email/message',
-        { title => 'Thank you!', message => 'Thank you!' },
-        { layout => 'mail' };
+    redirect '/a';
 };
 
 get '/add/:email' => sub {
