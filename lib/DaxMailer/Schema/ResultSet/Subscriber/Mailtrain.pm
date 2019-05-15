@@ -5,6 +5,8 @@ extends 'DaxMailer::Schema::ResultSet';
 
 use Try::Tiny;
 
+has process_days => ( is => 'ro', default => sub { 7 } );
+
 has mailtrain => ( is => 'lazy' );
 sub _build_mailtrain {
     my ( $self ) = @_;
@@ -36,7 +38,15 @@ sub process_subscription {
 
 sub process {
     my ( $self ) = @_;
-    $self->search({ processed => 0, operation => $_ })->process_subscription( $_ )
+    my $dt = $self->format_datetime(
+        DateTime->now->subtract(
+            days => $self->process_days
+        )->truncate( to => 'day' )
+    );
+    $self->search({
+        processed => 0, operation => $_,
+        created => { '>' => $dt },
+    })->process_subscription( $_ )
         for ( qw/ subscribe unsubscribe / );
 }
 
