@@ -12,6 +12,7 @@ sub _build_mailtrain {
     my ( $self ) = @_;
     require Mailtrain::API;
     Mailtrain::API->new(
+        proto => $self->app->config->{mailtrain_proto},
         host  => $self->app->config->{mailtrain_host},
         port  => $self->app->config->{mailtrain_port},
         list  => $self->app->config->{mailtrain_list},

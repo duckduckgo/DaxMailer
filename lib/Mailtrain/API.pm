@@ -4,7 +4,7 @@ use Moo;
 use URI;
 use URI::QueryParam;
 
-has proto => ( is => 'ro', default  => sub { 'http' } );
+has proto => ( is => 'ro', default  => sub { 'https' } );
 has port  => ( is => 'ro', default  => sub { 3000 } );
 has host  => ( is => 'ro', required => 1 );
 has token => ( is => 'ro', required => 1 );
