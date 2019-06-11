@@ -41,6 +41,7 @@ BEGIN {
     require DaxMailer::TestUtils::Mocktrain;
 
     $ENV{DAXMAILER_DB_DSN} = 'dbi:SQLite:dbname=:memory:';
+    $ENV{MAILTRAIN_PROTO} = 'http';
     $ENV{MAILTRAIN_HOST} = '127.0.0.1';
     $ENV{MAILTRAIN_LIST} = 'n3w-l1st';
     $ENV{MAILTRAIN_ACCESS_TOKEN} = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';
