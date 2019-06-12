@@ -9,11 +9,6 @@ use List::Util qw/ uniq /;
 
 with 'DaxMailer::Base::Script::Service';
 
-has mailer => ( is => 'lazy' );
-sub _build_mailer {
-    DaxMailer::Script::SubscriberMailer->new;
-}
-
 option file => (
     is       => 'ro',
     required => 1,
@@ -50,7 +45,7 @@ sub _unsub {
 
 sub _subscribe {
     my ( $self, $list ) = @_;
-    $self->mailer->add({
+    rset('Subscriber')->add_from_post({
         email    => $_,
         campaign => $self->list,
         flow     => 'import'

@@ -7,7 +7,7 @@ extends 'DBIx::Class::Schema';
 
 use FindBin;
 my $sqldir = $FindBin::Dir . "/../sql/";
-our $VERSION = 5;
+our $VERSION = 6;
 
 has app => (
     is => 'rw',
@@ -40,8 +40,11 @@ sub deploy_or_upgrade {
     }
 }
 
-__PACKAGE__->load_components(qw/ Schema::Versioned Helper::Schema::QuoteNames /);
-__PACKAGE__->upgrade_directory($sqldir);
+__PACKAGE__->load_components(qw/ Helper::Schema::QuoteNames /);
+if ( ! $ENV{DAXMAILER_TEST} ) {
+    __PACKAGE__->load_components(qw/ Schema::Versioned /);
+    __PACKAGE__->upgrade_directory($sqldir);
+}
 __PACKAGE__->load_namespaces();
 
 1;

@@ -6,7 +6,6 @@ use Test::MockTime qw/ set_absolute_time /;
 use DateTime;
 use Moo;
 use MooX::Options;
-use Hash::Merge::Simple qw/ merge /;
 use String::Truncate qw/ trunc /;
 use File::Spec::Functions;
 use File::Slurper qw/ read_text /;
@@ -61,168 +60,7 @@ sub _build_newsletter_file {
 
 has campaigns => ( is => 'lazy' );
 sub _build_campaigns {
-    # Should this be external JSON?
-    my $campaigns = +{
-        'a' => {
-            single_opt_in => 1,
-            live => 1,
-            verify => {
-                subject => 'Tracking in Incognito?',
-                template => 'email/a/1.tx'
-            },
-            verify_page_template => 'email/a/verify.tx',
-            unsub_page_template  => 'email/a/unsub.tx',
-            layout => 'email/a/layout.tx',
-            mails => {
-                2 => {
-                    days     => 2,
-                    subject  => 'Are Ads Following You?',
-                    template => 'email/a/2.tx',
-                },
-                3 => {
-                    days     => 4,
-                    subject  => 'Are Ads Costing You Money?',
-                    template => 'email/a/3.tx',
-                },
-                4 => {
-                    days     => 6,
-                    subject  => 'Have You Deleted Your Google Search History Yet?',
-                    template => 'email/a/4.tx',
-                },
-                5 => {
-                    days     => 8,
-                    subject  => 'Is Your Data Being Sold?',
-                    template => 'email/a/5.tx',
-                },
-                6 => {
-                    days     => 11,
-                    subject  => 'Who Decides What Websites You Visit?',
-                    template => 'email/a/6.tx',
-                },
-                10 => {
-                    days     => 18,
-                    subject  => 'Privacy Mythbusting #1: Nobody else cares about privacy!',
-                    template => 'email/a/10.tx',
-                },
-                11 => {
-                    days     => 25,
-                    subject  => 'Privacy Mythbusting #2: My password keeps me safe',
-                    template => 'email/a/11.tx',
-                },
-                12 => {
-                    days     => 31,
-                    subject  => 'Privacy Mythbusting #3: Anonymized data is safe, right?',
-                    template => 'email/a/12.tx',
-                },
-                13 => {
-                    days     => 38,
-                    subject  => 'Privacy Mythbusting #4: I can\'t be identified just by browsing a website!',
-                    template => 'email/a/13.tx',
-                },
-                14 => {
-                    days     => 45,
-                    subject  => 'Privacy Mythbusting #5: I own my personal information',
-                    template => 'email/a/14.tx',
-                },
-                15 => {
-                    days     => 53,
-                    subject  => 'Privacy Mythbusting #6: Security equals privacy!',
-                    template => 'email/a/15.tx',
-                },
-                20 => {
-                    days     => 60,
-                    subject  => 'How to Send Messages in Private',
-                    template => 'email/a/20.tx',
-                },
-                21 => {
-                    days     => 66,
-                    subject  => 'How to Live Without Google',
-                    template => 'email/a/21.tx',
-                },
-                22 => {
-                    days     => 73,
-                    subject  => 'How to Choose a Good VPN',
-                    template => 'email/a/22.tx',
-                },
-                23 => {
-                    days     => 80,
-                    subject  => 'How to Set Up Your Devices for Privacy Protection',
-                    template => 'email/a/23.tx',
-                },
-                24 => {
-                    days     => 86,
-                    subject  => 'How to Encrypt Your Devices',
-                    template => 'email/a/24.tx',
-                },
-                25 => {
-                    days     => 93,
-                    subject  => 'How to Be Even More Anonymous Online',
-                    template => 'email/a/25.tx',
-                },
-                26 => {
-                    days     => 100,
-                    subject  => 'How to Check Whether Your Web Connection\'s Secure',
-                    template => 'email/a/26.tx',
-                },
-                27 => {
-                    days     => 107,
-                    subject  => 'DuckDuckGo Privacy Newsletter: 100-Day Follow-Up',
-                    template => 'email/a/27.tx',
-                },
-                extension => {
-                    oneoff   => 1,
-                    subject  => 'DuckDuckGo news: Protecting privacy beyond the search box',
-                    template => 'email/oneoff/extension.tx',
-                    expires  => '2018-01-25',
-                },
-                crowdfunding => {
-                    oneoff   => 1,
-                    subject  => 'Join the $500,000 DuckDuckGo Privacy Challenge Crowdfunding Campaign',
-                    template => 'email/oneoff/crowdfunding.tx',
-                    expires  => '2018-04-10',
-                },
-            }
-        },
-        'b' => {
-            base => 'a',
-            single_opt_in => 1,
-            verify => {
-                subject => 'Tracking in Incognito?',
-                template => 'email/a/1b.tx'
-            }
-        },
-        'c' => {
-            base => 'a',
-            single_opt_in => 0,
-            verify_layout => 'email/a/verify_layout.tx',
-            template_map => 'c',
-            mails => {
-                1 => {
-                    days     => 1,
-                    subject => 'Tracking in Incognito?',
-                    template => 'email/a/1c.tx',
-                },
-            }
-        },
-        'friends' => {
-            single_opt_in => 1,
-            plain_text => 1,
-            layout => 'email/friends/layout.tx',
-        }
-    };
-
-    for my $campaign ( keys %{ $campaigns } ) {
-        if ( my $base = $campaigns->{ $campaign }->{base} ) {
-            if ( $campaigns->{ $base } ) {
-                $campaigns->{ $campaign } = merge( $campaigns->{ $base }, $campaigns->{ $campaign } );
-            }
-            else {
-                die "Base $base does not exist - cannot build campaign $campaign"
-            }
-        }
-    };
-
-    return $campaigns;
+    config()->{campaigns};
 }
 
 # Map email selection => filename explicitly
@@ -254,6 +92,12 @@ sub _build_template_map {
             },
         }
     }
+}
+
+has mailtrain => ( is => 'lazy' );
+sub _build_mailtrain {
+    require DaxMailer::Script::Mailtrain;
+    DaxMailer::Script::Mailtrain->new;
 }
 
 sub email {
@@ -458,61 +302,6 @@ VERIFYONLY:
     return ( $self->smtp->transport, $subscriber );
 }
 
-sub add {
-    my ( $self, $params ) = @_;
-
-    # Silently reject friends signups
-    return 1 if ( lc($params->{campaign}) eq 'c' && !$ENV{DAXMAILER_MAIL_TEST} );
-
-    my $unsubscribed = 0;
-    $unsubscribed = 1 if (
-        $params->{from} &&
-        $self->stringutils->looks_like_contains_real_domains(
-            $params->{from}
-        )
-    );
-    my @emails;
-    @emails =
-        grep { $_ }
-        map  { my $v = Email::Valid->address( $_ ) ; $v }
-        split ',', $params->{to}
-        if $params->{to};
-    push @emails, ( grep { $_ } Email::Valid->address($params->{email}) )[0];
-
-    return if scalar @emails < 1;
-
-    my $extra = {};
-    $extra->{from} =
-        trunc( $params->{from}, 50, { at_space => 1 } )
-        if $params->{from};
-    $extra->{template} = $params->{template} if $params->{template};
-
-    my $campaigns = [ $params->{campaign} ];
-    push @{ $campaigns }, $self->campaigns->{ $params->{campaign} }->{base}
-        if $self->campaigns->{ $params->{campaign} }->{base};
-
-    for my $email ( @emails ) {
-        my $u = $unsubscribed;
-        $u = 1 if (
-            !$u &&
-            $self->stringutils->recipient_probably_not_interested( $email )
-        );
-        my $exists = rset('Subscriber')->exists( $email, $campaigns );
-        next if $exists;
-
-        rset('Subscriber')->create( {
-            email_address => $email,
-            campaign      => $params->{campaign},
-            flow          => $params->{flow},
-            extra         => $extra,
-            unsubscribed  => $u,
-            verified      => $self->campaigns->{ $params->{campaign} }->{single_opt_in} // 0,
-        } );
-    }
-
-    return 1;
-}
-
 sub _mail_newsletter {
     my ( $self, $subscribers, $content ) = @_;
     $content ||= read_text( $self->newsletter_file );
@@ -631,6 +420,7 @@ sub go {
 
     if ( $self->verify ) {
         $self->send_verify;
+        $self->mailtrain->go;
     }
     elsif ( $self->newsletter ) {
         $self->send_newsletter;

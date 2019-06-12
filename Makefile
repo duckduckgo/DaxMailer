@@ -1,2 +1,2 @@
 test:
-	carton exec prove -Ilib t/
+	DAXMAILER_TEST=1 carton exec prove -l t/
