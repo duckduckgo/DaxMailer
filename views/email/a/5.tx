@@ -4,9 +4,9 @@
 <p style="margin-bottom: 1em">This is really just a way for them to sell your profile of interests to advertisers for top dollar.</p>
 <strong>How to Disable Google Ad Targeting:</strong></p>
 <ol>
-<li>Navigate to Google's <a href="https://www.google.com/settings/u/0/ads/authenticated">Ad Settings page</a>.</li>
-<li>Scroll down, and toggle "Ads Based on Your Interest" to off.<br /><img src="https://duckduckgo.com/assets/email/ads_interests5.png?atb=<: $subscriber.flow :>" style="max-width:500px" alt="Picture of setting ad interests to off"/></li>
-<li>Then, scroll down more, and click the blue button to "opt-out of signed out ads." Turn off the toggles on that page too.<br /><img src="https://duckduckgo.com/assets/email/control_ads.png" style="max-width:400px" alt="Picture of setting logged out ad tracking to off"/></li>
+<li>Navigate to Google's <a href="https://adssettings.google.com/u/0/authenticated">Ad Settings page</a>.</li>
+<li>Toggle “Ad personalization” to off.<br /><img src="https://duckduckgo.com/assets/email/ads_interests5.png?atb=<: $subscriber.flow :>" style="max-width:500px" alt="Screenshot showing how to disable Google's ad personalization."/></li>
+<li>Then click the “Control ad personalization on other websites & apps that use Google ad services” link to opt out of ads by Google partners on non-Google websites.<br /></li>
 </ol>
 <p style="margin-bottom: 1em">Tracking is creepy, but luckily, you've switched to the Duck Side, and so now your searches are completely anonymous. DuckDuckGo protects your search history from everyone — even us! <img class="emoticon" src="https://duckduckgo.com/assets/email/ghost.png" width="20px" height="20px"/></p>
 
