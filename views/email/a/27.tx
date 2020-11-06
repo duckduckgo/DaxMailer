@@ -7,7 +7,7 @@
 <p style="margin-bottom: 1em">Even though this is the last email for now, we don't want our privacy journey together to be over. We'd love to hear suggestions for other topics, and based on your responses, we'll produce more, similarly useful privacy content. If you’d like to help, please fill out the brief anonymous survey below:<br/>
 <a href="https://www.surveymonkey.com/r/5RFHXRW">www.surveymonkey.com/r/5RFHXRW</a></p>
 
-<p style="margin-bottom: 1em">In the mean time, <a href="https://spreadprivacy.com">check out our blog</a> for all the emails we've sent, plus other privacy-related content.</p>
+<p style="margin-bottom: 1em">In the mean time, <a href="https://spreadprivacy.com">check out our blog</a> for all the emails we've sent, plus other privacy-related content. You can also stay informed by subscribing to our <a href="https://duckduckgo.com/newsletter">Privacy Weekly newsletter</a>.</p>
 
 : include 'email/a/signature.tx'
 
