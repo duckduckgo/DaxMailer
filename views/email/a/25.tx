@@ -9,7 +9,7 @@
 <ul>
     <li><strong><a href="https://www.torproject.org/projects/torbrowser.html">Tor Browser</a>:</strong> A complete anonymizing browser for Windows, Mac and Linux.</li>
     <li><strong><a href="https://guardianproject.info/apps/orbot/">Orbot</a></strong>: Tor connection for Android, to use with your existing browser.</li>
-    <li><strong><a href="https://mike.tig.as/onionbrowser/">Onion Browser</a></strong>: A Tor browser for iOS.</li>
+    <li><strong><a href="https://onionbrowser.com/">Onion Browser</a></strong>: A Tor browser for iOS.</li>
 </ul>
 
 <p style="margin-bottom: 1em">While Tor can't guarantee anonymity, it's the best choice for protecting your identity online.</p>

@@ -5,6 +5,13 @@ extends 'DaxMailer::Schema::ResultSet';
 
 use DateTime;
 use DateTime::Duration;
+use String::Truncate qw/ trunc /;
+
+has stringutils => ( is => 'lazy' );
+sub _build_stringutils {
+    require DaxMailer::Util::Strings;
+    DaxMailer::Util::Strings->new;
+}
 
 sub campaign {
     my ( $self, $c ) = @_;
@@ -142,6 +149,72 @@ sub exists {
     $self->search( \[ 'LOWER( email_address ) = ?', lc( $email ) ] )
          ->search( { campaign => $campaigns } )
          ->one_row;
+}
+
+sub add_from_post {
+    my ( $self, $params ) = @_;
+
+    # Silently reject friends signups
+    return 1 if ( $params->{campaign} && lc($params->{campaign}) eq 'c' && !$ENV{DAXMAILER_MAIL_TEST} );
+
+    $params->add(
+        campaign => 'b'
+    ) if $params->{tips} && !$params->{campaign};
+
+    my $unsubscribed = 0;
+    $unsubscribed = 1 if (
+        $params->{from} &&
+        $self->stringutils->looks_like_contains_real_domains(
+            $params->{from}
+        )
+    );
+    my @emails;
+    {
+        no warnings 'uninitialized';
+        @emails =
+        grep { $_ }
+        map  { scalar Email::Valid->address( $_ ) }
+        ( split( ',', $params->{to} ), $params->{email} );
+    }
+
+    return unless @emails;
+
+    my $extra = {};
+    $extra->{from} =
+        trunc( $params->{from}, 50, { at_space => 1 } )
+        if $params->{from};
+    $extra->{template} = $params->{template} if $params->{template};
+
+    for my $email ( @emails ) {
+        my $u = $unsubscribed;
+        $u = 1 if (
+            !$u &&
+            $self->stringutils->recipient_probably_not_interested( $email )
+        );
+
+        if ( $params->{campaign} ) {
+            my $campaigns = [ $params->{campaign} ];
+            push @{ $campaigns },
+                $self->app->config->{campaigns}->{ $params->{campaign} }->{base}
+                if $self->app->config->{campaigns}->{ $params->{campaign} }->{base};
+
+            goto MAILTRAIN if $self->exists( $email, $campaigns );
+
+            $self->create( {
+                email_address => $email,
+                campaign      => $params->{campaign},
+                flow          => $params->{flow},
+                extra         => $extra,
+                unsubscribed  => $u,
+                verified      => $self->app->config->{campaigns}->{ $params->{campaign} }->{single_opt_in} // 0,
+            } );
+        }
+MAILTRAIN:
+        $self->rs('Subscriber::Mailtrain')->subscribe( $email )
+            if ( $params->{news} );
+    }
+
+    return 1;
 }
 
 1;
