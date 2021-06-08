@@ -84,7 +84,7 @@ sub verify {
 
 sub unsubscribe {
     my ( $self, $key ) = @_;
-    $self->update({ unsubscribed => 1 })
+    $self->delete()
         if ( $key eq $self->u_key );
 }
 

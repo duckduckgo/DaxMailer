@@ -65,6 +65,7 @@ sub subscription {
 sub unsubscribe {
     my ( $self, @emails ) = @_;
     $self->subscription( 'unsubscribe', @emails );
+    $self->subscription( 'delete', @emails );
 }
 
 sub subscribe {
