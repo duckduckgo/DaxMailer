@@ -12,6 +12,8 @@ sub go {
     my $unsubbed = rset('Subscriber::Bounce')->search(
         { 'unsubscribed' => 1 }
     );
+
+    $unsubbed->delete();
 }
 
 1;
