@@ -48,7 +48,7 @@ sub process {
         processed => 0, operation => $_,
         created => { '>' => $dt },
     })->process_subscription( $_ )
-        for ( qw/ subscribe unsubscribe delete / );
+        for ( qw/ subscribe unsubscribe / );
 }
 
 sub manage_subscription {
