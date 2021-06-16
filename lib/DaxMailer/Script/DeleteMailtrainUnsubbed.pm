@@ -11,7 +11,11 @@ sub go {
 
     my @unsubbed_users = rset('Subscriber::Mailtrain')->search(
         { operation => 'unsubscribe' }
-    )->process_subscription( qw/ unsubscribe / ); # This will now delete the user too
+    );
+
+    for my $unsubbed ( @unsubbed_users ) {
+        rset('Subscriber::Mailtrain')->unsubscribe( $unsubbed->email_address );
+    }
 }
 
 1;
