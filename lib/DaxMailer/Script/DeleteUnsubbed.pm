@@ -9,11 +9,7 @@ with 'DaxMailer::Base::Script::Service';
 sub go {
     my ( $self ) = @_;
 
-    my $unsubbed = rset('Subscriber::Bounce')->search(
-        { 'unsubscribed' => 1 }
-    );
-
-    $unsubbed->delete();
+    rset('Subscriber')->unsubscribed->delete();
 }
 
 1;
