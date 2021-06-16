@@ -6,4 +6,4 @@ use DaxMailer::Script::DeleteUnsubbed;
 use DaxMailer::Script::DeleteMailtrainUnsubbed;
 
 DaxMailer::Script::DeleteUnsubbed->new->go;
-#DaxMailer::Script::DeleteMailtrainUnsubbed->new->go;
+DaxMailer::Script::DeleteMailtrainUnsubbed->new->go;

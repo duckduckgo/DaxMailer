@@ -59,8 +59,12 @@ sub manage_subscription {
             email_address => $email,
             operation => $operation,
         } );
-        $subscriber->processed( 0 );
-        $subscriber->update;
+        if ( $operation eq 'unsubscribe' ) {
+            $subscriber->delete() if ( $operation eq 'unsubscribe' );
+        } else {
+            $subscriber->processed( 0 );
+            $subscriber->update;
+        }
     } catch {
         warn sprintf( "Unable to %s %s", $operation, $email );
         return 0;
@@ -69,7 +73,16 @@ sub manage_subscription {
 
 sub unsubscribe {
     my ( $self, $email ) = @_;
+    $self->delete_from_mailtrain($email);
     $self->manage_subscription( unsubscribe => $email );
+}
+
+sub delete_from_mailtrain {
+    my ( $self, $email ) = @_;
+    $self->search({
+      email_address => $email,
+      operation => 'unsubscribe',
+    } )->process_subscription( qw/ unsubscribe / );
 }
 
 sub subscribe {
