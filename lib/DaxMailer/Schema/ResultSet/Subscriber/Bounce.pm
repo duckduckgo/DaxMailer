@@ -37,8 +37,7 @@ sub legacy_unsub {
     return unless $self->legacy_dbh;
 
     $self->legacy_dbh->do(
-       "UPDATE subscriber
-        SET    unsubscribed = 1
+       "DELETE FROM subscriber
         WHERE  email_address = ?",
         undef, ( $email )
     );
