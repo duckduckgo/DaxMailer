@@ -14,18 +14,25 @@ sub go {
     
     my $api_domain = $ENV{DAXMAILER_MAILGUN_API_DOMAIN};
     my $api_key = $ENV{DAXMAILER_MAILGUN_API_KEY};
+    my $base_uri = "https://api.mailgun.net/v3/$api_domain";
+    my $api_uris = [
+        "$base_uri/bounces";
+        "$base_uri/complaints";
+        "$base_uri/unsubscribes";
+    ]
 
-    $self->_delete_bounces($api_domain, $api_key);
-    # $self->_delete_complaints($api_domain, $api_key); 
+    for my $uri in ( @api_uris ) {
+        $self->_purge_mailgun(uri, $api_key);
+    }
 }
 
-sub _delete_bounces {
-    my ( $self, $api_domain, $api_key ) = @_;
+sub _purge_mailgun {
+    my ( $self, $api_uri, $api_key ) = @_;
 
     my @bounces = [];
 
     # Get bounces list
-    my $req_bounces = HTTP::Request->new( 'GET', "https://api.mailgun.net/v3/$api_domain/bounces", [
+    my $req_bounces = HTTP::Request->new( 'GET', $api_uri, [
               'WWW-Authenticate' => "api:$api_key"
               ] );
     my $ua = LWP::UserAgent->new();
@@ -45,7 +52,7 @@ sub _delete_bounces {
     }
 
     # Delete bounce list from Mailgun
-    my $req_delete = HTTP::Request->new( 'DELETE', "https://api.mailgun.net/v3/$api_domain/bounces", [
+    my $req_delete = HTTP::Request->new( 'DELETE', $api_uri, [
               'WWW-Authenticate' => "api:$api_key"
               ] );
     my $ua = LWP::UserAgent->new();
