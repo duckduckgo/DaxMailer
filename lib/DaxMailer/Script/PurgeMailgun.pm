@@ -24,7 +24,7 @@ sub go {
     );
 
     for my $uri ( @api_uris ) {
-        print "Calling _purge_mailgun() with uri $uri";
+        warn "Calling _purge_mailgun() with uri $uri";
         $self->_purge_mailgun($uri, $api_key);
     }
 }
@@ -41,15 +41,21 @@ sub _purge_mailgun {
               ] );
     my $ua = LWP::UserAgent->new();
     my $res_bounces;
+    my $content;
+    my $next_page;
+    my $tot_bounces;
     
     try {
         $res_bounces = $ua->request($req_bounces);
-        @bounces = from_json($res_bounces->content())->{items};
+        $content = from_json($res_bounces->content());
+        @bounces = $content->{items};
+        $next_page = $content->{paging} ? $content->{paging}->{next} : '';
     } catch {
         warn "Error trying to fetch data for $api_uri: $_";
     };
 
     for my $bounces_page ( @bounces ) {
+        $tot_bounces = scalar @{$bounces_page};
         for my $bounced ( @{$bounces_page} ) {
             my $address = $bounced->{address};
             warn "Purging email address $address from local DB";
@@ -86,6 +92,10 @@ sub _purge_mailgun {
         }
     }
 
+    if ( defined($next_page) and $next_page ne '' and $tot_bounces > 0) {
+        warn "Calling _purge_mailgun() with uri $next_page";
+        $self->_purge_mailgun($next_page, $api_key);
+    }
 }
 
 1;
