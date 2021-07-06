@@ -41,6 +41,7 @@ requires 'Import::Into';
 requires 'JSON';
 requires 'JSON::MaybeXS';
 requires 'LWP::UserAgent';
+requires 'LWP::Protocol::https';
 requires 'MIME::Base64';
 requires 'Moo';
 requires 'Moo::Role';

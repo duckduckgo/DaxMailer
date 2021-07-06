@@ -52,7 +52,7 @@ sub _purge_mailgun {
     for my $bounces_page ( @bounces ) {
         for my $bounced ( @{$bounces_page} ) {
             my $address = $bounced->{address};
-            print "Purging email address $address from local DB";
+            warn "Purging email address $address from local DB";
 
             # Delete from local and Mailtrain DBs
             try {
@@ -71,18 +71,18 @@ sub _purge_mailgun {
             };
 
             # Delete bounced address from Mailgun
-            #print "Delete $address from Mailgun";
-            #my $req_delete = HTTP::Request->new( 'DELETE', "$api_uri/$address", [
-            #            'Authorization' => "Basic $encoded_credentials"
-            #          ] );
-            #my $ua = LWP::UserAgent->new();
-            #my $res_delete;
-            #
-            #try {
-            #    $res_delete = $ua->request($req_delete);
-            #} catch {
-            #    warn "Error trying to delete $address: $_";
-            #};
+            warn "Delete $address from Mailgun";
+            my $req_delete = HTTP::Request->new( 'DELETE', "$api_uri/$address", [
+                        'Authorization' => "Basic $encoded_credentials"
+                      ] );
+            my $ua = LWP::UserAgent->new();
+            my $res_delete;
+            
+            try {
+                $res_delete = $ua->request($req_delete);
+            } catch {
+                warn "Error trying to delete $address: $_";
+            };
         }
     }
 
