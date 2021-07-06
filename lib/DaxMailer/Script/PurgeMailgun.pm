@@ -43,6 +43,7 @@ sub _purge_mailgun {
     my $res_bounces;
     my $content;
     my $next_page;
+    my $tot_bounces;
     
     try {
         $res_bounces = $ua->request($req_bounces);
@@ -54,6 +55,7 @@ sub _purge_mailgun {
     };
 
     for my $bounces_page ( @bounces ) {
+        $tot_bounces = scalar @{$bounces_page};
         for my $bounced ( @{$bounces_page} ) {
             my $address = $bounced->{address};
             warn "Purging email address $address from local DB";
@@ -90,7 +92,7 @@ sub _purge_mailgun {
         }
     }
 
-    if ( defined($next_page) and $next_page ne '' ) {
+    if ( defined($next_page) and $next_page ne '' and $tot_bounces > 0) {
         warn "Calling _purge_mailgun() with uri $next_page";
         $self->_purge_mailgun($next_page, $api_key);
     }
