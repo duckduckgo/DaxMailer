@@ -40,7 +40,7 @@ requires 'IO::Socket::SSL';
 requires 'Import::Into';
 requires 'JSON';
 requires 'JSON::MaybeXS';
-requires 'LWP:UserAgent';
+requires 'LWP::UserAgent';
 requires 'MIME::Base64';
 requires 'Moo';
 requires 'Moo::Role';
