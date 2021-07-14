@@ -95,6 +95,21 @@ sub mail_sent_days_ago {
     } );
 }
 
+sub mail_sent {
+    my ( $self, $campaign, $email ) = @_;
+    $self->search_rs( {
+        'me.email_address' => { -in => \[
+                'SELECT email_address
+                 FROM subscriber_maillog
+                 WHERE campaign = ?
+                 AND email_address = me.email_address
+                 AND email_id = ?',
+                ( $campaign, $email )
+            ],
+        }
+    } );
+}
+
 sub verification_mail_unsent_for {
     my ( $self, $campaign ) = @_;
     $self->search_rs( {
