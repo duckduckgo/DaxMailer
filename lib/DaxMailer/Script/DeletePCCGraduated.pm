@@ -11,7 +11,6 @@ sub go {
 
     my $campaigns = config()->{campaigns};
     for my $campaign ( sort keys %{ $campaigns } ) {
-        next if !$campaigns->{ $campaign }->{live};
         my @mail_map = (
             'v',
             sort { $a <=> $b }
