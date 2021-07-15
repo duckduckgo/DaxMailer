@@ -159,6 +159,18 @@ sub by_days_ago {
     } );
 }
 
+sub created_before_days_ago {
+    my ( $self, $days ) = @_;
+    my $today = DateTime->now->truncate( to => 'day' );
+    my $days_ago_date = $self->format_datetime(
+        $today->subtract( days => 1 )
+    );
+
+    $self->search_rs( {
+        created => { '<', $days_ago_date }
+    } );
+}
+
 sub exists {
     my ( $self, $email, $campaigns ) = @_;
     $self->search( \[ 'LOWER( email_address ) = ?', lc( $email ) ] )

@@ -33,8 +33,8 @@ sub go {
             ->mail_sent( $campaign, $mail  )
             ->all;    
 
+        warn "Deleting $#subscribers graduated users" if $#subscribers > 0;
         for my $subscriber ( @subscribers ) {
-            warn "Deleting graduated user $subscriber";
             $subscriber->delete();
         }
     }
@@ -42,11 +42,11 @@ sub go {
 
     # Delete subscribers who signed up more than 28 weeks ago
     my @old_subscribers = rset('Subscriber')
-        ->by_days_ago(203)
+        ->created_before_days_ago(203)
         ->all;
 
+    warn "Deleting $#old_subscribers old subscribers" if $#old_subscribers > 0;
     for my $old_subscriber ( @old_subscribers) {
-        warn "Deleting old subscriber $old_subscriber";
         $old_subscriber->delete();
     }
 }
