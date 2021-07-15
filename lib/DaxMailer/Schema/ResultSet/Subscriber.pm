@@ -163,7 +163,7 @@ sub created_before_days_ago {
     my ( $self, $days ) = @_;
     my $today = DateTime->now->truncate( to => 'day' );
     my $days_ago_date = $self->format_datetime(
-        $today->subtract( days => 1 )
+        $today->subtract( days => $days )
     );
 
     $self->search_rs( {
