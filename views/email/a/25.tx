@@ -2,7 +2,7 @@
 
 <p style="margin-bottom: 1em">Here's how it works differently than a VPN. Imagine you want to send a letter anonymously. You could use a trusted courier to deliver it directly without others knowing or revealing your identity. That's roughly how a VPN works. Alternatively, you could use the regular postal service, dropping the letter in a mailbox from which it gets routed through various post offices until it reaches its destination. That's roughly how Tor works.</p>
 
-<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/postdog25.jpg?atb=<: $subscriber.flow :>" style="max-width:572px; width:50%;" alt="Dog holding a package for posting." /></p>
+<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/postdog25.jpg" style="max-width:572px; width:50%;" alt="Dog holding a package for posting." /></p>
 
 <p style="margin-bottom: 1em">So what's the catch? Why isn't everyone using Tor? Well, like the letter analogy above, your data is taking the scenic route to get to its destination, not the fast, direct route. This longer route makes surfing the internet slower. You also need to connect to the Tor network before you start browsing, similar to connecting to a VPN, although Tor software makes this easy with options for desktop and mobile:</p>
 

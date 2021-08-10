@@ -4,7 +4,7 @@
 
 <h3>How to encrypt your Mac</h3>
 
-<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/device-encryption-mac24.png?atb=<: $subscriber.flow :>" style="max-width:572px; width:80%;" alt="Screenshot of the FileVault setting on macOS." /></p>
+<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/device-encryption-mac24.png" style="max-width:572px; width:80%;" alt="Screenshot of the FileVault setting on macOS." /></p>
 
 <ol>
     <li>Go to <em>System Preferences</em> > <em>Security &amp; Privacy</em> > <em>FileVault</em></li>
@@ -17,7 +17,7 @@
 
 <h3>How to encrypt your Windows device</h3>
 
-<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/device-encryption-win724.png?atb=<: $subscriber.flow :>" style="max-width:572px; width:80%;" alt="Screenshot of the BitLocker setting on Windows 7." /></p>
+<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/device-encryption-win724.png" style="max-width:572px; width:80%;" alt="Screenshot of the BitLocker setting on Windows 7." /></p>
 
 <p style="margin-bottom: 1em">Note: BitLocker may not be available in all versions of Windows.</p>
 
@@ -33,7 +33,7 @@
 
 <h3>How to encrypt your iPhone</h3>
 
-<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/device-encryption-iphone24.png?atb=<: $subscriber.flow :>" style="max-width:572px; width:80%;" alt="Screenshot of the lock screen process on iPhone." /></p>
+<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/device-encryption-iphone24.png" style="max-width:572px; width:80%;" alt="Screenshot of the lock screen process on iPhone." /></p>
 
 <ol>
     <li>Go to <em>Settings</em> > <em>Touch ID &amp; Passcode</em>.</li>
@@ -46,7 +46,7 @@
 
 <h3>How to encrypt your Android device</h3>
 
-<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/device-encryption-android24.png?atb=<: $subscriber.flow :>" style="max-width:572px; width:80%;" alt="Screenshot of the encryption process on Android." /></p>
+<p style="margin: 2em 0;text-align: center"><img src="https://duckduckgo.com/assets/email/device-encryption-android24.png" style="max-width:572px; width:80%;" alt="Screenshot of the encryption process on Android." /></p>
 
 <ol>
     <li>Plug in the device to charge the battery (required).</li>

@@ -5,7 +5,7 @@
 <strong>How to Disable Google Ad Targeting:</strong></p>
 <ol>
 <li>Navigate to Google's <a href="https://adssettings.google.com/u/0/authenticated">Ad Settings page</a>.</li>
-<li>Toggle “Ad personalization” to off.<br /><img src="https://spreadprivacy.com/content/images/2020/02/google-ad-personalization.png?atb=<: $subscriber.flow :>" style="max-width:500px" alt="Screenshot showing how to disable Google's ad personalization."/></li>
+<li>Toggle “Ad personalization” to off.<br /><img src="https://spreadprivacy.com/content/images/2020/02/google-ad-personalization.png" style="max-width:500px" alt="Screenshot showing how to disable Google's ad personalization."/></li>
 <li>Then click the “Control ad personalization on other websites & apps that use Google ad services” link to opt out of ads by Google partners on non-Google websites.<br /></li>
 </ol>
 <p style="margin-bottom: 1em">Tracking is creepy, but luckily, you've switched to the Duck Side, and so now your searches are completely anonymous. DuckDuckGo protects your search history from everyone — even us! <img class="emoticon" src="https://duckduckgo.com/assets/email/ghost.png" width="20px" height="20px"/></p>
