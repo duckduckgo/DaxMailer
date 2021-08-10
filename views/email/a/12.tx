@@ -3,7 +3,7 @@
 </p>
 
 <p style="margin-bottom: 1em">
-  Companies often tell you that sharing your data is safe because they "anonymize" it by first removing or obfuscating your personal information. However, this depersonalization leads to only <em>partial anonymity</em>, as companies still usually store and share your data grouped together. This data group can be analyzed, and in many cases, then linked back to you, <em>individually</em>, based on its contents. <img src="https://duckduckgo.com/assets/email/emoji/detective.png?atb=<: $subscriber.flow :>" style="height:24px;vertical-align:-7px;" alt="Detective emoji" />
+  Companies often tell you that sharing your data is safe because they "anonymize" it by first removing or obfuscating your personal information. However, this depersonalization leads to only <em>partial anonymity</em>, as companies still usually store and share your data grouped together. This data group can be analyzed, and in many cases, then linked back to you, <em>individually</em>, based on its contents. <img src="https://duckduckgo.com/assets/email/emoji/detective.png" style="height:24px;vertical-align:-7px;" alt="Detective emoji" />
 </p>
 
 <p style="margin-bottom: 1em">
@@ -19,7 +19,7 @@
 </p>
 
 <p style="margin-bottom: 1em">
-  <center><img src="https://duckduckgo.com/assets/email/hiding12.jpg?atb=<: $subscriber.flow :>" width=50% alt="Children trying to hide behind a tree but still visible." /><br />
+  <center><img src="https://duckduckgo.com/assets/email/hiding12.jpg" width=50% alt="Children trying to hide behind a tree but still visible." /><br />
   <em>Fig 1: Hide and Seek Champions</em></center>
 </p>
 

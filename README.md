@@ -24,7 +24,7 @@ Then you will need to deploy them like so:
 carton exec bin/db_migrate.pl
 ```
 
-New files in sql/ should be commited to git. You may make changes to these files after they are generated,
+New files in sql/ should be committed to git. You may make changes to these files after they are generated,
 but if you run `schema_generate.pl` again these changes will be overwritten.
 
 The `db_migrate.pl` script should also be run on each deployment to pull in new changes.

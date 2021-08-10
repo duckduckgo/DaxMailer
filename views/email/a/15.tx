@@ -3,7 +3,7 @@
 </p>
 
 <p style="margin-bottom: 1em">
-  When we talk about online privacy, we often hear responses like: "<em>I'm protected by my antivirus software, spam filter, etc.</em>" While security software is important in staying safe online, it is a common misconception that <em>security = privacy</em>. It does not. <img src="https://duckduckgo.com/assets/email/emoji/what.png?atb=<: $subscriber.flow :>" style="height:24px;vertical-align:-7px;" alt="Emoji showing confused face" />
+  When we talk about online privacy, we often hear responses like: "<em>I'm protected by my antivirus software, spam filter, etc.</em>" While security software is important in staying safe online, it is a common misconception that <em>security = privacy</em>. It does not. <img src="https://duckduckgo.com/assets/email/emoji/what.png" style="height:24px;vertical-align:-7px;" alt="Emoji showing confused face" />
 </p>
 
 <p style="margin-bottom: 1em">
@@ -15,7 +15,7 @@
 </p>
 
 <p style="margin-bottom: 1em">
-  <center><img src="https://duckduckgo.com/assets/email/avgpolicy15.png?atb=<: $subscriber.flow :>" style="border:1px solid #333333;border-radius:8px;" width=90% alt="Quote from the Wired article about AVG's privacy policy change." /></center>
+  <center><img src="https://duckduckgo.com/assets/email/avgpolicy15.png" style="border:1px solid #333333;border-radius:8px;" width=90% alt="Quote from the Wired article about AVG's privacy policy change." /></center>
 </p>
 
 <p style="margin-bottom: 1em">
@@ -23,7 +23,7 @@
 </p>
 
 <p style="margin-bottom: 1em">
-  <center><img src="https://duckduckgo.com/assets/email/houseofglass15.jpg?atb=<: $subscriber.flow :>" width=100% alt="A small demonstration house with glass walls." /><br />
+  <center><img src="https://duckduckgo.com/assets/email/houseofglass15.jpg" width=100% alt="A small demonstration house with glass walls." /><br />
   <em>Fig 1: Stalker-friendly House of Glass</em></center>
 </p>
 
