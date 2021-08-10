@@ -7,7 +7,7 @@
 </p>
 
 <p style="margin-bottom: 1em">
-  To see for yourself, check out <a href="http://nothingprivate.ml">Nothing Private</a>, an example site that showcases private browsing tracking in the real world. <img src="https://duckduckgo.com/assets/email/emoji/eye.png?atb=<: $subscriber.flow :>" style="height:14px;vertical-align:-2px;" alt="Emoji of an eye" />
+  To see for yourself, check out <a href="http://nothingprivate.ml">Nothing Private</a>, an example site that showcases private browsing tracking in the real world. <img src="https://duckduckgo.com/assets/email/emoji/eye.png" style="height:14px;vertical-align:-2px;" alt="Emoji of an eye" />
 </p>
 
 <p style="margin-bottom: 1em">
@@ -19,7 +19,7 @@
 </p>
 
 <p style="margin-bottom: 1em">
-  <center><img src="https://duckduckgo.com/assets/email/ghostdog13.jpg?atb=<: $subscriber.flow :>" width=75% alt="A dog dressed up as a ghost." /><br />
+  <center><img src="https://duckduckgo.com/assets/email/ghostdog13.jpg" width=75% alt="A dog dressed up as a ghost." /><br />
   <em>Fig 1: Spookers - The Spooky Internet Tracking Dog</em></center>
 </p>
 

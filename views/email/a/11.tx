@@ -21,7 +21,7 @@
 </ul>
 
 <p style="margin-bottom: 1em">
-  Believe it or not, there have been over <a href="https://haveibeenpwned.com/PwnedWebsites">200 major websites</a> that have had their data leaked over the past few years, enabling your passwords to be used by hackers. <img src="https://duckduckgo.com/assets/email/emoji/shocked.png?atb=<: $subscriber.flow :>" style="height:24px;vertical-align:-7px;" alt="Detective emoji" />
+  Believe it or not, there have been over <a href="https://haveibeenpwned.com/PwnedWebsites">200 major websites</a> that have had their data leaked over the past few years, enabling your passwords to be used by hackers. <img src="https://duckduckgo.com/assets/email/emoji/shocked.png" style="height:24px;vertical-align:-7px;" alt="Detective emoji" />
 </p>
 
 <p style="margin-bottom: 1em">
@@ -29,7 +29,7 @@
 <p>
 
 <p style="margin-bottom: 1em">
-  <center><img src="https://duckduckgo.com/assets/email/pwned11.jpg?atb=<: $subscriber.flow :>" alt="Car getting pwned by Mother Nature" width=75% /></center>
+  <center><img src="https://duckduckgo.com/assets/email/pwned11.jpg" alt="Car getting pwned by Mother Nature" width=75% /></center>
 </p>
 
 <p style="margin-bottom: 0">
