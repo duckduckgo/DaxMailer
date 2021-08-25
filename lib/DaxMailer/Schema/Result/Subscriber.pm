@@ -50,12 +50,12 @@ sub _key {
 sub _url {
     my ( $self, $type ) = @_;
     my $u = URI->new( $self->app
-        ? $self->app->config->{base_url}
+        ? 'duckduckgo.com/newsletter' # TODO replace the base URL in the config
         : 'http://localhost'
     );
     $u->path(
-        sprintf "/s/%s/%s/%s/%s",
-        ( $type eq 'u' ? 'u' : 'v' ),
+        sprintf "/subscription/%s/%s/%s/%s",
+        ( $type eq 'u' ? 'unsubscribe/pcc' : 'v' ),
         $self->campaign,
         $self->email_address =~ s/\@/%40/gr,
         ( $type eq 'u' ? $self->u_key : $self->v_key )
