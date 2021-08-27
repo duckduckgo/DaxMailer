@@ -25,9 +25,7 @@ sub _build_persistent_store {
 
 sub _get_current_host {
     return $ENV{DAXMAILER_WEB_BASE} if $ENV{DAXMAILER_WEB_BASE};
-    return ( $ENV{DAXMAILER_XMPP_DOMAIN} eq 'dukgo.com' )
-        ? 'https://duck.co/'
-        : 'https://ddgc-staging.duckduckgo.com/';
+    return 'duckduckgo.com/newsletter';
 }
 
 on_plugin_import {
