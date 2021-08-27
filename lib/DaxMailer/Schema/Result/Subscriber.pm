@@ -54,7 +54,7 @@ sub _url {
         : 'http://localhost'
     );
     $u->path(
-        sprintf "/subscription/%s/%s/%s/%s",
+        sprintf "/newsletter/subscription/%s/%s/%s/%s",
         ( $type eq 'u' ? 'unsubscribe/pcc' : 'verify/pcc' ),
         $self->campaign,
         $self->email_address =~ s/\@/%40/gr,

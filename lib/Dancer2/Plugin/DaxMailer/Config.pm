@@ -25,7 +25,7 @@ sub _build_persistent_store {
 
 sub _get_current_host {
     return $ENV{DAXMAILER_WEB_BASE} if $ENV{DAXMAILER_WEB_BASE};
-    return 'duckduckgo.com/newsletter';
+    return 'https://duckduckgo.com';
 }
 
 on_plugin_import {
