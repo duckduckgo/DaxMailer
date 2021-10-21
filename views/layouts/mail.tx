@@ -256,7 +256,7 @@
                                         <td valign="top" class="headerContent">
                                             <picture>
                                                 <source srcset="https://duckduckgo.com/assets/privacy_crash_course_small.png" media="(max-width: 600px)">
-                                                <img src="https://duckduckgo.com/assets/email/privacy_crash_course_large.png" alt="DuckDuckGo Privacy Crash Course">
+                                                <img src="https://duckduckgo.com/assets/privacy_crash_course_large.png" alt="DuckDuckGo Privacy Crash Course">
                                             </picture>
                                         </td>
                                     </tr>
