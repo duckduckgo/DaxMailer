@@ -318,6 +318,13 @@
                                                 <a href="<: $subscriber.unsubscribe_url :>">Unsubscribe</a>
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td valign="top" class="footerContent callout" style="padding-top:0; padding-bottom:5px;">
+                                                <p style="margin-bottom: 1em">Our newsletter doesn't track you, but about 80% of other emails do! 
+                                                Get a @duck.com forwarding address to remove trackers and protect your email address.
+                                                <a href="https://spreadprivacy.com/introducing-email-protection-beta/)">Learn more.</a></p>
+                                            </td>
+                                        </tr>
                                     </table>
                                 </td>
                             </tr>
