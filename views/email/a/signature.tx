@@ -1,10 +1,3 @@
-<style type="text/css">
-    .domain a {
-        color: inherit;
-        text-decoration: none;
-    }
-</style>
-
 <p style="margin-bottom: 1em">
 Proudly Private,<br /><br />
 <img src="https://duckduckgo.com/assets/email/signature.png" alt="Dax's Signature"/><br /><br />
@@ -13,6 +6,6 @@ Mascot - DuckDuckGo</p>
 
 
 <p style="margin-bottom: 1em">
-P.S. Our newsletter doesn't track you, but about 80% of other emails do!<br /> 
-Get a @<span class="domain">duck.com</span> forwarding address to remove trackers and protect your email address. 
+P.S. Our newsletter doesn't track you, but about 80% of other emails do! 
+Get a @duck dot com forwarding address to remove trackers and protect your email address. 
 <a href="https://spreadprivacy.com/introducing-email-protection-beta/">Learn more.</a></p>
