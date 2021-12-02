@@ -21,7 +21,13 @@
             /*  TEMPLATE STYLES  */
             /* === Page Styles ==== */
             #bodyCell{padding:0px;}
-            #templateContainer{width:600px;}
+            #templateContainer{
+                border:none;
+                margin-bottom:12px;
+                margin-left:12px;
+                margin-right:12px;
+                max-width:600px;
+            }
             /**
             * @section background style
             */
@@ -32,13 +38,13 @@
             * @section background style
             */
             #bodyCell{
-                 border-top:4px solid #FFFFFF;
+                padding: 0px;
             }
             /**
             * @section email border
             */
             #templateContainer{
-                border:1px solid #FFFFFF;
+                border:none;
             }
             /**
             * @section heading 1
@@ -61,13 +67,6 @@
             }
             /* ========== Header Styles ========== */
             /**
-            * @section preheader style
-            */
-            #templatePreheader{
-                background-color:#FFFFFF;
-                border-bottom:1px solid #FFFFFF;
-            }
-            /**
             * @section preheader text
             */
             .preheaderContent{
@@ -89,9 +88,8 @@
             * @section header style
             */
             #templateHeader{
-                background-color:#FFFFFF;
-                border-top:1px solid #FFFFFF;
-
+                max-width:100%;
+                margin-bottom:20px;
             }
             /**
             * @section header text
@@ -109,6 +107,9 @@
                 text-align:left;
                 vertical-align:middle;
             }
+            #templateHeader img, #headerContent img{
+                max-width:100%;
+            }
             /**
             * @section header link
             */
@@ -119,7 +120,7 @@
             }
             #headerImage{
                 height:auto;
-                max-width:600px;
+                width: 500px;
             }
             /* ========== Body Styles ========== */
             /**
@@ -127,7 +128,6 @@
             */
             #templateBody{
                 background-color:#FFFFFF;
-                border-top:1px solid #FFFFFF;
                 margin-bottom:1em; /* force YahooMail to space paragraphs */
             }
             /**
@@ -139,8 +139,8 @@
                 font-size:14px;
                 line-height:150%;
                 padding-top:10px;
-                padding-right:35px;
-                padding-left:35px;
+                padding-right:0px;
+                padding-left:2px;
                 text-align:left;
             }
             /**
@@ -176,8 +176,8 @@
                 font-size:10px;
                 line-height:150%;
                 padding-top:20px;
-                padding-right:35px;
-                padding-left:35px;
+                padding-right:0px;
+                padding-left:2px;
                 text-align:left;
             }
             /**
@@ -190,66 +190,6 @@
             }
             .footerContent.unsubscribe {
                 font-size:14px;
-            }
-            /*  MOBILE STYLES  */
-            @media only screen and (max-width: 480px){
-                /*  CLIENT-SPECIFIC MOBILE STYLES */
-                body, table, td, p, a, li, blockquote{-webkit-text-size-adjust:none !important;} /* Prevent Webkit platforms from changing default text sizes */
-                body{width:100% !important; min-width:100% !important;} /* Prevent iOS Mail from adding padding to the body */
-                /* / MOBILE RESET STYLES  */
-                #bodyCell{padding:10px !important;}
-                /*  MOBILE TEMPLATE STYLES  */
-                /* ======== Page Styles ======== */
-                /**
-                * @section template width
-                * Make the template fluid for portrait or landscape view adaptability. If a fluid layout doesn't work for you, set the width to 300px instead.
-                */
-                #templateContainer{
-                    max-width:1200px !important;
-                    width:100% !important;
-                }
-                /**
-                * @section heading 1
-                * Makes the first-level headings larger in size for better readability on small screens.
-                */
-                h1{
-                    font-size:24px !important;
-                    line-height:100% !important;
-                }
-                /* ======== Header Styles ======== */
-                #templatePreheader{display:none !important;} /* Hide the template preheader to save space */
-                /**
-                * @section header image
-                * Make the main header image fluid for portrait or landscape view adaptability, and set the image's original width as the max-width. If a fluid setting doesn't work, set the image width to half its original size instead.
-                */
-                #headerImage{
-                    height:auto !important;
-                     width:100% !important;
-                }
-                /**
-                * @section header text
-                */
-                .headerContent{
-                    font-size:20px !important;
-                    line-height:125% !important;
-                }
-                /* ======== Body Styles ======== */
-                /**
-                * @section body text
-                */
-                .bodyContent{
-                    font-size:18px !important;
-                    line-height:125% !important;
-                }
-                /* ======== Footer Styles ======== */
-                /**
-                * @section footer text
-                */
-                .footerContent{
-                    font-size:14px !important;
-                    line-height:115% !important;
-                }
-                .footerContent a{display:block !important;} /* Place footer social and utility links on their own lines, for easier access */
             }
         </style>
     </head>
