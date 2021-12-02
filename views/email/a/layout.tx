@@ -91,7 +91,8 @@
             #templateHeader{
                 background-color:#FFFFFF;
                 border-top:1px solid #FFFFFF;
-
+                max-width:100%;
+                margin-bottom:20px;
             }
             /**
             * @section header text
@@ -109,6 +110,9 @@
                 text-align:left;
                 vertical-align:middle;
             }
+            #templateHeader img, #headerContent img{
+                max-width:100%;
+            }
             /**
             * @section header link
             */
@@ -119,7 +123,7 @@
             }
             #headerImage{
                 height:auto;
-                max-width:600px;
+                width: 500px;
             }
             /* ========== Body Styles ========== */
             /**
@@ -192,19 +196,19 @@
                 font-size:14px;
             }
             /*  MOBILE STYLES  */
-            @media only screen and (max-width: 480px){
+            /*@media only screen and (max-width: 480px){
                 /*  CLIENT-SPECIFIC MOBILE STYLES */
-                body, table, td, p, a, li, blockquote{-webkit-text-size-adjust:none !important;} /* Prevent Webkit platforms from changing default text sizes */
-                body{width:100% !important; min-width:100% !important;} /* Prevent iOS Mail from adding padding to the body */
+               /* body, table, td, p, a, li, blockquote{-webkit-text-size-adjust:none !important;} /* Prevent Webkit platforms from changing default text sizes */
+               /* body{width:100% !important; min-width:100% !important;} /* Prevent iOS Mail from adding padding to the body */
                 /* / MOBILE RESET STYLES  */
-                #bodyCell{padding:10px !important;}
+                /*#bodyCell{padding:10px !important;}
                 /*  MOBILE TEMPLATE STYLES  */
                 /* ======== Page Styles ======== */
                 /**
                 * @section template width
                 * Make the template fluid for portrait or landscape view adaptability. If a fluid layout doesn't work for you, set the width to 300px instead.
                 */
-                #templateContainer{
+                /*#templateContainer{
                     max-width:1200px !important;
                     width:100% !important;
                 }
@@ -212,24 +216,24 @@
                 * @section heading 1
                 * Makes the first-level headings larger in size for better readability on small screens.
                 */
-                h1{
+               /* h1{
                     font-size:24px !important;
                     line-height:100% !important;
                 }
                 /* ======== Header Styles ======== */
-                #templatePreheader{display:none !important;} /* Hide the template preheader to save space */
+                /*#templatePreheader{display:none !important;} /* Hide the template preheader to save space */
                 /**
                 * @section header image
                 * Make the main header image fluid for portrait or landscape view adaptability, and set the image's original width as the max-width. If a fluid setting doesn't work, set the image width to half its original size instead.
                 */
-                #headerImage{
+                /*#headerImage{
                     height:auto !important;
                      width:100% !important;
                 }
                 /**
                 * @section header text
                 */
-                .headerContent{
+                /*.headerContent{
                     font-size:20px !important;
                     line-height:125% !important;
                 }
@@ -237,7 +241,7 @@
                 /**
                 * @section body text
                 */
-                .bodyContent{
+                /*.bodyContent{
                     font-size:18px !important;
                     line-height:125% !important;
                 }
@@ -245,12 +249,12 @@
                 /**
                 * @section footer text
                 */
-                .footerContent{
+                /*.footerContent{
                     font-size:14px !important;
                     line-height:115% !important;
                 }
                 .footerContent a{display:block !important;} /* Place footer social and utility links on their own lines, for easier access */
-            }
+            /*}*/
         </style>
     </head>
     <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
