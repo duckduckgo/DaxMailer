@@ -6,6 +6,7 @@ use DaxMailer::Base::Web::Common;
 use Dancer2::Plugin::Auth::HTTP::Basic::DWIW;
 use DaxMailer::Script::SubscriberMailer;
 use Email::Valid;
+use Try::Tiny;
 
 my $subscriber = DaxMailer::Script::SubscriberMailer->new;
 
@@ -22,6 +23,28 @@ get '/unsub/news/:email' => sub {
         'email/unsub.tx',
         { success => $success },
         { layout => undef };
+};
+
+post '/u/hook/bounce' => sub {
+    # Postal (self-hosted mailgun replacement) will fire a webhook to
+    # https://daxmailerapi/s/u/hook/bounce as a POST with a JSON containing
+    # the details of the hard failure
+    
+    my $json = decode_json(request->body);
+    my $email = $json->{payload}->{message}->{to};
+
+    warn "$email will be removed from DB due to hard failure";
+
+    try {
+        rset('Subscriber')->find( {
+            email_address => $email,
+            campaign => 'b'
+        } )->delete();
+    } catch {
+        warn "Error while trying to delete $email: $_";
+    };
+
+    return;
 };
 
 get '/u/:campaign/:email/:key' => sub {
