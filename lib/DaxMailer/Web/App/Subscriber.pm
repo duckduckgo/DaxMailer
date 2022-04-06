@@ -33,7 +33,7 @@ post '/u/hook/bounce' => sub {
     my $json = decode_json(request->body);
     my $email = $json->{payload}->{message}->{to};
 
-    warn "$email will be removed from DB due to hard failure";
+    warn "$email will be removed from DB due to hard failure (PCC)";
 
     try {
         rset('Subscriber')->find( {
@@ -41,7 +41,26 @@ post '/u/hook/bounce' => sub {
             campaign => 'b'
         } )->delete();
     } catch {
-        warn "Error while trying to delete $email: $_";
+        warn "Error while trying to delete $email: $_ (PCC)";
+    };
+
+    return;
+};
+
+post '/u/hook/bounceweekly' => sub {
+    # Postal (self-hosted mailgun replacement) will fire a webhook to
+    # https://daxmailerapi/s/u/hook/bounceweekly as a POST with a JSON containing
+    # the details of the hard failure
+
+    my $json = decode_json(request->body);
+    my $email = $json->{payload}->{message}->{to};
+
+    warn "$email will be removed from DB due to hard failure (Weekly)";
+
+    try {
+        rset('Subscriber::Mailtrain')->unsubscribe( $email );
+    } catch {
+        warn "Error while trying to delete $email: $_ (Weekly)";
     };
 
     return;
