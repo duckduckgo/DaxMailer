@@ -110,7 +110,7 @@ sub email {
             to       => $subscriber->email_address,
             verified => $verified
                         || ( $subscriber->verified && !$subscriber->unsubscribed ),
-            from     => '"DuckDuckGo Dax" <dax@mailer.duckduckgo.com>',
+            from     => '"DuckDuckGo Dax" <dax@mailer.spreadprivacy.com>',
             subject  => $subject,
             template => $template,
             layout   => $layout,
@@ -138,7 +138,7 @@ sub email_plaintext {
         to       => $subscriber->email_address,
         verified => $verified
                     || ( $subscriber->verified && !$subscriber->unsubscribed ),
-        from     => '"DuckDuckGo Dax" <dax@mailer.duckduckgo.com>',
+        from     => '"DuckDuckGo Dax" <dax@mailer.spreadprivacy.com>',
         subject  => $subject,
         template => $layout,
         content  => {
